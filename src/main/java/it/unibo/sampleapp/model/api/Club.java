@@ -2,14 +2,15 @@ package it.unibo.sampleapp.model.api;
 
 public interface Club {
     //Getter Methods
-    public String getName();
-    public int getScore();
-    public int getNetDiff();
+    String getName();
+    int getPoints();
+    int getNetDiff();
 
     //Setter Methods
-    public void setName(String name);
-    public void incrementScore(int points);
-    public void changeNetDiffs(int netScored, int netSufferd);
+    void setName(String name);
+    void incrementPoints(int points);
+    void changeNetDiffs(int goalScored, int goalConceded);
 
     //AGGIUNGERE I METODI PER SETTARE E GETTARE LE PEDINE
 }
+  
