@@ -1,4 +1,4 @@
-package it.unibo.sampleapp.model.api;
+package gioco_scudetto.model.api;
 
 public interface DiceThrow {
 
