@@ -13,6 +13,5 @@ public interface Club {
     void changeNetDiffs(int goalScored, int goalConceded);
     void changePawn(Pawn pawnSelected);
 
-    //AGGIUNGERE I METODI PER SETTARE E GETTARE LE PEDINE
 }
   

@@ -38,7 +38,7 @@ public class ClubImpl implements Club{
     public Pawn getPawn() {
         return this.pawn;
     }
-    
+
     @Override
     public void setName(final String name) {
         this.name = name;
@@ -55,7 +55,7 @@ public class ClubImpl implements Club{
     }
 
     @Override
-    public void changePawn(Pawn pawnSelected) {
+    public void changePawn(final Pawn pawnSelected) {
         this.pawn = pawnSelected;
     }
 }

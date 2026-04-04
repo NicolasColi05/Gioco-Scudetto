@@ -1,6 +1,5 @@
 package gioco_scudetto.model.api;
 
-import java.util.List;
 
 public interface GoalNet {
 
