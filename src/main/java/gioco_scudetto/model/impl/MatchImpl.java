@@ -8,8 +8,7 @@ public class MatchImpl implements Match{
 
     private Club clubHome;
     private Club clubAway;
-    private int goalHome;
-    private int goalAway;
+    private Scoreboard score;
 
     @Override
     public Club turn() {
@@ -41,8 +40,7 @@ public class MatchImpl implements Match{
 
     @Override
     public Scoreboard getScore() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getScore'");
+        return score;
     }
 
     @Override
