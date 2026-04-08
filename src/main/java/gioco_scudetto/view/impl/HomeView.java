@@ -16,5 +16,5 @@ public class HomeView {
 
     //Confrontarsi con gli altri: ha senso creare un interfaccia comune per tutte le view 
     //dove gli uncii due metodi sono next e prev, per navigare tra le varie vie?
-
+    // prova commit
 }
