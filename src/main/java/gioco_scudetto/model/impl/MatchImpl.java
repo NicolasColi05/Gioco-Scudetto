@@ -9,6 +9,7 @@ public class MatchImpl implements Match{
     private Club clubHome;
     private Club clubAway;
     private Scoreboard score;
+    enum status {IN_CORSO, FINE_PRIMO_TEMPO, FINE_PARTITA};
 
     @Override
     public Club turn() {
