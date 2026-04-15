@@ -10,6 +10,8 @@ public class HomeView {
 
     public HomeView(final Starter starter) {
         //this.starter = starter;
+        frame.add(new JPanel());
+
 
         frame.setVisible(true);
     }

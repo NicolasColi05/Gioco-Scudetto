@@ -1,19 +1,30 @@
 package gioco_scudetto.model.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gioco_scudetto.model.api.GoalNet;
 
-public class GoalNetImpl implements GoalNet{
+public class GoalNetImpl implements GoalNet {
+
+    private List<Integer> goalKeeperPosition;
+
+    public GoalNetImpl() {
+        this.goalKeeperPosition = new ArrayList<Integer>();
+    }
 
     @Override
     public void setGoalKeeperPosition(int position) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setGoalKeeperPosition'");
+        
+        if ( goalKeeperPosition.size() < 2) {
+            this.goalKeeperPosition.add(position);
+        } 
+
     }
 
     @Override
     public boolean isGoal() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isGoal'");
+        return false;
     }
 
 }
