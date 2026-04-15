@@ -3,8 +3,12 @@ package gioco_scudetto.model.impl;
 import gioco_scudetto.model.api.Fixtures;
 
 public class FixturesImpl implements Fixtures{
+
+    int numCLubs;
     
-    int NumCLubs;
+    public FixturesImpl(int numClubs){
+        this.numClubs = numClubs;
+    }
     
     @Override
     public void generateFixtures() {
