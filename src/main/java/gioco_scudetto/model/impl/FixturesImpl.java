@@ -9,11 +9,6 @@ public class FixturesImpl implements Fixtures{
     public FixturesImpl(int numClubs){
         this.numClubs = numClubs;
     }
-    
-    @Override
-    public void generateFixtures() {
-
-    }
 
     @Override
     public Pair<Club,Club> getNextMatch() {
