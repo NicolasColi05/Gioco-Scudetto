@@ -14,7 +14,7 @@ public class MatchImpl implements Match{
     public MatchImpl(){
         this.score = new ScoreboardImpl();
     }
-    
+
     @Override
     public Club turn() {
         // TODO Auto-generated method stub
@@ -23,13 +23,12 @@ public class MatchImpl implements Match{
 
     @Override
     public void goalHome() {
-        
+        this.score.increaseHomeScore();
     }
 
     @Override
     public void goalAway() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'goalAway'");
+        this.score.increaseGuestScore();
     }
 
     @Override
