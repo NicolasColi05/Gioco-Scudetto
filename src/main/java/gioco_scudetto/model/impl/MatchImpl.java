@@ -11,6 +11,10 @@ public class MatchImpl implements Match{
     private Scoreboard score;
     enum status {IN_CORSO, FINE_PRIMO_TEMPO, FINE_PARTITA};
 
+    public MatchImpl(){
+        this.score = new ScoreboardImpl();
+    }
+    
     @Override
     public Club turn() {
         // TODO Auto-generated method stub
@@ -19,8 +23,7 @@ public class MatchImpl implements Match{
 
     @Override
     public void goalHome() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'goalHome'");
+        
     }
 
     @Override

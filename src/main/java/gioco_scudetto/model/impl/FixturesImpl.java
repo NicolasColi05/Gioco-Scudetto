@@ -34,7 +34,6 @@ public class FixturesImpl implements Fixtures{
 
     private void fixtureGeneration(){
         this.fixture = new ArrayList<>();
-        
         return;
     }
 
