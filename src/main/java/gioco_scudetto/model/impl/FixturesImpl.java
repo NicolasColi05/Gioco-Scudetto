@@ -6,20 +6,20 @@ import gioco_scudetto.model.api.Pair;
 
 public class FixturesImpl implements Fixtures{
 
-    int numCLubs;
+    private int numCLubs;
     
     public FixturesImpl(int numClubs){
-        this.numClubs = numClubs;
+        this.numCLubs = numClubs;
     }
 
     @Override
     public Pair<Club,Club> getNextMatch() {
-
+        return null;
     }
 
     @Override
     public Pair<Club,Club> getCurrentMatch() {
-
+        return null;
     }
 
 }
