@@ -35,16 +35,30 @@ public class HomeView {
         gameTitle.setFont(titleFont);
         mainPanel.add(gameTitle, BorderLayout.NORTH);
 
+        //Creating buttons to select to play with bots or friend, and to close the game
+        JButton selectBot = createSelectionButton("<html><center>PLAY WITH<br>BOTS</center></html>", buttonFont);
+        JButton selectFriend = createSelectionButton("<html><center>PLAY WITH<br>FRIENDS</center></html>", buttonFont);
+        JButton exitGame = new JButton("EXIT");
+
+        mainPanel.add(selectBot, BorderLayout.EAST);
+        mainPanel.add(selectFriend, BorderLayout.WEST);
+        mainPanel.add(exitGame, BorderLayout.SOUTH);
+        
+        
 
         //Setting frame main panel
         frame.getContentPane().add(mainPanel);
 
-        frame.getContentPane().add(gameTitle);
+        frame.getContentPane().add(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
-    //Confrontarsi con gli altri: ha senso creare un interfaccia comune per tutte le view 
-    //dove gli uncii due metodi sono next e prev, per navigare tra le varie vie?
+    private JButton createSelectionButton(final String name, Font font) {
+        JButton button = new JButton(name);
+        button.setFont(font);
+        button.setForeground(Color.BLUE);
+        return button;
+    }
 
 }
