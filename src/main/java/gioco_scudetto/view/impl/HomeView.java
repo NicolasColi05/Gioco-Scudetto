@@ -4,69 +4,95 @@ import javax.swing.*;
 import java.awt.*;
 import gioco_scudetto.controller.api.Starter;
 
+/**
+ * This class contains the Game's Home implementation to decide to play 
+ * against bots or friends
+ */
 public class HomeView {
-    
+
+    private static final String FONT_SELECTED = Font.MONOSPACED;
+    private static final int TITLE_FONT_REDUCTION = 30;
+    private static final int BUTTON_FONT_REDUCTION = 50;
+    private static final int EXIT_FONT_REDUCTION = 80;
+    private static final int BUTTONS_HORIZONTAL_GAP = 80;
+    private static final int TITLE_FONT_RESIZING = 15;
+    private static final int BUTTON_FONT_RESIZING = 25;
+    private static final int EXIT_FONT_RESIZING = 40;
+
+
     private final JFrame frame = new JFrame("GIOCO DELLO SCUDETTO");
     private final Starter starter;
 
+    /**
+     * This class contains the Game's Home implementation to decide to play 
+     * against bots or friends.
+     * 
+     * @param starter refers to the controller linked to this view.
+     */
     public HomeView(final Starter starter) {
         this.starter = starter;
 
         //Setting screen responsive resolution and placing it in the center
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int minimumWidht = screenSize.width / 2;
-        int minimumHeight = screenSize.height / 2;
+        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        final int minimumWidht = screenSize.width / 2;
+        final int minimumHeight = screenSize.height / 2;
 
-        frame.setSize(minimumWidht , minimumHeight);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setResizable(true);
         frame.setMinimumSize(new Dimension(minimumWidht, minimumHeight));
 
         //Creating different font for each component
-        Font titleFont = new Font("Monospaced", Font.BOLD, minimumWidht / 30);
-        Font buttonFont = new Font("Monospaced", Font.BOLD, minimumWidht / 50);
-        Font exitFont = new Font("Monospaced", Font.BOLD, minimumWidht / 80);
+        final Font titleFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / TITLE_FONT_REDUCTION);
+        final Font buttonFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION);
+        final Font exitFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / EXIT_FONT_REDUCTION);
 
         //Creating the mainframe panel
         final JPanel mainPanel = new JPanel(new BorderLayout());
 
         //Adding Game Title and setting it in the top center position of the frame
-        JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), titleFont, Color.RED);
+        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), titleFont, Color.RED);
         //JLabel gameTitle = new JLabel("GIOCO DELLO SCUDETTO",SwingConstants.CENTER);
         gameTitle.setForeground(Color.RED);
         gameTitle.setFont(titleFont);
         mainPanel.add(gameTitle, BorderLayout.NORTH);
 
         //Creating buttons to select to play with bots or friend
-        JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 80, 0));
-        JComponent selectBot = createComponent(new JButton("<html><center>PLAY WITH<br>BOTS</center></html>"), buttonFont, Color.BLUE);
-        JComponent selectFriend = createComponent(new JButton( "<html><center>PLAY WITH<br>FRIENDS</center></html>"), buttonFont, Color.BLUE);
+        final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
+        final JComponent selectBot = createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), buttonFont, Color.BLUE);
+        final JComponent selectFriend = createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), buttonFont, Color.BLUE);
         selectButtonPanel.add(selectBot); 
-        selectButtonPanel.add(selectFriend);       
+        selectButtonPanel.add(selectFriend);   
 
         //Centralizing button vertically and responsively to the resolution changes
-        JPanel centerWrapper = new JPanel(new GridBagLayout());
+        final JPanel centerWrapper = new JPanel(new GridBagLayout());
         centerWrapper.add(selectButtonPanel);
 
         //Creating button to exit from the game
-        JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JComponent exitGame = createComponent(new JButton("EXIT"), exitFont, Color.BLACK);
+        final JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        final JComponent exitGame = createComponent(new JButton("EXIT"), exitFont, Color.BLACK);
         exitButtonPanel.add(exitGame);
 
         mainPanel.add(centerWrapper, BorderLayout.CENTER);
         mainPanel.add(exitButtonPanel, BorderLayout.SOUTH);
-        
+
+        //Exit button Listener to exit the game
+        if (exitGame instanceof JButton) {
+            ((JButton)exitGame).addActionListener(e -> {
+                frame.dispose();
+            });
+        }
         //Listener to change responsivly font size dipending by resolution changes
         frame.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
-            public void componentResized(java.awt.event.ComponentEvent e) {
-                
-                int currentWidth = frame.getWidth();
+            public void componentResized(final java.awt.event.ComponentEvent e) {
 
-                gameTitle.setFont(new Font("Monospaced", Font.BOLD, currentWidth / 15));
-                selectBot.setFont(new Font("Monospaced", Font.BOLD, currentWidth / 25));
-                selectFriend.setFont(new Font("Monospaced", Font.BOLD, currentWidth / 25));
-                exitGame.setFont(new Font("Monospaced", Font.BOLD, currentWidth / 40));
-                
+                final int currentWidth = frame.getWidth();
+
+                gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
+                selectBot.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
+                selectFriend.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
+                exitGame.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
+
                 frame.revalidate();
             }
         });
