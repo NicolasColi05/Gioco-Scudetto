@@ -9,15 +9,16 @@ import gioco_scudetto.model.api.Club;
 import gioco_scudetto.model.api.Fixtures;
 import gioco_scudetto.model.api.Pair;
 
-public class FixturesImpl implements Fixtures{
+public class FixturesImpl implements Fixtures {
 
     private ArrayList<Club> listOfClubs;
-    private List<Pair<Club,Club>> fixture;
-    final private Iterator<Pair<Club,Club>> fixtuIterator;
-    
+    private List<Pair<Club, Club>> fixture;
+    private final Iterator<Pair<Club, Club>> fixtuIterator;
+
     /**
      * Constructor of the class, it takes a list of clubs and generates the fixture of the championship.
-     * @param listOfClubs
+     * 
+     * @param listOfClubs it's the list of the clubs that will take part in the fixture
      */
     public FixturesImpl(final ArrayList<Club> listOfClubs) {
         this.listOfClubs = listOfClubs;
@@ -25,24 +26,22 @@ public class FixturesImpl implements Fixtures{
         this.fixtuIterator = fixture.iterator();
 
     }
-    /*utilizzo pattern builder, ciò porta a dover chiamare il costruttore due volte prima con il 
-    numero di club e poi con i nomi dei club che può essere sotto forma di lista o meno
 
-    anzi credo che basti passare una lista con i nomi dei club almeno ho sia i nomi che la lunghezza*/
     @Override
-    public Pair<Club,Club> getNextMatch() {
+    public Pair<Club, Club> getNextMatch() {
         return this.fixtuIterator.next();
     }
 
     @Override
-    public Pair<Club,Club> getCurrentMatch() {
+    public Pair<Club, Club> getCurrentMatch() {
         return null;
     }
 
     /**
-     * Method that generates the fixture of the championship, it creates a list of pairs of clubs that will play against each other.
+     * Method that generates the fixture of the championship, it creates a list of pairs 
+     * of the clubs that will play against each other.
      */
-    private void fixtureGeneration(){
+    private void fixtureGeneration() {
         this.fixture = new ArrayList<>();
         int i;
         int j;
@@ -57,17 +56,17 @@ public class FixturesImpl implements Fixtures{
     }
 
     /**
-     * Method that is responsible of shuffling the fixture, in ordere to create a random fixture
+     * Method that is responsible of shuffling the fixture, in ordere to create a random fixture.
      */
-    private void shuffleFixture(){
+    private void shuffleFixture() {
         int i;
-        for(i=0; i<listOfClubs.size(); i++){
-            Pair <Club,Club> firstPair = fixture.get(i);
-            RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
-            int n = g.nextInt(0, listOfClubs.size());
-            Pair <Club,Club> secondPair = fixture.get(n);
-            Pair <Club,Club> temp = firstPair;
-            fixture.set(i,secondPair);
+        for (i = 0; i < listOfClubs.size(); i++) {
+            final Pair<Club, Club> firstPair = fixture.get(i);
+            final RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
+            final int n = g.nextInt(0, listOfClubs.size());
+            final Pair<Club, Club> secondPair = fixture.get(n);
+            final Pair<Club, Club> temp = firstPair;
+            fixture.set(i, secondPair);
             fixture.set(n, temp);
         }
     }
