@@ -1,7 +1,7 @@
 package gioco_scudetto.model.impl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.random.*;
 
@@ -11,7 +11,7 @@ import gioco_scudetto.model.api.Pair;
 
 public class FixturesImpl implements Fixtures{
 
-    private LinkedList<Club> listOfClubs;
+    private ArrayList<Club> listOfClubs;
     private List<Pair<Club,Club>> fixture;
     final private Iterator<Pair<Club,Club>> fixtuIterator;
     
@@ -19,7 +19,7 @@ public class FixturesImpl implements Fixtures{
      * Constructor of the class, it takes a list of clubs and generates the fixture of the championship.
      * @param listOfClubs
      */
-    public FixturesImpl(final LinkedList<Club> listOfClubs) {
+    public FixturesImpl(final ArrayList<Club> listOfClubs) {
         this.listOfClubs = listOfClubs;
         this.fixtureGeneration();
         this.fixtuIterator = fixture.iterator();
@@ -43,7 +43,7 @@ public class FixturesImpl implements Fixtures{
      * Method that generates the fixture of the championship, it creates a list of pairs of clubs that will play against each other.
      */
     private void fixtureGeneration(){
-        this.fixture = new LinkedList<>();
+        this.fixture = new ArrayList<>();
         int i;
         int j;
         for (i = 0; i < listOfClubs.size(); i++) {
@@ -53,16 +53,22 @@ public class FixturesImpl implements Fixtures{
                 }
             }
         }
-        this.shufflefixture();
+        this.shuffleFixture();
     }
 
     /**
      * Method that is responsible of shuffling the fixture, in ordere to create a random fixture
      */
-    private void shufflefixture(){
+    private void shuffleFixture(){
         int i;
         for(i=0; i<listOfClubs.size(); i++){
-            Club club = listOfClubs.get(i);
+            Pair <Club,Club> firstPair = fixture.get(i);
+            RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
+            int n = g.nextInt(0, listOfClubs.size());
+            Pair <Club,Club> secondPair = fixture.get(n);
+            Pair <Club,Club> temp = firstPair;
+            fixture.set(i,secondPair);
+            fixture.set(n, temp);
         }
     }
 
