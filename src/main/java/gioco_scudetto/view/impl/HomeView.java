@@ -25,8 +25,9 @@ public class HomeView {
 
     /**
      * This class contains the Game's Home implementation to decide to play 
-     * against bots or friends
-     * @param starter refers to the controller linked to this view
+     * against bots or friends.
+     * 
+     * @param starter refers to the controller linked to this view.
      */
     public HomeView(final Starter starter) {
         this.starter = starter;

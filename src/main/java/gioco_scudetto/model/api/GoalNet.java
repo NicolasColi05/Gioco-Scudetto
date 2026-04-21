@@ -1,10 +1,22 @@
 package gioco_scudetto.model.api;
 
-
+/**
+ * This interface represents the goal net of the game.
+ */
 public interface GoalNet {
 
-    void setGoalKeeperPosition(int position); //in base alla prima posiizione alcune non saranno selezionabili ma lo devo controllare nel controller,
-                                             // es: se il portiere è in posizione 1 posso scegliere solo tra 2,4,5
+    /**
+     * This method sets the position of the goalkeeper.
+     * 
+     * @param position the position of the goalkeeper.
+     */
+    void setGoalKeeperPosition(int position);
 
-    boolean isGoal();
+    /**
+     * This method checks if the ball is in the goal or not.
+     * 
+     * @param guessPosition the position of the ball,
+     * @return a boolean that is true if the ball is in the goal and false otherwise.
+     */
+    boolean isGoal(int guessPosition);
 }
