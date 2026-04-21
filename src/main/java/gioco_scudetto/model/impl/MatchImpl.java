@@ -9,7 +9,6 @@ public class MatchImpl implements Match{
     private Club clubHome;
     private Club clubAway;
     private Scoreboard score;
-    enum status {IN_CORSO, FINE_PRIMO_TEMPO, FINE_PARTITA};
     private boolean turn = true;
 
     public MatchImpl(){
@@ -53,10 +52,5 @@ public class MatchImpl implements Match{
         return score;
     }
 
-    @Override
-    public int getMatchStatus() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMatchStatus'");
-    }
     
 }

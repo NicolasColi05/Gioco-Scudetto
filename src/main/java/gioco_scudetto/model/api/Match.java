@@ -14,5 +14,4 @@ public interface Match {
 
     Scoreboard getScore();
 
-    int getMatchStatus(); //enum StatoPartita { IN_CORSO, FINE_PRIMO_TEMPO, FINE_PARTITA }
 }
