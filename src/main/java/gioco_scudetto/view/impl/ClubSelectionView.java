@@ -4,19 +4,26 @@ import javax.swing.*;
 import java.awt.*;
 import gioco_scudetto.controller.api.Starter;
 
+/**
+ * The consrtuctor contains the Game's Club Selection implementation to choose the 
+ * number and information of the club that will play the match.
+ * 
+ */
 public class ClubSelectionView {
-        private static final String FONT_SELECTED = Font.MONOSPACED;
+    private static final String FONT_SELECTED = Font.MONOSPACED;
     private static final int TITLE_FONT_REDUCTION = 30;
     private static final int BUTTON_FONT_REDUCTION = 50;
     private static final int EXIT_FONT_REDUCTION = 80;
+    private static final int TITLE_FONT_RESIZING = 15;
+    private static final int EXIT_FONT_RESIZING = 40;
 
 
     private final JFrame frame = new JFrame("GIOCO DELLO SCUDETTO");
     private final Starter starter;
 
     /**
-     * This class contains the Game's Home implementation to decide to play 
-     * against bots or friends.
+     * The consrtuctor contains the Game's Club Selection implementation to choose the 
+     * number and information of the club that will play the match.
      * 
      * @param starter refers to the controller linked to this view.
      */
@@ -40,12 +47,68 @@ public class ClubSelectionView {
         //Creating the mainframe panel
         final JPanel mainPanel = new JPanel(new BorderLayout());
 
+        
+        //Adding Game Title and setting it in the top center position of the frame
+        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), titleFont, Color.RED);
+        //JLabel gameTitle = new JLabel("GIOCO DELLO SCUDETTO",SwingConstants.CENTER);
+        gameTitle.setForeground(Color.RED);
+        gameTitle.setFont(titleFont);
+        mainPanel.add(gameTitle, BorderLayout.NORTH);
 
+        //Creating buttons to select to play with bots or friend
+        
+
+        //Creating button to exit from the game
+        final JPanel buttonsPanel = new JPanel(new BorderLayout());
+        final JComponent backButton = createComponent(new JButton("BACK"), exitFont, Color.BLACK);
+        final JComponent playButton = createComponent(new JButton("PLAY"), exitFont, Color.BLACK);
+
+        buttonsPanel.add(backButton, BorderLayout.WEST);
+        buttonsPanel.add(playButton, BorderLayout.EAST);
+
+        mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
+
+        //Buttons Listener to go back to the home or start the match
+        if (backButton instanceof JButton) {
+            ((JButton)backButton).addActionListener(e -> {
+                    
+                //Bisogna tornare alla HomeView
+                
+            });
+        }
+
+        if (backButton instanceof JButton) {
+            ((JButton)backButton).addActionListener(e -> {
+                    
+                //Bisogna iniziare la partita
+                
+            });
+        }
+
+        //Listener to change responsivly font size dipending by resolution changes
+        frame.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(final java.awt.event.ComponentEvent e) {
+
+                final int currentWidth = frame.getWidth();
+
+                gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
+                backButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
+
+                frame.revalidate();
+            }
+        });
 
         //Setting frame main panel
         frame.getContentPane().add(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private JComponent createComponent(final JComponent component, final Font font, final Color color) {
+        component.setFont(font);
+        component.setForeground(color);
+        return component;
     }
 }
