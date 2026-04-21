@@ -74,6 +74,12 @@ public class HomeView {
         mainPanel.add(centerWrapper, BorderLayout.CENTER);
         mainPanel.add(exitButtonPanel, BorderLayout.SOUTH);
 
+        //Exit button Listener to exit the game
+        if (exitGame instanceof JButton) {
+            ((JButton)exitGame).addActionListener(e -> {
+                frame.dispose();
+            });
+        }
         //Listener to change responsivly font size dipending by resolution changes
         frame.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
