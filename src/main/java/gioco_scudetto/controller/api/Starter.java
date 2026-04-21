@@ -4,4 +4,6 @@ public interface Starter {
     
     void startGame();
 
+    void changeToClubView();
+
 }

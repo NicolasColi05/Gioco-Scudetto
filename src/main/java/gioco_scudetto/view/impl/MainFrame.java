@@ -26,7 +26,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame(Starter starter) {
         this.viewManager = new ViewManagerImpl();
-        this.viewManager.addView(new HomeViewProva(), "home");
+        this.viewManager.addView(new HomeViewProva(starter), "home");
 
         this.setContentPane(viewManager.getContainer());
 

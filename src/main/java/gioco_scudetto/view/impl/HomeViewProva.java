@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import gioco_scudetto.controller.api.Starter;
+
 public class HomeViewProva extends JPanel {
 
 
@@ -25,11 +27,11 @@ public class HomeViewProva extends JPanel {
     private static final int EXIT_FONT_REDUCTION = 80;
     private static final int BUTTONS_HORIZONTAL_GAP = 80;
 
+    private final Starter controller;
 
 
-
-    public HomeViewProva() {
-        
+    public HomeViewProva(Starter controller) {
+        this.controller = controller;
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         final int minimumWidht = screenSize.width / 2;
         this.setLayout(new BorderLayout());
@@ -60,6 +62,14 @@ public class HomeViewProva extends JPanel {
         final JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         final JComponent exitGame = createComponent(new JButton("EXIT"), exitFont, Color.BLACK);
         exitButtonPanel.add(exitGame);
+
+
+        //Adding the action listener to the buttons
+        if (selectBot instanceof JButton){
+            ((JButton)selectBot).addActionListener(e -> {
+
+            });
+        }
 
         this.add(centerWrapper, BorderLayout.CENTER);
         this.add(exitButtonPanel, BorderLayout.SOUTH);
