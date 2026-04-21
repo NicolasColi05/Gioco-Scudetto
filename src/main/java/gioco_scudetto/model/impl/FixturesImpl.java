@@ -11,14 +11,16 @@ import gioco_scudetto.model.api.Pair;
 
 public class FixturesImpl implements Fixtures{
 
-    private int numCLubs;
     private LinkedList<Club> listOfClubs;
     private List<Pair<Club,Club>> fixture;
-    private Iterator<Pair<Club,Club>> fixtuIterator;
+    final private Iterator<Pair<Club,Club>> fixtuIterator;
     
-    public FixturesImpl(LinkedList<Club> listOfClubs) {
+    /**
+     * Constructor of the class, it takes a list of clubs and generates the fixture of the championship.
+     * @param listOfClubs
+     */
+    public FixturesImpl(final LinkedList<Club> listOfClubs) {
         this.listOfClubs = listOfClubs;
-        this.numCLubs = listOfClubs.size();
         this.fixtureGeneration();
         this.fixtuIterator = fixture.iterator();
 
@@ -37,20 +39,26 @@ public class FixturesImpl implements Fixtures{
         return null;
     }
 
+    /**
+     * Method that generates the fixture of the championship, it creates a list of pairs of clubs that will play against each other.
+     */
     private void fixtureGeneration(){
         this.fixture = new LinkedList<>();
         int i;
         int j;
         for (i = 0; i < listOfClubs.size(); i++) {
             for (j = 0; i < listOfClubs.size(); j++) {
-                if (listOfClubs.get(i).getName() != listOfClubs.get(j).getName()) {
+                if (listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName())) {
                     fixture.add(new Pair<>(listOfClubs.get(i), listOfClubs.get(j)));
                 }
             }
         }
-        
+        this.shufflefixture();
     }
 
+    /**
+     * Method that is responsible of shuffling the fixture, in ordere to create a random fixture
+     */
     private void shufflefixture(){
         int i;
         for(i=0; i<listOfClubs.size(); i++){
