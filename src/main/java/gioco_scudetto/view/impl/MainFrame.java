@@ -3,14 +3,7 @@ package gioco_scudetto.view.impl;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import gioco_scudetto.controller.api.Starter;
 
@@ -25,14 +18,13 @@ public class MainFrame extends JFrame {
     private final Starter starter;
 
     public MainFrame(Starter starter) {
+        this.starter = starter;
         this.viewManager = new ViewManagerImpl();
         this.viewManager.addView(new HomeViewProva(), "home");
-
+        this.viewManager.addView(new ClubViewProva(), "club");
         this.setContentPane(viewManager.getContainer());
 
         viewManager.showView("home");
-
-         this.starter = starter;
 
         //Setting screen responsive resolution and placing it in the center
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
