@@ -6,7 +6,7 @@ import gioco_scudetto.controller.api.Starter;
 
 /**
  * This class contains the Game's Home implementation to decide to play 
- * against bots or friends
+ * against bots or friends.
  */
 public class HomeView {
 
@@ -24,7 +24,7 @@ public class HomeView {
     private final Starter starter;
 
     /**
-     * This class contains the Game's Home implementation to decide to play 
+     * The constructor contains the Game's Home implementation to decide to play 
      * against bots or friends.
      * 
      * @param starter refers to the controller linked to this view.
@@ -78,7 +78,14 @@ public class HomeView {
         //Exit button Listener to exit the game
         if (exitGame instanceof JButton) {
             ((JButton)exitGame).addActionListener(e -> {
-                frame.dispose();
+                int answer = JOptionPane.showConfirmDialog(frame,
+                        "Do you really want to quit",
+                        "Quitting",
+                         JOptionPane.YES_NO_OPTION);
+                
+                if(answer == JOptionPane.YES_OPTION) {
+                    frame.dispose();
+                }
             });
         }
         //Listener to change responsivly font size dipending by resolution changes
