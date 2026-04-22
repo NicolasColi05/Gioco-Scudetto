@@ -30,7 +30,7 @@ public class HomeViewProva extends JPanel {
     private final Starter controller;
 
 
-    public HomeViewProva() {
+    public HomeViewProva(Starter controller) {
         this.controller = controller;
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         final int minimumWidht = screenSize.width / 2;

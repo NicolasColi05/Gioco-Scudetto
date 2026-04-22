@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import gioco_scudetto.controller.api.Starter;
+
 public class ClubViewProva extends JPanel{
   
 
@@ -27,10 +29,11 @@ public class ClubViewProva extends JPanel{
     private static final int EXIT_FONT_REDUCTION = 80;
     private static final int BUTTONS_HORIZONTAL_GAP = 80;
 
+    private final Starter controller;
 
 
-
-    public ClubViewProva() {
+    public ClubViewProva(Starter controller) {
+        this.controller = controller;
         
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         final int minimumWidht = screenSize.width / 2;
