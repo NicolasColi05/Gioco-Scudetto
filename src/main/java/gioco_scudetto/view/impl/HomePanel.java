@@ -34,8 +34,8 @@ public class HomePanel extends DefaultPanelImpl {
 
         //Creating buttons to select to play with bots or friend
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
-        final JComponent btnBot = createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), Color.BLUE);
-        final JComponent btnFriend = createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), Color.BLUE);
+        final JButton btnBot = (JButton) createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), Color.BLUE);
+        final JButton btnFriend = (JButton) createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), Color.BLUE);
         selectButtonPanel.add(btnBot); 
         selectButtonPanel.add(btnFriend);   
 
@@ -45,23 +45,33 @@ public class HomePanel extends DefaultPanelImpl {
 
         //Creating button to exit from the game
         final JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JComponent exitGame = createComponent(new JButton("EXIT"), getExitFont(), Color.BLACK);
+        final JButton exitGame = (JButton) createComponent(new JButton("EXIT"), getExitFont(), Color.BLACK);
         exitButtonPanel.add(exitGame);
 
 
         //Adding the action listener to the buttons
-        if (btnBot instanceof JButton){
-            ((JButton)btnBot).addActionListener(e -> {
-                this.controller.changeView("club");
-            });
-        }
+        btnBot.addActionListener(e -> {
+            this.controller.changeView("club");
+        });
 
-        if (exitGame instanceof JButton){
-            ((JButton)exitGame).addActionListener(e -> {
-                this.controller.closeGame();
-            });
-        }
+        btnFriend.addActionListener(e -> {
+            this.controller.changeView("club");
+        });
+        
+        exitGame.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(this,
+                        "Do you really want to quit?",
+                        "QUITTING...",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
 
+                if (confirm == JOptionPane.YES_OPTION) {
+                    this.controller.closeGame();
+                }
+
+        });
+        
+        //Istruction to make the panel components responsive to resolution changes
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
