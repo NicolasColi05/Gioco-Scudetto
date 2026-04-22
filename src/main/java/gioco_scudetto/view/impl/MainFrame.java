@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-import gioco_scudetto.controller.api.Starter;
+import gioco_scudetto.view.api.ViewManager;
 
 public class MainFrame extends JFrame {
 
@@ -14,17 +14,12 @@ public class MainFrame extends JFrame {
     private static final int BUTTON_FONT_REDUCTION = 50;
     private static final int EXIT_FONT_REDUCTION = 80;
 
-    private final ViewManagerImpl viewManager;
-    private final Starter starter;
+    private final ViewManager viewManager;
 
-    public MainFrame(Starter starter) {
-        this.starter = starter;
-        this.viewManager = new ViewManagerImpl();
-        this.viewManager.addView(new HomeViewProva(), "home");
-        this.viewManager.addView(new ClubViewProva(), "club");
+    public MainFrame(ViewManager manager) {
+        
+        this.viewManager = manager;
         this.setContentPane(viewManager.getContainer());
-
-        viewManager.showView("home");
 
         //Setting screen responsive resolution and placing it in the center
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,4 +41,7 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
+
+
+
 }
