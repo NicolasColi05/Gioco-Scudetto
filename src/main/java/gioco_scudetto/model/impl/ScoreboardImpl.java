@@ -25,13 +25,13 @@ public class ScoreboardImpl implements Scoreboard {
     }
 
     @Override
-    public void setHomeScore(int new_score) {
+    public void setHomeScore(final int new_score) {
         
         this.homeScore = new_score;
     }
 
     @Override
-    public void setGuestScore(int new_score) {
+    public void setGuestScore(final int new_score) {
 
         this.guestScore = new_score;
     }
