@@ -14,4 +14,9 @@ public interface Starter {
      */
     void changeView(String namePanel);
 
+    /**
+     * this is a method to close the game.
+     */
+    void closeGame();
+
 }

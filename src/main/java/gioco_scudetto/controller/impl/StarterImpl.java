@@ -25,5 +25,10 @@ public class StarterImpl implements Starter {
         System.out.println("controller");
     }
 
+    @Override
+    public void closeGame() {
+        this.viewManager.quit();
+    }
+
 
 }
