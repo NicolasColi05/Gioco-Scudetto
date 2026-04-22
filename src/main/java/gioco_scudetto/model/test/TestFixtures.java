@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestFixturesImpl {
-    //FixturesImpl fixtures = new FixturesImpl();
+public class TestFixtures{
+
 }
+    //FixturesImpl fixtures = new FixturesImpl();
