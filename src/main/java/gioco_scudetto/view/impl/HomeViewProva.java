@@ -18,39 +18,26 @@ import javax.swing.SwingConstants;
 
 import gioco_scudetto.controller.api.Starter;
 
-public class HomeViewProva extends JPanel {
-
-
-    private static final String FONT_SELECTED = Font.MONOSPACED;
-    private static final int TITLE_FONT_REDUCTION = 30;
-    private static final int BUTTON_FONT_REDUCTION = 50;
-    private static final int EXIT_FONT_REDUCTION = 80;
-    private static final int BUTTONS_HORIZONTAL_GAP = 80;
+public class HomeViewProva extends DefaultPanelImpl {
 
     private final Starter controller;
 
-
     public HomeViewProva(Starter controller) {
         this.controller = controller;
-        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        final int minimumWidht = screenSize.width / 2;
+
         this.setLayout(new BorderLayout());
-         //Creating different font for each component
-        final Font titleFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / TITLE_FONT_REDUCTION);
-        final Font buttonFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION);
-        final Font exitFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / EXIT_FONT_REDUCTION);
 
         //Adding Game Title and setting it in the top center position of the frame
-        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), titleFont, Color.RED);
-        //JLabel gameTitle = new JLabel("GIOCO DELLO SCUDETTO",SwingConstants.CENTER);
+        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
+
         gameTitle.setForeground(Color.RED);
-        gameTitle.setFont(titleFont);
+        gameTitle.setFont(getTitleFont());
         this.add(gameTitle, BorderLayout.NORTH);
 
         //Creating buttons to select to play with bots or friend
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
-        final JComponent selectBot = createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), buttonFont, Color.BLUE);
-        final JComponent selectFriend = createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), buttonFont, Color.BLUE);
+        final JComponent selectBot = createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), Color.BLUE);
+        final JComponent selectFriend = createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), Color.BLUE);
         selectButtonPanel.add(selectBot); 
         selectButtonPanel.add(selectFriend);   
 
@@ -60,7 +47,7 @@ public class HomeViewProva extends JPanel {
 
         //Creating button to exit from the game
         final JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JComponent exitGame = createComponent(new JButton("EXIT"), exitFont, Color.BLACK);
+        final JComponent exitGame = createComponent(new JButton("EXIT"), getExitFont(), Color.BLACK);
         exitButtonPanel.add(exitGame);
 
 

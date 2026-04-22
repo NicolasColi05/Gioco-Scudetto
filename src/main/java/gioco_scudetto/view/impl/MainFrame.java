@@ -30,12 +30,6 @@ public class MainFrame extends JFrame {
         this.setResizable(true);
         this.setMinimumSize(new Dimension(minimumWidht, minimumHeight));
 
-        //Creating different font for each component
-        final Font titleFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / TITLE_FONT_REDUCTION);
-        final Font buttonFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION);
-        final Font exitFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / EXIT_FONT_REDUCTION);
-
-
         //Setting frame main panel
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
