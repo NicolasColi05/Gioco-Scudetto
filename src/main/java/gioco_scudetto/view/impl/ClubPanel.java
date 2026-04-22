@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 
 import gioco_scudetto.controller.api.Starter;
 
-public class ClubViewProva extends JPanel{
+public class ClubPanel extends JPanel{
   
 
 
@@ -32,7 +32,7 @@ public class ClubViewProva extends JPanel{
     private final Starter controller;
 
 
-    public ClubViewProva(Starter controller) {
+    public ClubPanel(Starter controller) {
         this.controller = controller;
         
         this.setBackground(Color.RED);

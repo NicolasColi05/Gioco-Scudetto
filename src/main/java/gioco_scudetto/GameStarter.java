@@ -3,8 +3,8 @@ package gioco_scudetto;
 import gioco_scudetto.controller.api.Starter;
 import gioco_scudetto.controller.impl.StarterImpl;
 import gioco_scudetto.view.api.ViewManager;
-import gioco_scudetto.view.impl.ClubViewProva;
-import gioco_scudetto.view.impl.HomeViewProva;
+import gioco_scudetto.view.impl.ClubPanel;
+import gioco_scudetto.view.impl.HomePanel;
 import gioco_scudetto.view.impl.MainFrame;
 import gioco_scudetto.view.impl.ViewManagerImpl;
 
@@ -18,8 +18,8 @@ public class GameStarter {
         final Starter controller = new StarterImpl(viewManager);
 
         //Creating the Views that we will use during the game
-        final HomeViewProva homeView = new HomeViewProva(controller);
-        final ClubViewProva clubView = new ClubViewProva(controller);
+        final HomePanel homeView = new HomePanel(controller);
+        final ClubPanel clubView = new ClubPanel(controller);
 
         //Adding the views to the manager
         viewManager.addView(homeView, "home");

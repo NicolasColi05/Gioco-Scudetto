@@ -1,21 +1,14 @@
 package gioco_scudetto.view.impl;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-import java.awt.Toolkit;
-
-import static gioco_scudetto.view.impl.DefaultPanelImpl.EXIT_FONT_RESIZING;
-import static gioco_scudetto.view.impl.DefaultPanelImpl.FONT_SELECTED;
-import static gioco_scudetto.view.impl.DefaultPanelImpl.TITLE_FONT_RESIZING;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,11 +16,11 @@ import javax.swing.SwingConstants;
 
 import gioco_scudetto.controller.api.Starter;
 
-public class HomeViewProva extends DefaultPanelImpl {
+public class HomePanel extends DefaultPanelImpl {
 
     private final Starter controller;
 
-    public HomeViewProva(Starter controller) {
+    public HomePanel(Starter controller) {
         this.controller = controller;
 
         this.setLayout(new BorderLayout());
