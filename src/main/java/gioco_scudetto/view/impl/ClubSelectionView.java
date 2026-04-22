@@ -86,7 +86,7 @@ public class ClubSelectionView {
         }
 
         //Listener to change responsivly font size dipending by resolution changes
-        frame.addComponentListener(new java.awt.event.ComponentAdapter() {
+        mainPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
 

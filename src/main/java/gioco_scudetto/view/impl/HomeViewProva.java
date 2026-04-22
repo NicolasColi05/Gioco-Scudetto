@@ -5,6 +5,11 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+
+import static gioco_scudetto.view.impl.DefaultPanelImpl.EXIT_FONT_RESIZING;
+import static gioco_scudetto.view.impl.DefaultPanelImpl.FONT_SELECTED;
+import static gioco_scudetto.view.impl.DefaultPanelImpl.TITLE_FONT_RESIZING;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -36,10 +41,10 @@ public class HomeViewProva extends DefaultPanelImpl {
 
         //Creating buttons to select to play with bots or friend
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
-        final JComponent selectBot = createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), Color.BLUE);
-        final JComponent selectFriend = createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), Color.BLUE);
-        selectButtonPanel.add(selectBot); 
-        selectButtonPanel.add(selectFriend);   
+        final JComponent btnBot = createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), Color.BLUE);
+        final JComponent btnFriend = createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), Color.BLUE);
+        selectButtonPanel.add(btnBot); 
+        selectButtonPanel.add(btnFriend);   
 
         //Centralizing button vertically and responsively to the resolution changes
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
@@ -52,24 +57,36 @@ public class HomeViewProva extends DefaultPanelImpl {
 
 
         //Adding the action listener to the buttons
-        if (selectBot instanceof JButton){
-            ((JButton)selectBot).addActionListener(e -> {
+        if (btnBot instanceof JButton){
+            ((JButton)btnBot).addActionListener(e -> {
                 this.controller.changeView("club");
             });
         }
 
-        if (selectBot instanceof JButton){
+        if (exitGame instanceof JButton){
             ((JButton)exitGame).addActionListener(e -> {
                 this.controller.closeGame();
             });
         }
 
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(final java.awt.event.ComponentEvent e) {
+
+                final int currentWidth = getWidth();
+
+                gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
+                btnBot.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
+                btnFriend.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
+                exitGame.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
+
+                revalidate();
+            
+            }
+        });
+
         this.add(centerWrapper, BorderLayout.CENTER);
         this.add(exitButtonPanel, BorderLayout.SOUTH);
-
-        //Exit button Listener to exit the game
-        
-        
        
     }
 

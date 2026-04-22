@@ -10,15 +10,15 @@ import gioco_scudetto.view.api.DefaultPanel;
 
 public class DefaultPanelImpl extends JPanel implements DefaultPanel{
     
-    private static final String FONT_SELECTED = Font.MONOSPACED;
+    protected static final String FONT_SELECTED = Font.MONOSPACED;
     protected static final int BUTTONS_HORIZONTAL_GAP = 80;
 
-    private static final int TITLE_FONT_REDUCTION = 30;
-    private static final int BUTTON_FONT_REDUCTION = 50;
-    private static final int EXIT_FONT_REDUCTION = 80;
-    private static final int TITLE_FONT_RESIZING = 15;
-    private static final int BUTTON_FONT_RESIZING = 25;
-    private static final int EXIT_FONT_RESIZING = 40;
+    private static final int TITLE_FONT_REDUCTION = 15;
+    private static final int BUTTON_FONT_REDUCTION = 25;
+    private static final int EXIT_FONT_REDUCTION = 40;
+    protected static final int TITLE_FONT_RESIZING = 15;
+    protected static final int BUTTON_FONT_RESIZING = 25;
+    protected static final int EXIT_FONT_RESIZING = 40;
     
     /*
      *Getting the deafult screen dimensione to use it to calibrate
@@ -46,4 +46,5 @@ public class DefaultPanelImpl extends JPanel implements DefaultPanel{
     public Font getExitFont() {
         return this.exitFont;
     }
+
 }
