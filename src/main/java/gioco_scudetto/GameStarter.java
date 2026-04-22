@@ -31,6 +31,5 @@ public class GameStarter {
         //Starting game
         controller.startGame();
 
-        new StarterImpl().startGame();
     }
 }
