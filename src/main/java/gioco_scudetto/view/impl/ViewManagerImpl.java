@@ -1,8 +1,10 @@
 package gioco_scudetto.view.impl;
 
 import java.awt.CardLayout;
+import java.awt.Window;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import gioco_scudetto.view.api.ViewManager;
 
@@ -34,4 +36,8 @@ public class ViewManagerImpl implements ViewManager{
         return this.container;
     }
 
+    public void quit() {
+        Window frame = SwingUtilities.getWindowAncestor(this.container);
+        frame.dispose();
+    }
 }

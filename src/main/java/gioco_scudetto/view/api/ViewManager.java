@@ -25,4 +25,9 @@ public interface ViewManager {
       * @return the container of the views.
      */
     public JPanel getContainer();
+
+    /**
+     * method for quit the game.
+     */
+    public void quit();
 }
