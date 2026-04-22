@@ -39,6 +39,8 @@ public class MainFrame extends JFrame {
         //Setting frame main panel
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.revalidate();
+        this.repaint();
         this.setVisible(true);
     }
 

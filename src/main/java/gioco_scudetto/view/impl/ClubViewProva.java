@@ -35,6 +35,8 @@ public class ClubViewProva extends JPanel{
     public ClubViewProva(Starter controller) {
         this.controller = controller;
         
+        this.setBackground(Color.RED);
+
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         final int minimumWidht = screenSize.width / 2;
         this.setLayout(new BorderLayout());

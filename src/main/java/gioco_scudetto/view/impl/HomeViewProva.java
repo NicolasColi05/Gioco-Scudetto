@@ -67,7 +67,8 @@ public class HomeViewProva extends JPanel {
         //Adding the action listener to the buttons
         if (selectBot instanceof JButton){
             ((JButton)selectBot).addActionListener(e -> {
-
+                this.controller.changeView("club");
+                System.out.println("ok");
             });
         }
 

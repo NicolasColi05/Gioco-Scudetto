@@ -1,5 +1,7 @@
 package gioco_scudetto.controller.impl;
 
+import javax.swing.SwingUtilities;
+
 import gioco_scudetto.controller.api.Starter;
 import gioco_scudetto.view.api.ViewManager;
 //import gioco_scudetto.view.impl.HomeView;
@@ -19,7 +21,8 @@ public class StarterImpl implements Starter {
 
     @Override
     public void changeView(final String panelName) {
-        this.viewManager.showView(panelName);
+        SwingUtilities.invokeLater(() -> viewManager.showView(panelName));
+        System.out.println("controller");
     }
 
 
