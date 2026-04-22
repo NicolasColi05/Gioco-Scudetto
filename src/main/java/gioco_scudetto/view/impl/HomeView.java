@@ -10,8 +10,6 @@ public class HomeView {
 
     public HomeView(final Starter starter) {
         //this.starter = starter;
-
-        frame.setVisible(true);
     }
 
     //Confrontarsi con gli altri: ha senso creare un interfaccia comune per tutte le view 
