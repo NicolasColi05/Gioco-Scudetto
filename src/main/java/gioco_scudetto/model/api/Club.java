@@ -1,7 +1,7 @@
 package gioco_scudetto.model.api;
 
 public interface Club {
-    //Getter Methods
+    
     String getName();
     int getPoints();
     int getNetDiff();
