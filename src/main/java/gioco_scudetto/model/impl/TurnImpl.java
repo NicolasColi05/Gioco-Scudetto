@@ -3,20 +3,23 @@ package gioco_scudetto.model.impl;
 import gioco_scudetto.model.api.Turn;
 import gioco_scudetto.model.api.Club;
 import gioco_scudetto.model.api.Pawn;
+import java.util.Random;
 
 public class TurnImpl implements Turn {
 
-    private static final int HALF_BOARD=16;
+    private static final int HALF_BOARD = 16;
     //Class Fields
     private Club club1;
     private Club club2;
     private Club currentPlayer;
+    private Random random;
 
     //Class Constructor
     public TurnImpl(Club club1, Club club2) {
         
         this.club1 = club1;
         this.club2 = club2;
+        this.random = new Random();
         chooseStartingPlayer(); 
     }
 
@@ -58,6 +61,6 @@ public class TurnImpl implements Turn {
     }
 
     private int rollDie() {
-        return (int)(Math.random() * 6) + 1;
+        return random.nextInt(6)+1;
     }
 }
