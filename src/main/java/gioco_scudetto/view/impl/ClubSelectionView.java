@@ -71,9 +71,8 @@ public class ClubSelectionView {
         //Buttons Listener to go back to the home or start the match
         if (backButton instanceof JButton) {
             ((JButton)backButton).addActionListener(e -> {
-                    
                 //Bisogna tornare alla HomeView
-                
+                //this.starter.changeView("home"); ci ho provato ma non so se ho capito Fede
             });
         }
 
