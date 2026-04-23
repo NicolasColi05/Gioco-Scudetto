@@ -72,7 +72,7 @@ public class ClubPanel extends JPanel{
         this.add(exitButtonPanel, BorderLayout.SOUTH);
 
         //Exit button Listener to exit the game
-        exitGame.addActionListener(e -> {
+        exitGame.addActionListener(e -> { //added by fede
             this.controller.changeView("home");
         });
         
