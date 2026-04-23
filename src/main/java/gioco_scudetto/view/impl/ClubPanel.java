@@ -65,13 +65,16 @@ public class ClubPanel extends JPanel{
 
         //Creating button to exit from the game
         final JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JComponent exitGame = createComponent(new JButton("EXIT"), exitFont, Color.BLACK);
+        final JButton exitGame = (JButton) createComponent(new JButton("EXIT"), exitFont, Color.BLACK);
         exitButtonPanel.add(exitGame);
 
         this.add(centerWrapper, BorderLayout.CENTER);
         this.add(exitButtonPanel, BorderLayout.SOUTH);
 
         //Exit button Listener to exit the game
+        exitGame.addActionListener(e -> {
+            this.controller.changeView("home");
+        });
         
         
        
