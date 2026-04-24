@@ -5,17 +5,17 @@ import gioco_scudetto.model.api.Club;
 import gioco_scudetto.model.api.Pawn;
 
 public class PawnServiceImpl implements PawnService {
-    private static final int MAX_POSITION = 32;
+    private static final int MAX_POSITION = 31;
 
     @Override
-    public void movePawn(Club club, int steps) {
+    public void changePosition(Club club, int steps) {
         Pawn pawn = club.getPawn();
         int currentPosition = pawn.getPosition();
         int newPosition = currentPosition + steps;
         if (newPosition > MAX_POSITION) {
             newPosition = MAX_POSITION;
         }
-        
+
         pawn.setPosition(newPosition);
 
         System.out.println(club + "moves from" + currentPosition + "to" + newPosition);
