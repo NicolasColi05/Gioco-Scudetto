@@ -4,17 +4,21 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.TextArea;
 import java.awt.Toolkit;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import java.util.Arrays;
 
 import gioco_scudetto.controller.api.Starter;
 
@@ -52,12 +56,18 @@ public class ClubPanel extends JPanel{
         gameTitle.setFont(titleFont);
         this.add(gameTitle, BorderLayout.NORTH);
 
-        //Creating buttons to select to play with bots or friend
+        //Creating Text Areas to write the name of the clubs and creating the box to select the number of clubs
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
-        final JComponent selectBot = createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), buttonFont, Color.BLUE);
-        final JComponent selectFriend = createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), buttonFont, Color.BLUE);
-        selectButtonPanel.add(selectBot); 
-        selectButtonPanel.add(selectFriend);   
+        final JComponent selectNumberOfTeams = createComponent(new JComboBox<>(new Integer[]{1,2,3,4}), buttonFont, Color.BLUE);
+        final TextArea nameTeam1 = new TextArea(2,20); 
+        final TextArea nameTeam2 = new TextArea(2,20); 
+        final TextArea nameTeam3 = new TextArea(2,20); 
+        final TextArea nameTeam4 = new TextArea(2,20); 
+        selectButtonPanel.add(selectNumberOfTeams);
+        selectButtonPanel.add(nameTeam1);
+        selectButtonPanel.add(nameTeam2);
+        selectButtonPanel.add(nameTeam3);
+        selectButtonPanel.add(nameTeam4);
 
         //Centralizing button vertically and responsively to the resolution changes
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
