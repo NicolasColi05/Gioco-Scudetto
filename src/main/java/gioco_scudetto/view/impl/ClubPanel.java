@@ -58,16 +58,43 @@ public class ClubPanel extends JPanel{
 
         //Creating Text Areas to write the name of the clubs and creating the box to select the number of clubs
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
-        final JComponent selectNumberOfTeams = createComponent(new JComboBox<>(new Integer[]{1,2,3,4}), buttonFont, Color.BLUE);
+        final JComboBox<Integer> selectNumberOfTeams = (JComboBox<Integer>) createComponent(new JComboBox<>(new Integer[]{1,2,3,4}), buttonFont, Color.BLUE);
         final TextArea nameTeam1 = new TextArea(2,20); 
         final TextArea nameTeam2 = new TextArea(2,20); 
         final TextArea nameTeam3 = new TextArea(2,20); 
         final TextArea nameTeam4 = new TextArea(2,20); 
         selectButtonPanel.add(selectNumberOfTeams);
-        selectButtonPanel.add(nameTeam1);
+        selectNumberOfTeams.addActionListener(e ->{
+            Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();
+            switch ( (int) numberSelected) {
+                case 1:
+                    selectButtonPanel.add(nameTeam1);
+                    break;
+                case 2:
+                    selectButtonPanel.add(nameTeam1);
+                    selectButtonPanel.add(nameTeam2);
+                    break;
+                case 3:
+                    selectButtonPanel.add(nameTeam1);
+                    selectButtonPanel.add(nameTeam2);
+                    selectButtonPanel.add(nameTeam3);
+                    break;
+                case 4:
+                    selectButtonPanel.add(nameTeam1);
+                    selectButtonPanel.add(nameTeam2);
+                    selectButtonPanel.add(nameTeam3);
+                    selectButtonPanel.add(nameTeam4);
+                    break;
+                default:
+                    break;
+            }
+        });
+        /*selectButtonPanel.add(nameTeam1);
         selectButtonPanel.add(nameTeam2);
         selectButtonPanel.add(nameTeam3);
-        selectButtonPanel.add(nameTeam4);
+        selectButtonPanel.add(nameTeam4);*/
+        
+        
 
         //Centralizing button vertically and responsively to the resolution changes
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
