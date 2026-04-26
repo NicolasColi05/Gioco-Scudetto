@@ -36,8 +36,9 @@ public class ViewManagerImpl implements ViewManager{
         return this.container;
     }
 
+    @Override
     public void quit() {
-        Window frame = SwingUtilities.getWindowAncestor(this.container);
+        final Window frame = SwingUtilities.getWindowAncestor(this.container);
         frame.dispose();
     }
 }

@@ -11,7 +11,7 @@ import gioco_scudetto.model.api.Pair;
 
 public class FixturesImpl implements Fixtures {
 
-    private ArrayList<Club> listOfClubs;
+    final private ArrayList<Club> listOfClubs;
     private List<Pair<Club, Club>> fixture;
     private final Iterator<Pair<Club, Club>> fixtuIterator;
 

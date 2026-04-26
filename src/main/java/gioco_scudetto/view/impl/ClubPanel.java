@@ -58,15 +58,16 @@ public class ClubPanel extends JPanel{
 
         //Creating Text Areas to write the name of the clubs and creating the box to select the number of clubs
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
-        final JComboBox<Integer> selectNumberOfTeams = (JComboBox<Integer>) createComponent(new JComboBox<>(new Integer[]{1,2,3,4}), buttonFont, Color.BLUE);
-        final TextArea nameTeam1 = new TextArea(2,20); 
-        final TextArea nameTeam2 = new TextArea(2,20); 
-        final TextArea nameTeam3 = new TextArea(2,20); 
-        final TextArea nameTeam4 = new TextArea(2,20); 
+        final JComboBox<Integer> selectNumberOfTeams = (JComboBox<Integer>) createComponent(
+            new JComboBox<>(new Integer[]{1, 2, 3, 4}), buttonFont, Color.BLUE);
+        final TextArea nameTeam1 = new TextArea(2, 20); 
+        final TextArea nameTeam2 = new TextArea(2, 20); 
+        final TextArea nameTeam3 = new TextArea(2, 20); 
+        final TextArea nameTeam4 = new TextArea(2, 20); 
         selectButtonPanel.add(selectNumberOfTeams);
-        selectNumberOfTeams.addActionListener(e ->{
-            Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();
-            switch ( (int) numberSelected) {
+        selectNumberOfTeams.addActionListener(e -> {
+            final Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();
+            switch ((int) numberSelected) {
                 case 1:
                     selectButtonPanel.add(nameTeam1);
                     break;
@@ -94,8 +95,6 @@ public class ClubPanel extends JPanel{
         selectButtonPanel.add(nameTeam3);
         selectButtonPanel.add(nameTeam4);*/
         
-        
-
         //Centralizing button vertically and responsively to the resolution changes
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
         centerWrapper.add(selectButtonPanel);
@@ -111,10 +110,7 @@ public class ClubPanel extends JPanel{
         //Exit button Listener to exit the game
         exitGame.addActionListener(e -> { //added by fede
             this.controller.changeView("home");
-        });
-        
-        
-       
+        });       
     }
 
     private JComponent createComponent(final JComponent component, final Font font, final Color color) {
@@ -122,8 +118,4 @@ public class ClubPanel extends JPanel{
         component.setForeground(color);
         return component;
     }
-
-
-
-
 }
