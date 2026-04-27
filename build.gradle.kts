@@ -45,7 +45,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("src.main.java.gioco_scudetto.GameStarter")
+    mainClass.set("src.main.java.giocoscudetto.GameStarter")
 }
 
 tasks.withType<Test>().configureEach {
