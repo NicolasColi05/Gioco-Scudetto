@@ -7,6 +7,7 @@ import java.awt.TextArea;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ public class ClubPanel extends DefaultPanelImpl{
     
     private static final int TEAM_INFO_REDUCTION = 80;
     private static final int TEAM_INFO_VERTICAL_SPACE = 25;
+    private static final int BUTTON_BORDER = 5;
 
     private final Starter controller;
 
@@ -90,19 +92,31 @@ public class ClubPanel extends DefaultPanelImpl{
         centerWrapper.add(numberOfTeamPanel);
         centerWrapper.add(teamInfoPanel);
 
-        //Creating button to exit from the game
-        final JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JButton exitGame = (JButton) createComponent(new JButton("EXIT"), getExitFont(), Color.BLACK);
-        exitButtonPanel.add(exitGame);
+        //Creating button to go back in the home or continue to visualize the pre match view
+        final JPanel buttonPanel = new JPanel(new BorderLayout());
+        
+        //Setting the border of the button
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
+
+        final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK);
+        final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK);
+        
+        buttonPanel.add(btnBack, BorderLayout.WEST);
+        buttonPanel.add(btnCont, BorderLayout.EAST);
 
         this.add(centerWrapper, BorderLayout.CENTER);
-        this.add(exitButtonPanel, BorderLayout.SOUTH);
+        this.add(buttonPanel, BorderLayout.SOUTH);
 
-        //Exit button Listener to exit the game
-        exitGame.addActionListener(e -> { //added by fede
+        //Back button to go back to the home
+        btnBack.addActionListener(e -> { //added by fede
             this.controller.changeView("home");
         }); 
         
+        //Back button to go back to the home
+        btnCont.addActionListener(e -> { //added by fede
+            this.controller.changeView("pre");
+        }); 
+
         //Istruction to make the panel components responsive to resolution changes
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
@@ -116,7 +130,8 @@ public class ClubPanel extends DefaultPanelImpl{
                 nameTeam2.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 nameTeam3.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 nameTeam4.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
-                exitGame.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
+                btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
+                btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
 
                 revalidate();
             

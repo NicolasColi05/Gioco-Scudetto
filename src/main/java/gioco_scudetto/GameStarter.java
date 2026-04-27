@@ -6,6 +6,7 @@ import gioco_scudetto.view.api.ViewManager;
 import gioco_scudetto.view.impl.ClubPanel;
 import gioco_scudetto.view.impl.HomePanel;
 import gioco_scudetto.view.impl.MainFrame;
+import gioco_scudetto.view.impl.PreMatchView;
 import gioco_scudetto.view.impl.ViewManagerImpl;
 
 public class GameStarter {
@@ -20,10 +21,12 @@ public class GameStarter {
         //Creating the Views that we will use during the game
         final HomePanel homeView = new HomePanel(controller);
         final ClubPanel clubView = new ClubPanel(controller);
-        
+        final PreMatchView preMatch = new PreMatchView(controller);
+
         //Adding the views to the manager
         viewManager.addView(homeView, "home");
         viewManager.addView(clubView, "club");
+        viewManager.addView(preMatch, "pre");
 
         //Creating the MainFrame
         final MainFrame mainFrame =  new MainFrame(viewManager);
