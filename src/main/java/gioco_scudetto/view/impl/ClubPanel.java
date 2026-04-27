@@ -12,80 +12,61 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import java.util.Arrays;
+
 
 import gioco_scudetto.controller.api.Starter;
 
-public class ClubPanel extends JPanel{
-  
-
-
-
-    private static final String FONT_SELECTED = Font.MONOSPACED;
-    private static final int TITLE_FONT_REDUCTION = 30;
-    private static final int BUTTON_FONT_REDUCTION = 50;
-    private static final int EXIT_FONT_REDUCTION = 80;
-    private static final int BUTTONS_HORIZONTAL_GAP = 80;
-
+public class ClubPanel extends DefaultPanelImpl{
+    
     private final Starter controller;
 
 
     public ClubPanel(Starter controller) {
         this.controller = controller;
-        
-        this.setBackground(Color.RED);
 
-        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        final int minimumWidht = screenSize.width / 2;
         this.setLayout(new BorderLayout());
-         //Creating different font for each component
-        final Font titleFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / TITLE_FONT_REDUCTION);
-        final Font buttonFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION);
-        final Font exitFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / EXIT_FONT_REDUCTION);
 
         //Adding Game Title and setting it in the top center position of the frame
-        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), titleFont, Color.RED);
-        //JLabel gameTitle = new JLabel("GIOCO DELLO SCUDETTO",SwingConstants.CENTER);
-        gameTitle.setForeground(Color.RED);
-        gameTitle.setFont(titleFont);
+        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
         this.add(gameTitle, BorderLayout.NORTH);
 
         //Creating Text Areas to write the name of the clubs and creating the box to select the number of clubs
-        final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
+        final JPanel numberOfTeamPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
+        
+        @SuppressWarnings("unchecked")
         final JComboBox<Integer> selectNumberOfTeams = (JComboBox<Integer>) createComponent(
-            new JComboBox<>(new Integer[]{1, 2, 3, 4}), buttonFont, Color.BLUE);
+            new JComboBox<>(new Integer[]{2, 3, 4}),
+            getButtonFont(),
+            Color.BLUE);
+
+        final JPanel teamInfoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
         final TextArea nameTeam1 = new TextArea(2, 20); 
         final TextArea nameTeam2 = new TextArea(2, 20); 
         final TextArea nameTeam3 = new TextArea(2, 20); 
         final TextArea nameTeam4 = new TextArea(2, 20); 
-        selectButtonPanel.add(selectNumberOfTeams);
+        numberOfTeamPanel.add(selectNumberOfTeams);
         selectNumberOfTeams.addActionListener(e -> {
             final Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();
-            selectButtonPanel.removeAll();
+            teamInfoPanel.removeAll();
             switch ((int) numberSelected) {
-                case 1:
-                    selectButtonPanel.add(nameTeam1);
-                    break;
                 case 2:
-                    selectButtonPanel.add(nameTeam1);
-                    selectButtonPanel.add(nameTeam2);
+                    teamInfoPanel.add(nameTeam1);
+                    teamInfoPanel.add(nameTeam2);
                     break;
                 case 3:
-                    selectButtonPanel.add(nameTeam1);
-                    selectButtonPanel.add(nameTeam2);
-                    selectButtonPanel.add(nameTeam3);
+                    teamInfoPanel.add(nameTeam1);
+                    teamInfoPanel.add(nameTeam2);
+                    teamInfoPanel.add(nameTeam3);
                     break;
                 case 4:
-                    selectButtonPanel.add(nameTeam1);
-                    selectButtonPanel.add(nameTeam2);
-                    selectButtonPanel.add(nameTeam3);
-                    selectButtonPanel.add(nameTeam4);
+                    teamInfoPanel.add(nameTeam1);
+                    teamInfoPanel.add(nameTeam2);
+                    teamInfoPanel.add(nameTeam3);
+                    teamInfoPanel.add(nameTeam4);
                     break;
                 default:
                     break;
@@ -93,18 +74,15 @@ public class ClubPanel extends JPanel{
             this.revalidate(); 
             this.repaint();
         });
-        /*selectButtonPanel.add(nameTeam1);
-        selectButtonPanel.add(nameTeam2);
-        selectButtonPanel.add(nameTeam3);
-        selectButtonPanel.add(nameTeam4);*/
         
         //Centralizing button vertically and responsively to the resolution changes
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
-        centerWrapper.add(selectButtonPanel);
+        centerWrapper.add(numberOfTeamPanel);
+        centerWrapper.add(teamInfoPanel);
 
         //Creating button to exit from the game
         final JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JButton exitGame = (JButton) createComponent(new JButton("EXIT"), exitFont, Color.BLACK);
+        final JButton exitGame = (JButton) createComponent(new JButton("EXIT"), getExitFont(), Color.BLACK);
         exitButtonPanel.add(exitGame);
 
         this.add(centerWrapper, BorderLayout.CENTER);
