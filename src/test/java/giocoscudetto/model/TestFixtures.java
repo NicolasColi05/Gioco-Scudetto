@@ -1,6 +1,5 @@
 package giocoscudetto.model;
 
-
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
