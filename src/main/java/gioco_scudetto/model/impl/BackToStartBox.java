@@ -22,13 +22,7 @@ public class BackToStartBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        Club club;
-
-        if (match.getMatchStatus() == 0) {
-            club = match.getClubHome();
-        } else {
-            club = match.getClubAway();
-        }
+        Club club= match.turn();
 
         club.getPawn().setPosition(0);
         System.out.println(club + "go back to start");

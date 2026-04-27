@@ -22,13 +22,7 @@ public class SkipTurnBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        Club club;
-
-        if (match.getMatchStatus() == 0) {
-            club = match.getClubHome();
-        } else {
-            club = match.getClubAway();
-        }
+        Club club=match.turn();
 
         System.out.println(club + "skip the next turn");
     }
