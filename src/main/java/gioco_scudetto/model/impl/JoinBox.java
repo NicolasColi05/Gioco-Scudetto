@@ -28,6 +28,7 @@ public class JoinBox implements Boxes {
         Club opponent;
 
         if (match.getMatchStatus() == 0) {
+
             current = match.getClubHome();
             opponent = match.getClubAway();
         } else {
