@@ -67,6 +67,7 @@ public class ClubPanel extends JPanel{
         selectButtonPanel.add(selectNumberOfTeams);
         selectNumberOfTeams.addActionListener(e -> {
             final Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();
+            selectButtonPanel.removeAll();
             switch ((int) numberSelected) {
                 case 1:
                     selectButtonPanel.add(nameTeam1);
@@ -89,6 +90,8 @@ public class ClubPanel extends JPanel{
                 default:
                     break;
             }
+            this.revalidate(); 
+            this.repaint();
         });
         /*selectButtonPanel.add(nameTeam1);
         selectButtonPanel.add(nameTeam2);
