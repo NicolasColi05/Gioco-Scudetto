@@ -20,7 +20,7 @@ public class GameStarter {
         //Creating the Views that we will use during the game
         final HomePanel homeView = new HomePanel(controller);
         final ClubPanel clubView = new ClubPanel(controller);
-
+        
         //Adding the views to the manager
         viewManager.addView(homeView, "home");
         viewManager.addView(clubView, "club");
