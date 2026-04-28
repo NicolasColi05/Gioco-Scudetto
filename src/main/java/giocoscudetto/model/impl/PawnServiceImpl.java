@@ -7,6 +7,9 @@ import giocoscudetto.model.api.PawnService;
 public class PawnServiceImpl implements PawnService {
     private static final int MAX_POSITION = 31;
 
+    public PawnServiceImpl(){
+        
+    }
     @Override
     public void changePosition(Club club, int steps) {
         Pawn pawn = club.getPawn();
