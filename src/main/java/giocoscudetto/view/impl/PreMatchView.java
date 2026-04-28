@@ -19,9 +19,11 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import giocoscudetto.view.impl.ClubPanel;
 import giocoscudetto.controller.api.Starter;
 
 public class PreMatchView extends DefaultPanelImpl{
@@ -35,6 +37,11 @@ public class PreMatchView extends DefaultPanelImpl{
 
         final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
         this.add(gameTitle, BorderLayout.NORTH);
+
+        final JTable table = (JTable) createComponent(new JTable(4, 2), getTitleFont(), Color.RED);
+        table.setBackground(Color.BLUE);
+        this.add(gameTitle, BorderLayout.NORTH);
+        this.add(table, BorderLayout.CENTER);
     }
 
     
