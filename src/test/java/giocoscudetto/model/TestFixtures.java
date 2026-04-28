@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 
-public class TestFixtures {
+/*public class TestFixtures {
     Club roma = new ClubImpl(new PawnServiceImpl())
     Club inter = new ClubImpl(new PawnServiceImpl());
     Club napoli = new ClubImpl(new PawnServiceImpl());
@@ -26,4 +26,4 @@ public class TestFixtures {
     }
     
     //Fixtures fixtures = new FixturesImpl();
-}
+}*/

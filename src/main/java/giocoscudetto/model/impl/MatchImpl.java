@@ -4,7 +4,7 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Scoreboard;
 
-public class MatchImpl implements Match {
+/*public class MatchImpl implements Match {
 
     private Club clubHome;
     private Club clubAway;
@@ -48,4 +48,4 @@ public class MatchImpl implements Match {
         return score;
     }
 
-}
+}*/

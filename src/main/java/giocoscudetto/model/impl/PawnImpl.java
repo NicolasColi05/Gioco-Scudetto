@@ -2,7 +2,7 @@ package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Pawn;
-import giocoscudetto.model.api.PawnService;
+/*import giocoscudetto.model.api.PawnService;
 
 public class PawnServiceImpl implements PawnService {
     private static final int MAX_POSITION = 31;
@@ -33,4 +33,4 @@ public class PawnServiceImpl implements PawnService {
     public void setPosition(Club club, int position){
         club.getPawn().setPosition(position);
     }
-}
+}*/
