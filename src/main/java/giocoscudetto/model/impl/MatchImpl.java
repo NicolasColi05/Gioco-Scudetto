@@ -9,21 +9,18 @@ public class MatchImpl implements Match {
     private Club clubHome;
     private Club clubAway;
     private final Scoreboard score;
-    private boolean turn = true;
+    private final TurnImpl turn;
 
     public MatchImpl() {
         this.score = new ScoreboardImpl();
+        this.turn = new TurnImpl(clubHome, clubAway);
+        turn.chooseStartingPlayer();
     }
 
     @Override
     public final Club turn() {
-        if (turn) {
-            turn = false;
-            return clubHome;
-        } else {
-            turn = true;
-            return clubAway;
-        }
+        turn.switchTurn();
+        return turn.getCurrentPlayer();
     }
 
     @Override
