@@ -22,9 +22,12 @@ import giocoscudetto.controller.api.Starter;
 
 public class ClubPanel extends DefaultPanelImpl{
     
+    private static final int NUMBER_COMBOBOX = 100;
     private static final int TEAM_INFO_REDUCTION = 80;
     private static final int TEAM_INFO_VERTICAL_SPACE = 25;
     private static final int BUTTON_BORDER = 5;
+    private static final int TEXT_AREA_ROWS = 2;
+    private static final int TEXT_AREA_COLUMNS = 18;
 
     private final Starter controller;
 
@@ -50,11 +53,10 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel teamInfoPanel = new JPanel();
         teamInfoPanel.setLayout(new BoxLayout(teamInfoPanel, BoxLayout.Y_AXIS));
 
-        final JTextArea nameTeam1 = new JTextArea(2, 20); //se mettiamo JTextArea invece di TextArea 
-        //                                                                  scompaiono le barre per lo scorrimento
-        final TextArea nameTeam2 = new TextArea(2, 20); 
-        final TextArea nameTeam3 = new TextArea(2, 20); 
-        final TextArea nameTeam4 = new TextArea(2, 20); 
+        final JTextArea nameTeam1 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.BLUE);
+        final JTextArea nameTeam2 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.RED); 
+        final JTextArea nameTeam3 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.MAGENTA); 
+        final JTextArea nameTeam4 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.GREEN); 
         numberOfTeamPanel.add(selectNumberOfTeams);
         selectNumberOfTeams.addActionListener(e -> {
             final Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();
@@ -126,8 +128,7 @@ public class ClubPanel extends DefaultPanelImpl{
                 final int currentWidth = getWidth();
 
                 gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
-                selectNumberOfTeams.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100)); //per far si che su mac non appaia troppo grande il numero intero 
-                //                                                                              probabilmente dovremmo inserire un numero intorno al 100 come divisore
+                selectNumberOfTeams.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / NUMBER_COMBOBOX));
                 nameTeam1.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 nameTeam2.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 nameTeam3.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
