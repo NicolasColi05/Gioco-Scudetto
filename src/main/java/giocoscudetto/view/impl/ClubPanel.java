@@ -19,8 +19,6 @@ import javax.swing.SwingConstants;
 
 import giocoscudetto.controller.api.Starter;
 
-import java.util.Arrays;
-
 public class ClubPanel extends DefaultPanelImpl{
     
     private static final int TEAM_INFO_REDUCTION = 80;
