@@ -3,9 +3,11 @@ package giocoscudetto.view.impl;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-import java.awt.TextArea;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -15,19 +17,20 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import giocoscudetto.controller.api.Starter;
+import giocoscudetto.model.api.Pawn;
 
 public class ClubPanel extends DefaultPanelImpl{
     
-    private static final int NUMBER_COMBOBOX = 100;
+    private static final int NUMBER_COMBOBOX = 65;
     private static final int TEAM_INFO_REDUCTION = 80;
     private static final int TEAM_INFO_VERTICAL_SPACE = 25;
     private static final int BUTTON_BORDER = 5;
-    private static final int TEXT_AREA_ROWS = 2;
-    private static final int TEXT_AREA_COLUMNS = 18;
+    private static final int TEXT_FIELDS_WIDTH = 300;
+    private static final int TEXT_FIELDS_HEIGHT = 40;
 
     private final Starter controller;
 
@@ -37,86 +40,74 @@ public class ClubPanel extends DefaultPanelImpl{
 
         this.setLayout(new BorderLayout());
 
-        //Adding Game Title and setting it in the top center position of the frame
+        //Adding Game Title
         final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
-        this.add(gameTitle, BorderLayout.NORTH);
 
-        //Creating Text Areas to write the name of the clubs and creating the box to select the number of clubs
-        final JPanel numberOfTeamPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        //Creating the panel to choose the number of teams
+        final JPanel numberOfClubPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         
         @SuppressWarnings("unchecked")
-        final JComboBox<Integer> selectNumberOfTeams = (JComboBox<Integer>) createComponent(
+        final JComboBox<Integer> selectNumberOfClub = (JComboBox<Integer>) createComponent(
             new JComboBox<>(new Integer[]{2, 3, 4}),
             getButtonFont(),
             Color.BLUE);
 
-        final JPanel teamInfoPanel = new JPanel();
-        teamInfoPanel.setLayout(new BoxLayout(teamInfoPanel, BoxLayout.Y_AXIS));
+        final JLabel clubNumberSelectionLabel = (JLabel) createComponent(
+                new JLabel("Choose the number of player "),
+                getButtonFont(),
+                Color.BLACK);
 
-        final JTextArea nameTeam1 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.BLUE);
-        final JTextArea nameTeam2 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.RED); 
-        final JTextArea nameTeam3 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.MAGENTA); 
-        final JTextArea nameTeam4 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.GREEN); 
-        numberOfTeamPanel.add(selectNumberOfTeams);
-        selectNumberOfTeams.addActionListener(e -> {
-            final Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();
-            teamInfoPanel.removeAll();
-            switch ((int) numberSelected) {
-                case 2:
-                    teamInfoPanel.add(nameTeam1);
-                    teamInfoPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                    teamInfoPanel.add(nameTeam2);
-                    break;
-                case 3:
-                    teamInfoPanel.add(nameTeam1);
-                    teamInfoPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                    teamInfoPanel.add(nameTeam2);
-                    teamInfoPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                    teamInfoPanel.add(nameTeam3);
-                    break;
-                case 4:
-                    teamInfoPanel.add(nameTeam1);
-                    teamInfoPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                    teamInfoPanel.add(nameTeam2);
-                    teamInfoPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                    teamInfoPanel.add(nameTeam3);
-                    teamInfoPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                    teamInfoPanel.add(nameTeam4);
-                    break;
-                default:
-                    break;
+        numberOfClubPanel.add(clubNumberSelectionLabel);
+        numberOfClubPanel.add(selectNumberOfClub);
+        numberOfClubPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+
+        //Panel for general info of each club, which will contains clubNamePanel and clubPawnPanel
+        final JPanel clubInfoPanel = new JPanel();
+        clubInfoPanel.setLayout(new BoxLayout(clubInfoPanel, BoxLayout.X_AXIS));
+
+        final JPanel clubNamePanel = new JPanel();
+        clubNamePanel.setLayout(new BoxLayout(clubNamePanel, BoxLayout.Y_AXIS));
+
+        final JPanel clubPawnPanel = new JPanel();
+        clubPawnPanel.setLayout(new BoxLayout(clubPawnPanel, BoxLayout.Y_AXIS));
+
+        //List which will contains the JTextFields to select each clubs name
+        final List<JTextField> clubsName = new ArrayList<>();
+
+        //List which will contains the Pawn that each clubs can choose
+        final List<JTextField> clubsPawn = new ArrayList<>(); //CAMBIARE, HO MESO TEXTFIELDS SOLO PER PROVA
+
+        //Adding by default 2 rows to select a name and pawn
+        updateTeamPanels(2, clubNamePanel, clubPawnPanel, clubsName, clubsPawn);
+
+        clubInfoPanel.add(clubNamePanel);
+        clubInfoPanel.add(clubPawnPanel);
+
+        selectNumberOfClub.addActionListener(e -> {
+            
+            final Integer numberSelected = (Integer) selectNumberOfClub.getSelectedItem();
+            
+            if (numberSelected != null) {
+                updateTeamPanels(numberSelected, clubNamePanel, clubPawnPanel, clubsName, clubsPawn);
             }
-            this.revalidate(); 
-            this.repaint();
         });
-        
-        //Centralizing button vertically and responsively to the resolution changes
-        final JPanel centerWrapper = new JPanel(new GridBagLayout());
-        centerWrapper.add(numberOfTeamPanel);
-        centerWrapper.add(teamInfoPanel);
 
         //Creating button to go back in the home or continue to visualize the pre match view
-        final JPanel buttonPanel = new JPanel(new BorderLayout());
-        
-        //Setting the border of the button
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
+        final JPanel switchingButtonPanel = new JPanel(new BorderLayout());
+        switchingButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
         final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK);
         final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK);
         
-        buttonPanel.add(btnBack, BorderLayout.WEST);
-        buttonPanel.add(btnCont, BorderLayout.EAST);
+        switchingButtonPanel.add(btnBack, BorderLayout.WEST);
+        switchingButtonPanel.add(btnCont, BorderLayout.EAST);
 
-        this.add(centerWrapper, BorderLayout.CENTER);
-        this.add(buttonPanel, BorderLayout.SOUTH);
-
-        //Back button to go back to the home
-        btnBack.addActionListener(e -> { //added by fede
+        //Adding the action listener to the buttons
+        btnBack.addActionListener(e -> { 
             this.controller.changeView("home");
         }); 
         
-        //Back button to go back to the home
-        btnCont.addActionListener(e -> { //added by fede
+        btnCont.addActionListener(e -> { 
             this.controller.changeView("pre");
         }); 
 
@@ -128,11 +119,8 @@ public class ClubPanel extends DefaultPanelImpl{
                 final int currentWidth = getWidth();
 
                 gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
-                selectNumberOfTeams.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / NUMBER_COMBOBOX));
-                nameTeam1.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
-                nameTeam2.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
-                nameTeam3.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
-                nameTeam4.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
+                selectNumberOfClub.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / NUMBER_COMBOBOX));
+                clubsName.stream().forEach(i -> i.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION)));
                 btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
 
@@ -140,6 +128,54 @@ public class ClubPanel extends DefaultPanelImpl{
             
             }
         });
+
+        //Centralizing clubInfoPanel vertically and responsively to the resolution changes
+        final JPanel centerWrapper = new JPanel(new GridBagLayout());
+        centerWrapper.add(numberOfClubPanel);
+        centerWrapper.add(clubInfoPanel);
+
+        //Placing correctly the specific panels in the main one
+        this.add(gameTitle, BorderLayout.NORTH);
+        this.add(centerWrapper, BorderLayout.CENTER);
+        this.add(switchingButtonPanel, BorderLayout.SOUTH);
     }
 
+    private void updateTeamPanels(final int rows, final JPanel namePanel,
+                final JPanel pawnPanel,
+                final List<JTextField> clubsName, 
+                final List<JTextField> clubsPawn){
+                    
+            namePanel.removeAll();
+            pawnPanel.removeAll();
+
+            clubsName.clear();
+            clubsPawn.clear();
+
+            int i = 0;
+            for (i = 0; i < rows; i++) {
+                
+                final JTextField nameTextField = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK);
+                nameTextField.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+                nameTextField.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+                nameTextField.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+                
+                //Adding the new textField to the panel and list, then adding little space under it
+                namePanel.add(nameTextField);
+                namePanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
+                clubsName.add(nameTextField);
+
+                final JTextField nameTextField1 = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK);
+                nameTextField1.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+                nameTextField1.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+                nameTextField1.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+
+                pawnPanel.add(nameTextField1);
+                pawnPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
+                clubsPawn.add(nameTextField1);
+            }
+
+            //Revalidate and Repaint are necessery to update the interface
+            this.revalidate(); 
+            this.repaint();
+        }
 }
