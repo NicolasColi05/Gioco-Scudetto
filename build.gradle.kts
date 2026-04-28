@@ -45,14 +45,14 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("src.main.java.gioco_scudetto.GameStarter")
+    mainClass.set("src.main.java.giocoscudetto.GameStarter")
 }
 
 tasks.withType<Test>().configureEach {
-    useJUnitPlatform() // Enables the engine of JUnit 5/6
-    testLogging { // Additional Options
-        // Display all events (test started, succeeded, failed...)
-        events(*org.gradle.api.tasks.testing.logging.TestLogEvent.entries.toTypedArray())
-        showStandardStreams = true // Show the standard output
+    useJUnitPlatform()
+    testLogging {
+        // Usiamo .values() invece di .entries per evitare errori di versione Kotlin
+        events(*org.gradle.api.tasks.testing.logging.TestLogEvent.values())
+        showStandardStreams = true
     }
 }

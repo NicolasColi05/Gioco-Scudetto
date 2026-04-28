@@ -3,15 +3,16 @@ package giocoscudetto.model.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.random.*;
+import java.util.random.RandomGenerator;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Pair;
 
+
 public class FixturesImpl implements Fixtures {
 
-    final private ArrayList<Club> listOfClubs;
+    private final List<Club> listOfClubs;
     private List<Pair<Club, Club>> fixture;
     private final Iterator<Pair<Club, Club>> fixtuIterator;
 
@@ -20,7 +21,7 @@ public class FixturesImpl implements Fixtures {
      * 
      * @param listOfClubs it's the list of the clubs that will take part in the fixture
      */
-    public FixturesImpl(final ArrayList<Club> listOfClubs) {
+    public FixturesImpl(final List<Club> listOfClubs) {
         this.listOfClubs = listOfClubs;
         this.fixtureGeneration();
         this.fixtuIterator = fixture.iterator();
