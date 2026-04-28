@@ -42,7 +42,7 @@ public class ClubPanel extends DefaultPanelImpl{
         this.add(gameTitle, BorderLayout.NORTH);
 
         //Creating Text Areas to write the name of the clubs and creating the box to select the number of clubs
-        final JPanel numberOfTeamPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
+        final JPanel numberOfTeamPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         
         @SuppressWarnings("unchecked")
         final JComboBox<Integer> selectNumberOfTeams = (JComboBox<Integer>) createComponent(
@@ -133,8 +133,8 @@ public class ClubPanel extends DefaultPanelImpl{
                 nameTeam2.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 nameTeam3.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 nameTeam4.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
-                btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
-                btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
+                btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
+                btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
 
                 revalidate();
             
@@ -142,9 +142,4 @@ public class ClubPanel extends DefaultPanelImpl{
         });
     }
 
-    private JComponent createComponent(final JComponent component, final Font font, final Color color) {
-        component.setFont(font);
-        component.setForeground(color);
-        return component;
-    }
 }
