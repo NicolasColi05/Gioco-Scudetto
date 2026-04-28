@@ -28,15 +28,12 @@ public class HomePanel extends DefaultPanelImpl {
 
         this.setLayout(new BorderLayout());
 
-        //Adding Game Title and setting it in the top center position of the frame
+        //Adding Game Title
         final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
-
-        gameTitle.setForeground(Color.RED);
-        gameTitle.setFont(getTitleFont());
-        this.add(gameTitle, BorderLayout.NORTH);
 
         //Creating buttons to select to play with bots or friend
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
+
         final JButton btnBot = (JButton) createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), Color.BLUE);
         final JButton btnFriend = (JButton) createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), Color.BLUE);
         selectButtonPanel.add(btnBot); 
@@ -47,9 +44,9 @@ public class HomePanel extends DefaultPanelImpl {
         centerWrapper.add(selectButtonPanel);
 
         //Creating button to exit from the game
-        final JPanel exitButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JButton exitGame = (JButton) createComponent(new JButton("EXIT"), getExitFont(), Color.BLACK);
-        exitButtonPanel.add(exitGame);
+        final JPanel switchingButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        final JButton btnExit = (JButton) createComponent(new JButton("EXIT"), getExitFont(), Color.BLACK);
+        switchingButtonPanel.add(btnExit);
 
 
         //Adding the action listener to the buttons
@@ -61,7 +58,7 @@ public class HomePanel extends DefaultPanelImpl {
             this.controller.changeView("club");
         });
         
-        exitGame.addActionListener(e -> {
+        btnExit.addActionListener(e -> {
             int confirm = JOptionPane.showConfirmDialog(this,
                         "Do you really want to quit?",
                         "QUITTING...",
@@ -84,15 +81,17 @@ public class HomePanel extends DefaultPanelImpl {
                 gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 btnBot.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
                 btnFriend.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
-                exitGame.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
+                btnExit.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
 
                 revalidate();
             
             }
         });
 
+        //Placing correctly the specific panels in the main one 
+        this.add(gameTitle, BorderLayout.NORTH);
         this.add(centerWrapper, BorderLayout.CENTER);
-        this.add(exitButtonPanel, BorderLayout.SOUTH);
+        this.add(switchingButtonPanel, BorderLayout.SOUTH);
        
     }
 
