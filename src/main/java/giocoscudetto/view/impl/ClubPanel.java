@@ -42,7 +42,7 @@ public class ClubPanel extends DefaultPanelImpl{
         this.add(gameTitle, BorderLayout.NORTH);
 
         //Creating Text Areas to write the name of the clubs and creating the box to select the number of clubs
-        final JPanel numberOfTeamPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
+        final JPanel numberOfTeamPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         
         @SuppressWarnings("unchecked")
         final JComboBox<Integer> selectNumberOfTeams = (JComboBox<Integer>) createComponent(
@@ -53,10 +53,10 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel teamInfoPanel = new JPanel();
         teamInfoPanel.setLayout(new BoxLayout(teamInfoPanel, BoxLayout.Y_AXIS));
 
-        final JTextArea nameTeam1 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.BLUE);
-        final JTextArea nameTeam2 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.RED); 
-        final JTextArea nameTeam3 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.MAGENTA); 
-        final JTextArea nameTeam4 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.GREEN); 
+        final JTextArea nameTeam1 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.BLUE);
+        final JTextArea nameTeam2 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.RED); 
+        final JTextArea nameTeam3 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.MAGENTA); 
+        final JTextArea nameTeam4 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.GREEN); 
         numberOfTeamPanel.add(selectNumberOfTeams);
         selectNumberOfTeams.addActionListener(e -> {
             final Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();
@@ -133,8 +133,8 @@ public class ClubPanel extends DefaultPanelImpl{
                 nameTeam2.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 nameTeam3.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 nameTeam4.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
-                btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
-                btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
+                btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
+                btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
 
                 revalidate();
             
@@ -142,9 +142,4 @@ public class ClubPanel extends DefaultPanelImpl{
         });
     }
 
-    private JComponent createComponent(final JComponent component, final Font font, final Color color) {
-        component.setFont(font);
-        component.setForeground(color);
-        return component;
-    }
 }

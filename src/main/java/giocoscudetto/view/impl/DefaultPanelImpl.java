@@ -1,9 +1,11 @@
 package giocoscudetto.view.impl;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import giocoscudetto.view.api.DefaultPanel;
@@ -11,14 +13,12 @@ import giocoscudetto.view.api.DefaultPanel;
 public class DefaultPanelImpl extends JPanel implements DefaultPanel{
     
     protected static final String FONT_SELECTED = Font.MONOSPACED;
-    protected static final int BUTTONS_HORIZONTAL_GAP = 80;
 
     private static final int TITLE_FONT_REDUCTION = 15;
     private static final int BUTTON_FONT_REDUCTION = 25;
-    private static final int EXIT_FONT_REDUCTION = 40;
+    private static final int SWITCHER_BUTTON_FONT_REDUCTION = 40;
     protected static final int TITLE_FONT_RESIZING = 15;
-    protected static final int BUTTON_FONT_RESIZING = 25;
-    protected static final int EXIT_FONT_RESIZING = 40;
+    protected static final int SWITCHER_BUTTON_FONT_RESIZING = 40;
     
     /*
      *Getting the deafult screen dimensione to use it to calibrate
@@ -30,7 +30,7 @@ public class DefaultPanelImpl extends JPanel implements DefaultPanel{
     //Creating different font for each component
     private final Font titleFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / TITLE_FONT_REDUCTION);
     private final Font buttonFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION);
-    private final Font exitFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / EXIT_FONT_REDUCTION);
+    private final Font exitFont = new Font(FONT_SELECTED, Font.BOLD, minimumWidht / SWITCHER_BUTTON_FONT_REDUCTION);
     
     
     //Getter Method
@@ -45,6 +45,12 @@ public class DefaultPanelImpl extends JPanel implements DefaultPanel{
     @Override
     public Font getExitFont() {
         return this.exitFont;
+    }
+
+    protected JComponent createComponent(final JComponent component, final Font font, final Color color) {
+        component.setFont(font);
+        component.setForeground(color);
+        return component;
     }
 
 }
