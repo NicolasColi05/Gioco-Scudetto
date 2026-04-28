@@ -53,10 +53,10 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel teamInfoPanel = new JPanel();
         teamInfoPanel.setLayout(new BoxLayout(teamInfoPanel, BoxLayout.Y_AXIS));
 
-        final JTextArea nameTeam1 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.BLUE);
-        final JTextArea nameTeam2 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.RED); 
-        final JTextArea nameTeam3 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.MAGENTA); 
-        final JTextArea nameTeam4 = (JTextArea) createComponent(new JTextArea("Write your team's name", TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.GREEN); 
+        final JTextArea nameTeam1 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.BLUE);
+        final JTextArea nameTeam2 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.RED); 
+        final JTextArea nameTeam3 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.MAGENTA); 
+        final JTextArea nameTeam4 = (JTextArea) createComponent(new JTextArea(TEXT_AREA_ROWS, TEXT_AREA_COLUMNS), getFont(), Color.GREEN); 
         numberOfTeamPanel.add(selectNumberOfTeams);
         selectNumberOfTeams.addActionListener(e -> {
             final Integer numberSelected = (Integer) selectNumberOfTeams.getSelectedItem();

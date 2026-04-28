@@ -18,6 +18,9 @@ import giocoscudetto.controller.api.Starter;
 
 public class HomePanel extends DefaultPanelImpl {
 
+    private static final int BUTTONS_HORIZONTAL_GAP = 80;
+    private static final int BUTTON_FONT_RESIZING = 25;
+
     private final Starter controller;
 
     public HomePanel(Starter controller) {
@@ -81,7 +84,7 @@ public class HomePanel extends DefaultPanelImpl {
                 gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 btnBot.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
                 btnFriend.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
-                exitGame.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / EXIT_FONT_RESIZING));
+                exitGame.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
 
                 revalidate();
             
@@ -92,12 +95,5 @@ public class HomePanel extends DefaultPanelImpl {
         this.add(exitButtonPanel, BorderLayout.SOUTH);
        
     }
-
-    private JComponent createComponent(final JComponent component, final Font font, final Color color) {
-        component.setFont(font);
-        component.setForeground(color);
-        return component;
-    }
-
 
 }
