@@ -1,11 +1,7 @@
 package giocoscudetto.model.api;
 
-public interface Pawn {
-    //Getter Methods
-    String getName();
-    int getPosition();    
-
-    //Setter Methods
-    void setName(String name);
-    void setPosition(int position);
+public interface PawnService {
+    void changePosition(Club club, int steps);
+    int getPosition(Club club);
+    void setPosition(Club club, int position);
 }

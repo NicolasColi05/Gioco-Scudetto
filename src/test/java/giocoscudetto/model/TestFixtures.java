@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class TestFixtures {
-    /*Club roma = new ClubImpl(new PawnServiceImpl())
+    Club roma = new ClubImpl(new PawnServiceImpl())
     Club inter = new ClubImpl(new PawnServiceImpl());
     Club napoli = new ClubImpl(new PawnServiceImpl());
     Club juventus = new ClubImpl(new PawnServiceImpl());
@@ -24,6 +24,6 @@ public class TestFixtures {
     void TestFixturesGeneration(){
         System.out.println(fixture);
     }
-    */
+    
     //Fixtures fixtures = new FixturesImpl();
 }
