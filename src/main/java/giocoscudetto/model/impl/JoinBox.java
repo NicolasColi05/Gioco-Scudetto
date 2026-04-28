@@ -30,26 +30,15 @@ public class JoinBox implements Boxes {
         if (current == match.getClubHome()){
         opponent = match.getClubAway();
         } else {
-            opponent =match.getClubHome();
-        }
-
-        /*  Club opponent;
-
-        if (match.getMatchStatus() == 0) {
-
-            current = match.getClubHome();
-            opponent = match.getClubAway();
-        } else {
-            current = match.getClubAway();
             opponent = match.getClubHome();
         }
-            */
+            
 
         System.out.println(current + "entered Join Box");
 
-        //int currentPosition = current.getPawn().getPosition();
-        //opponent.getPawn().setPosition(currentPosition);
+        int currentPosition = current.getPawn().getPosition(current);
+        opponent.getPawn().setPosition(opponent, currentPosition);
 
-        //System.out.println(opponent + "joined current player at position" + currentPosition);
+        System.out.println(opponent + "joined current player at position" + currentPosition);
     }
 }
