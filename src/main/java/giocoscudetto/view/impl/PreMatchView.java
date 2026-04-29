@@ -20,15 +20,22 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import giocoscudetto.view.impl.ClubPanel;
+import giocoscudetto.model.impl.TableImpl;
 import giocoscudetto.controller.api.Starter;
 
 public class PreMatchView extends DefaultPanelImpl{
     
     private Starter controller;
+    private static String[] columnNames = {"Clubs", "Points", "Net Diff"};
+    private Object[][] dati = {
+        {"Inter", 6, 3},
+        {"Roma", 7, 2}
+    };
 
     public PreMatchView(Starter controller){
         this.controller = controller;
@@ -38,11 +45,12 @@ public class PreMatchView extends DefaultPanelImpl{
         final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
         this.add(gameTitle, BorderLayout.NORTH);
 
-        final JTable table = (JTable) createComponent(new JTable(4, 2), getTitleFont(), Color.RED);
-        table.setBackground(Color.BLUE);
+        final JTable table = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.RED);
+        table.setBackground(Color.WHITE);
+        table.setEnabled(false);
+
         this.add(gameTitle, BorderLayout.NORTH);
-        this.add(table, BorderLayout.CENTER);
+        this.add(new JScrollPane(table), BorderLayout.WEST);
     }
 
-    
 }
