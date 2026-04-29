@@ -5,10 +5,18 @@ import javax.swing.SwingUtilities;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.ViewManager;
 
+/**
+ * Starter implementation.
+ */
 public class StarterImpl implements Starter {
 
     private final ViewManager viewManager;
 
+    /**
+     * Constructor for StarterImpl.
+     * 
+     * @param manager the view manager to use for the controller.
+     */
     public StarterImpl(final ViewManager manager) {
         this.viewManager = manager;
     }
@@ -29,5 +37,8 @@ public class StarterImpl implements Starter {
         this.viewManager.quit();
     }
 
-
+    @Override
+    public void checkBox() {
+        
+    }
 }

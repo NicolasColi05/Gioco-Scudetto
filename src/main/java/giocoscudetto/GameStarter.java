@@ -34,5 +34,8 @@ public class GameStarter {
         //Starting game
         controller.startGame();
 
+
+        
+
     }
 }
