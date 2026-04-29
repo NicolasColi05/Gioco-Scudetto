@@ -19,4 +19,9 @@ public interface Starter {
      */
     void closeGame();
 
+    /**
+     * this is a method to check the box and execute the event of the box.
+     */
+    void checkBox();
+
 }
