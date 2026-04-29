@@ -1,10 +1,9 @@
 package giocoscudetto.model.impl;
 
-import java.util.Random;
-
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Pawn;
 import giocoscudetto.model.api.Turn;
+
 
 public class TurnImpl implements Turn {
 
@@ -13,21 +12,21 @@ public class TurnImpl implements Turn {
     private Club club1;
     private Club club2;
     private Club currentPlayer;
-    private Random random;
+    private Dice6ThrowImpl dice;
 
     //Class Constructor
     public TurnImpl(Club club1, Club club2) {
         
         this.club1 = club1;
         this.club2 = club2;
-        this.random = new Random();
+        this.dice = new Dice6ThrowImpl();
         chooseStartingPlayer(); 
     }
 
     @Override
     public void chooseStartingPlayer() {
-        int roll1 = rollDie() + rollDie();
-        int roll2 = rollDie() + rollDie();
+        int roll1 = dice.rollDice() + dice.rollDice();
+        int roll2 = dice.rollDice() + dice.rollDice();
 
         if (roll1 >= roll2) {
             currentPlayer= club1;
@@ -55,13 +54,10 @@ public class TurnImpl implements Turn {
         int position = pawn.getPosition();
 
         if (position < HALF_BOARD) {
-            return rollDie() + rollDie();
+            return dice.rollDice() + dice.rollDice();
         } else {
-            return rollDie();
+            return dice.rollDice();
         }
     }
 
-    private int rollDie() {
-        return random.nextInt(6)+1;
     }
-}
