@@ -36,8 +36,8 @@ public class JoinBox implements Boxes {
 
         System.out.println(current + "entered Join Box");
 
-        int currentPosition = current.getPawn().getPosition(current);
-        opponent.getPawn().setPosition(opponent, currentPosition);
+        int currentPosition = current.getPawn().getPosition();
+        opponent.getPawn().setPosition(currentPosition);
 
         System.out.println(opponent + "joined current player at position" + currentPosition);
     }

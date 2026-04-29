@@ -52,7 +52,7 @@ public class TurnImpl implements Turn {
     @Override 
     public int rollDice(Club club)  {
         Pawn pawn = club.getPawn();
-        int position = pawn.getPosition(club);
+        int position = pawn.getPosition();
 
         if (position < HALF_BOARD) {
             return rollDie() + rollDie();

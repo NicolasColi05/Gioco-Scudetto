@@ -26,7 +26,7 @@ public class BackToStartBox implements Boxes {
     public void event(Match match) {
         Club club= match.turn();
 
-        pawn.setPosition(club, 0);
+        pawn.setPosition( 0);
         System.out.println(club + "go back to start");
     }
 }

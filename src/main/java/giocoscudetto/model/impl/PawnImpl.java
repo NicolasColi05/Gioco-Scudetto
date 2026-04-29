@@ -1,36 +1,38 @@
 package giocoscudetto.model.impl;
 
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Pawn;
 
 public class PawnImpl implements Pawn {
     private static final int MAX_POSITION = 31;
 
-    public PawnImpl(){
-        
-        
-    }
-    @Override
-    public void changePosition(Club club, int steps) {
+    private int position;
 
-        int currentPosition = club.getPawn().getPosition(club);
-        int newPosition = currentPosition + steps;
+    public PawnImpl() {
+        this.position = 0;
+    }
+
+    @Override
+    public void changePosition(int steps) {
+
+        int newPosition = this.position + steps;
+
         if (newPosition > MAX_POSITION) {
             newPosition = MAX_POSITION;
         }
 
-        club.getPawn().setPosition(club, newPosition);
 
-        System.out.println(club + "moves from" + currentPosition + "to" + newPosition);
+        System.out.println("Pawn moves from" + this.position + "to" + newPosition);
+
+        this.position = newPosition;
     }
 
     @Override
-    public int getPosition(Club club) {
-        return club.getPawn().getPosition(club);
+    public int getPosition() {
+        return this.position;
     }
 
     @Override
-    public void setPosition(Club club, int position){
-        club.getPawn().setPosition(club, position);
+    public void setPosition(int position){
+       this.position = position;
     }
 }
