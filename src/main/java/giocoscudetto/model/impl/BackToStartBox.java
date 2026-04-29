@@ -3,9 +3,11 @@ package giocoscudetto.model.impl;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.Pawn;
 
 public class BackToStartBox implements Boxes {
     private final int position;
+    private Pawn pawn;
     public BackToStartBox( int position) {
         this.position = position;
     }
@@ -24,7 +26,7 @@ public class BackToStartBox implements Boxes {
     public void event(Match match) {
         Club club= match.turn();
 
-        //club.getPawn().setPosition(0);
+        pawn.setPosition(club, 0);
         System.out.println(club + "go back to start");
     }
 }

@@ -2,7 +2,7 @@ package giocoscudetto.model.impl;
 
 import java.util.Random;
 
-/*import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Pawn;
 import giocoscudetto.model.api.Turn;
 
@@ -49,10 +49,10 @@ public class TurnImpl implements Turn {
         }
     }
 
-    /*@Override 
+    @Override 
     public int rollDice(Club club)  {
         Pawn pawn = club.getPawn();
-        int position = pawn.getPosition();
+        int position = pawn.getPosition(club);
 
         if (position < HALF_BOARD) {
             return rollDie() + rollDie();
@@ -64,4 +64,4 @@ public class TurnImpl implements Turn {
     private int rollDie() {
         return random.nextInt(6)+1;
     }
-}*/
+}
