@@ -47,28 +47,29 @@ public class FixturesImpl implements Fixtures {
         int i;
         int j;
         for (i = 0; i < listOfClubs.size(); i++) {
-            for (j = 0; i < listOfClubs.size(); j++) {
-                if (listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName())) {
+            for (j = 0; j < listOfClubs.size(); j++) {
+                if (listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName() ) == false) {
                     fixture.add(new Pair<>(listOfClubs.get(i), listOfClubs.get(j)));
                 }
             }
         }
-        this.shuffleFixture();
+        java.util.Collections.shuffle(fixture);
     }
 
     /**
-     * Method that is responsible of shuffling the fixture, in ordere to create a random fixture.
+     * Method that is responsible of shuffling the fixture, in order to create a random fixture.
      */
     private void shuffleFixture() {
-        int i;
-        for (i = 0; i < listOfClubs.size(); i++) {
+        int i = 0;
+        final RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
+        while(i < fixture.size()) {
             final Pair<Club, Club> firstPair = fixture.get(i);
-            final RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
-            final int n = g.nextInt(0, listOfClubs.size());
+            final int n = g.nextInt(0, fixture.size() -1);
             final Pair<Club, Club> secondPair = fixture.get(n);
             final Pair<Club, Club> temp = firstPair;
             fixture.set(i, secondPair);
             fixture.set(n, temp);
+            i++;
         }
     }
 

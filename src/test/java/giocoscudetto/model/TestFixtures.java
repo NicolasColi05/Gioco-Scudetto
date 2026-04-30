@@ -12,18 +12,22 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 
-/*public class TestFixtures {
-    Club roma = new ClubImpl(new PawnServiceImpl())
-    Club inter = new ClubImpl(new PawnServiceImpl());
-    Club napoli = new ClubImpl(new PawnServiceImpl());
-    Club juventus = new ClubImpl(new PawnServiceImpl());
+public class TestFixtures {
+    Club roma = new ClubImpl(new PawnImpl());
+    Club inter = new ClubImpl(new PawnImpl());
+    Club napoli = new ClubImpl(new PawnImpl());
+    Club juventus = new ClubImpl(new PawnImpl());
     ArrayList<Club> listOfClubs = new ArrayList<>();
-    FixturesImpl fixture = new FixturesImpl(listOfClubs);
     
     @Test
     void TestFixturesGeneration(){
-        System.out.println(fixture);
+        listOfClubs.add(roma);
+        listOfClubs.add(inter);
+        //listOfClubs.add(napoli);
+        //listOfClubs.add(juventus);
+        FixturesImpl fixture = new FixturesImpl(listOfClubs);
+        System.out.println(fixture.toString());
     }
     
     //Fixtures fixtures = new FixturesImpl();
-}*/
+}
