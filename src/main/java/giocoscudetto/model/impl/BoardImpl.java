@@ -1,5 +1,6 @@
 package giocoscudetto.model.impl;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,8 +50,13 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public Optional<Boxes> getBoxes(int index) {
+    public Optional<Boxes> getBox(int index) {
        return board.get(index);
+    }
+
+    @Override
+    public Image getBoxImage(int i) {
+        return this.board.get(i).get().getImage();
     }
     
 }

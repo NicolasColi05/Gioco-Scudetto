@@ -1,5 +1,7 @@
 package giocoscudetto.model.impl;
 
+import java.awt.Image;
+
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
@@ -28,5 +30,11 @@ public class BackToStartBox implements Boxes {
 
         pawn.setPosition( 0);
         System.out.println(club + "go back to start");
+    }
+
+    @Override
+    public Image getImage() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getImage'");
     }
 }

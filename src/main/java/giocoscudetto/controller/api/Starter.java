@@ -1,5 +1,7 @@
 package giocoscudetto.controller.api;
 
+import java.awt.Image;
+
 public interface Starter {
     
     /**
@@ -23,5 +25,13 @@ public interface Starter {
      * this is a method to check the box and execute the event of the box.
      */
     void checkBox();
+
+    /**
+     * this method is for get the image of a box.
+     * 
+     * @param i the index of the box.
+     * @return the image of the box.
+     */
+    Image getBoxImage(int i);
 
 }

@@ -1,5 +1,6 @@
 package giocoscudetto.model.api;
 
+import java.awt.Image;
 import java.util.Optional;
 
 /**
@@ -13,7 +14,9 @@ public interface Board {
      * @param index the positon in the board.
      * @return the associated Box.
      */
-    Optional<Boxes> getBoxes(int index);
+    Optional<Boxes> getBox(int index);
+
+    Image getBoxImage(int i);
     
 
 } 

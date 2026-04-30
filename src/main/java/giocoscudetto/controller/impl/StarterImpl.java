@@ -1,8 +1,12 @@
 package giocoscudetto.controller.impl;
 
+import java.awt.Image;
+
 import javax.swing.SwingUtilities;
 
 import giocoscudetto.controller.api.Starter;
+import giocoscudetto.model.api.Board;
+import giocoscudetto.model.impl.BoardImpl;
 import giocoscudetto.view.api.ViewManager;
 
 /**
@@ -11,6 +15,7 @@ import giocoscudetto.view.api.ViewManager;
 public class StarterImpl implements Starter {
 
     private final ViewManager viewManager;
+    private final Board board = new BoardImpl();
 
     /**
      * Constructor for StarterImpl.
@@ -40,5 +45,10 @@ public class StarterImpl implements Starter {
     @Override
     public void checkBox() {
         
+    }
+
+    @Override
+    public Image getBoxImage(int i) {
+        return this.board.getBoxImage(i);
     }
 }
