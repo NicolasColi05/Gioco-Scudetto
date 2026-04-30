@@ -3,10 +3,12 @@ package giocoscudetto.view.impl;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.table.JTableHeader;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.TextArea;
 
 
@@ -38,6 +40,7 @@ import giocoscudetto.controller.api.Starter;
 public class PreMatchView extends DefaultPanelImpl{
     
     private Starter controller;
+    //dati di prova
     private static String[] columnNames = {"Clubs", "Points", "Net Diff"};
     private Object[][] dati = {
         {"Inter", 6, 3},
@@ -45,7 +48,7 @@ public class PreMatchView extends DefaultPanelImpl{
     };
     private static String[] columnNames2 = {"Clubs", "Results"};
     private Object[][] dati2 = {
-        {new Pair<String, String>(new ClubImpl(new PawnImpl()).getName(), new ClubImpl(new PawnImpl()).getName()), "0-0"},
+        { "prova", "0-0"},
         {new Pair("Inter", "Roma"), "0-0"}
     };
 
@@ -58,24 +61,67 @@ public class PreMatchView extends DefaultPanelImpl{
 
         this.setLayout(new BorderLayout());
 
+        //pannello centrale
+        JPanel centralPanel = new JPanel(new GridBagLayout());
 
+        //pannello inferiore
+        JPanel lowerPanel = new JPanel(new BorderLayout());
+
+        //titolo
         final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
         this.add(gameTitle, BorderLayout.NORTH);
 
-        final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.RED);
+        //prima tabella
+        final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK);
         fixtureTable.setBackground(Color.WHITE);
         fixtureTable.setEnabled(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
+        JTableHeader titolo = new JTableHeader();
+        
 
-        final JTable table2 = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.RED);
+        //seconda tabella
+        final JTable table2 = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK);
         table2.setBackground(Color.WHITE);
         table2.setEnabled(false);
-        
         table2.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
 
+        //pulsanti in basso
+        JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK);
+        JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK);
+        //backButton.addActionListener();
+
+        //aggiunte al panel inferiore
+        lowerPanel.add(backButton, BorderLayout.WEST);
+        lowerPanel.add(continueButton, BorderLayout.EAST);
+
+        backButton.addActionListener(e -> { 
+            this.controller.changeView("club");
+        });
+
+        //aggiunte al panel centrale
+        centralPanel.add(new JScrollPane(fixtureTable));
+        centralPanel.add(new JScrollPane(table2));
+
+
+        //aggiunte al panel principale
         this.add(gameTitle, BorderLayout.NORTH);
-        this.add(new JScrollPane(fixtureTable), BorderLayout.WEST);
-        this.add(new JScrollPane(table2), BorderLayout.EAST);
+        this.add(centralPanel, BorderLayout.CENTER);
+        this.add(lowerPanel, BorderLayout.SOUTH);
+
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(final java.awt.event.ComponentEvent e) {
+
+                final int currentWidth = getWidth();
+
+                gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
+                continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
+                backButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
+
+                revalidate();
+            
+            }
+        });
     }
 
 }
