@@ -16,7 +16,7 @@ public class StartBox implements Boxes{
 
     public StartBox() {
         try {
-        this.image = ImageIO.read(new File("caselle_precise/casella_1.png"));
+        this.image = ImageIO.read(new File("caselle_precise/casella_32.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

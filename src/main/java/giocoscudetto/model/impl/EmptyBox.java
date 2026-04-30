@@ -1,27 +1,38 @@
 package giocoscudetto.model.impl;
 
 import java.awt.Image;
+import java.awt.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class ResultBox implements Boxes{
+public class EmptyBox implements Boxes {
 
+    private final int position;
     private final ArrayList<BufferedImage> images;
 
-    public ResultBox() {
+    public EmptyBox(int position) {
+        this.position = position;
         this.images = new ArrayList<>();
-        try {
-            this.images.add(ImageIO.read(new File("caselle_precise/casella_28.png")));
-            
-        } catch (IOException e) {
+        if (this.position < 9) {
+            try {
+                this.images.add(ImageIO.read(new File("caselle_precise/casella_12.png")));
+                this.images.add(ImageIO.read(new File("caselle_precise/casella_13.png")));
+                this.images.add(ImageIO.read(new File("caselle_precise/casella_23.png")));
+                this.images.add(ImageIO.read(new File("caselle_precise/casella_24.png")));
+                this.images.add(ImageIO.read(new File("caselle_precise/casella_25.png")));
+                this.images.add(ImageIO.read(new File("caselle_precise/casella_27.png")));
+                this.images.add(ImageIO.read(new File("caselle_precise/casella_29.png")));
+            } catch (IOException e) {
             e.printStackTrace();
+        }
         }
         
     }
@@ -45,7 +56,7 @@ public class ResultBox implements Boxes{
 
     @Override
     public Image getImage() {
-        return this.images.get(0);
+        return this.images.get(new Random().nextInt(this.images.size()));
     }
 
 }

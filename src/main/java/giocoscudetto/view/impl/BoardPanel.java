@@ -12,7 +12,7 @@ import giocoscudetto.controller.api.Starter;
 
 public class BoardPanel extends DefaultPanelImpl  {
 
-    private static final int BOARD_SIZE  = 640;
+    private static final int BOARD_SIZE  = 820;
     private static final int BOX_SIDE = 9;
     private static final int BOX_WIDTH = (BOARD_SIZE) / BOX_SIDE;
     private static final int BOX_HEIGHT = (BOARD_SIZE) / BOX_SIDE;;
@@ -39,7 +39,7 @@ public class BoardPanel extends DefaultPanelImpl  {
 
     private void drawAllBoxes(Graphics2D g2d) {
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 9; i++) {
             this.drawBox(g2d, this.controller.getBoxImage(i),getRotation(i), i);
         }
         
