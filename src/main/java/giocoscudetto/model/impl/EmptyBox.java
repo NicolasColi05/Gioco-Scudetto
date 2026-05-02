@@ -1,7 +1,6 @@
 package giocoscudetto.model.impl;
 
 import java.awt.Image;
-import java.awt.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +17,9 @@ public class EmptyBox implements Boxes {
     private final int position;
     private final ArrayList<BufferedImage> images;
 
+    /**
+     * @param position the position of the box in the board.
+     */
     public EmptyBox(int position) {
         this.position = position;
         this.images = new ArrayList<>();
