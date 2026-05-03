@@ -47,7 +47,7 @@ public class FixturesImpl implements Fixtures {
         int j;
         for (i = 0; i < listOfClubs.size(); i++) {
             for (j = 0; j < listOfClubs.size(); j++) {
-                if (listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName() ) == false) {
+                if (!(listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName()))) {
                     fixture.add(new Pair<>(listOfClubs.get(i), listOfClubs.get(j)));
                 }
             }
@@ -61,8 +61,8 @@ public class FixturesImpl implements Fixtures {
         return "Nessun match programmato.";
     }
 
-    StringBuilder sb = new StringBuilder("Calendario Partite:\n");
-    for (Pair<Club, Club> match : fixture) {
+    final StringBuilder sb = new StringBuilder("Calendario Partite:\n");
+    for (final Pair<Club, Club> match : fixture) {
         sb.append(match.e1().getName())  // Assumendo che Club abbia getName()
           .append(" vs ")
           .append(match.e2().getName())

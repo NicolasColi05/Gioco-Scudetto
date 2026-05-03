@@ -26,12 +26,12 @@ public class TestFixtures {
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
         listOfClubs.add(juventus);
-        FixturesImpl fixture = new FixturesImpl(listOfClubs);
-        for (Club club : listOfClubs) {
+        final FixturesImpl fixture = new FixturesImpl(listOfClubs);
+        for (final Club club : listOfClubs) {
             System.out.println("" + club.getName() + "\n");
         }
         assertNotNull(fixture);
-        assertTrue(4 == listOfClubs.size());
+        assertEquals(4, listOfClubs.size());
         System.out.println(fixture);
     }
 
