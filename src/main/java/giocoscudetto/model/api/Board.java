@@ -1,6 +1,6 @@
 package giocoscudetto.model.api;
 
-import java.util.Optional;
+import java.awt.Image;
 
 /**
  * This Class Board is for rappresent the board of the game with all his boxes.
@@ -13,7 +13,9 @@ public interface Board {
      * @param index the positon in the board.
      * @return the associated Box.
      */
-    Optional<Boxes> getBoxes(int index);
+    Boxes getBox(int index);
+
+    Image getBoxImage(int i);
     
 
 } 

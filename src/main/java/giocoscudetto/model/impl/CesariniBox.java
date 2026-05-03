@@ -1,5 +1,7 @@
 package giocoscudetto.model.impl;
 
+import java.awt.Image;
+
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
@@ -21,6 +23,12 @@ public class CesariniBox implements Boxes {
     public String getName() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    }
+
+    @Override
+    public Image getImage() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getImage'");
     }
 
 }

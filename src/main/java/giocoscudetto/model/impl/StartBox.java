@@ -1,9 +1,27 @@
 package giocoscudetto.model.impl;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
 public class StartBox implements Boxes{
+
+    private  BufferedImage image = null;
+
+    public StartBox() {
+        try {
+        this.image = ImageIO.read(new File("caselle_precise/casella_32.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
 
     @Override
     public int getPosition() {
@@ -21,6 +39,11 @@ public class StartBox implements Boxes{
     public String getName() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    }
+
+    @Override
+    public Image getImage() {
+        return this.image;
     }
 
 }
