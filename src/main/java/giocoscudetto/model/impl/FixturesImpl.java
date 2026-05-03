@@ -3,7 +3,6 @@ package giocoscudetto.model.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.random.RandomGenerator;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
@@ -56,6 +55,7 @@ public class FixturesImpl implements Fixtures {
         java.util.Collections.shuffle(fixture);
     }
 
+    @Override
     public String toString() {
     if (this.fixture == null || this.fixture.isEmpty()) {
         return "Nessun match programmato.";

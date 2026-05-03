@@ -19,4 +19,10 @@ public interface Fixtures {
      * @return the current match being played
      */
     Pair<Club, Club> getCurrentMatch();
+
+    /**
+     * Method that returns a string representing the fixture, with all the matches
+     * @return a string that represents the fixture
+     */
+    String toString();
 }
