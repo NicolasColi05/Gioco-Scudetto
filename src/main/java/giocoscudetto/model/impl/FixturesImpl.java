@@ -54,6 +54,7 @@ public class FixturesImpl implements Fixtures {
             }
         }
         java.util.Collections.shuffle(fixture);
+        //this.shuffleFixture();
     }
 
     /**
@@ -72,5 +73,20 @@ public class FixturesImpl implements Fixtures {
             i++;
         }
     }
+
+    public String toString() {
+    /*if (this.fixture == null || this.fixture.isEmpty()) {
+        return "Nessun match programmato.";
+    }*/
+
+    StringBuilder sb = new StringBuilder("Calendario Partite:\n");
+    for (Pair<Club, Club> match : fixture) {
+        sb.append(match.e1().getName())  // Assumendo che Club abbia getName()
+          .append(" vs ")
+          .append(match.e2().getName())
+          .append("\n");
+    }
+    return sb.toString();
+}
 
 }
