@@ -54,30 +54,12 @@ public class FixturesImpl implements Fixtures {
             }
         }
         java.util.Collections.shuffle(fixture);
-        //this.shuffleFixture();
-    }
-
-    /**
-     * Method that is responsible of shuffling the fixture, in order to create a random fixture.
-     */
-    private void shuffleFixture() {
-        int i = 0;
-        final RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
-        while(i < fixture.size()) {
-            final Pair<Club, Club> firstPair = fixture.get(i);
-            final int n = g.nextInt(0, fixture.size() -1);
-            final Pair<Club, Club> secondPair = fixture.get(n);
-            final Pair<Club, Club> temp = firstPair;
-            fixture.set(i, secondPair);
-            fixture.set(n, temp);
-            i++;
-        }
     }
 
     public String toString() {
-    /*if (this.fixture == null || this.fixture.isEmpty()) {
+    if (this.fixture == null || this.fixture.isEmpty()) {
         return "Nessun match programmato.";
-    }*/
+    }
 
     StringBuilder sb = new StringBuilder("Calendario Partite:\n");
     for (Pair<Club, Club> match : fixture) {
@@ -87,6 +69,6 @@ public class FixturesImpl implements Fixtures {
           .append("\n");
     }
     return sb.toString();
-}
+    }
 
 }
