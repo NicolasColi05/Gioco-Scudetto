@@ -55,6 +55,7 @@ public class PreMatchView extends DefaultPanelImpl{
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
     private static final int BUTTON_FONT_REDUCTION = 70;
+    private static final int BUTTON_BORDER = 5;
 
     public PreMatchView(Starter controller){
         this.controller = controller;
@@ -66,6 +67,7 @@ public class PreMatchView extends DefaultPanelImpl{
 
         //pannello inferiore
         JPanel lowerPanel = new JPanel(new BorderLayout());
+        lowerPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
         //titolo
         final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
