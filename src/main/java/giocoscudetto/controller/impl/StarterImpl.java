@@ -1,5 +1,6 @@
 package giocoscudetto.controller.impl;
 
+import java.awt.Color;
 import java.awt.Image;
 
 import javax.swing.SwingUtilities;
@@ -58,5 +59,15 @@ public class StarterImpl implements Starter {
     @Override
     public String getScore() {
         return this.match.getScore().toString();
+    }
+
+    @Override
+    public Color getHomeTeamColor() {
+        return this.match.getClubHome().getColor();
+    }
+
+    @Override
+    public int getHomePosition() {
+        return this.match.getClubHome().getPawn().getPosition();
     }
 }

@@ -1,5 +1,7 @@
 package giocoscudetto.model.impl;
 
+import java.awt.Color;
+
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Pawn;
 
@@ -10,10 +12,12 @@ public class ClubImpl implements Club{
     private Pawn pawn;
     private int points;
     private int netDiff;
+    private Color color;
 
     //Class Constructor
     public ClubImpl(final Pawn pawnSelected) {
          //Setting a standard name and pawn selected
+        this.color = Color.BLACK;
         this.pawn = pawnSelected;
         this.name = "STANDARD";
     }
@@ -57,5 +61,15 @@ public class ClubImpl implements Club{
     @Override
     public void changePawn(final Pawn pawnSelected) {
         this.pawn = pawnSelected;
+    }
+
+    @Override
+    public Color getColor() {
+        return this.color;
+    }
+
+    @Override
+    public void setColor(final Color color) {
+        this.color = color;
     }
 }

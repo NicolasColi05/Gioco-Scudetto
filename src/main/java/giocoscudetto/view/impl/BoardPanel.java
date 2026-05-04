@@ -1,5 +1,6 @@
 package giocoscudetto.view.impl;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -12,7 +13,7 @@ import giocoscudetto.controller.api.Starter;
 public class BoardPanel extends DefaultPanelImpl  {
 
     private static final int BOX_SIDE = 9;
-    private static final Color BACKGROUND_COLOR = new Color(0xC8E6C9);
+    private static final Color BACKGROUND_COLOR = Color.BLACK;
     
     private final Starter controller;
     private int board_size_h;
@@ -39,7 +40,12 @@ public class BoardPanel extends DefaultPanelImpl  {
 
         drawCenter(g2d);
         drawAllBoxes(g2d);
-        
+        drawAllPawns(g2d);
+    }
+
+    private void drawAllPawns(Graphics2D g2d) {
+        drawHomePawn(g2d);
+        drawGuestPawn(g2d);
     }
 
     private void drawAllBoxes(Graphics2D g2d) {
@@ -51,8 +57,10 @@ public class BoardPanel extends DefaultPanelImpl  {
     }
 
     private void drawBox(Graphics2D g2d, Image image, int position) {
-        int x = board_size_w;
-        int y = board_size_h;
+
+        final int x = board_size_w;
+        final int y = board_size_h;
+
         if (position >= 0 && position <= 8) {
             g2d.drawImage(image, x - (position + 1)*box_w, y - box_h, box_w, box_h, null);
         }
@@ -69,12 +77,12 @@ public class BoardPanel extends DefaultPanelImpl  {
 
     private void drawCenter(Graphics2D g2d) {
         
-        int x = box_w;
-        int y = box_h;
-        int w = board_size_w - 2*x;
-        int h = board_size_h - 2*y;
+        final int x = box_w;
+        final int y = box_h;
+        final int w = board_size_w - 2*x;
+        final int h = board_size_h - 2*y;
 
-        g2d.setColor(BACKGROUND_COLOR);
+        g2d.setColor(new Color(0xC8E6C9));
         g2d.fillRect(x, y, w, h);
         g2d.drawRect(x, y, w, h);
 
@@ -90,8 +98,77 @@ public class BoardPanel extends DefaultPanelImpl  {
         g2d.drawString(result, 4*x, y*6);
 
     }
-    
+
+    private void drawHomePawn(final Graphics2D g2d) {
+        final int x = board_size_w;
+        final int y = board_size_h;
+        // final Color PawnColor = this.controller.getHomeTeamColor();
+        // final int position = this.controller.getHomePosition();
+        final Color PawnColor  = Color.BLACK;
+        final int position = 1;
+        final int r = 15;
+
+        if (position >= 0 && position <= 8) {
+            // 1. Ombra (opzionale, aiuta molto la visibilità)
+            g2d.setColor(new Color(0, 0, 0, 80));
+            g2d.fillOval(x - (position*this.box_w) -  r + 3, y - r + 3, r * 2, r * 2);
+            
+            // 2. Contorno nero spesso — la chiave della visibilità
+            g2d.setColor(Color.BLACK);
+            g2d.setStroke(new BasicStroke(3f));
+            g2d.fillOval(x - (position*this.box_w) - r, y - r, r * 2, r * 2);
+            
+            // 3. Corpo colorato della pedina (leggermente più piccolo)
+            g2d.setColor(PawnColor);
+            g2d.fillOval(x - (position*this.box_w) - r + 2, y - r + 2, (r - 2) * 2, (r - 2) * 2);
+        }
+        if (position >= 9 && position <= 16) {
+            
+        }
+        if (position >= 17 && position <= 24) {
+            
+        }
+        if (position >= 25 && position <= 31) {
+            
+        }
+    }
+
+    private void drawGuestPawn(Graphics2D g2d) {
+        final int x = board_size_w;
+        final int y = board_size_h;
+        // final Color PawnColor = this.controller.getGuestTeamColor();
+        // final int position = this.controller.getGuestPosition();
+        final Color PawnColor  = Color.BLACK;
+        final int position = 1;
+        final int r = 15;
+
+        if (position >= 0 && position <= 8) {
+            // 1. Ombra (opzionale, aiuta molto la visibilità)
+            g2d.setColor(new Color(0, 0, 0, 80));
+            g2d.fillOval(x - r + 3, y - (this.box_h) - r + 3, r * 2, r * 2);
+            
+            // 2. Contorno nero spesso — la chiave della visibilità
+            g2d.setColor(Color.BLACK);
+            g2d.setStroke(new BasicStroke(3f));
+            g2d.fillOval(x - r, y - (this.box_h) - r, r * 2, r * 2);
+            
+            // 3. Corpo colorato della pedina (leggermente più piccolo)
+            g2d.setColor(PawnColor);
+            g2d.fillOval(x - (position*this.box_w) - r + 2, y - (this.box_h) - r + 2, (r - 2) * 2, (r - 2) * 2);
+        }
+        if (position >= 9 && position <= 16) {
+            
+        }
+        if (position >= 17 && position <= 24) {
+            
+        }
+        if (position >= 25 && position <= 31) {
+            
+        }
+    }
+
     private void setSizes() {
+
         this.board_size_h = this.getHeight();
         this.board_size_w = this.getWidth();
         this.box_h = this.board_size_h/BOX_SIDE;
