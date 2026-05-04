@@ -4,7 +4,6 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -13,22 +12,23 @@ import giocoscudetto.model.api.Match;
 
 public class ResultBox implements Boxes{
 
-    private final ArrayList<BufferedImage> images;
+    private final BufferedImage image;
+    private final int position;
 
-    public ResultBox() {
-        this.images = new ArrayList<>();
+    public ResultBox(final int position) {
+        this.position = position;
         try {
-            this.images.add(ImageIO.read(new File("caselle_precise/casella_28.png")));
-            
+        this.image = ImageIO.read(new File("caselle_precise/casella_3.png"));
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Failed to load image", e);
         }
+        
         
     }
     @Override
     public int getPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPosition'");
+        return this.position;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ResultBox implements Boxes{
 
     @Override
     public Image getImage() {
-        return this.images.get(0);
+        return this.image;
     }
 
 }

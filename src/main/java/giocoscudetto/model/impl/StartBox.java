@@ -12,21 +12,23 @@ import giocoscudetto.model.api.Match;
 
 public class StartBox implements Boxes{
 
-    private  BufferedImage image = null;
+    private final BufferedImage image ;
+    private final int position;
 
-    public StartBox() {
+    public StartBox(final int position) {
+        this.position = position;
         try {
         this.image = ImageIO.read(new File("caselle_precise/casella_32.png"));
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Failed to load image", e);
         }
         
     }
 
     @Override
     public int getPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPosition'");
+        return this.position;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class BoardPanel extends DefaultPanelImpl  {
 
     private void drawAllBoxes(Graphics2D g2d) {
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 32; i++) {
             this.drawBox(g2d, this.controller.getBoxImage(i),getRotation(i), i);
         }
         
@@ -50,6 +50,15 @@ public class BoardPanel extends DefaultPanelImpl  {
         int y = BOARD_SIZE;
         if (position >= 0 && position <= 8) {
             g2d.drawImage(image, x - (position + 1)*BOX_WIDTH, y - BOX_HEIGHT, BOX_WIDTH, BOX_HEIGHT, null);
+        }
+        if (position >= 9 && position <= 16) {
+            g2d.drawImage(image, 0, y - (position - 7)*BOX_HEIGHT, BOX_WIDTH, BOX_HEIGHT, null);
+        }
+        if (position >= 17 && position <= 24) {
+            g2d.drawImage(image, (position - 16)*BOX_WIDTH, 0, BOX_WIDTH, BOX_HEIGHT, null);
+        }
+        if (position >= 25 && position <= 31) {
+            g2d.drawImage(image, x - BOX_WIDTH, (position - 24)*BOX_HEIGHT, BOX_WIDTH, BOX_HEIGHT, null);
         }
     }
 

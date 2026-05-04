@@ -13,16 +13,19 @@ import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Pawn;
 
 public class BackToStartBox implements Boxes {
+
     private final int position;
     private Pawn pawn;
-    private BufferedImage image = null;
+    private final BufferedImage image;
 
-    public BackToStartBox( int position) {
+    public BackToStartBox(final int position) {
+
         this.position = position;
         try {
-        this.image = ImageIO.read(new File("caselle_precise/casella_1.png"));
+        this.image = ImageIO.read(new File("caselle_precise/casella_31.png"));
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Failed to load image", e);
         }
     }
 

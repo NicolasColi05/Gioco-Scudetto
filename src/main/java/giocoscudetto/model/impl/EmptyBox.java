@@ -20,28 +20,31 @@ public class EmptyBox implements Boxes {
     /**
      * @param position the position of the box in the board.
      */
-    public EmptyBox(int position) {
+    public EmptyBox(final int position) {
         this.position = position;
         this.images = new ArrayList<>();
-        if (this.position < 9) {
-            try {
-                this.images.add(ImageIO.read(new File("caselle_precise/casella_12.png")));
-                this.images.add(ImageIO.read(new File("caselle_precise/casella_13.png")));
-                this.images.add(ImageIO.read(new File("caselle_precise/casella_23.png")));
-                this.images.add(ImageIO.read(new File("caselle_precise/casella_24.png")));
-                this.images.add(ImageIO.read(new File("caselle_precise/casella_25.png")));
-                this.images.add(ImageIO.read(new File("caselle_precise/casella_27.png")));
-                this.images.add(ImageIO.read(new File("caselle_precise/casella_29.png")));
-            } catch (IOException e) {
+        try {
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_12.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_13.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_23.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_24.png")));                
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_25.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_27.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_29.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_4.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_6.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_8.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_17.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_20.png")));
+        } catch (IOException e) {
             e.printStackTrace();
-        }
+            throw new RuntimeException("Failed to load image", e);  
         }
         
     }
     @Override
     public int getPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPosition'");
+        return this.position;
     }
 
     @Override

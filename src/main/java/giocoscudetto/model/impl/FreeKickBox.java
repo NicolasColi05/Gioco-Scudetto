@@ -12,19 +12,21 @@ import giocoscudetto.model.api.Match;
 
 public class FreeKickBox implements Boxes{
 
-    private BufferedImage image = null;
+    private final BufferedImage image;
+    private final int position;
 
-    public FreeKickBox() {
-         try {
-        this.image = ImageIO.read(new File("caselle_precise/casella_18.png"));
+    public FreeKickBox(final int position) {
+        this.position = position;
+        try {
+        this.image = ImageIO.read(new File("caselle_precise/casella_26.png"));
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Failed to load image", e);
         }
     }
     @Override
     public int getPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPosition'");
+        return this.position;
     }
 
     @Override
