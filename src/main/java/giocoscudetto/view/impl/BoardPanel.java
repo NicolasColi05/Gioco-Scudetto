@@ -12,7 +12,7 @@ import giocoscudetto.controller.api.Starter;
 
 public class BoardPanel extends DefaultPanelImpl  {
 
-    private static final int BOARD_SIZE  = 820;
+    private static final int BOARD_SIZE  = 900;
     private static final int BOX_SIDE = 9;
     private static final int BOX_WIDTH = (BOARD_SIZE) / BOX_SIDE;
     private static final int BOX_HEIGHT = (BOARD_SIZE) / BOX_SIDE;;
