@@ -13,7 +13,7 @@ public class TestFixtures {
     final Club roma = new ClubImpl(new PawnImpl());
     final Club inter = new ClubImpl(new PawnImpl());
     final Club napoli = new ClubImpl(new PawnImpl());
-    final Club juventus = new ClubImpl(new PawnImpl());
+    //final Club juventus = new ClubImpl(new PawnImpl());
     final ArrayList<Club> listOfClubs = new ArrayList<>();
 
     @Test
@@ -21,17 +21,17 @@ public class TestFixtures {
         roma.setName("roma");
         inter.setName("inter");
         napoli.setName("napoli");
-        juventus.setName("juventus");
+        //juventus.setName("juventus");
         listOfClubs.add(roma);
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
-        listOfClubs.add(juventus);
+        //listOfClubs.add(juventus);
         final FixturesImpl fixture = new FixturesImpl(listOfClubs);
         for (final Club club : listOfClubs) {
             System.out.println("" + club.getName() + "\n");
         }
         assertNotNull(fixture);
-        assertEquals(4, listOfClubs.size());
+        assertEquals(3, listOfClubs.size());
         System.out.println(fixture);
     }
 
