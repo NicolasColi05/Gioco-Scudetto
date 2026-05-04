@@ -75,7 +75,7 @@ public class PreMatchView extends DefaultPanelImpl{
 
         //prima tabella
         final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK);
-        fixtureTable.setBackground(Color.WHITE);
+        fixtureTable.setBackground(Color.orange);
         fixtureTable.setEnabled(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
         JTableHeader titolo = new JTableHeader();
@@ -83,7 +83,7 @@ public class PreMatchView extends DefaultPanelImpl{
 
         //seconda tabella
         final JTable table2 = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK);
-        table2.setBackground(Color.WHITE);
+        table2.setBackground(Color.YELLOW);
         table2.setEnabled(false);
         table2.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
 
@@ -119,11 +119,19 @@ public class PreMatchView extends DefaultPanelImpl{
             public void componentResized(final java.awt.event.ComponentEvent e) {
 
                 final int currentWidth = getWidth();
+                final int currentHeight = getHeight();
 
                 gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 backButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
-
+                table2.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
+                fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
+                table2.setRowMargin(3);
+                fixtureTable.setRowMargin(3);
+                table2.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
+                fixtureTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
+                table2.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
+                fixtureTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
                 revalidate();
             
             }
