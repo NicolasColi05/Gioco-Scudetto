@@ -62,7 +62,9 @@ public class ClubImpl implements Club{
      */
     @Override
     public void setName(final String name) {
-        this.name = name;
+        if (!("".equals(name))) {
+            this.name = name;
+        }
     }
 
     /**
@@ -70,7 +72,9 @@ public class ClubImpl implements Club{
      */
     @Override
     public void incrementPoints(final int points) {
-        this.points += points;
+        if (points >= 0) {
+            this.points += points;
+        }
     }
 
     /**
@@ -78,7 +82,9 @@ public class ClubImpl implements Club{
      */
     @Override
     public void changeNetDiffs(final int goalScored, final int goalConceded) {
-        this.netDiff += (goalScored - goalConceded);
+        if (goalScored >= 0 && goalConceded >= 0) {
+            this.netDiff += (goalScored - goalConceded);
+        }
     }
 
     /**
@@ -86,6 +92,8 @@ public class ClubImpl implements Club{
      */
     @Override
     public void setPawn(final Pawn pawnSelected) {
-        this.pawn = pawnSelected;
+        if (pawn != null) {
+            this.pawn = pawnSelected;
+        }
     }
 }
