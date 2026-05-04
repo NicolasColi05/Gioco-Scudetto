@@ -9,11 +9,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+/*
+ * CHECKSTYLE: MagicNumber OFF
+ * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
+ */
+/**
+ * Simple test for {@link giocoscudetto.model.impl.FixturesImpl}.
+ */
 public class TestFixtures {
-    final Club roma = new ClubImpl(new PawnImpl());
-    final Club inter = new ClubImpl(new PawnImpl());
-    final Club napoli = new ClubImpl(new PawnImpl());
-    final Club juventus = new ClubImpl(new PawnImpl());
+    final Club roma = new ClubImpl("Club1", new PawnImpl());
+    final Club inter = new ClubImpl("Club2", new PawnImpl());
+    final Club napoli = new ClubImpl("Club3", new PawnImpl());
+    final Club juventus = new ClubImpl("Club4", new PawnImpl());
     final ArrayList<Club> listOfClubs = new ArrayList<>();
 
     @Test
