@@ -8,9 +8,7 @@ import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.PawnImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 
 /*
@@ -18,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
  * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
  */
 /**
- * Simple test for {@link giocoscudetto.model.impl.ClubImpl}.
+ * Test for {@link giocoscudetto.model.impl.ClubImpl}.
  */
 public class TestClub {
 
