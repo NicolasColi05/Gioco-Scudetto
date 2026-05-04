@@ -3,7 +3,6 @@ package giocoscudetto.model.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.random.RandomGenerator;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
@@ -47,29 +46,29 @@ public class FixturesImpl implements Fixtures {
         int i;
         int j;
         for (i = 0; i < listOfClubs.size(); i++) {
-            for (j = 0; i < listOfClubs.size(); j++) {
-                if (listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName())) {
+            for (j = 0; j < listOfClubs.size(); j++) {
+                if (!(listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName()))) {
                     fixture.add(new Pair<>(listOfClubs.get(i), listOfClubs.get(j)));
                 }
             }
         }
-        this.shuffleFixture();
+        java.util.Collections.shuffle(fixture);
     }
 
-    /**
-     * Method that is responsible of shuffling the fixture, in ordere to create a random fixture.
-     */
-    private void shuffleFixture() {
-        int i;
-        for (i = 0; i < listOfClubs.size(); i++) {
-            final Pair<Club, Club> firstPair = fixture.get(i);
-            final RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
-            final int n = g.nextInt(0, listOfClubs.size());
-            final Pair<Club, Club> secondPair = fixture.get(n);
-            final Pair<Club, Club> temp = firstPair;
-            fixture.set(i, secondPair);
-            fixture.set(n, temp);
-        }
+    @Override
+    public String toString() {
+    if (this.fixture == null || this.fixture.isEmpty()) {
+        return "Nessun match programmato.";
+    }
+
+    final StringBuilder sb = new StringBuilder("Calendario Partite:\n");
+    for (final Pair<Club, Club> match : fixture) {
+        sb.append(match.e1().getName())  // Assumendo che Club abbia getName()
+          .append(" vs ")
+          .append(match.e2().getName())
+          .append("\n");
+    }
+    return sb.toString();
     }
 
 }

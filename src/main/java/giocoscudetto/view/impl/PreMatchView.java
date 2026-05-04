@@ -98,6 +98,10 @@ public class PreMatchView extends DefaultPanelImpl{
             this.controller.changeView("club");
         });
 
+        continueButton.addActionListener(e -> { 
+            this.controller.changeView("match");
+        });
+
         //aggiunte al panel centrale
         centralPanel.add(new JScrollPane(fixtureTable));
         centralPanel.add(new JScrollPane(table2));
