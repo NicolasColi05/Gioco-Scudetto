@@ -7,7 +7,7 @@ import giocoscudetto.model.api.Pawn;
  * Implementing Club interface
  */
 public class ClubImpl implements Club{
-    
+
     //Class Fields not final cause they can ben changed.
     private String name;
     private Pawn pawn;
@@ -21,8 +21,8 @@ public class ClubImpl implements Club{
      * @param pawnSelected
      */
     public ClubImpl(final String name, final Pawn pawn) {
-        this.name = name;
-        this.pawn = pawn;
+        setName(name);
+        setPawn(pawn);
     }
 
     /**
@@ -62,7 +62,7 @@ public class ClubImpl implements Club{
      */
     @Override
     public void setName(final String name) {
-        if (!("".equals(name))) {
+        if (!("".equals(name)) && name != null) {
             this.name = name;
         }
     }
@@ -92,7 +92,7 @@ public class ClubImpl implements Club{
      */
     @Override
     public void setPawn(final Pawn pawnSelected) {
-        if (pawn != null) {
+        if (pawnSelected != null) {
             this.pawn = pawnSelected;
         }
     }

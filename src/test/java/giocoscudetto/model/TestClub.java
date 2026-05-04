@@ -9,6 +9,8 @@ import giocoscudetto.model.impl.PawnImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 
 /*
@@ -29,9 +31,22 @@ public class TestClub {
     @Test
     void testInitialValues() {
         assertEquals(club1.getName(), "inter");
-        assertInstanceOf(pawn.getClass(), club1.getPawn());
+        assertNotNull(club1.getPawn());
         assertEquals(club1.getPoints(), 0);
         assertEquals(club1.getNetDiff(), 0);
+    }
+
+    @Test
+    void testNameChanges() {
+        final String newName = "milan";
+        
+        club1.setName(newName);
+        assertEquals(club1.getName(), newName);
+
+        //Testing an incoerent case where nothing should be done
+        club1.setName(null);
+        assertEquals(club1.getName(), newName);
+      
     }
 
     /**
@@ -41,8 +56,13 @@ public class TestClub {
     void testAddPoints() {
         club1.incrementPoints(2);
         assertEquals(club1.getPoints(), 2);
-        club1.incrementPoints(1);
-        assertEquals(club1.getPoints(), 3);
+        club1.incrementPoints(0);
+        assertEquals(club1.getPoints(), 2);
+
+        //Testing an incoerent case where nothing should be done
+        int actualPoints = club1.getPoints();
+        club1.incrementPoints(-5);
+        assertEquals(club1.getPoints(), actualPoints);
     }
 
     /**
@@ -52,7 +72,19 @@ public class TestClub {
     void testNetDiff() {
         club1.changeNetDiffs(5, 4);
         assertEquals(club1.getNetDiff(), 1);
-        club1.changeNetDiffs(3, 5);
+        
+        club1.changeNetDiffs(3, 3);
+        assertEquals(club1.getNetDiff(), 1);
+        
+        club1.changeNetDiffs(0, 2);
         assertEquals(club1.getNetDiff(), -1);
+        
+        //Testing an incoerent case where nothing should be done
+        int actualNetDiff = club1.getNetDiff();
+        club1.changeNetDiffs(-4, 6);
+        assertEquals(club1.getNetDiff(), actualNetDiff);
+        
+        club1.changeNetDiffs(0, -1);
+        assertEquals(club1.getNetDiff(), actualNetDiff);
     }
 }
