@@ -18,7 +18,7 @@ public class ResultBox implements Boxes{
     public ResultBox() {
         this.images = new ArrayList<>();
         try {
-            this.images.add(ImageIO.read(new File("caselle_precise/casella_28.png")));
+            this.images.add(ImageIO.read(new File("caselle_precise/casella_3.png")));
             
         } catch (IOException e) {
             e.printStackTrace();
