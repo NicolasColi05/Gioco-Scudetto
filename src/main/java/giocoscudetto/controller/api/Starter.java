@@ -34,4 +34,11 @@ public interface Starter {
      */
     Image getBoxImage(int i);
 
+    /**
+     *  this method is for get the score of the game.
+     * 
+     * @return a string that contains the score of the game.
+     */
+    String getScore();
+
 }

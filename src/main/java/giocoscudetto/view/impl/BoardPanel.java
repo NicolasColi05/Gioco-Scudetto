@@ -15,7 +15,8 @@ public class BoardPanel extends DefaultPanelImpl  {
     private static final Color BACKGROUND_COLOR = new Color(0xC8E6C9);
     
     private final Starter controller;
-    private int board_size;
+    private int board_size_h;
+    private int board_size_w;
     private int box_w;
     private int box_h;
 
@@ -50,8 +51,8 @@ public class BoardPanel extends DefaultPanelImpl  {
     }
 
     private void drawBox(Graphics2D g2d, Image image, int position) {
-        int x = board_size;
-        int y = board_size;
+        int x = board_size_w;
+        int y = board_size_h;
         if (position >= 0 && position <= 8) {
             g2d.drawImage(image, x - (position + 1)*box_w, y - box_h, box_w, box_h, null);
         }
@@ -68,24 +69,32 @@ public class BoardPanel extends DefaultPanelImpl  {
 
     private void drawCenter(Graphics2D g2d) {
         
-        int x = box_h;
+        int x = box_w;
         int y = box_h;
-        int w = board_size - 2*x;
-        int h = board_size - 2*y;
+        int w = board_size_w - 2*x;
+        int h = board_size_h - 2*y;
 
         g2d.setColor(BACKGROUND_COLOR);
         g2d.fillRect(x, y, w, h);
         g2d.drawRect(x, y, w, h);
 
         g2d.setColor(Color.red);
-        g2d.setFont(new Font("Boh", Font.BOLD, 40));
-        g2d.drawString("GIOCO DELLO SCUDETTO", 180, 320);
+        g2d.setFont(new Font("Boh", Font.BOLD, x/2));
+        g2d.drawString("GIOCO DELLO SCUDETTO", x + x/3, y*2);
+
+
+        final String result = this.controller.getScore();
+        g2d.setColor(Color.black);
+        g2d.setFont(new Font("Boh", Font.BOLD, x/2));
+        g2d.drawString("SCORE", 4*x, y*5);
+        g2d.drawString(result, 4*x, y*6);
 
     }
     
     private void setSizes() {
-        this.board_size = this.getHeight();
-        this.box_h = this.board_size/BOX_SIDE;
-        this.box_w = this.board_size/BOX_SIDE;
+        this.board_size_h = this.getHeight();
+        this.board_size_w = this.getWidth();
+        this.box_h = this.board_size_h/BOX_SIDE;
+        this.box_w = this.board_size_w/BOX_SIDE;
     }
 }
