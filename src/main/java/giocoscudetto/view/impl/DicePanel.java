@@ -9,12 +9,16 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import giocoscudetto.controller.api.Starter;
+
 public class DicePanel extends DefaultPanelImpl {
     
-    public DicePanel() {
+    private final Starter controller;
+    public DicePanel(final Starter controller) {
+        this.controller = controller;
         this.setLayout(new BorderLayout());
         this.setBackground(Color.WHITE);
-        JLabel messageLabel = new JLabel("ciao");
+        JLabel messageLabel = new JLabel(this.controller.getCurrentPlayer() + ", it's your turn!");
         messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setBorder(new EmptyBorder(8, 4, 8, 4));
@@ -24,5 +28,8 @@ public class DicePanel extends DefaultPanelImpl {
         this.add(rollDiceButton, BorderLayout.SOUTH);        
         this.add(messageLabel,BorderLayout.CENTER);
 
+        rollDiceButton.addActionListener(e -> {
+                this.controller.move();
+            });
     }
 }

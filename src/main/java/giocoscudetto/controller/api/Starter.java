@@ -84,4 +84,8 @@ public interface Starter {
      */
     boolean kickPenalty();
 
+    String getCurrentPlayer();
+
+    void move();
+
 }

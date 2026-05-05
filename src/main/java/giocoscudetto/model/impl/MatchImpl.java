@@ -9,7 +9,7 @@ public class MatchImpl implements Match {
     private Club clubHome;
     private Club clubAway;
     private final Scoreboard score;
-    private final TurnImpl turn;
+    private final TurnImpl turn; 
 
     public MatchImpl() {
         this.score = new ScoreboardImpl();
@@ -46,6 +46,16 @@ public class MatchImpl implements Match {
     @Override
     public final Scoreboard getScore() {
         return score;
+    }
+
+    @Override
+    public Club getCurrentPlayer() {
+        return turn.getCurrentPlayer();
+    }
+
+    @Override
+    public int rollDice() {
+        return this.turn.rollDice(getCurrentPlayer());
     }
 
 }

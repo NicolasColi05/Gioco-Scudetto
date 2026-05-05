@@ -93,9 +93,23 @@ public class StarterImpl implements Starter {
     @Override
     public boolean kickPenalty() {
         if (this.net.isGoal(new Random().nextInt(6) + 1)) {
-            this.match.getScore().increaseHomeScore();
+            if (this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
+                this.match.getScore().increaseHomeScore();
+            } else {
+                this.match.getScore().increaseGuestScore();
+            }
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getCurrentPlayer() {
+        return this.match.getCurrentPlayer().getName();
+    }
+
+    @Override
+    public void move() {
+        this.match.getCurrentPlayer().getPawn().changePosition(this.match.rollDice());
     }
 }

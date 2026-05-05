@@ -43,4 +43,13 @@ public interface Match {
      */
     Scoreboard getScore();
 
+    /**
+     * Method that return the club that is currently playing.
+     * 
+     * @return the club that is currently playing.
+     */
+    Club getCurrentPlayer();
+
+    int rollDice();
+
 }

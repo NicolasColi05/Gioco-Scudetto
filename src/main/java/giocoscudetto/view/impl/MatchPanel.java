@@ -14,10 +14,10 @@ public class MatchPanel extends DefaultPanelImpl {
 
     public MatchPanel(final Starter controller) {
     this.controller = controller;
-    this.setLayout(new BorderLayout(10, 0));
+    this.setLayout(new BorderLayout());
     this.setBackground(new Color(0xC8E6C9));
 
-    final JPanel boardJPanel = new BoardPanel(controller);
+    final JPanel boardJPanel = new BoardPanel(this.controller);
     this.add(boardJPanel, BorderLayout.CENTER);
 
     // Pannello destro verticale
@@ -27,29 +27,20 @@ public class MatchPanel extends DefaultPanelImpl {
     rightPanel.setPreferredSize(new Dimension(280, 0));
 
     // DicePanel in alto
-    JPanel topDice = new DicePanel();
+    JPanel topDice = new DicePanel(this.controller);
     topDice.setAlignmentX(Component.CENTER_ALIGNMENT);
     topDice.setMaximumSize(new Dimension(280, 120));
 
     // NetWrapper dinamico
-    JPanel netWrapper = new JPanel(new BorderLayout()) {
-        @Override
-        public Dimension getPreferredSize() {
-            int w = getParent() != null ? getParent().getWidth() : 280;
-            int h = (int)(w * 3.0 / 4.0);
-            return new Dimension(w, h);
-        }
-        @Override
-        public Dimension getMaximumSize() {
-            return getPreferredSize();
-        }
-    };
+    JPanel netWrapper = new JPanel(new BorderLayout());
+    netWrapper.setMaximumSize(new Dimension(300,200 ));
+        
     netWrapper.setOpaque(false);
     netWrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
-    netWrapper.add(new NetPanel(controller), BorderLayout.CENTER);
+    netWrapper.add(new NetPanel(this.controller), BorderLayout.CENTER);
 
     // DicePanel subito sotto la porta
-    JPanel bottomDice = new DicePanel();
+    JPanel bottomDice = new DicePanel(this.controller);
     bottomDice.setAlignmentX(Component.CENTER_ALIGNMENT);
     bottomDice.setMaximumSize(new Dimension(280, 120));
 
