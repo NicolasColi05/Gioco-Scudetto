@@ -18,11 +18,11 @@ public class ClubImpl implements Club{
     private Color color;
 
     //Class Constructor
-    public ClubImpl(final Pawn pawnSelected) {
+    public ClubImpl(final String name,final Pawn pawnSelected) {
          //Setting a standard name and pawn selected
         this.color = Color.BLACK;
         this.pawn = pawnSelected;
-        this.name = "STANDARD";
+        this.name = name;
     }
 
     /**
