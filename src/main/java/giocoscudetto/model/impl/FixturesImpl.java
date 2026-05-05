@@ -35,7 +35,6 @@ public class FixturesImpl implements Fixtures {
             return this.currentMatch;
         }
         return null;
-        
     }
 
     @Override
