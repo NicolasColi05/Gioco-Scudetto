@@ -48,5 +48,9 @@ public class ScoreboardImpl implements Scoreboard {
         this.guestScore = guestScore + 1;
     }
 
+    @Override
+    public String toString() {
+        return homeScore + " - " + guestScore;
+    }
     
 }

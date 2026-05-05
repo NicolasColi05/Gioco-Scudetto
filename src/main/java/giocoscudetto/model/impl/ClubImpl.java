@@ -1,5 +1,7 @@
 package giocoscudetto.model.impl;
 
+import java.awt.Color;
+
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Pawn;
 
@@ -13,16 +15,14 @@ public class ClubImpl implements Club{
     private Pawn pawn;
     private int points;
     private int netDiff;
+    private Color color;
 
-    /**
-     * Constructor to set the name and pawn of the t.
-     * 
-     * @param name
-     * @param pawnSelected
-     */
-    public ClubImpl(final String name, final Pawn pawn) {
-        setName(name);
-        setPawn(pawn);
+    //Class Constructor
+    public ClubImpl(final String name,final Pawn pawnSelected) {
+         //Setting a standard name and pawn selected
+        this.color = Color.BLACK;
+        this.pawn = pawnSelected;
+        this.name = name;
     }
 
     /**
@@ -95,5 +95,21 @@ public class ClubImpl implements Club{
         if (pawnSelected != null) {
             this.pawn = pawnSelected;
         }
+    }
+
+    @Override
+    public Color getColor() {
+        return this.color;
+    }
+
+    @Override
+    public void setColor(final Color color) {
+        this.color = color;
+    }
+
+    @Override
+    public void changePawn(Pawn pawnSelected) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'changePawn'");
     }
 }

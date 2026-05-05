@@ -1,8 +1,7 @@
 package giocoscudetto.model.api;
 
-/**
- * Interface to memorize the clubs information.
- */
+import java.awt.Color;
+
 public interface Club {
     
     /**
@@ -24,6 +23,7 @@ public interface Club {
      * @return the pawn selected by the club.
      */
     Pawn getPawn();
+    Color getColor();
 
     /**
      * Set the name of the club.
@@ -46,6 +46,9 @@ public interface Club {
      * @param goalConceded in the match that just ended.
      */
     void changeNetDiffs(int goalScored, int goalConceded);
+    void changePawn(Pawn pawnSelected);
+    void setColor(Color color);
+
 
     /**
      * Setting the pawn selected by the club.

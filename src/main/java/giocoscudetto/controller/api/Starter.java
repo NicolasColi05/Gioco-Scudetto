@@ -1,5 +1,6 @@
 package giocoscudetto.controller.api;
 
+import java.awt.Color;
 import java.awt.Image;
 
 public interface Starter {
@@ -33,5 +34,26 @@ public interface Starter {
      * @return the image of the box.
      */
     Image getBoxImage(int i);
+
+    /**
+     *  this method is for get the score of the game.
+     * 
+     * @return a string that contains the score of the game.
+     */
+    String getScore();
+ 
+    /**
+     * this method is for get the color of the home team.
+     * 
+     * @return the Color of the home team.
+     */
+    Color getHomeTeamColor();
+
+    /**
+     * this method is for get the position of the home team pawn.
+     * 
+     * @return the position of the pawn of the home team.
+     */
+    int getHomePosition();
 
 }
