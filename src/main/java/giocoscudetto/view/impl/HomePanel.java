@@ -31,20 +31,17 @@ public class HomePanel extends DefaultPanelImpl {
     public HomePanel(Starter controller) {
         this.controller = controller;
 
-        this.setBackground(new Color(224, 201, 166));
         this.setLayout(new BorderLayout());
-            
-        //Adding Game Title
-        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
 
         //Creating buttons to select to play with bots or friend
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
         selectButtonPanel.setOpaque(false);
 
 
-        final JButton btnBot = (JButton) createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), Color.BLUE);
-        final JButton btnFriend = (JButton) createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), Color.BLUE);
+        final JButton btnBot = (JButton) createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), new Color(240, 220, 180));
+        final JButton btnFriend = (JButton) createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), new Color(240, 220, 180));
         btnBot.setBackground(new Color(139, 90, 43));
+        btnFriend.setBackground(new Color(139, 90, 43));
         selectButtonPanel.add(btnBot); 
         selectButtonPanel.add(btnFriend);   
 
@@ -53,7 +50,8 @@ public class HomePanel extends DefaultPanelImpl {
 
         //Creating button to exit from the game
         final JPanel switchingButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JButton btnExit = (JButton) createComponent(new JButton("EXIT"), getExitFont(), Color.BLACK);
+        final JButton btnExit = (JButton) createComponent(new JButton("EXIT"), getExitFont(), new Color(224, 201, 166));
+        btnExit.setBackground(new Color(62, 91, 66));
         switchingButtonPanel.add(btnExit);
 
 
@@ -86,7 +84,6 @@ public class HomePanel extends DefaultPanelImpl {
 
                 final int currentWidth = getWidth();
 
-                gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 btnBot.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
                 btnFriend.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / BUTTON_FONT_RESIZING));
                 btnExit.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
@@ -98,18 +95,16 @@ public class HomePanel extends DefaultPanelImpl {
 
         //Setting the main panels opacity on false to show the backgorund color
         centerWrapper.add(selectButtonPanel);
-        gameTitle.setOpaque(false);
         centerWrapper.setOpaque(false);
         switchingButtonPanel.setOpaque(false);
 
         //Placing correctly the specific panels in the main one 
-        this.add(gameTitle, BorderLayout.NORTH);
         this.add(centerWrapper, BorderLayout.CENTER);
         this.add(switchingButtonPanel, BorderLayout.SOUTH);
        
 
         try {
-            this.image = ImageIO.read(new File("caselle_precise/home-image.png"));
+            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/home-background.png"));
         } catch (Exception e) {
             throw new RuntimeException("Failed to load image", e);
         }
