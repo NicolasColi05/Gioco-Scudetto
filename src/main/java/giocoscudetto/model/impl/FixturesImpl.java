@@ -14,6 +14,7 @@ public class FixturesImpl implements Fixtures {
     private final List<Club> listOfClubs;
     private List<Pair<Club, Club>> fixture;
     private final Iterator<Pair<Club, Club>> fixtuIterator;
+    private Pair<Club, Club> currentMatch;
 
     /**
      * Constructor of the class, it takes a list of clubs and generates the fixture of the championship.
@@ -24,17 +25,22 @@ public class FixturesImpl implements Fixtures {
         this.listOfClubs = listOfClubs;
         this.fixtureGeneration();
         this.fixtuIterator = fixture.iterator();
-
+        this.currentMatch = null;
     }
 
     @Override
     public Pair<Club, Club> getNextMatch() {
-        return this.fixtuIterator.next();
+        if(this.fixtuIterator.hasNext()){
+            this.currentMatch = this.fixtuIterator.next();
+            return this.currentMatch;
+        }
+        return null;
+        
     }
 
     @Override
     public Pair<Club, Club> getCurrentMatch() {
-        return null;
+        return this.currentMatch;
     }
 
     /**

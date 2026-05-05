@@ -8,18 +8,27 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Table;
 
 
-
+/**
+ * Implementation of Table interface.
+ */
 public class TableImpl implements Table{
 
-    //Class Fields
     private final List<Club> clubRank = new LinkedList<>();
 
-    //Class Constructor
+    /**
+     * Constructor.
+     * 
+     * @param clubs includes all the clubs that partecipates to the tournament
+     *              which i want to put in the correct position.
+     */
     public TableImpl(final List<Club> clubs) {
         this.clubRank.addAll(clubs);
     }   
     
-    //Class Method
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateClubRank() {
         clubRank.sort(
@@ -28,6 +37,9 @@ public class TableImpl implements Table{
                   .reversed());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Club> showPosition() {
         return this.clubRank;
