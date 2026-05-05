@@ -19,13 +19,11 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -55,6 +53,7 @@ public class PreMatchView extends DefaultPanelImpl{
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
     private static final int BUTTON_FONT_REDUCTION = 70;
+    private static final int BUTTON_BORDER = 5;
 
     public PreMatchView(Starter controller){
         this.controller = controller;
@@ -66,6 +65,7 @@ public class PreMatchView extends DefaultPanelImpl{
 
         //pannello inferiore
         JPanel lowerPanel = new JPanel(new BorderLayout());
+        lowerPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
         //titolo
         final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
@@ -73,17 +73,18 @@ public class PreMatchView extends DefaultPanelImpl{
 
         //prima tabella
         final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK);
-        fixtureTable.setBackground(Color.WHITE);
+        fixtureTable.setBackground(Color.orange);
         fixtureTable.setEnabled(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
         JTableHeader titolo = new JTableHeader();
         
 
         //seconda tabella
-        final JTable table2 = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK);
-        table2.setBackground(Color.WHITE);
-        table2.setEnabled(false);
-        table2.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
+        final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK);
+        standingsTable.setBackground(Color.YELLOW);
+        standingsTable.setEnabled(false);
+        standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
+        standingsTable.setBorder(BorderFactory.createTitledBorder("STANDINGS"));
 
         //pulsanti in basso
         JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK);
@@ -104,7 +105,7 @@ public class PreMatchView extends DefaultPanelImpl{
 
         //aggiunte al panel centrale
         centralPanel.add(new JScrollPane(fixtureTable));
-        centralPanel.add(new JScrollPane(table2));
+        centralPanel.add(new JScrollPane(standingsTable));
 
 
         //aggiunte al panel principale
@@ -117,11 +118,19 @@ public class PreMatchView extends DefaultPanelImpl{
             public void componentResized(final java.awt.event.ComponentEvent e) {
 
                 final int currentWidth = getWidth();
+                final int currentHeight = getHeight();
 
                 gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 backButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
-
+                standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
+                fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
+                standingsTable.setRowMargin(3);
+                fixtureTable.setRowMargin(3);
+                standingsTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
+                fixtureTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
+                standingsTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
+                fixtureTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
                 revalidate();
             
             }
