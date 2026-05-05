@@ -18,7 +18,7 @@ public class DicePanel extends DefaultPanelImpl {
         this.controller = controller;
         this.setLayout(new BorderLayout());
         this.setBackground(Color.WHITE);
-        JLabel messageLabel = new JLabel(this.controller.getCurrentPlayer() + ", it's your turn!");
+        JLabel messageLabel = new JLabel( ", it's your turn!");
         messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setBorder(new EmptyBorder(8, 4, 8, 4));
