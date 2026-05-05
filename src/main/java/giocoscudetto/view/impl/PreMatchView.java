@@ -19,13 +19,11 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -82,10 +80,11 @@ public class PreMatchView extends DefaultPanelImpl{
         
 
         //seconda tabella
-        final JTable table2 = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK);
-        table2.setBackground(Color.YELLOW);
-        table2.setEnabled(false);
-        table2.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
+        final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK);
+        standingsTable.setBackground(Color.YELLOW);
+        standingsTable.setEnabled(false);
+        standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
+        standingsTable.setBorder(BorderFactory.createTitledBorder("STANDINGS"));
 
         //pulsanti in basso
         JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK);
@@ -106,7 +105,7 @@ public class PreMatchView extends DefaultPanelImpl{
 
         //aggiunte al panel centrale
         centralPanel.add(new JScrollPane(fixtureTable));
-        centralPanel.add(new JScrollPane(table2));
+        centralPanel.add(new JScrollPane(standingsTable));
 
 
         //aggiunte al panel principale
@@ -124,13 +123,13 @@ public class PreMatchView extends DefaultPanelImpl{
                 gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 backButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
-                table2.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
+                standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
                 fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
-                table2.setRowMargin(3);
+                standingsTable.setRowMargin(3);
                 fixtureTable.setRowMargin(3);
-                table2.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
+                standingsTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
                 fixtureTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
-                table2.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
+                standingsTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
                 fixtureTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
                 revalidate();
             
