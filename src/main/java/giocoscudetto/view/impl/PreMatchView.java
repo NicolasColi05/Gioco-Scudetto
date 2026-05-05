@@ -3,6 +3,7 @@ package giocoscudetto.view.impl;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.JTableHeader;
 
 import java.awt.FlowLayout;
@@ -73,26 +74,20 @@ public class PreMatchView extends DefaultPanelImpl{
 
         //prima tabella
         final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK);
-        fixtureTable.setBackground(Color.orange);
+        //fixtureTable.setBackground(Color.orange);
         fixtureTable.setEnabled(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
         
 
         //seconda tabella
         final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK);
-        standingsTable.setBackground(Color.YELLOW);
+        //standingsTable.setBackground(Color.YELLOW);
         standingsTable.setEnabled(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
-        standingsTable.setBorder(BorderFactory.createTitledBorder("STANDINGS"));
 
         //pulsanti in basso
         JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK);
         JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK);
-        //backButton.addActionListener();
-
-        //aggiunte al panel inferiore
-        lowerPanel.add(backButton, BorderLayout.WEST);
-        lowerPanel.add(continueButton, BorderLayout.EAST);
 
         backButton.addActionListener(e -> { 
             this.controller.changeView("club");
@@ -102,9 +97,22 @@ public class PreMatchView extends DefaultPanelImpl{
             this.controller.changeView("match");
         });
 
+        //aggiunte al panel inferiore
+        lowerPanel.add(backButton, BorderLayout.WEST);
+        lowerPanel.add(continueButton, BorderLayout.EAST);
+
         //aggiunte al panel centrale
-        centralPanel.add(new JScrollPane(fixtureTable));
-        centralPanel.add(new JScrollPane(standingsTable));
+        JScrollPane scrollPaneF = new JScrollPane(fixtureTable);
+        TitledBorder titleF = new TitledBorder("FIXTURE");
+        scrollPaneF.setBorder(titleF);
+        scrollPaneF.setBackground(new Color(211,48,93));
+        centralPanel.add(scrollPaneF);
+
+        JScrollPane scrollPaneS = new JScrollPane(standingsTable);
+        TitledBorder titleS = new TitledBorder("STANDINGS");
+        scrollPaneS.setBorder(titleS);
+        scrollPaneS.setBackground(new Color(135, 169, 107));
+        centralPanel.add(scrollPaneS);
 
 
         //aggiunte al panel principale
@@ -122,14 +130,16 @@ public class PreMatchView extends DefaultPanelImpl{
                 gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 backButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
-                standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
-                fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 100));
+                standingsTable.setFont(new Font(FONT_SELECTED, Font.ROMAN_BASELINE, currentWidth / 100));
+                fixtureTable.setFont(new Font(FONT_SELECTED, Font.ROMAN_BASELINE, currentWidth / 100));
                 standingsTable.setRowMargin(3);
                 fixtureTable.setRowMargin(3);
                 standingsTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
                 fixtureTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
                 standingsTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
                 fixtureTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
+                titleS.setTitleFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 70));
+                titleF.setTitleFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 70));
                 revalidate();
             
             }
