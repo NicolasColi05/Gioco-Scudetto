@@ -41,7 +41,7 @@ public class ClubPanel extends DefaultPanelImpl{
         this.setLayout(new BorderLayout());
 
         //Adding Game Title
-        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
+        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED, null);
 
         //Creating the panel to choose the number of teams
         final JPanel numberOfClubPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -50,12 +50,12 @@ public class ClubPanel extends DefaultPanelImpl{
         final JComboBox<Integer> selectNumberOfClub = (JComboBox<Integer>) createComponent(
             new JComboBox<>(new Integer[]{2, 3, 4}),
             getButtonFont(),
-            Color.BLUE);
+            Color.BLUE, null);
 
         final JLabel clubNumberSelectionLabel = (JLabel) createComponent(
                 new JLabel("Choose the number of player "),
                 getButtonFont(),
-                Color.BLACK);
+                Color.BLACK, null);
 
         numberOfClubPanel.add(clubNumberSelectionLabel);
         numberOfClubPanel.add(selectNumberOfClub);
@@ -96,8 +96,8 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel switchingButtonPanel = new JPanel(new BorderLayout());
         switchingButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
-        final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK);
-        final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK);
+        final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK,null);
+        final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK,null  );
         
         switchingButtonPanel.add(btnBack, BorderLayout.WEST);
         switchingButtonPanel.add(btnCont, BorderLayout.EAST);
@@ -154,7 +154,7 @@ public class ClubPanel extends DefaultPanelImpl{
             int i = 0;
             for (i = 0; i < rows; i++) {
                 
-                final JTextField nameTextField = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK);
+                final JTextField nameTextField = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK, null);
                 nameTextField.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
                 nameTextField.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
                 nameTextField.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
@@ -164,7 +164,7 @@ public class ClubPanel extends DefaultPanelImpl{
                 namePanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
                 clubsName.add(nameTextField);
 
-                final JTextField nameTextField1 = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK);
+                final JTextField nameTextField1 = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK, null);
                 nameTextField1.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
                 nameTextField1.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
                 nameTextField1.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
