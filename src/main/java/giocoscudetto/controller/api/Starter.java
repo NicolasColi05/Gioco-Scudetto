@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Image;
 
 import giocoscudetto.model.api.Fixtures;
+import giocoscudetto.model.api.Table;
 
 public interface Starter {
     
@@ -76,4 +77,11 @@ public interface Starter {
      * @return the fixture
      */
     Fixtures getFixture();
+
+    /**
+     * when called this method returns the fixture
+     * 
+     * @return the table
+     */
+    Table getTable();
 }

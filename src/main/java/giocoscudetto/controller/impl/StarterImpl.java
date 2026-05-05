@@ -15,8 +15,10 @@ import giocoscudetto.model.impl.BoardImpl;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.MatchImpl;
+import giocoscudetto.model.impl.TableImpl;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.Table;
 
 /**
  * Starter implementation.
@@ -29,6 +31,7 @@ public class StarterImpl implements Starter {
     private final ArrayList<Club> listofClubs = new ArrayList<Club>();
     private Fixtures fixture;
     private int numberOfClubs;
+    private Table table;
 
     /**
      * Constructor for StarterImpl.
@@ -99,9 +102,19 @@ public class StarterImpl implements Starter {
     private void setFixture(){
         this.fixture = new FixturesImpl(listofClubs);
     }
+
      @Override
     public Fixtures getFixture() {
        return this.fixture;
+    }
+
+    private void setTable(){
+        this.table = new TableImpl(listofClubs);
+    }
+
+    @Override
+    public Table getTable(){
+        return this.table;
     }
 
     
