@@ -2,12 +2,15 @@ package giocoscudetto.controller.impl;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.Random;
 
 import javax.swing.SwingUtilities;
 
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.model.api.Board;
+import giocoscudetto.model.api.GoalNet;
 import giocoscudetto.model.impl.BoardImpl;
+import giocoscudetto.model.impl.GoalNetImpl;
 import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
@@ -20,6 +23,7 @@ public class StarterImpl implements Starter {
     private final ViewManager viewManager;
     private final Board board = new BoardImpl();
     private final Match match = new MatchImpl();
+    private final GoalNet net = new GoalNetImpl();
 
     /**
      * Constructor for StarterImpl.
@@ -69,5 +73,29 @@ public class StarterImpl implements Starter {
     @Override
     public int getHomePosition() {
         return this.match.getClubHome().getPawn().getPosition();
+    }
+
+    @Override
+    public void setKeeperPosition(int i) {
+        this.net.setGoalKeeperPosition(i);
+    }
+
+    @Override
+    public Color getGuestTeamColor() {
+        return this.match.getClubAway().getColor();
+    }
+
+    @Override
+    public int getGuestPosition() {
+        return this.match.getClubAway().getPawn().getPosition();
+    }
+
+    @Override
+    public boolean kickPenalty() {
+        if (this.net.isGoal(new Random().nextInt(6) + 1)) {
+            this.match.getScore().increaseHomeScore();
+            return true;
+        }
+        return false;
     }
 }

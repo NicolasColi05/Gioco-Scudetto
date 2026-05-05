@@ -18,21 +18,17 @@ public class MatchPanel extends DefaultPanelImpl {
         final JPanel boardJPanel = new BoardPanel(controller);
         this.add(boardJPanel, BorderLayout.CENTER);
 
-        // rightPanel con BorderLayout normale, gap 0
         JPanel rightPanel = new JPanel(new BorderLayout(0, 8));
         this.setBackground(new Color(0xC8E6C9));
         rightPanel.setOpaque(false);
-        rightPanel.setPreferredSize(new Dimension(220, 0));
+        rightPanel.setPreferredSize(new Dimension(280, 0));
 
-        // wrapper che mantiene le proporzioni della porta
         JPanel netWrapper = new JPanel(new BorderLayout()) {
             @Override
             public void doLayout() {
                 super.doLayout();
-                // ogni volta che il wrapper cambia dimensione,
-                // calcola l'altezza giusta per NetPanel
                 int w = getWidth();
-                int h = (int)(w * 2.0 / 3.0);
+                int h = (int)(w * 3.0 / 4.0);
                 Component net = getComponent(0);
                 net.setSize(w, h);
                 net.setPreferredSize(new Dimension(w, h));

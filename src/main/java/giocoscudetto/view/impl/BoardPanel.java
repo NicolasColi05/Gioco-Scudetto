@@ -109,16 +109,13 @@ public class BoardPanel extends DefaultPanelImpl  {
         final int r = this.box_w/6;
 
         if (position >= 0 && position <= 8) {
-            // 1. Ombra (opzionale, aiuta molto la visibilità)
             g2d.setColor(new Color(0, 0, 0, 80));
             g2d.fillOval(x - (position*(this.box_w) + this.box_w/3) -  r + 3, y - (box_h/2) - r + 3, r * 2, r * 2);
             
-            // 2. Contorno nero spesso — la chiave della visibilità
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(3f));
             g2d.fillOval(x - (position*(this.box_w) + this.box_w/3) - r, y - (box_h/2) - r, r * 2, r * 2);
             
-            // 3. Corpo colorato della pedina (leggermente più piccolo)
             g2d.setColor(PawnColor);
             g2d.fillOval(x - (position*(this.box_w) + this.box_w/3) - r + 2, y - (box_h/2) - r + 2, (r - 2) * 2, (r - 2) * 2);
         }
@@ -126,26 +123,21 @@ public class BoardPanel extends DefaultPanelImpl  {
             g2d.setColor(new Color(0, 0, 0, 80));
             g2d.fillOval(0  + this.box_w/2 -  r + 3, y - ((position- 8)*(this.box_h) + this.box_h/3)- r + 3, r * 2, r * 2);
             
-            // 2. Contorno nero spesso — la chiave della visibilità
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(3f));
             g2d.fillOval(0  + this.box_w/2 - r, y - ((position - 8)*(this.box_h) + this.box_h/3) - r, r * 2, r * 2);
             
-            // 3. Corpo colorato della pedina (leggermente più piccolo)
             g2d.setColor(PawnColor);
             g2d.fillOval(0 + this.box_w/2 - r + 2, y - ((position - 8)*(this.box_h) + this.box_h/3) - r + 2, (r - 2) * 2, (r - 2) * 2);
         }
         if (position >= 17 && position <= 24) {
-            // 1. Ombra (opzionale, aiuta molto la visibilità)
             g2d.setColor(new Color(0, 0, 0, 80));
             g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w/3) -  r + 3, 0 + (box_h/2) - r + 3, r * 2, r * 2);
             
-            // 2. Contorno nero spesso — la chiave della visibilità
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(3f));
             g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w/3) - r, 0 + (box_h/2) - r, r * 2, r * 2);
             
-            // 3. Corpo colorato della pedina (leggermente più piccolo)
             g2d.setColor(PawnColor);
             g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w/3) - r + 2, 0 + (box_h/2) - r + 2, (r - 2) * 2, (r - 2) * 2);
         }
@@ -153,12 +145,10 @@ public class BoardPanel extends DefaultPanelImpl  {
             g2d.setColor(new Color(0, 0, 0, 80));
             g2d.fillOval(x  - this.box_w/2 -  r + 3, 0 + ((position - 24)*(this.box_h) + this.box_h/3)- r + 3, r * 2, r * 2);
             
-            // 2. Contorno nero spesso — la chiave della visibilità
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(3f));
             g2d.fillOval(x  - this.box_w/2 - r, 0 + ((position - 24)*(this.box_h) + this.box_h/3) - r, r * 2, r * 2);
             
-            // 3. Corpo colorato della pedina (leggermente più piccolo)
             g2d.setColor(PawnColor);
             g2d.fillOval(x - this.box_w/2 - r + 2, 0 + ((position - 24)*(this.box_h) + this.box_h/3) - r + 2, (r - 2) * 2, (r - 2) * 2);
         }
@@ -174,16 +164,13 @@ public class BoardPanel extends DefaultPanelImpl  {
         final int r = this.box_w/6;
 
         if (position >= 0 && position <= 8) {
-            // 1. Ombra (opzionale, aiuta molto la visibilità)
             g2d.setColor(new Color(0, 0, 0, 80));
             g2d.fillOval(x - (position*(this.box_w) + this.box_w*2/3) -  r + 3, y - (box_h/2) - r + 3, r * 2, r * 2);
             
-            // 2. Contorno nero spesso — la chiave della visibilità
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(3f));
             g2d.fillOval(x - (position*(this.box_w) + this.box_w*2/3) - r, y - (box_h/2) - r, r * 2, r * 2);
             
-            // 3. Corpo colorato della pedina (leggermente più piccolo)
             g2d.setColor(PawnColor);
             g2d.fillOval(x - (position*(this.box_w) + this.box_w*2/3) - r + 2, y - (box_h/2) - r + 2, (r - 2) * 2, (r - 2) * 2);
         }
@@ -191,26 +178,21 @@ public class BoardPanel extends DefaultPanelImpl  {
             g2d.setColor(new Color(0, 0, 0, 80));
             g2d.fillOval(0  + this.box_w/2 -  r + 3, y - ((position- 8)*(this.box_h) + this.box_h*2/3)- r + 3, r * 2, r * 2);
             
-            // 2. Contorno nero spesso — la chiave della visibilità
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(3f));
             g2d.fillOval(0  + this.box_w/2 - r, y - ((position - 8)*(this.box_h) + this.box_h*2/3) - r, r * 2, r * 2);
             
-            // 3. Corpo colorato della pedina (leggermente più piccolo)
             g2d.setColor(PawnColor);
             g2d.fillOval(0 + this.box_w/2 - r + 2, y - ((position - 8)*(this.box_h) + this.box_h*2/3) - r + 2, (r - 2) * 2, (r - 2) * 2);
         }
         if (position >= 17 && position <= 24) {
-            // 1. Ombra (opzionale, aiuta molto la visibilità)
             g2d.setColor(new Color(0, 0, 0, 80));
             g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w*2/3) -  r + 3, 0 + (box_h/2) - r + 3, r * 2, r * 2);
             
-            // 2. Contorno nero spesso — la chiave della visibilità
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(3f));
             g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w*2/3) - r, 0 + (box_h/2) - r, r * 2, r * 2);
             
-            // 3. Corpo colorato della pedina (leggermente più piccolo)
             g2d.setColor(PawnColor);
             g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w*2/3) - r + 2, 0 + (box_h/2) - r + 2, (r - 2) * 2, (r - 2) * 2);
         }
@@ -218,19 +200,16 @@ public class BoardPanel extends DefaultPanelImpl  {
             g2d.setColor(new Color(0, 0, 0, 80));
             g2d.fillOval(x  - this.box_w/2 -  r + 3, 0 + ((position - 24)*(this.box_h) + this.box_h*2/3)- r + 3, r * 2, r * 2);
             
-            // 2. Contorno nero spesso — la chiave della visibilità
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(3f));
             g2d.fillOval(x  - this.box_w/2 - r, 0 + ((position - 24)*(this.box_h) + this.box_h*2/3) - r, r * 2, r * 2);
             
-            // 3. Corpo colorato della pedina (leggermente più piccolo)
             g2d.setColor(PawnColor);
             g2d.fillOval(x - this.box_w/2 - r + 2, 0 + ((position - 24)*(this.box_h) + this.box_h*2/3) - r + 2, (r - 2) * 2, (r - 2) * 2);
         }
     }
 
     private void setSizes() {
-
         this.board_size_h = this.getHeight();
         this.board_size_w = this.getWidth();
         this.box_h = this.board_size_h/BOX_SIDE ;

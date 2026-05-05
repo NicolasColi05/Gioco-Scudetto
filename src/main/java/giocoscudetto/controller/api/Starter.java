@@ -56,4 +56,32 @@ public interface Starter {
      */
     int getHomePosition();
 
+    /**
+     * this method set the goalkeeper postion in the goalnetimpl.
+     * 
+     * @param i the position occupied by the keeper.
+     */
+    void setKeeperPosition(int i);
+
+    /**
+     * this method is for get the color of the guest team.
+     * 
+     * @return the Color of the guest team.
+     */
+    Color getGuestTeamColor();
+
+    /**
+     * this method is for get the position of the guest team pawn.
+     * 
+     * @return the position of the pawn of the guest team.
+     */
+    int getGuestPosition();
+
+    /**
+     * this method is for kick the penalty and check if it's a goal or not.
+     * 
+     * @return true if it's a goal, false otherwise.
+     */
+    boolean kickPenalty();
+
 }

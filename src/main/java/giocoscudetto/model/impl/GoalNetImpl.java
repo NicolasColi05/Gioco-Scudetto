@@ -10,25 +10,27 @@ import giocoscudetto.model.api.GoalNet;
  */
 public class GoalNetImpl implements GoalNet {
 
-    private final List<Integer> goalKeeperPosition;
+    private final List<Integer> goalKeeperPositions;
 
     public GoalNetImpl() {
-        this.goalKeeperPosition = new ArrayList<Integer>();
+        this.goalKeeperPositions = new ArrayList<Integer>();
     }
 
     @Override
     public void setGoalKeeperPosition(final int position) {
-        if (goalKeeperPosition.size() < 2) {
-            this.goalKeeperPosition.add(position);
+        if (goalKeeperPositions.size() < 2) {
+            this.goalKeeperPositions.add(position);
         }
 
     }
 
     @Override
     public boolean isGoal(final int ballPosition) {
-        if (goalKeeperPosition.contains(ballPosition)) {
+        if (goalKeeperPositions.contains(ballPosition)) {
+            this.goalKeeperPositions.clear();
             return false;
         }
+        this.goalKeeperPositions.clear();
         return true;
     }
 
