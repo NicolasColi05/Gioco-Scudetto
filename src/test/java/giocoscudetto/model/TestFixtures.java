@@ -1,5 +1,6 @@
 package giocoscudetto.model;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
@@ -18,15 +19,17 @@ import java.util.ArrayList;
  * Simple test for {@link giocoscudetto.model.impl.FixturesImpl}.
  */
 public class TestFixtures {
-    final Club roma = new ClubImpl("Club1", new PawnImpl());
-    final Club inter = new ClubImpl("Club2", new PawnImpl());
-    final Club napoli = new ClubImpl("Club3", new PawnImpl());
-    final Club juventus = new ClubImpl("Club4", new PawnImpl());
-    final ArrayList<Club> listOfClubs = new ArrayList<>();
+
     private final static String ROMA = "roma";
     private final static String INTER = "inter";
     private final static String NAPOLI = "napoli";
     private final static String JUVENTUS = "juventus";
+
+    final Club roma = new ClubImpl(ROMA, new PawnImpl());
+    final Club inter = new ClubImpl(INTER, new PawnImpl());
+    final Club napoli = new ClubImpl(NAPOLI, new PawnImpl());
+    final Club juventus = new ClubImpl(JUVENTUS, new PawnImpl());
+    final ArrayList<Club> listOfClubs = new ArrayList<>();
 
     @Test
     void TestFixturesGeneration() {
@@ -34,16 +37,11 @@ public class TestFixtures {
         int romacount = 0;
         int napolicount = 0;
         int juventuscount = 0;
-        roma.setName(ROMA);
-        inter.setName(INTER);
-        napoli.setName(NAPOLI);
-        juventus.setName(JUVENTUS);
         listOfClubs.add(roma);
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
         listOfClubs.add(juventus);
         final FixturesImpl fixture = new FixturesImpl(listOfClubs);
-        assertTrue(listOfClubs.contains(roma));
         for (final Club club : listOfClubs) {
             System.out.println("" + club.getName() + "\n");
         }
@@ -70,4 +68,8 @@ public class TestFixtures {
         System.out.println(fixture);
     }
 
+    @Test
+    void Test(){
+
+    }
 }

@@ -76,7 +76,6 @@ public class PreMatchView extends DefaultPanelImpl{
         fixtureTable.setBackground(Color.orange);
         fixtureTable.setEnabled(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
-        JTableHeader titolo = new JTableHeader();
         
 
         //seconda tabella
