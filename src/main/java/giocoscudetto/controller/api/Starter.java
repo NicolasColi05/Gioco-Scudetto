@@ -3,6 +3,8 @@ package giocoscudetto.controller.api;
 import java.awt.Color;
 import java.awt.Image;
 
+import giocoscudetto.model.api.Fixtures;
+
 public interface Starter {
     
     /**
@@ -26,6 +28,18 @@ public interface Starter {
      * this is a method to check the box and execute the event of the box.
      */
     void checkBox();
+
+     /**
+     * this method is used to set the number of clubs that
+     * will participate in the championship
+     */
+    void setNumberOfClubs(int n);
+    
+    /**
+     * this method is used to create a new club
+     * 
+     */
+    void setNewClub(String name);
 
     /**
      * this method is for get the image of a box.
@@ -56,4 +70,10 @@ public interface Starter {
      */
     int getHomePosition();
 
+    /**
+     * when called this method returns the fixture
+     * 
+     * @return the fixture
+     */
+    Fixtures getFixture();
 }
