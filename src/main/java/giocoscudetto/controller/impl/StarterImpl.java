@@ -130,14 +130,11 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public void setNewClub(String name) { //come facciamo la parte di pawn? inoltre vogliamo fare che si passa
-        //una squadra alla volta o direttamente tutta la lista? perchè dopo cambia anche la chiamata di setFixture
-        if(this.listofClubs.size() < numberOfClubs){
-            Club club = new ClubImpl(name , null);
-            listofClubs.add(club);
+    public void setClubs(ArrayList<String> names, ArrayList<String> pawns) {
+        for (int i = 0; i<numberOfClubs; i++) {
+            //listofClubs.add(new ClubImpl(names.get(i), pawns.get(i)));
+            //da sistemare per pawn
         }
-        //vogliamo tirare un'ecception anche se in teoria 
-        //non si dovrebbe mai verificare una cosa del genere?
     }
 
     private void setFixture(){
