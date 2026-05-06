@@ -69,25 +69,25 @@ public class PreMatchView extends DefaultPanelImpl{
         lowerPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
         //titolo
-        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED);
+        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED,null);
         this.add(gameTitle, BorderLayout.NORTH);
 
         //prima tabella
-        final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK);
+        final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK, null);
         //fixtureTable.setBackground(Color.orange);
         fixtureTable.setEnabled(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
         
 
         //seconda tabella
-        final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK);
+        final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK, null);
         //standingsTable.setBackground(Color.YELLOW);
         standingsTable.setEnabled(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
 
         //pulsanti in basso
-        JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK);
-        JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK);
+        JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK, null);
+        JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
 
         backButton.addActionListener(e -> { 
             this.controller.changeView("club");

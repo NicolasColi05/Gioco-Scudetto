@@ -5,6 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.awt.BorderLayout;
@@ -12,11 +16,8 @@ import java.awt.Color;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import giocoscudetto.controller.api.Starter;
 
@@ -24,6 +25,8 @@ public class HomePanel extends DefaultPanelImpl {
 
     private static final int BUTTONS_HORIZONTAL_GAP = 80;
     private static final int BUTTON_FONT_RESIZING = 25;
+    private static final Color BUTTONS_BACKGORUND =  new Color(139, 90, 43); 
+    private static final Color BUTTONS_TEXT_COLOR =  new Color(240, 220, 180); 
 
     private final Starter controller;
     private final BufferedImage image;
@@ -38,10 +41,8 @@ public class HomePanel extends DefaultPanelImpl {
         selectButtonPanel.setOpaque(false);
 
 
-        final JButton btnBot = (JButton) createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), new Color(240, 220, 180));
-        final JButton btnFriend = (JButton) createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), new Color(240, 220, 180));
-        btnBot.setBackground(new Color(139, 90, 43));
-        btnFriend.setBackground(new Color(139, 90, 43));
+        final JButton btnBot = (JButton) createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), BUTTONS_TEXT_COLOR, BUTTONS_BACKGORUND);
+        final JButton btnFriend = (JButton) createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), BUTTONS_TEXT_COLOR, BUTTONS_BACKGORUND); 
         selectButtonPanel.add(btnBot); 
         selectButtonPanel.add(btnFriend);   
 
@@ -50,19 +51,37 @@ public class HomePanel extends DefaultPanelImpl {
 
         //Creating button to exit from the game
         final JPanel switchingButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JButton btnExit = (JButton) createComponent(new JButton("EXIT"), getExitFont(), new Color(224, 201, 166));
-        btnExit.setBackground(new Color(62, 91, 66));
+        final JButton btnExit = (JButton) createComponent(new JButton("EXIT"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66));
         switchingButtonPanel.add(btnExit);
 
+        //Creating the listener to change the button hover background color
+        final MouseAdapter hoverListener = new MouseAdapter() {
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                e.getComponent().setBackground(new Color(198, 156, 58));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                e.getComponent().setBackground(BUTTONS_BACKGORUND);
+            }
+        };
+
+        btnBot.addMouseListener(hoverListener);
+        btnFriend.addMouseListener(hoverListener);
 
         //Adding the action listener to the buttons
-        btnBot.addActionListener(e -> {
-            this.controller.changeView("club");
-        });
+        final ActionListener nextPanel = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        btnFriend.addActionListener(e -> {
-            this.controller.changeView("club");
-        });
+                controller.changeView("club");
+            }
+        };
+
+        btnBot.addActionListener(nextPanel);
+        btnFriend.addActionListener(nextPanel);
         
         btnExit.addActionListener(e -> {
             int confirm = JOptionPane.showConfirmDialog(this,

@@ -7,13 +7,13 @@ import java.awt.Toolkit;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JButton;
 
 import giocoscudetto.view.api.DefaultPanel;
 
 public class DefaultPanelImpl extends JPanel implements DefaultPanel{
     
     protected static final String FONT_SELECTED = Font.MONOSPACED;
-
     private static final int TITLE_FONT_REDUCTION = 15;
     private static final int BUTTON_FONT_REDUCTION = 25;
     private static final int SWITCHER_BUTTON_FONT_REDUCTION = 40;
@@ -47,9 +47,14 @@ public class DefaultPanelImpl extends JPanel implements DefaultPanel{
         return this.exitFont;
     }
 
-    protected JComponent createComponent(final JComponent component, final Font font, final Color color) {
+    protected JComponent createComponent(final JComponent component, final Font font, final Color textColor, final Color backgroundColor) {
         component.setFont(font);
-        component.setForeground(color);
+        component.setForeground(textColor);
+        component.setBackground(backgroundColor);
+        
+        if(component instanceof JButton) {
+            ((JButton)component).setFocusPainted(false);
+        }
         return component;
     }
 
