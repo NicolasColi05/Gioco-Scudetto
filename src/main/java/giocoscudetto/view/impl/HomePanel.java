@@ -123,7 +123,7 @@ public class HomePanel extends DefaultPanelImpl {
        
 
         try {
-            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/home-background.png"));
+            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/home-background.jpeg"));
         } catch (Exception e) {
             throw new RuntimeException("Failed to load image", e);
         }

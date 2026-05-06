@@ -19,11 +19,9 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.model.api.Pawn;
@@ -122,7 +120,7 @@ public class ClubPanel extends DefaultPanelImpl{
                 final int currentWidth = getWidth();
 
                 selectNumberOfClub.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / NUMBER_COMBOBOX));
-                clubsName.stream().forEach(i -> i.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION)));
+                //clubName.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION));
                 btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
 
@@ -145,7 +143,7 @@ public class ClubPanel extends DefaultPanelImpl{
         this.add(switchingButtonPanel, BorderLayout.SOUTH);
 
         try {
-            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/home-background.png"));
+            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/club-background.jpeg"));
         } catch (Exception e) {
             throw new RuntimeException("Failed to load image", e);
         }
