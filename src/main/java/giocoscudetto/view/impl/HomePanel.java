@@ -48,6 +48,7 @@ public class HomePanel extends DefaultPanelImpl {
 
         //Centralizing button vertically and responsively to the resolution changes
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
+        centerWrapper.add(selectButtonPanel);
 
         //Creating button to exit from the game
         final JPanel switchingButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -113,7 +114,6 @@ public class HomePanel extends DefaultPanelImpl {
         });
 
         //Setting the main panels opacity on false to show the backgorund color
-        centerWrapper.add(selectButtonPanel);
         centerWrapper.setOpaque(false);
         switchingButtonPanel.setOpaque(false);
 

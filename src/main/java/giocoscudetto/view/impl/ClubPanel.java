@@ -2,13 +2,18 @@ package giocoscudetto.view.impl;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -33,15 +38,13 @@ public class ClubPanel extends DefaultPanelImpl{
     private static final int TEXT_FIELDS_HEIGHT = 40;
 
     private final Starter controller;
+    private final Image image;
 
 
     public ClubPanel(Starter controller) {
         this.controller = controller;
 
         this.setLayout(new BorderLayout());
-
-        //Adding Game Title
-        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED, null);
 
         //Creating the panel to choose the number of teams
         final JPanel numberOfClubPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -118,7 +121,6 @@ public class ClubPanel extends DefaultPanelImpl{
 
                 final int currentWidth = getWidth();
 
-                gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 selectNumberOfClub.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / NUMBER_COMBOBOX));
                 clubsName.stream().forEach(i -> i.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TEAM_INFO_REDUCTION)));
                 btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
@@ -134,10 +136,19 @@ public class ClubPanel extends DefaultPanelImpl{
         centerWrapper.add(numberOfClubPanel);
         centerWrapper.add(clubInfoPanel);
 
+        //Setting the main panels opacity on false to show the backgorund color
+        centerWrapper.setOpaque(false);
+        switchingButtonPanel.setOpaque(false);
+
         //Placing correctly the specific panels in the main one
-        this.add(gameTitle, BorderLayout.NORTH);
         this.add(centerWrapper, BorderLayout.CENTER);
         this.add(switchingButtonPanel, BorderLayout.SOUTH);
+
+        try {
+            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/home-background.png"));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load image", e);
+        }
     }
 
     private void updateTeamPanels(final int rows, final JPanel namePanel,
@@ -177,5 +188,15 @@ public class ClubPanel extends DefaultPanelImpl{
             //Revalidate and Repaint are necessery to update the interface
             this.revalidate(); 
             this.repaint();
+        
         }
+
+
+    @Override
+    public void paintComponent(final Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
+    }
 }
