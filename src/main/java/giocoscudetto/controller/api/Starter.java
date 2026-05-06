@@ -2,6 +2,7 @@ package giocoscudetto.controller.api;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
 
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
@@ -40,7 +41,7 @@ public interface Starter {
      * this method is used to create a new club
      * 
      */
-    void setNewClub(String name);
+    void setClubs(ArrayList<String> names, ArrayList<String> pawns);
 
     /**
      * this method is for get the image of a box.
