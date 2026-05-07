@@ -6,8 +6,7 @@ import giocoscudetto.model.api.Turn;
 
 
 public class TurnImpl implements Turn {
-    
-    private static final int HALF_BOARD = 16;
+
     //Class Fields
     private Club club1;
     private Club club2;
