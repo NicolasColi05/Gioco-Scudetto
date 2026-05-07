@@ -6,7 +6,7 @@ import giocoscudetto.model.api.Turn;
 
 
 public class TurnImpl implements Turn {
-
+    
     private static final int HALF_BOARD = 16;
     //Class Fields
     private Club club1;
@@ -16,11 +16,11 @@ public class TurnImpl implements Turn {
 
     //Class Constructor
     public TurnImpl(Club club1, Club club2) {
-        
+
         this.club1 = club1;
         this.club2 = club2;
         this.dice = new Dice6ThrowImpl();
-        chooseStartingPlayer(); 
+        chooseStartingPlayer();
     }
 
     @Override
@@ -48,16 +48,4 @@ public class TurnImpl implements Turn {
         }
     }
 
-    @Override 
-    public int rollDice(Club club)  {
-        Pawn pawn = club.getPawn();
-        int position = pawn.getPosition();
-
-        if (position < HALF_BOARD) {
-            return dice.rollDice() + dice.rollDice();
-        } else {
-            return dice.rollDice();
-        }
-    }
-
-    }
+}
