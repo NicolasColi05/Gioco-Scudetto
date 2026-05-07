@@ -39,8 +39,7 @@ public class SuspendMatchBox implements Boxes {
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return "Suspend Match";
     }
 
     @Override
