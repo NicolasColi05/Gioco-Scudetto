@@ -12,7 +12,7 @@ public class BoardImpl implements Board {
     private final List<Boxes> board;
 
     public BoardImpl() {
-        this.board = new ArrayList<>(33);
+        this.board = new ArrayList<>(32);
         this.board.add(0,new StartBox(0));
         this.board.add(1,new EmptyBox(1));
         this.board.add(2,new ResultBox(2));
@@ -24,7 +24,7 @@ public class BoardImpl implements Board {
         this.board.add(8,new ResultBox(8));
         this.board.add(9,new EmptyBox(9));
         this.board.add(10,new CornerBox(10));
-        this.board.add(11,new EmptyBox(1));
+        this.board.add(11,new EmptyBox(11));
         this.board.add(12,new FreeKickBox(12));
         this.board.add(13,new EmptyBox(13));
         this.board.add(14,new ResultBox(14));

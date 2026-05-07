@@ -31,9 +31,14 @@ public class FreeKickBox implements Boxes{
     }
 
     @Override
-    public void event(Match match) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'event'");
+    public void event(final Match match) {
+        if (match.freeKickDice() == 7) {
+            if (match.getCurrentPlayer() == match.getClubHome()) {
+                match.goalHome();
+            } else {
+                match.goalAway();
+            }
+        }
     }
 
     @Override

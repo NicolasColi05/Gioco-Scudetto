@@ -107,9 +107,9 @@ public class StarterImpl implements Starter {
     public boolean kickPenalty() {
         if (this.net.isGoal(new Random().nextInt(6) + 1)) {
             if (this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
-                this.match.getScore().increaseHomeScore();
+                this.match.goalHome();
             } else {
-                this.match.getScore().increaseGuestScore();
+                this.match.goalAway();
             }
             return true;
         }

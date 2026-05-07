@@ -37,7 +37,7 @@ public final class PenaltyBox implements Boxes {
     }
 
     @Override
-    public void event(Match match) {
+    public void event(final Match match) {
         
     }
 
