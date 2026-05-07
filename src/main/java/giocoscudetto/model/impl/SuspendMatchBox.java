@@ -14,6 +14,7 @@ public class SuspendMatchBox implements Boxes {
 
     private final BufferedImage image;
     private final int position;
+    private final String description = "Box Event: Suspend Match. If you land on this box, you and your opponent have to restart the game with a score of 0-0.";
 
     public SuspendMatchBox(final int position) {
         this.position = position;
@@ -47,4 +48,8 @@ public class SuspendMatchBox implements Boxes {
        return this.image;
     }
 
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
 }

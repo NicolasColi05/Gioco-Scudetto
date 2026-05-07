@@ -100,8 +100,16 @@ public interface Starter {
      */
     boolean kickPenalty();
 
+    /**
+     * this method is for get the current player,who has to move.
+     * 
+     * @return a string that contains the name of the current player.
+     */
     String getCurrentPlayer();
 
+    /**
+     * this method is for move the pawn of the current player.
+     */
     void move();
 
      /**
@@ -117,4 +125,11 @@ public interface Starter {
      * @return the table
      */
     Table getTable();
+
+    /**
+     * this method is for get the description of the current box.
+      *
+     * @return a string that contains the description of the current box.
+     */
+    String getDescription();
 }

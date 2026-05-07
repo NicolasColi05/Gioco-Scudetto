@@ -14,6 +14,7 @@ public class ResultBox implements Boxes{
 
     private final BufferedImage image;
     private final int position;
+    private final String description = "Box Event: Result. If you land on this box, you have to throw 2 dice and the numbers you get makes the new score";
 
     public ResultBox(final int position) {
         this.position = position;
@@ -46,6 +47,10 @@ public class ResultBox implements Boxes{
     @Override
     public Image getImage() {
         return this.image;
+    }
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 
 }

@@ -14,6 +14,7 @@ public class StartBox implements Boxes{
 
     private final BufferedImage image ;
     private final int position;
+    private final String description = "Box Event: Start. Start of the match, throw the dice[0-6]";
 
     public StartBox(final int position) {
         this.position = position;
@@ -48,4 +49,8 @@ public class StartBox implements Boxes{
         return this.image;
     }
 
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
 }

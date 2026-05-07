@@ -155,5 +155,10 @@ public class StarterImpl implements Starter {
         return this.table;
     }
 
+    @Override
+    public String getDescription() {
+        return this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).getDescription();
+    }
+
     
 }

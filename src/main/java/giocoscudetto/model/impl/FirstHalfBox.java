@@ -14,6 +14,7 @@ public class FirstHalfBox implements Boxes {
 
     private final int position;
     private final BufferedImage image;
+    private final String description = "Box Event: First Half. If you land on this box, you are in the second half of the game the dice that you throw is a 0-3 dice";
 
     public FirstHalfBox(final int position) {
         this.position = position;
@@ -45,6 +46,11 @@ public class FirstHalfBox implements Boxes {
     @Override
     public Image getImage() {
         return this.image;
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 
 }

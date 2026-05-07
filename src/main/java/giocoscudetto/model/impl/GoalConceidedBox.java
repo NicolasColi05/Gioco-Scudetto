@@ -14,7 +14,7 @@ public class GoalConceidedBox implements Boxes {
 
     private final int position;
     private final BufferedImage image;
-
+    private final String description = "Box Event: Goal Conceded. If you land on this box, you concede a goal.";
     public GoalConceidedBox(final int position) {
         this.position = position;
         try {
@@ -47,4 +47,8 @@ public class GoalConceidedBox implements Boxes {
        return this.image;
     }
 
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
 }

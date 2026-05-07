@@ -14,6 +14,7 @@ public class FreeKickBox implements Boxes{
 
     private final BufferedImage image;
     private final int position;
+    private final String description = "Box Event: Free Kick. If you land on this box, you throw two dice(0-6) and if the sum is exactly 7 you score a goal";
 
     public FreeKickBox(final int position) {
         this.position = position;
@@ -46,4 +47,8 @@ public class FreeKickBox implements Boxes{
         return this.image;
     }
 
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
 }

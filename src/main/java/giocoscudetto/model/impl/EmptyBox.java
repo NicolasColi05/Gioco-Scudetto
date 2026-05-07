@@ -16,6 +16,7 @@ public class EmptyBox implements Boxes {
 
     private final int position;
     private final ArrayList<BufferedImage> images;
+    private final String description = "Box Event: Empty. If you land on this box, you do nothing.";
 
     /**
      * @param position the position of the box in the board.
@@ -78,4 +79,8 @@ public class EmptyBox implements Boxes {
         return this.images.get(new Random().nextInt(this.images.size()));
     }
 
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
 }
