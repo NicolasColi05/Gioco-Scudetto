@@ -1,4 +1,4 @@
-package giocoscudetto.view.impl;
+package giocoscudetto.view.impl.selection;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -8,7 +8,9 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,22 +25,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import giocoscudetto.controller.api.Controller;
 import giocoscudetto.controller.api.Starter;
+import giocoscudetto.view.impl.DefaultPanelImpl;
 
 public class ClubPanel extends DefaultPanelImpl{
     
     private static final int NUMBER_COMBOBOX = 65;
     private static final int TEAM_INFO_REDUCTION = 80;
-    private static final int TEAM_INFO_VERTICAL_SPACE = 25;
+    private static final int TEAM_INFO_VERTICAL_SPACE = 10;
     private static final int BUTTON_BORDER = 5;
     private static final int TEXT_FIELDS_WIDTH = 300;
     private static final int TEXT_FIELDS_HEIGHT = 40;
 
-    private final Starter controller;
+    private final Starter viewChanger;
+    private final Controller controller;
     private final Image image;
 
 
-    public ClubPanel(Starter controller) {
+    public ClubPanel(final Starter viewChanger, final Controller controller) {
+        this.viewChanger = viewChanger;
         this.controller = controller;
 
         this.setLayout(new BorderLayout());
@@ -59,11 +65,12 @@ public class ClubPanel extends DefaultPanelImpl{
 
         numberOfClubPanel.add(clubNumberSelectionLabel);
         numberOfClubPanel.add(selectNumberOfClub);
+        numberOfClubPanel.setOpaque(false);
         numberOfClubPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
         //Panel for general info of each club, which will contains clubNamePanel and clubPawnPanel
         final JPanel clubInfoPanel = new JPanel();
-        clubInfoPanel.setLayout(new BoxLayout(clubInfoPanel, BoxLayout.X_AXIS));
+        clubInfoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 
         final JPanel clubNamePanel = new JPanel();
         clubNamePanel.setLayout(new BoxLayout(clubNamePanel, BoxLayout.Y_AXIS));
@@ -74,8 +81,8 @@ public class ClubPanel extends DefaultPanelImpl{
         //List which will contains the JTextFields to select each clubs name
         final List<JTextField> clubsName = new ArrayList<>();
 
-        //List which will contains the Pawn that each clubs can choose
-        final List<JTextField> clubsPawn = new ArrayList<>(); //CAMBIARE, HO MESO TEXTFIELDS SOLO PER PROVA
+        //List which will contains the Pawn Color that each clubs can choose
+        final List<PawnColorPickerPanel> clubsPawn = new ArrayList<>(); 
 
         //Adding by default 2 rows to select a name and pawn
         updateTeamPanels(2, clubNamePanel, clubPawnPanel, clubsName, clubsPawn);
@@ -104,11 +111,15 @@ public class ClubPanel extends DefaultPanelImpl{
 
         //Adding the action listener to the buttons
         btnBack.addActionListener(e -> { 
-            this.controller.changeView("home");
+            this.viewChanger.changeView("home");
         }); 
         
         btnCont.addActionListener(e -> { 
-            this.controller.changeView("pre");
+            //Creating clubs, table and fixtures to start the match
+            this.controller.createClubs(clubsName.stream()
+                                                 .map(JTextField::getText)
+                                                 .toList()); 
+            this.viewChanger.changeView("pre");
         }); 
 
         //Istruction to make the panel components responsive to resolution changes
@@ -134,6 +145,9 @@ public class ClubPanel extends DefaultPanelImpl{
         centerWrapper.add(clubInfoPanel);
 
         //Setting the main panels opacity on false to show the backgorund color
+        clubInfoPanel.setOpaque(false);
+        clubNamePanel.setOpaque(false);
+        clubPawnPanel.setOpaque(false);
         centerWrapper.setOpaque(false);
         switchingButtonPanel.setOpaque(false);
 
@@ -148,10 +162,19 @@ public class ClubPanel extends DefaultPanelImpl{
         }
     }
 
+    
+    @Override
+    public void paintComponent(final Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
+    }
+
     private void updateTeamPanels(final int rows, final JPanel namePanel,
                 final JPanel pawnPanel,
                 final List<JTextField> clubsName, 
-                final List<JTextField> clubsPawn){
+                final List<PawnColorPickerPanel> clubsPawn){
                     
             namePanel.removeAll();
             pawnPanel.removeAll();
@@ -162,6 +185,7 @@ public class ClubPanel extends DefaultPanelImpl{
             int i = 0;
             for (i = 0; i < rows; i++) {
                 
+                //Creating textFields to choose the name for each team
                 final JTextField nameTextField = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK, null);
                 nameTextField.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
                 nameTextField.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
@@ -172,14 +196,16 @@ public class ClubPanel extends DefaultPanelImpl{
                 namePanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
                 clubsName.add(nameTextField);
 
-                final JTextField nameTextField1 = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK, null);
-                nameTextField1.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
-                nameTextField1.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
-                nameTextField1.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+                final PawnColorPickerPanel colorPicker = new PawnColorPickerPanel();
+                colorPicker.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+                colorPicker.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+                colorPicker.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
 
-                pawnPanel.add(nameTextField1);
+                colorPicker.setOnColorChanged(c -> refreshColorConstraints(clubsPawn));
+
+                pawnPanel.add(colorPicker);
                 pawnPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                clubsPawn.add(nameTextField1);
+                clubsPawn.add(colorPicker);
             }
 
             //Revalidate and Repaint are necessery to update the interface
@@ -189,11 +215,18 @@ public class ClubPanel extends DefaultPanelImpl{
         }
 
 
-    @Override
-    public void paintComponent(final Graphics g) {
-        super.paintComponent(g);
-
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
+    private void refreshColorConstraints(final List<PawnColorPickerPanel> pickers) {
+    //Get all the selected color
+    final Set<Color> allTaken = new HashSet<>();
+    for (PawnColorPickerPanel p : pickers) {
+        if (p.getSelectedColor() != null) allTaken.add(p.getSelectedColor());
     }
+
+    //and then i disable them
+    for (PawnColorPickerPanel p : pickers) {
+        final Set<Color> takenByOthers = new HashSet<>(allTaken);
+        if (p.getSelectedColor() != null) takenByOthers.remove(p.getSelectedColor());
+        p.setTakenColors(takenByOthers);
+    }
+}
 }
