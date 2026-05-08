@@ -29,11 +29,11 @@ import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import giocoscudetto.view.impl.ClubPanel;
 import giocoscudetto.model.api.Pair;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
+import giocoscudetto.view.impl.selection.ClubPanel;
 import giocoscudetto.controller.api.Starter;
 
 public class PreMatchView extends DefaultPanelImpl{
