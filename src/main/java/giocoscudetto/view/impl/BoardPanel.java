@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 import giocoscudetto.controller.api.Starter;
 
@@ -59,22 +62,29 @@ public class BoardPanel extends DefaultPanelImpl  {
         
     }
 
-    private void drawBox(Graphics2D g2d, Image image, int position) {
+    private void drawBox(Graphics2D g2d, String image, int position) {
 
         final int x = board_size_w;
         final int y = board_size_h;
+        final BufferedImage img;
+
+        try {
+            img = ImageIO.read(new File(image));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load image", e);
+        }
 
         if (position >= 0 && position <= 8) {
-            g2d.drawImage(image, x - (position + 1)*box_w, y - box_h, box_w, box_h, null);
+            g2d.drawImage(img, x - (position + 1)*box_w, y - box_h, box_w, box_h, null);
         }
         if (position >= 9 && position <= 16) {
-            g2d.drawImage(image, 0, y - (position - 7)*box_h, box_w, box_h, null);
+            g2d.drawImage(img, 0, y - (position - 7)*box_h, box_w, box_h, null);
         }
         if (position >= 17 && position <= 24) {
-            g2d.drawImage(image, (position - 16)*box_w, 0, box_w, box_h, null);
+            g2d.drawImage(img, (position - 16)*box_w, 0, box_w, box_h, null);
         }
         if (position >= 25 && position <= 31) {
-            g2d.drawImage(image, x - box_w, (position - 24)*box_h, box_w, box_h, null);
+            g2d.drawImage(img, x - box_w, (position - 24)*box_h, box_w, box_h, null);
         }
     }
 
