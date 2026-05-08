@@ -14,13 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MatchPanel extends DefaultPanelImpl {
+
+     private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
     private final JLabel turnLabel;
 
     public MatchPanel(final Starter controller) {
         this.controller = controller;
         this.setLayout(new BorderLayout());
-        this.setBackground(new Color(0xC8E6C9));
+        this.setBackground(BACKGROUND_COLOR);
 
         final JPanel boardJPanel = new BoardPanel(this.controller);
         this.add(boardJPanel, BorderLayout.CENTER);
@@ -33,6 +35,7 @@ public class MatchPanel extends DefaultPanelImpl {
 
         JPanel turnPanel = new JPanel();
         turnLabel = new JLabel();//mettere this.controller.getCurrentPlayer() +
+        turnPanel.setBackground(BACKGROUND_COLOR);
         turnLabel.setFont(new Font("Turn",Font.BOLD,20));
         turnPanel.add(turnLabel);
         turnPanel.setAlignmentX(Component.CENTER_ALIGNMENT);

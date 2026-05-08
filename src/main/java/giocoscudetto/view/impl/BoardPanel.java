@@ -11,6 +11,8 @@ import giocoscudetto.controller.api.Starter;
 
 public class BoardPanel extends DefaultPanelImpl  {
 
+    private static final int BORDER_SIZE = 5;
+    private static final Color CENTER_COLOR = new Color(223,189,138);
     private static final double OFFSET_HOME_PAWN = 1.0/3.0;
     private static final double OFFSET_GUEST_PAWN = 2.0/3.0;
     private static final int BOX_SIDE = 9;
@@ -79,11 +81,6 @@ public class BoardPanel extends DefaultPanelImpl  {
         final int y = board_size_h;
         final Image img;
 
-        // try {
-        //     img = ImageIO.read(new File(image));
-        // } catch (Exception e) {
-        //     throw new RuntimeException("Failed to load image", e);
-        // }
         img = this.imageLoaded.getImage(position);
 
         if (position >= 0 && position <= 8) {
@@ -107,9 +104,13 @@ public class BoardPanel extends DefaultPanelImpl  {
         final int w = board_size_w - 2*x;
         final int h = board_size_h - 2*y;
 
-        g2d.setColor(new Color(0xC8E6C9));
+        g2d.setColor(BACKGROUND_COLOR);
         g2d.fillRect(x, y, w, h);
         g2d.drawRect(x, y, w, h);
+
+        g2d.setColor(CENTER_COLOR);
+        g2d.fillRect(x + BORDER_SIZE, y + BORDER_SIZE, w - 2*BORDER_SIZE, h - 2*BORDER_SIZE);
+        g2d.drawRect(x + BORDER_SIZE, y + BORDER_SIZE, w - 2*BORDER_SIZE, h - 2*BORDER_SIZE);
 
         g2d.setColor(Color.red);
         g2d.setFont(new Font("Boh", Font.BOLD, x/2));

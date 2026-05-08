@@ -15,14 +15,16 @@ import giocoscudetto.controller.api.Starter;
 
 public class DicePanel extends DefaultPanelImpl {
     
+    private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
     private final JLabel messageLabel;
 
     public DicePanel(final Starter controller) {
         this.controller = controller;
         this.setLayout(new BorderLayout());
-        this.setBackground(Color.WHITE);
+        this.setBackground(BACKGROUND_COLOR);
         messageLabel = new JLabel();
+        messageLabel.setBackground(BACKGROUND_COLOR);
         messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setBorder(new EmptyBorder(8, 4, 8, 4));
