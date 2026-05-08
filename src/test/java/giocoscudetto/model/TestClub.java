@@ -10,6 +10,8 @@ import giocoscudetto.model.impl.PawnImpl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.awt.Color;
+
 
 /*
  * CHECKSTYLE: MagicNumber OFF
@@ -20,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class TestClub {
 
-    private final Pawn pawn = new PawnImpl(); 
+    private final Pawn pawn = new PawnImpl(Color.WHITE); 
     private final Club club1 = new ClubImpl("inter", pawn);
 
     /**

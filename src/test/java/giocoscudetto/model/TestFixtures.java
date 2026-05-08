@@ -9,6 +9,7 @@ import giocoscudetto.model.impl.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /*
@@ -25,10 +26,10 @@ public class TestFixtures {
     private final static String NAPOLI = "napoli";
     private final static String JUVENTUS = "juventus";
 
-    final Club roma = new ClubImpl(ROMA, new PawnImpl());
-    final Club inter = new ClubImpl(INTER, new PawnImpl());
-    final Club napoli = new ClubImpl(NAPOLI, new PawnImpl());
-    final Club juventus = new ClubImpl(JUVENTUS, new PawnImpl());
+    final Club roma = new ClubImpl(ROMA, new PawnImpl(Color.RED));
+    final Club inter = new ClubImpl(INTER, new PawnImpl(Color.BLACK));
+    final Club napoli = new ClubImpl(NAPOLI, new PawnImpl(Color.BLUE));
+    final Club juventus = new ClubImpl(JUVENTUS, new PawnImpl(Color.YELLOW));
     final ArrayList<Club> listOfClubs = new ArrayList<>();
 
     @Test

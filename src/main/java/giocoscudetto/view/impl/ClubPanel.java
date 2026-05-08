@@ -24,7 +24,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.model.api.Pawn;
 
 public class ClubPanel extends DefaultPanelImpl{
     

@@ -2,6 +2,7 @@ package giocoscudetto.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.awt.Color;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -30,9 +31,9 @@ private Club inter;
 
     @BeforeEach
     void setUp() {
-        inter = new ClubImpl("Inter", new PawnImpl()); 
-        juve = new ClubImpl("Juve", new PawnImpl()); 
-        bologna = new ClubImpl("Bologna", new PawnImpl()); 
+        inter = new ClubImpl("Inter", new PawnImpl(Color.BLUE)); 
+        juve = new ClubImpl("Juve", new PawnImpl(Color.BLACK)); 
+        bologna = new ClubImpl("Bologna", new PawnImpl(Color.RED)); 
         rank = new TableImpl(List.of(bologna, inter, juve));
     }
 
