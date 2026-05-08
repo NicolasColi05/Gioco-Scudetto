@@ -67,6 +67,7 @@ public class MatchPanel extends DefaultPanelImpl {
         new Thread(agent).start();
     }
 
+    //da cambiare nel caso facciamo che il controller possa chiamare il repaint() sulle view
     private final class Agent implements Runnable {
         /**
          * 

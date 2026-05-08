@@ -1,15 +1,15 @@
 package giocoscudetto.model.impl;
 
-import giocoscudetto.model.api.DiceThrow;
 import java.util.Random;
+import giocoscudetto.model.api.Dice;
 
-public class Dice3ThrowImpl implements DiceThrow {
+public class Dice6Impl implements Dice {
 
     private final Random random = new Random();
-    
+
     @Override
     public int rollDice() {
-        return random.nextInt(4);
+        return random.nextInt(7);
     }
 
 }

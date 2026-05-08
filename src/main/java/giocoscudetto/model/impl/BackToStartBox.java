@@ -1,12 +1,5 @@
 package giocoscudetto.model.impl;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
@@ -17,17 +10,12 @@ public class BackToStartBox implements Boxes {
     private final String description = "Box Event: Back to Start. If you land on this box, you must return to the starting point of the board.";
     private final int position;
     private Pawn pawn;
-    private final BufferedImage image;
+    private final String image;
 
     public BackToStartBox(final int position) {
 
         this.position = position;
-        try {
-        this.image = ImageIO.read(new File("caselle_precise/casella_31.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to load image", e);
-        }
+        this.image = "caselle_precise/casella_2.png";
     }
 
     @Override
@@ -49,7 +37,7 @@ public class BackToStartBox implements Boxes {
     }
 
     @Override
-    public Image getImage() {
+    public String getImage() {
         return this.image;
     }
 

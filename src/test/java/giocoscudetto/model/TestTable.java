@@ -31,9 +31,15 @@ private Club inter;
 
     @BeforeEach
     void setUp() {
+<<<<<<< HEAD
         inter = new ClubImpl("Inter", new PawnImpl(Color.BLUE)); 
         juve = new ClubImpl("Juve", new PawnImpl(Color.BLACK)); 
         bologna = new ClubImpl("Bologna", new PawnImpl(Color.RED)); 
+=======
+        inter = new ClubImpl("Inter", new PawnImpl("red")); 
+        juve = new ClubImpl("Juve", new PawnImpl("red")); 
+        bologna = new ClubImpl("Bologna", new PawnImpl("red")); 
+>>>>>>> featureNio2
         rank = new TableImpl(List.of(bologna, inter, juve));
     }
 

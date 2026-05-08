@@ -1,29 +1,19 @@
 package giocoscudetto.model.impl;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
 public class FirstHalfBox implements Boxes {
 
     private final int position;
-    private final BufferedImage image;
-    private final String description = "Box Event: First Half. If you land on this box, you are in the second half of the game the dice that you throw is a 0-3 dice";
+    private final String image;
+    private final String description = "Box Event: First Half. If you land on this box,"
+                                        +" you are in the second half of the game the dice"
+                                        + " that you throw is a 0-3 dice";
 
     public FirstHalfBox(final int position) {
         this.position = position;
-        try {
-        this.image = ImageIO.read(new File("caselle_precise/casella_1.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to load image", e);
-        }
+        this.image = "caselle_precise/casella_1.png";
     }
 
     @Override
@@ -43,7 +33,7 @@ public class FirstHalfBox implements Boxes {
     }
 
     @Override
-    public Image getImage() {
+    public String getImage() {
         return this.image;
     }
 

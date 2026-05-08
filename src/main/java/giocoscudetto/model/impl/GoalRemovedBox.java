@@ -1,30 +1,19 @@
 package giocoscudetto.model.impl;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
 public class GoalRemovedBox implements Boxes {
 
-    private final BufferedImage image;
+    private final String image;
     private final int position;
     private final String description = "Box Event: Back to Start. If you land on this box, the ref removes a goal from your score.";
 
     public GoalRemovedBox(final int position) {
         this.position = position;
-        try {
-        this.image = ImageIO.read(new File("caselle_precise/casella_33.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to load image", e);
-        }
+        this.image = "caselle_precise/casella_33.png";
     }
+
     @Override
     public int getPosition() {
         return this.position;
@@ -43,9 +32,10 @@ public class GoalRemovedBox implements Boxes {
     }
 
     @Override
-    public Image getImage() {
+    public String getImage() {
         return this.image;
     }
+
     @Override
     public String getDescription() {
         return this.description;

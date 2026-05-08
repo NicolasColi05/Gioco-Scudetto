@@ -22,7 +22,11 @@ import java.awt.Color;
  */
 public class TestClub {
 
+<<<<<<< HEAD
     private final Pawn pawn = new PawnImpl(Color.WHITE); 
+=======
+    private final Pawn pawn = new PawnImpl("red"); 
+>>>>>>> featureNio2
     private final Club club1 = new ClubImpl("inter", pawn);
 
     /**

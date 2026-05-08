@@ -1,7 +1,5 @@
 package giocoscudetto.controller.impl;
 
-import java.awt.Color;
-import java.awt.Image;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -66,7 +64,7 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public Image getBoxImage(int i) {
+    public String getBoxImage(int i) {
         return this.board.getBoxImage(i);
     }
 
@@ -76,7 +74,7 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public Color getHomeTeamColor() {
+    public String getHomeTeamColor() {
         return this.match.getClubHome().getColor();
     }
 
@@ -91,7 +89,7 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public Color getGuestTeamColor() {
+    public String getGuestTeamColor() {
         return this.match.getClubAway().getColor();
     }
 
@@ -104,9 +102,9 @@ public class StarterImpl implements Starter {
     public boolean kickPenalty() {
         if (this.net.isGoal(new Random().nextInt(6) + 1)) {
             if (this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
-                this.match.getScore().increaseHomeScore();
+                this.match.goalHome();
             } else {
-                this.match.getScore().increaseGuestScore();
+                this.match.goalAway();
             }
             return true;
         }

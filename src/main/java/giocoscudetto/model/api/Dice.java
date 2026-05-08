@@ -1,6 +1,6 @@
 package giocoscudetto.model.api;
 
-public interface DiceThrow {
+public interface Dice {
 
     /**
      * this method throws a dice.

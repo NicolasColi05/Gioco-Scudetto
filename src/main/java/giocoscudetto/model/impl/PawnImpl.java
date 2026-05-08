@@ -5,12 +5,13 @@ import java.awt.Color;
 import giocoscudetto.model.api.Pawn;
 
 public class PawnImpl implements Pawn {
+
     private static final int MAX_POSITION = 31;
 
+    private final String color;
     private int position;
-    private final Color color;
 
-    public PawnImpl(final Color color) {
+    public PawnImpl(final String color) {
         this.position = 0;
         this.color = color;
     }
@@ -33,6 +34,11 @@ public class PawnImpl implements Pawn {
     @Override
     public int getPosition() {
         return this.position;
+    }
+
+    @Override
+    public String getColor() {
+        return this.color;
     }
 
     @Override

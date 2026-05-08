@@ -1,17 +1,21 @@
 package giocoscudetto.view.impl;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 import giocoscudetto.controller.api.Starter;
 
 
 public class BoardPanel extends DefaultPanelImpl  {
 
+    private static final double OFFSET_HOME_PAWN = 1.0/3.0;
+    private static final double OFFSET_GUEST_PAWN = 2.0/3.0;
     private static final int BOX_SIDE = 9;
     private static final Color BACKGROUND_COLOR = Color.BLACK;
     
@@ -44,8 +48,22 @@ public class BoardPanel extends DefaultPanelImpl  {
     }
 
     private void drawAllPawns(Graphics2D g2d) {
-        drawHomePawn(g2d);
-        drawGuestPawn(g2d);
+
+        
+        this.drawPawn(g2d, this.getPawnColor("Yellow"), 0, OFFSET_HOME_PAWN);//this.getPawnColor(this.controller.getHomeTeamColor())
+        this.drawPawn(g2d, this.getPawnColor("Red"), 0, OFFSET_GUEST_PAWN);//this.controller.getGuestTeamColor())
+
+    }
+
+    private Color getPawnColor(final String color) {
+        return switch (color.toLowerCase()) {
+            case "red" -> Color.RED;
+            case "blue" -> Color.BLUE;
+            case "green" -> Color.GREEN;
+            case "yellow" -> Color.YELLOW;
+            default -> throw new IllegalArgumentException("Invalid color: " + color);
+        };
+        
     }
 
     private void drawAllBoxes(Graphics2D g2d) {
@@ -56,22 +74,29 @@ public class BoardPanel extends DefaultPanelImpl  {
         
     }
 
-    private void drawBox(Graphics2D g2d, Image image, int position) {
+    private void drawBox(Graphics2D g2d, String image, int position) {
 
         final int x = board_size_w;
         final int y = board_size_h;
+        final BufferedImage img;
+
+        try {
+            img = ImageIO.read(new File(image));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load image", e);
+        }
 
         if (position >= 0 && position <= 8) {
-            g2d.drawImage(image, x - (position + 1)*box_w, y - box_h, box_w, box_h, null);
+            g2d.drawImage(img, x - (position + 1)*box_w, y - box_h, box_w, box_h, null);
         }
         if (position >= 9 && position <= 16) {
-            g2d.drawImage(image, 0, y - (position - 7)*box_h, box_w, box_h, null);
+            g2d.drawImage(img, 0, y - (position - 7)*box_h, box_w, box_h, null);
         }
         if (position >= 17 && position <= 24) {
-            g2d.drawImage(image, (position - 16)*box_w, 0, box_w, box_h, null);
+            g2d.drawImage(img, (position - 16)*box_w, 0, box_w, box_h, null);
         }
         if (position >= 25 && position <= 31) {
-            g2d.drawImage(image, x - box_w, (position - 24)*box_h, box_w, box_h, null);
+            g2d.drawImage(img, x - box_w, (position - 24)*box_h, box_w, box_h, null);
         }
     }
 
@@ -99,115 +124,46 @@ public class BoardPanel extends DefaultPanelImpl  {
 
     }
 
-    private void drawHomePawn(final Graphics2D g2d) {
+    private void drawPawn(final Graphics2D g2d, final Color PawnColor, final int position,final double offset) {
         final int x = board_size_w;
         final int y = board_size_h;
-        // final Color PawnColor = this.controller.getHomeTeamColor();
-        // final int position = this.controller.getHomePosition();
-        final Color PawnColor  = Color.YELLOW;
-        final int position = 1;
-        final int r = this.box_w/6;
+        final int r = this.box_w / 6;
+
+        int pawnX = 0;
+        int pawnY = 0;
 
         if (position >= 0 && position <= 8) {
-            g2d.setColor(new Color(0, 0, 0, 80));
-            g2d.fillOval(x - (position*(this.box_w) + this.box_w/3) -  r + 3, y - (box_h/2) - r + 3, r * 2, r * 2);
-            
-            g2d.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(3f));
-            g2d.fillOval(x - (position*(this.box_w) + this.box_w/3) - r, y - (box_h/2) - r, r * 2, r * 2);
-            
-            g2d.setColor(PawnColor);
-            g2d.fillOval(x - (position*(this.box_w) + this.box_w/3) - r + 2, y - (box_h/2) - r + 2, (r - 2) * 2, (r - 2) * 2);
+            pawnX = x - (position * box_w + (int)(box_w * offset));
+            pawnY = y - box_h / 2;
         }
-        if (position >= 9 && position <= 16) {
-            g2d.setColor(new Color(0, 0, 0, 80));
-            g2d.fillOval(0  + this.box_w/2 -  r + 3, y - ((position- 8)*(this.box_h) + this.box_h/3)- r + 3, r * 2, r * 2);
-            
-            g2d.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(3f));
-            g2d.fillOval(0  + this.box_w/2 - r, y - ((position - 8)*(this.box_h) + this.box_h/3) - r, r * 2, r * 2);
-            
-            g2d.setColor(PawnColor);
-            g2d.fillOval(0 + this.box_w/2 - r + 2, y - ((position - 8)*(this.box_h) + this.box_h/3) - r + 2, (r - 2) * 2, (r - 2) * 2);
+        else if (position >= 9 && position <= 16) {
+            pawnX = box_w / 2;
+            pawnY = y - ((position - 8) * box_h + (int)(box_h * offset));           
         }
-        if (position >= 17 && position <= 24) {
-            g2d.setColor(new Color(0, 0, 0, 80));
-            g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w/3) -  r + 3, 0 + (box_h/2) - r + 3, r * 2, r * 2);
-            
-            g2d.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(3f));
-            g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w/3) - r, 0 + (box_h/2) - r, r * 2, r * 2);
-            
-            g2d.setColor(PawnColor);
-            g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w/3) - r + 2, 0 + (box_h/2) - r + 2, (r - 2) * 2, (r - 2) * 2);
+        else if (position >= 17 && position <= 24) {
+            pawnX = (position - 18) * box_w - (int)(box_w * offset);
+            pawnY = box_h / 2;
         }
-        if (position >= 25 && position <= 32) {
-            g2d.setColor(new Color(0, 0, 0, 80));
-            g2d.fillOval(x  - this.box_w/2 -  r + 3, 0 + ((position - 24)*(this.box_h) + this.box_h/3)- r + 3, r * 2, r * 2);
-            
-            g2d.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(3f));
-            g2d.fillOval(x  - this.box_w/2 - r, 0 + ((position - 24)*(this.box_h) + this.box_h/3) - r, r * 2, r * 2);
-            
-            g2d.setColor(PawnColor);
-            g2d.fillOval(x - this.box_w/2 - r + 2, 0 + ((position - 24)*(this.box_h) + this.box_h/3) - r + 2, (r - 2) * 2, (r - 2) * 2);
+        else if (position >= 25 && position <= 32) {
+            pawnX = x - box_w / 2;
+            pawnY = (position - 24) * box_h + (int)(box_h * offset);
         }
+
+        drawCircle(g2d, pawnX, pawnY, r, PawnColor);
     }
 
-    private void drawGuestPawn(Graphics2D g2d) {
-        final int x = board_size_w;
-        final int y = board_size_h;
-        // final Color PawnColor = this.controller.getGuestTeamColor();
-        // final int position = this.controller.getGuestPosition();
-        final Color PawnColor  = Color.RED;
-        final int position = 1;
-        final int r = this.box_w/6;
+    private void drawCircle(final Graphics2D g2d,final int x,final int y,final int r,final Color color) {
 
-        if (position >= 0 && position <= 8) {
-            g2d.setColor(new Color(0, 0, 0, 80));
-            g2d.fillOval(x - (position*(this.box_w) + this.box_w*2/3) -  r + 3, y - (box_h/2) - r + 3, r * 2, r * 2);
-            
-            g2d.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(3f));
-            g2d.fillOval(x - (position*(this.box_w) + this.box_w*2/3) - r, y - (box_h/2) - r, r * 2, r * 2);
-            
-            g2d.setColor(PawnColor);
-            g2d.fillOval(x - (position*(this.box_w) + this.box_w*2/3) - r + 2, y - (box_h/2) - r + 2, (r - 2) * 2, (r - 2) * 2);
-        }
-        if (position >= 9 && position <= 16) {
-            g2d.setColor(new Color(0, 0, 0, 80));
-            g2d.fillOval(0  + this.box_w/2 -  r + 3, y - ((position- 8)*(this.box_h) + this.box_h*2/3)- r + 3, r * 2, r * 2);
-            
-            g2d.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(3f));
-            g2d.fillOval(0  + this.box_w/2 - r, y - ((position - 8)*(this.box_h) + this.box_h*2/3) - r, r * 2, r * 2);
-            
-            g2d.setColor(PawnColor);
-            g2d.fillOval(0 + this.box_w/2 - r + 2, y - ((position - 8)*(this.box_h) + this.box_h*2/3) - r + 2, (r - 2) * 2, (r - 2) * 2);
-        }
-        if (position >= 17 && position <= 24) {
-            g2d.setColor(new Color(0, 0, 0, 80));
-            g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w*2/3) -  r + 3, 0 + (box_h/2) - r + 3, r * 2, r * 2);
-            
-            g2d.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(3f));
-            g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w*2/3) - r, 0 + (box_h/2) - r, r * 2, r * 2);
-            
-            g2d.setColor(PawnColor);
-            g2d.fillOval(0 + ((position - 18)*(this.box_w) - this.box_w*2/3) - r + 2, 0 + (box_h/2) - r + 2, (r - 2) * 2, (r - 2) * 2);
-        }
-        if (position >= 25 && position <= 32) {
-            g2d.setColor(new Color(0, 0, 0, 80));
-            g2d.fillOval(x  - this.box_w/2 -  r + 3, 0 + ((position - 24)*(this.box_h) + this.box_h*2/3)- r + 3, r * 2, r * 2);
-            
-            g2d.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(3f));
-            g2d.fillOval(x  - this.box_w/2 - r, 0 + ((position - 24)*(this.box_h) + this.box_h*2/3) - r, r * 2, r * 2);
-            
-            g2d.setColor(PawnColor);
-            g2d.fillOval(x - this.box_w/2 - r + 2, 0 + ((position - 24)*(this.box_h) + this.box_h*2/3) - r + 2, (r - 2) * 2, (r - 2) * 2);
-        }
+        g2d.setColor(new Color(0,0,0,80));
+        g2d.fillOval(x - r + 3, y - r + 3, r * 2, r * 2);
+
+        g2d.setColor(Color.BLACK);
+        g2d.fillOval(x - r, y - r, r * 2, r * 2);
+
+        g2d.setColor(color);
+        g2d.fillOval(x - r + 2, y - r + 2, (r - 2) * 2, (r - 2) * 2);
     }
+
 
     private void setSizes() {
         this.board_size_h = this.getHeight();

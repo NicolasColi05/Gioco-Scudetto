@@ -37,6 +37,7 @@ public class DicePanel extends DefaultPanelImpl {
             });
     }
 
+    //da cambiare nel caso facciamo che il controller possa chiamare il repaint() sulle view
     private final class Agent implements Runnable {
         /**
          * 

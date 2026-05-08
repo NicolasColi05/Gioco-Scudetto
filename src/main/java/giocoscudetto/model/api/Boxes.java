@@ -1,7 +1,5 @@
 package giocoscudetto.model.api;
 
-import java.awt.Image;
-
 public interface Boxes {
     
     /**
@@ -31,7 +29,7 @@ public interface Boxes {
       *
      * @return an Image that represents the image of the box
      */
-    Image getImage();
+    String getImage();
 
     /**
      * this method is for get the description of a box.

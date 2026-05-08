@@ -50,6 +50,18 @@ public interface Match {
      */
     Club getCurrentPlayer();
 
+    /**
+     * Method that simulates the throw of a dice, the value of the dice is used for moving the pawn on the board.
+     * 
+     * @return the value of the dice throw.
+     */
     int rollDice();
+
+    /**
+     * Method that simulates the throw of two dice, the value of the dice is used for the free kick event.
+     * 
+     * @return the value of the two dice throw.
+     */
+    int freeKickDice();
 
 }
