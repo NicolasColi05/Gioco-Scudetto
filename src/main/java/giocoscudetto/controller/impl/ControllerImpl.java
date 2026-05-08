@@ -6,8 +6,10 @@ import java.util.List;
 
 import giocoscudetto.controller.api.Controller;
 import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
+import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
 
@@ -19,6 +21,7 @@ public class ControllerImpl implements Controller {
 
     private final List<Club> clubs = new LinkedList<>();
     private Table table; //Andrebbe final, ma dovrei definirlo in un costruttore
+    private Fixtures fixture; //Andrebbe final, ma dovrei definirlo in un costruttore
     /**
      * {@inheritDoc}
      */
@@ -26,10 +29,12 @@ public class ControllerImpl implements Controller {
     public void createClubs(List<String> clubsName) {
         
         for (String name : clubsName) {
-            clubs.add(new ClubImpl(name, new PawnImpl(Color.RED)));
+            clubs.add(new ClubImpl(name, null));
         }
 
         this.table = new TableImpl(clubs);
+
+        this.fixture = new FixturesImpl(clubs);
 
     }
 
