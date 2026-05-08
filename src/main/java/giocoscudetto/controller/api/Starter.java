@@ -1,7 +1,6 @@
 package giocoscudetto.controller.api;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.util.ArrayList;
 
 import giocoscudetto.model.api.Fixtures;
@@ -49,7 +48,7 @@ public interface Starter {
      * @param i the index of the box.
      * @return the image of the box.
      */
-    Image getBoxImage(int i);
+    String getBoxImage(int i);
 
     /**
      *  this method is for get the score of the game.
