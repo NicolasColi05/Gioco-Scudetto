@@ -49,9 +49,21 @@ public class BoardPanel extends DefaultPanelImpl  {
 
     private void drawAllPawns(Graphics2D g2d) {
 
-        this.drawPawn(g2d, Color.RED, 0, OFFSET_HOME_PAWN);
-        this.drawPawn(g2d, Color.YELLOW, 0, OFFSET_GUEST_PAWN);
+        
+        this.drawPawn(g2d, this.getPawnColor("Yellow"), 0, OFFSET_HOME_PAWN);//this.getPawnColor(this.controller.getHomeTeamColor())
+        this.drawPawn(g2d, this.getPawnColor("Red"), 0, OFFSET_GUEST_PAWN);//this.controller.getGuestTeamColor())
 
+    }
+
+    private Color getPawnColor(final String color) {
+        return switch (color.toLowerCase()) {
+            case "red" -> Color.RED;
+            case "blue" -> Color.BLUE;
+            case "green" -> Color.GREEN;
+            case "yellow" -> Color.YELLOW;
+            default -> throw new IllegalArgumentException("Invalid color: " + color);
+        };
+        
     }
 
     private void drawAllBoxes(Graphics2D g2d) {

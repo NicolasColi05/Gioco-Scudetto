@@ -3,12 +3,15 @@ package giocoscudetto.model.impl;
 import giocoscudetto.model.api.Pawn;
 
 public class PawnImpl implements Pawn {
+
     private static final int MAX_POSITION = 31;
 
+    private final String color;
     private int position;
 
-    public PawnImpl() {
+    public PawnImpl(final String color) {
         this.position = 0;
+        this.color = color;
     }
 
     @Override
@@ -29,6 +32,11 @@ public class PawnImpl implements Pawn {
     @Override
     public int getPosition() {
         return this.position;
+    }
+
+    @Override
+    public String getColor() {
+        return this.color;
     }
 
     @Override

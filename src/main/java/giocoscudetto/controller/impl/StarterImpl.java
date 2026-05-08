@@ -1,6 +1,5 @@
 package giocoscudetto.controller.impl;
 
-import java.awt.Color;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -75,7 +74,7 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public Color getHomeTeamColor() {
+    public String getHomeTeamColor() {
         return this.match.getClubHome().getColor();
     }
 
@@ -90,7 +89,7 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public Color getGuestTeamColor() {
+    public String getGuestTeamColor() {
         return this.match.getClubAway().getColor();
     }
 

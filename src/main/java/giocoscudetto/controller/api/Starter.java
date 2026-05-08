@@ -1,6 +1,5 @@
 package giocoscudetto.controller.api;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import giocoscudetto.model.api.Fixtures;
@@ -62,7 +61,7 @@ public interface Starter {
      * 
      * @return the Color of the home team.
      */
-    Color getHomeTeamColor();
+    String getHomeTeamColor();
 
     /**
      * this method is for get the position of the home team pawn.
@@ -83,7 +82,7 @@ public interface Starter {
      * 
      * @return the Color of the guest team.
      */
-    Color getGuestTeamColor();
+    String getGuestTeamColor();
 
     /**
      * this method is for get the position of the guest team pawn.

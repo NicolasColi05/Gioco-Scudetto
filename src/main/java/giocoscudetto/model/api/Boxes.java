@@ -1,7 +1,5 @@
 package giocoscudetto.model.api;
 
-import java.awt.Image;
-
 public interface Boxes {
     
     /**

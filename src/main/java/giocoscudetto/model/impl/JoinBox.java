@@ -1,16 +1,8 @@
 package giocoscudetto.model.impl;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
-
 
 
 public class JoinBox implements Boxes {

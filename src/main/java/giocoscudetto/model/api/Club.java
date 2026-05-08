@@ -1,7 +1,5 @@
 package giocoscudetto.model.api;
 
-import java.awt.Color;
-
 public interface Club {
     
     /**
@@ -23,7 +21,8 @@ public interface Club {
      * @return the pawn selected by the club.
      */
     Pawn getPawn();
-    Color getColor();
+    
+    String getColor();
 
     /**
      * Set the name of the club.
@@ -47,7 +46,6 @@ public interface Club {
      */
     void changeNetDiffs(int goalScored, int goalConceded);
     void changePawn(Pawn pawnSelected);
-    void setColor(Color color);
 
 
     /**
