@@ -3,7 +3,6 @@ package giocoscudetto.controller.impl;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.Random;
-import java.awt.List;
 import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
@@ -15,8 +14,6 @@ import giocoscudetto.model.impl.BoardImpl;
 import giocoscudetto.model.impl.GoalNetImpl;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
-import giocoscudetto.model.impl.BoardImpl;
-import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.model.impl.TableImpl;
