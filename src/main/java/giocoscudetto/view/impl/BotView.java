@@ -53,6 +53,7 @@ public class BotView extends DefaultPanelImpl{
         lowerPanel.setOpaque(false);
 
         JTextArea title = (JTextArea) createComponent(new JTextArea("IN THE NEXT VERSION"), getFont(), new Color(195, 45, 35), null);
+        title.setEditable(false);
 
         centralPanel.add(title);
 

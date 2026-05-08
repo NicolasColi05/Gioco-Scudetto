@@ -44,6 +44,24 @@ public class PreMatchView extends DefaultPanelImpl{
     private static String[] columnNames = {"Clubs", "Points", "Net Diff"};
     private Object[][] dati = {
         {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
         {"Roma", 7, 2}
     };
     private static String[] columnNames2 = {"Clubs", "Results"};
@@ -81,6 +99,7 @@ public class PreMatchView extends DefaultPanelImpl{
         //prima tabella
         final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK, null);
         fixtureTable.setEnabled(false);
+        fixtureTable.setOpaque(false);
         fixtureTable.getTableHeader().setReorderingAllowed(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
         
@@ -88,6 +107,8 @@ public class PreMatchView extends DefaultPanelImpl{
         //seconda tabella
         final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK, null);
         standingsTable.setEnabled(false);
+        standingsTable.setOpaque(false);
+        //standingsTable.setBackground(new Color(0, 0, 0, 0));
         standingsTable.getTableHeader().setReorderingAllowed(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
 
@@ -113,6 +134,7 @@ public class PreMatchView extends DefaultPanelImpl{
         titleF.setTitleJustification(TitledBorder.CENTER);
         titleF.setTitleColor(new Color(195, 45, 35));
         scrollPaneF.setOpaque(false);
+        scrollPaneF.getViewport().setOpaque(false);
         scrollPaneF.setBorder(titleF);
         centralPanel.add(scrollPaneF);
 
@@ -121,6 +143,7 @@ public class PreMatchView extends DefaultPanelImpl{
         titleS.setTitleJustification(TitledBorder.CENTER);
         titleS.setTitleColor(new Color(195, 45, 35));
         scrollPaneS.setOpaque(false);
+        scrollPaneS.getViewport().setOpaque(false);
         scrollPaneS.setBorder(titleS);
         centralPanel.add(scrollPaneS);
 
