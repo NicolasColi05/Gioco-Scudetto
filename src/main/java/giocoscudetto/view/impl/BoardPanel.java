@@ -4,11 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
+import java.awt.Image;
+import giocoscudetto.view.api.ImageBoardLoader;
 import giocoscudetto.controller.api.Starter;
 
 
@@ -19,6 +16,7 @@ public class BoardPanel extends DefaultPanelImpl  {
     private static final int BOX_SIDE = 9;
     private static final Color BACKGROUND_COLOR = Color.BLACK;
     
+    private final ImageBoardLoader imageLoaded;
     private final Starter controller;
     private int board_size_h;
     private int board_size_w;
@@ -33,6 +31,7 @@ public class BoardPanel extends DefaultPanelImpl  {
             }
         });
         this.controller = controller;
+        this.imageLoaded = new ImageBoardLoaderImpl(controller);
         setBackground(BACKGROUND_COLOR);
     }
 
@@ -78,13 +77,14 @@ public class BoardPanel extends DefaultPanelImpl  {
 
         final int x = board_size_w;
         final int y = board_size_h;
-        final BufferedImage img;
+        final Image img;
 
-        try {
-            img = ImageIO.read(new File(image));
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to load image", e);
-        }
+        // try {
+        //     img = ImageIO.read(new File(image));
+        // } catch (Exception e) {
+        //     throw new RuntimeException("Failed to load image", e);
+        // }
+        img = this.imageLoaded.getImage(position);
 
         if (position >= 0 && position <= 8) {
             g2d.drawImage(img, x - (position + 1)*box_w, y - box_h, box_w, box_h, null);
