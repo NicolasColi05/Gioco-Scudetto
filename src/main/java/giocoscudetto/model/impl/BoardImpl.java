@@ -53,7 +53,7 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public Image getBoxImage(int i) {
+    public String getBoxImage(int i) {
         return this.board.get(i).getImage();
     }
     

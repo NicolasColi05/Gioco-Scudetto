@@ -4,6 +4,7 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Dice;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Scoreboard;
+import giocoscudetto.model.api.Dice;
 
 public class MatchImpl implements Match {
 
@@ -11,12 +12,13 @@ public class MatchImpl implements Match {
     private Club clubAway;
     private final Scoreboard score;
     private final TurnImpl turn;
-    private final Dice dice6 = new Dice6Impl();
-    private final Dice dice3 = new Dice3Impl(); 
+    private final Dice dice6;
+    private static final int HALF_BOARD = 16;
 
     public MatchImpl() {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
+        this.dice6 = new Dice6Impl();
         turn.chooseStartingPlayer();
     }
 
@@ -58,7 +60,10 @@ public class MatchImpl implements Match {
 
     @Override
     public int rollDice() {
-        return this.turn.rollDice(getCurrentPlayer());
+        if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD){
+            return this.dice6.rollDice() + this.dice6.rollDice();
+        }
+        return this.dice6.rollDice();
     }
     
     @Override

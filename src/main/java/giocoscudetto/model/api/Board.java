@@ -15,7 +15,7 @@ public interface Board {
      */
     Boxes getBox(int index);
 
-    Image getBoxImage(int i);
+    String getBoxImage(int i);
     
 
 } 

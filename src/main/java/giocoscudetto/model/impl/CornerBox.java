@@ -13,18 +13,13 @@ import giocoscudetto.model.api.Match;
 public class CornerBox implements Boxes{
 
     private final int position;
-    private final BufferedImage image;
+    private final String image;
     private final String description = "Box Event: Corner. If you land on this box, you throw two dice and if you get a 1 you score a goal";
 
 
     public CornerBox(final int position) {
         this.position = position;
-        try {
-        this.image = ImageIO.read(new File("caselle_precise/casella_19.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to load image", e);
-        }
+        this.image = "caselle_precise/casella_29.png";
     }
     @Override
     public int getPosition() {
@@ -44,7 +39,7 @@ public class CornerBox implements Boxes{
     }
 
     @Override
-    public Image getImage() {
+    public String getImage() {
         return this.image;
     }
 
