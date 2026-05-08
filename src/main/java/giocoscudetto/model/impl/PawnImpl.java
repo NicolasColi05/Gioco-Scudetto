@@ -1,7 +1,5 @@
 package giocoscudetto.model.impl;
 
-import java.awt.Color;
-
 import giocoscudetto.model.api.Pawn;
 
 public class PawnImpl implements Pawn {
@@ -46,8 +44,4 @@ public class PawnImpl implements Pawn {
        this.position = position;
     }
 
-    @Override
-    public Color getColor() {
-        return this.color;
-    }
 }

@@ -10,9 +10,6 @@ import giocoscudetto.model.impl.PawnImpl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.awt.Color;
-
-
 /*
  * CHECKSTYLE: MagicNumber OFF
  * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
@@ -22,11 +19,7 @@ import java.awt.Color;
  */
 public class TestClub {
 
-<<<<<<< HEAD
-    private final Pawn pawn = new PawnImpl(Color.WHITE); 
-=======
     private final Pawn pawn = new PawnImpl("red"); 
->>>>>>> featureNio2
     private final Club club1 = new ClubImpl("inter", pawn);
 
     /**
