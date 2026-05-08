@@ -12,7 +12,7 @@ public class CornerBox implements Boxes{
 
     public CornerBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_29.png";
+        this.image = "caselle_precise/casella_19.png";
     }
     @Override
     public int getPosition() {
