@@ -3,17 +3,21 @@ package giocoscudetto.model.impl;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Scoreboard;
+import giocoscudetto.model.api.DiceThrow;
 
 public class MatchImpl implements Match {
 
     private Club clubHome;
     private Club clubAway;
     private final Scoreboard score;
-    private final TurnImpl turn; 
+    private final TurnImpl turn;
+    private final Dice6ThrowImpl diceThrow;
+    private static final int HALF_BOARD = 16;
 
     public MatchImpl() {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
+        this.diceThrow = new Dice6ThrowImpl();
         turn.chooseStartingPlayer();
     }
 
@@ -55,7 +59,10 @@ public class MatchImpl implements Match {
 
     @Override
     public int rollDice() {
-        return this.turn.rollDice(getCurrentPlayer());
+        if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD){
+            return this.diceThrow.rollDice() + this.diceThrow.rollDice();
+        }
+        return this.diceThrow.rollDice();
     }
 
 }

@@ -14,6 +14,7 @@ import giocoscudetto.model.api.Pawn;
 
 public class BackToStartBox implements Boxes {
 
+    private final String description = "Box Event: Back to Start. If you land on this box, you must return to the starting point of the board.";
     private final int position;
     private Pawn pawn;
     private final BufferedImage image;
@@ -50,5 +51,10 @@ public class BackToStartBox implements Boxes {
     @Override
     public Image getImage() {
         return this.image;
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 }

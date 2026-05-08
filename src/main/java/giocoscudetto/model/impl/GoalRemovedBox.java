@@ -14,6 +14,7 @@ public class GoalRemovedBox implements Boxes {
 
     private final BufferedImage image;
     private final int position;
+    private final String description = "Box Event: Back to Start. If you land on this box, the ref removes a goal from your score.";
 
     public GoalRemovedBox(final int position) {
         this.position = position;
@@ -44,6 +45,10 @@ public class GoalRemovedBox implements Boxes {
     @Override
     public Image getImage() {
         return this.image;
+    }
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 
 }

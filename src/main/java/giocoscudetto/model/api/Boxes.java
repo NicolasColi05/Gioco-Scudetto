@@ -32,4 +32,11 @@ public interface Boxes {
      * @return an Image that represents the image of the box
      */
     Image getImage();
+
+    /**
+     * this method is for get the description of a box.
+     * 
+     * @return a string that represents the description of the box.
+     */
+    String getDescription();
 }

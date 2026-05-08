@@ -15,6 +15,7 @@ public class SkipTurnBox implements Boxes {
 
     private final BufferedImage image;
     private final int position;
+    private final String description = "Box Event: Skip Turn. If you land on this box, you lose your next turn.";
 
     public SkipTurnBox(final int position) {
         this.position = position;
@@ -47,5 +48,10 @@ public class SkipTurnBox implements Boxes {
     @Override
     public Image getImage() {
         return this.image;
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 }

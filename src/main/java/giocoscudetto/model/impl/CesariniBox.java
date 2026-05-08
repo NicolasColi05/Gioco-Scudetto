@@ -14,6 +14,7 @@ public class CesariniBox implements Boxes {
 
     private final int position;
     private final BufferedImage image;
+    private final String description = "Box Event: Cesarini zone. If you land on this box, you automatically score a goal.";
 
     public CesariniBox(final int position) {
         this.position = position;
@@ -46,4 +47,8 @@ public class CesariniBox implements Boxes {
         return this.image;
     }
 
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
 }

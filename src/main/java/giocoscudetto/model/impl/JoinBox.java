@@ -17,6 +17,7 @@ public class JoinBox implements Boxes {
 
     private final int position;
     private final BufferedImage image;
+    private final String description = "Box Event: Join. If you land on this box, the opponent must have to reach your box.";
 
     public JoinBox(int position) {
        this.position = position;
@@ -61,5 +62,10 @@ public class JoinBox implements Boxes {
     @Override
     public Image getImage() {
         return this.image;
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 }
