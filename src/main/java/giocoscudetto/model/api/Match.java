@@ -23,6 +23,18 @@ public interface Match {
     void goalAway();
 
     /**
+     * sets the number of goals of the home Club to goal 
+     * @param goal
+     */
+    void setGoalHome(int goal);
+
+    /**
+     * sets the number of goals of the away Club to goal 
+     * @param goal
+     */
+    void setGoalAway(int goal);
+
+    /**
      * Method that return the home club
      * 
      * @return the home club
