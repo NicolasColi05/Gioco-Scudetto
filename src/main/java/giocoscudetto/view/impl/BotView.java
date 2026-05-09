@@ -29,6 +29,7 @@ public class BotView extends DefaultPanelImpl{
     private final int minimumWidht = screenSize.width / 2;
     private static final int BUTTON_FONT_REDUCTION = 70;
     private static final int BUTTON_BORDER = 5;
+    private static final Color BUTTONS_TEXT_COLOR =  new Color(240, 220, 180); 
     private final Image image;
 
     public BotView(Starter controller){
@@ -57,13 +58,13 @@ public class BotView extends DefaultPanelImpl{
 
         centralPanel.add(title);
 
-        JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK, null);
+        JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), BUTTONS_TEXT_COLOR, null);
 
         backButton.addActionListener(e -> { 
             this.controller.changeView("home");
         });
 
-        lowerPanel.add(backButton, BorderLayout.CENTER);
+        lowerPanel.add(backButton, BorderLayout.WEST);
 
         this.add(centralPanel, BorderLayout.CENTER);
         this.add(lowerPanel, BorderLayout.SOUTH);
