@@ -4,7 +4,6 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Dice;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Scoreboard;
-import giocoscudetto.model.api.Dice;
 
 public class MatchImpl implements Match {
 
@@ -36,6 +35,16 @@ public class MatchImpl implements Match {
     @Override
     public final void goalAway() {
         this.score.increaseGuestScore();
+    }
+
+    @Override
+    public final void setGoalHome(int goal){
+        this.score.setHomeScore(goal);
+    }
+
+    @Override
+    public final void setGoalAway(int goal){
+        this.score.setGuestScore(goal);
     }
 
     @Override
