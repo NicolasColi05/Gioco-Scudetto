@@ -17,17 +17,18 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import java.awt.Image;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import giocoscudetto.model.api.Pair;
 import giocoscudetto.model.impl.ClubImpl;
@@ -43,6 +44,24 @@ public class PreMatchView extends DefaultPanelImpl{
     private static String[] columnNames = {"Clubs", "Points", "Net Diff"};
     private Object[][] dati = {
         {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
+        {"Roma", 7, 2},
+        {"Inter", 6, 3},
         {"Roma", 7, 2}
     };
     private static String[] columnNames2 = {"Clubs", "Results"};
@@ -55,34 +74,42 @@ public class PreMatchView extends DefaultPanelImpl{
     private final int minimumWidht = screenSize.width / 2;
     private static final int BUTTON_FONT_REDUCTION = 70;
     private static final int BUTTON_BORDER = 5;
+    private final Image image;
 
     public PreMatchView(Starter controller){
         this.controller = controller;
 
         this.setLayout(new BorderLayout());
 
+        try {
+            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/pre-match-background.jpeg"));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load image", e);
+        }
+
         //pannello centrale
         JPanel centralPanel = new JPanel(new GridBagLayout());
+        centralPanel.setOpaque(false);
 
         //pannello inferiore
         JPanel lowerPanel = new JPanel(new BorderLayout());
         lowerPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
-
-        //titolo
-        final JComponent gameTitle = createComponent(new JLabel("GIOCO DELLO SCUDETTO", SwingConstants.CENTER), getTitleFont(), Color.RED,null);
-        this.add(gameTitle, BorderLayout.NORTH);
+        lowerPanel.setOpaque(false);
 
         //prima tabella
         final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK, null);
-        //fixtureTable.setBackground(Color.orange);
         fixtureTable.setEnabled(false);
+        fixtureTable.setOpaque(false);
+        fixtureTable.getTableHeader().setReorderingAllowed(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
         
 
         //seconda tabella
         final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK, null);
-        //standingsTable.setBackground(Color.YELLOW);
         standingsTable.setEnabled(false);
+        standingsTable.setOpaque(false);
+        //standingsTable.setBackground(new Color(0, 0, 0, 0));
+        standingsTable.getTableHeader().setReorderingAllowed(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
 
         //pulsanti in basso
@@ -104,19 +131,24 @@ public class PreMatchView extends DefaultPanelImpl{
         //aggiunte al panel centrale
         JScrollPane scrollPaneF = new JScrollPane(fixtureTable);
         TitledBorder titleF = new TitledBorder("FIXTURE");
+        titleF.setTitleJustification(TitledBorder.CENTER);
+        titleF.setTitleColor(new Color(195, 45, 35));
+        scrollPaneF.setOpaque(false);
+        scrollPaneF.getViewport().setOpaque(false);
         scrollPaneF.setBorder(titleF);
-        scrollPaneF.setBackground(new Color(211,48,93));
         centralPanel.add(scrollPaneF);
 
         JScrollPane scrollPaneS = new JScrollPane(standingsTable);
         TitledBorder titleS = new TitledBorder("STANDINGS");
+        titleS.setTitleJustification(TitledBorder.CENTER);
+        titleS.setTitleColor(new Color(195, 45, 35));
+        scrollPaneS.setOpaque(false);
+        scrollPaneS.getViewport().setOpaque(false);
         scrollPaneS.setBorder(titleS);
-        scrollPaneS.setBackground(new Color(135, 169, 107));
         centralPanel.add(scrollPaneS);
 
 
         //aggiunte al panel principale
-        this.add(gameTitle, BorderLayout.NORTH);
         this.add(centralPanel, BorderLayout.CENTER);
         this.add(lowerPanel, BorderLayout.SOUTH);
 
@@ -127,7 +159,6 @@ public class PreMatchView extends DefaultPanelImpl{
                 final int currentWidth = getWidth();
                 final int currentHeight = getHeight();
 
-                gameTitle.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / TITLE_FONT_RESIZING));
                 continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 backButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 standingsTable.setFont(new Font(FONT_SELECTED, Font.ROMAN_BASELINE, currentWidth / 100));
@@ -144,6 +175,14 @@ public class PreMatchView extends DefaultPanelImpl{
             
             }
         });
+    }
+
+    @Override
+    public void paintComponent(final Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
     }
 
 }

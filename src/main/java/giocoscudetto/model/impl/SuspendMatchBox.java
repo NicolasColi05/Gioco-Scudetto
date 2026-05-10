@@ -20,8 +20,10 @@ public class SuspendMatchBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'event'");
+        match.getClubAway().getPawn().setPosition(0);
+        match.getClubHome().getPawn().setPosition(0);
+        match.setGoalHome(0);
+        match.setGoalAway(0);
     }
 
     @Override

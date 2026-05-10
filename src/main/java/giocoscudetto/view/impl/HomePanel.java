@@ -81,7 +81,15 @@ public class HomePanel extends DefaultPanelImpl {
             }
         };
 
-        btnBot.addActionListener(nextPanel);
+        final ActionListener botPanel = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                controller.changeView("bot");
+            }
+        };
+
+        btnBot.addActionListener(botPanel);
         btnFriend.addActionListener(nextPanel);
         
         btnExit.addActionListener(e -> {
