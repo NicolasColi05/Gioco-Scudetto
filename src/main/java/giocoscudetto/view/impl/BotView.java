@@ -39,24 +39,15 @@ public class BotView extends DefaultPanelImpl{
         this.setLayout(new BorderLayout());
 
         try {
-            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/home-background.jpeg"));
+            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/bot-background.jpeg"));
         } catch (Exception e) {
             throw new RuntimeException("Failed to load image", e);
         }
-
-        //pannello centrale
-        JPanel centralPanel = new JPanel(new GridBagLayout());
-        centralPanel.setOpaque(false);
 
         //pannello inferiore
         JPanel lowerPanel = new JPanel(new BorderLayout());
         lowerPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
         lowerPanel.setOpaque(false);
-
-        JTextArea title = (JTextArea) createComponent(new JTextArea("IN THE NEXT VERSION"), getFont(), new Color(195, 45, 35), null);
-        title.setEditable(false);
-
-        centralPanel.add(title);
 
         JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), BUTTONS_TEXT_COLOR, null);
 
@@ -66,7 +57,6 @@ public class BotView extends DefaultPanelImpl{
 
         lowerPanel.add(backButton, BorderLayout.WEST);
 
-        this.add(centralPanel, BorderLayout.CENTER);
         this.add(lowerPanel, BorderLayout.SOUTH);
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
