@@ -20,7 +20,8 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
 
     private final List<Club> clubs = new LinkedList<>();
     private final Table table = new TableImpl();
-    private Fixtures fixture; //Andrebbe final, ma dovrei definirlo in un costruttore
+    private Fixtures fixture;
+    
     /**
      * {@inheritDoc}
      */
@@ -33,8 +34,24 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
 
         this.table.addAllClubs(this.clubs);
 
-        this.fixture = new FixturesImpl(clubs);
+        this.fixture = new FixturesImpl(clubs); 
 
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateClubActualRank() {
+        this.table.updateClubRank();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Club> getClubActualRank() {
+        return this.table.showPosition();
     }
 
     
