@@ -8,6 +8,12 @@ import java.util.List;
 public interface Table {
    
     /**
+     * @param clubs are all the clubs that partecipate to matches
+     * so will be added to the table.
+     */
+    void addAllClubs(List<Club> clubs);
+
+    /**
      * This method is used to correct each team current position in the table. 
      */
     void updateClubRank();

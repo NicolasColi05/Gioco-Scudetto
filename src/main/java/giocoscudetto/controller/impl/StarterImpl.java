@@ -131,9 +131,6 @@ public class StarterImpl implements Starter {
        return this.fixture;
     }
 
-    private void setTable(){
-        this.table = new TableImpl(listofClubs);
-    }
 
     @Override
     public Table getTable(){

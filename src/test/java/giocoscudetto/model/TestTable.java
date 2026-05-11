@@ -33,7 +33,8 @@ private Club inter;
         inter = new ClubImpl("Inter", new PawnImpl(1)); 
         juve = new ClubImpl("Juve", new PawnImpl(1)); 
         bologna = new ClubImpl("Bologna", new PawnImpl(1)); 
-        rank = new TableImpl(List.of(bologna, inter, juve));
+        rank = new TableImpl();
+        rank.addAllClubs(List.of(bologna, inter, juve));
     }
 
     @Test
