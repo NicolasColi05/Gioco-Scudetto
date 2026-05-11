@@ -42,6 +42,15 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
+    public void updateClubScores(final int pawnId, final int points, final int goalScored, final int goalConceded) {
+        this.clubs.get(pawnId).changeNetDiffs(goalScored, goalConceded);
+        this.clubs.get(pawnId).incrementPoints(points);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateClubActualRank() {
         this.table.updateClubRank();
     }
@@ -77,6 +86,5 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
     public Fixtures getFixture() {
         return this.fixture;
     }
-
     
 }

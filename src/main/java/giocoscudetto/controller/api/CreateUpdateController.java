@@ -22,21 +22,11 @@ public interface CreateUpdateController {
     void createClubs(List<String> clubsName);
 
     /**
-     * @return the list of clubs.
+     * Method to update a specific team point and net diff.
+     * 
+     * @param pawnId
      */
-    List<Club> getClubs();
-
-    /**
-     * @return the list of clubs.
-     */
-    Table getTable();
-
-
-    /**
-     * @return the list of clubs.
-     */
-    Fixtures getFixture();
-
+    void updateClubScores(int pawnId, int points, int goalScored, int goalConceded);
 
     /**
      * Method to update each club position in the table
@@ -47,5 +37,23 @@ public interface CreateUpdateController {
      * @return the list containg the club in the right position
      */
     List<Club> getClubActualRank();
+
+        /**
+     * @return the list of clubs.
+     */
+    List<Club> getClubs();
+
+    /**
+     * @return the table.
+     */
+    Table getTable();
+
+
+    /**
+     * @return the fixture.
+     */
+    Fixtures getFixture();
+
+
 
 }
