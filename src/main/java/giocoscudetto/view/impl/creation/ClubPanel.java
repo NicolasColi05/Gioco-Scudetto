@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
@@ -72,11 +73,19 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel clubInfoPanel = new JPanel();
         clubInfoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 
+
         final JPanel clubNamePanel = new JPanel();
+        final TitledBorder nameTitle = new TitledBorder("CLUB'S NAME");
+        nameTitle.setBorder(BorderFactory.createEmptyBorder());
         clubNamePanel.setLayout(new BoxLayout(clubNamePanel, BoxLayout.Y_AXIS));
+        clubNamePanel.setBorder(nameTitle);
+        
 
         final JPanel clubPawnPanel = new JPanel();
+        final TitledBorder pawnColor = new TitledBorder("PAWN'S COLOR"); 
+        pawnColor.setBorder(BorderFactory.createEmptyBorder()); 
         clubPawnPanel.setLayout(new BoxLayout(clubPawnPanel, BoxLayout.Y_AXIS));
+        clubPawnPanel.setBorder(pawnColor);
 
         //List which will contains the JTextFields to select each clubs name
         final List<JTextField> clubsName = new ArrayList<>();
