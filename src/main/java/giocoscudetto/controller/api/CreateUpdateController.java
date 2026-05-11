@@ -5,9 +5,9 @@ import java.util.List;
 
 /**
  * Controller Interface to cominicate between model and view in pre match
- * configuation, table and fixture update.
+ * configuation, table and fixture creation and update.
  */
-public interface CreateController {
+public interface CreateUpdateController {
     
     /**
      * Method to create the clubs that will play the incoming match, the table

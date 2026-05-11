@@ -1,8 +1,8 @@
 package giocoscudetto;
 
-import giocoscudetto.controller.api.CreateController;
+import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.controller.impl.CreateControllerImpl;
+import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.BotView;
@@ -22,7 +22,7 @@ public class GameStarter {
         final Starter viewChangerController = new StarterImpl(viewManager);
 
         //Creating the controller to make the view work with model rules
-        final CreateController controller = new CreateControllerImpl();
+        final CreateUpdateController controller = new CreateUpdateControllerImpl();
 
 
         //Creating the Views that we will use during the game
