@@ -1,10 +1,9 @@
 package giocoscudetto.controller.impl;
 
-import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
-import giocoscudetto.controller.api.Controller;
+import giocoscudetto.controller.api.CreateController;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
@@ -17,7 +16,7 @@ import giocoscudetto.model.impl.TableImpl;
 /**
  * Implementation of controller interface
  */
-public class ControllerImpl implements Controller {
+public class CreateControllerImpl implements CreateController {
 
     private final List<Club> clubs = new LinkedList<>();
     private Table table; //Andrebbe final, ma dovrei definirlo in un costruttore

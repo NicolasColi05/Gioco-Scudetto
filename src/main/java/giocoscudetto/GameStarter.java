@@ -1,8 +1,8 @@
 package giocoscudetto;
 
-import giocoscudetto.controller.api.Controller;
+import giocoscudetto.controller.api.CreateController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.controller.impl.ControllerImpl;
+import giocoscudetto.controller.impl.CreateControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.BotView;
@@ -11,7 +11,7 @@ import giocoscudetto.view.impl.MainFrame;
 import giocoscudetto.view.impl.MatchPanel;
 import giocoscudetto.view.impl.PreMatchView;
 import giocoscudetto.view.impl.ViewManagerImpl;
-import giocoscudetto.view.impl.selection.ClubPanel;
+import giocoscudetto.view.impl.creation.ClubPanel;
 public class GameStarter {
     public static void main(String[] args) {
 
@@ -22,7 +22,7 @@ public class GameStarter {
         final Starter viewChangerController = new StarterImpl(viewManager);
 
         //Creating the controller to make the view work with model rules
-        final Controller controller = new ControllerImpl();
+        final CreateController controller = new CreateControllerImpl();
 
 
         //Creating the Views that we will use during the game

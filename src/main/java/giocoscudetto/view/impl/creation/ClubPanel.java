@@ -1,4 +1,4 @@
-package giocoscudetto.view.impl.selection;
+package giocoscudetto.view.impl.creation;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -25,7 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import giocoscudetto.controller.api.Controller;
+import giocoscudetto.controller.api.CreateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.impl.DefaultPanelImpl;
 
@@ -39,11 +39,11 @@ public class ClubPanel extends DefaultPanelImpl{
     private static final int TEXT_FIELDS_HEIGHT = 40;
 
     private final Starter viewChanger;
-    private final Controller controller;
+    private final CreateController controller;
     private final Image image;
 
 
-    public ClubPanel(final Starter viewChanger, final Controller controller) {
+    public ClubPanel(final Starter viewChanger, final CreateController controller) {
         this.viewChanger = viewChanger;
         this.controller = controller;
 
