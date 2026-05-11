@@ -25,10 +25,10 @@ public class TestFixtures {
     private final static String NAPOLI = "napoli";
     private final static String JUVENTUS = "juventus";
 
-    final Club roma = new ClubImpl(ROMA, new PawnImpl("red"));
-    final Club inter = new ClubImpl(INTER, new PawnImpl("red"));
-    final Club napoli = new ClubImpl(NAPOLI, new PawnImpl("red"));
-    final Club juventus = new ClubImpl(JUVENTUS, new PawnImpl("red"));
+    final Club roma = new ClubImpl(ROMA, new PawnImpl(1));
+    final Club inter = new ClubImpl(INTER, new PawnImpl(1));
+    final Club napoli = new ClubImpl(NAPOLI, new PawnImpl(1));
+    final Club juventus = new ClubImpl(JUVENTUS, new PawnImpl(1));
     final ArrayList<Club> listOfClubs = new ArrayList<>();
 
     @Test
