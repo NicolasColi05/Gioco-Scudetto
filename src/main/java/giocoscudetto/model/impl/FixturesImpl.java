@@ -3,6 +3,7 @@ package giocoscudetto.model.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,22 +15,40 @@ import giocoscudetto.model.api.Scoreboard;
 
 public class FixturesImpl implements Fixtures {
 
-    private final List<Club> listOfClubs;
-    private List<Pair<Club, Club>> listOfMatches;
-    private final Iterator<Pair<Club, Club>> listOfMatchesIterator;
-    private Map<Pair<Club, Club>,Scoreboard> fixture;
+    private final List<Club> listOfClubs = new LinkedList<>();
+    private final List<Pair<Club, Club>> listOfMatches = new ArrayList<>();
+    private final Iterator<Pair<Club, Club>> listOfMatchesIterator = this.listOfMatches.iterator();
+    private final Map<Pair<Club, Club>,Scoreboard> fixture = new LinkedHashMap<>(); //oppure solo hashmap?
     private Pair<Club, Club> currentMatch;
 
     /**
      * Constructor of the class, it takes a list of clubs and generates the fixture of the championship.
      * 
      * @param listOfClubs it's the list of the clubs that will take part in the fixture
-     */
+     
     public FixturesImpl(final List<Club> listOfClubs) {
         this.listOfClubs = listOfClubs;
         this.fixtureGeneration();
         this.listOfMatchesIterator = this.listOfMatches.iterator();
         this.currentMatch = null;
+    }*/ 
+
+    @Override
+    public void fixtureGeneration(final List<Club> listOClubs) {
+        this.listOfClubs.addAll(listOClubs);
+        int i;
+        int j;
+        for (i = 0; i < listOfClubs.size(); i++) {
+            for (j = 0; j < listOfClubs.size(); j++) {
+                if (!(listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName()))) {
+                    listOfMatches.add(new Pair<>(listOfClubs.get(i), listOfClubs.get(j)));
+                }
+            }
+        }
+        java.util.Collections.shuffle(listOfMatches);
+        for (Pair<Club,Club> match : listOfMatches) {
+            fixture.put(match, null);
+        }
     }
 
     @Override
@@ -44,28 +63,6 @@ public class FixturesImpl implements Fixtures {
     @Override
     public Pair<Club, Club> getCurrentMatch() {
         return this.currentMatch;
-    }
-
-    /**
-     * Method that generates the fixture of the championship, it creates a list of pairs 
-     * of the clubs that will play against each other.
-     */
-    private void fixtureGeneration() {
-        this.fixture = new LinkedHashMap<>();
-        this.listOfMatches = new ArrayList<>();
-        int i;
-        int j;
-        for (i = 0; i < listOfClubs.size(); i++) {
-            for (j = 0; j < listOfClubs.size(); j++) {
-                if (!(listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName()))) {
-                    listOfMatches.add(new Pair<>(listOfClubs.get(i), listOfClubs.get(j)));
-                }
-            }
-        }
-        java.util.Collections.shuffle(listOfMatches);
-        for (Pair<Club,Club> match : listOfMatches) {
-            fixture.put(match, null);
-        }
     }
 
     @Override

@@ -41,7 +41,8 @@ public class TestFixtures {
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
         listOfClubs.add(juventus);
-        final FixturesImpl fixture = new FixturesImpl(listOfClubs);
+        final FixturesImpl fixture = new FixturesImpl();
+        fixture.fixtureGeneration(listOfClubs);
         for (final Club club : listOfClubs) {
             System.out.println("" + club.getName() + "\n");
         }

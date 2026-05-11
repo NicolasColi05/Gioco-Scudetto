@@ -122,16 +122,6 @@ public class StarterImpl implements Starter {
         }
     }
 
-    private void setFixture(){
-        this.fixture = new FixturesImpl(listofClubs);
-    }
-
-     @Override
-    public Fixtures getFixture() {
-       return this.fixture;
-    }
-
-
     @Override
     public Table getTable(){
         return this.table;

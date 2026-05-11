@@ -96,13 +96,6 @@ public interface Starter {
      */
     void move();
 
-     /**
-      * this method is for get the fixture of the championship. 
-      * 
-      * @return the fixture of the championship.
-      */
-    Fixtures getFixture();
-
     /**
      * when called this method returns the fixture
      * 
