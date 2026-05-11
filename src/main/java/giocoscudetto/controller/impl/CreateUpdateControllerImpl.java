@@ -19,7 +19,7 @@ import giocoscudetto.model.impl.TableImpl;
 public class CreateUpdateControllerImpl implements CreateUpdateController {
 
     private final List<Club> clubs = new LinkedList<>();
-    private Table table; //Andrebbe final, ma dovrei definirlo in un costruttore
+    private final Table table = new TableImpl();
     private Fixtures fixture; //Andrebbe final, ma dovrei definirlo in un costruttore
     /**
      * {@inheritDoc}
@@ -31,7 +31,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
             clubs.add(new ClubImpl(name, new PawnImpl(1)));
         }
 
-        this.table = new TableImpl(clubs);
+        this.table.addAllClubs(this.clubs);
 
         this.fixture = new FixturesImpl(clubs);
 
