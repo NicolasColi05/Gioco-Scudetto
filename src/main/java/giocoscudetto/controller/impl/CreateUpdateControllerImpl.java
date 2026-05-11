@@ -54,16 +54,25 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
         return this.table.showPosition();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Club> getClubs() {
         return this.clubs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Table getTable() {
         return this.table;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Fixtures getFixture() {
         return this.fixture;
