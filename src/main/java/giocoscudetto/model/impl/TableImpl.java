@@ -14,17 +14,14 @@ import giocoscudetto.model.api.Table;
 public class TableImpl implements Table{
 
     private final List<Club> clubRank = new LinkedList<>();
-
-    /**
-     * Constructor.
-     * 
-     * @param clubs includes all the clubs that partecipates to the tournament
-     *              which i want to put in the correct position.
-     */
-    public TableImpl(final List<Club> clubs) {
-        this.clubRank.addAll(clubs);
-    }   
     
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addAllClubs(final List<Club> clubs) {
+        this.clubRank.addAll(clubs);
+    }
 
     /**
      * {@inheritDoc}

@@ -3,7 +3,7 @@ package giocoscudetto.controller.impl;
 import java.util.LinkedList;
 import java.util.List;
 
-import giocoscudetto.controller.api.Controller;
+
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
