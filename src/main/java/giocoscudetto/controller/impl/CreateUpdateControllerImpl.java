@@ -54,5 +54,20 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
         return this.table.showPosition();
     }
 
+    @Override
+    public List<Club> getClubs() {
+        return this.clubs;
+    }
+
+    @Override
+    public Table getTable() {
+        return this.table;
+    }
+
+    @Override
+    public Fixtures getFixture() {
+        return this.fixture;
+    }
+
     
 }
