@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class TestClub {
 
-    private final Pawn pawn = new PawnImpl("red"); 
+    private final Pawn pawn = new PawnImpl(1); 
     private final Club club1 = new ClubImpl("inter", pawn);
 
     /**

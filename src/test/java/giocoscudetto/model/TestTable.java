@@ -30,9 +30,9 @@ private Club inter;
 
     @BeforeEach
     void setUp() {
-        inter = new ClubImpl("Inter", new PawnImpl("red")); 
-        juve = new ClubImpl("Juve", new PawnImpl("red")); 
-        bologna = new ClubImpl("Bologna", new PawnImpl("red")); 
+        inter = new ClubImpl("Inter", new PawnImpl(1)); 
+        juve = new ClubImpl("Juve", new PawnImpl(1)); 
+        bologna = new ClubImpl("Bologna", new PawnImpl(1)); 
         rank = new TableImpl(List.of(bologna, inter, juve));
     }
 

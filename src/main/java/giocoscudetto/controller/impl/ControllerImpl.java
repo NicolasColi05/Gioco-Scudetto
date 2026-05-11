@@ -28,7 +28,7 @@ public class ControllerImpl implements Controller {
     public void createClubs(List<String> clubsName) {
         
         for (String name : clubsName) {
-            clubs.add(new ClubImpl(name, new PawnImpl("red")));
+            clubs.add(new ClubImpl(name, new PawnImpl(1)));
         }
 
         this.table = new TableImpl(clubs);

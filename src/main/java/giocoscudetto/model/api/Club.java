@@ -22,8 +22,6 @@ public interface Club {
      */
     Pawn getPawn();
     
-    String getColor();
-
     /**
      * Set the name of the club.
      * 

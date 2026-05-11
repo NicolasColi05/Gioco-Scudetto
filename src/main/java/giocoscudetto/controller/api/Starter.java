@@ -57,13 +57,6 @@ public interface Starter {
     String getScore();
  
     /**
-     * this method is for get the color of the home team.
-     * 
-     * @return the Color of the home team.
-     */
-    String getHomeTeamColor();
-
-    /**
      * this method is for get the position of the home team pawn.
      * 
      * @return the position of the pawn of the home team.
@@ -76,13 +69,6 @@ public interface Starter {
      * @param i the position occupied by the keeper.
      */
     void setKeeperPosition(int i);
-
-    /**
-     * this method is for get the color of the guest team.
-     * 
-     * @return the Color of the guest team.
-     */
-    String getGuestTeamColor();
 
     /**
      * this method is for get the position of the guest team pawn.
