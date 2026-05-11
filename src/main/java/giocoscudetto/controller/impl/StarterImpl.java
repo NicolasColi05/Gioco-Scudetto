@@ -74,11 +74,6 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public String getHomeTeamColor() {
-        return this.match.getClubHome().getColor();
-    }
-
-    @Override
     public int getHomePosition() {
         return this.match.getClubHome().getPawn().getPosition();
     }
@@ -86,11 +81,6 @@ public class StarterImpl implements Starter {
     @Override
     public void setKeeperPosition(int i) {
         this.net.setGoalKeeperPosition(i);
-    }
-
-    @Override
-    public String getGuestTeamColor() {
-        return this.match.getClubAway().getColor();
     }
 
     @Override
