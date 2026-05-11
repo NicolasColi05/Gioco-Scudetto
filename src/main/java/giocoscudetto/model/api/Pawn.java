@@ -23,5 +23,5 @@ public interface Pawn {
      * 
      * @return a string representing the color of the pawn.
      */
-    String getColor();
+    int getColor();
 }

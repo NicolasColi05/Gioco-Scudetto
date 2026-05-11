@@ -94,11 +94,6 @@ public class ClubImpl implements Club{
     }
 
     @Override
-    public String getColor() {
-        return this.pawn.getColor();
-    }
-
-    @Override
     public void changePawn(Pawn pawnSelected) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'changePawn'");
