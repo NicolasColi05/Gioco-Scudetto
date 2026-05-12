@@ -212,7 +212,7 @@ public class ClubPanel extends DefaultPanelImpl{
                 colorPicker.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
                 colorPicker.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
 
-                colorPicker.setOnColorChanged(c -> refreshColorConstraints(clubsPawn));
+                colorPicker.setOnColorChanged(c -> refreshColorTaken(clubsPawn));
 
                 pawnPanel.add(colorPicker);
                 pawnPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
@@ -226,11 +226,12 @@ public class ClubPanel extends DefaultPanelImpl{
         }
 
 
-    private void refreshColorConstraints(final List<PawnColorPickerPanel> pickers) {
-    //Get all the selected color
+    private void refreshColorTaken(final List<PawnColorPickerPanel> pickers) {
     final Set<Color> allTaken = new HashSet<>();
     for (PawnColorPickerPanel p : pickers) {
-        if (p.getSelectedColor() != null) allTaken.add(p.getSelectedColor());
+        if (p.getSelectedColor() != null) {
+            allTaken.add(p.getSelectedColor());
+        }
     }
 
     //and then i disable them

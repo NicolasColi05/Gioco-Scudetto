@@ -1,13 +1,16 @@
 package giocoscudetto.view.impl.creation;
 
 import javax.swing.*;
+
+import giocoscudetto.view.api.PawnColorPicker;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public class PawnColorPickerPanel extends JPanel {
+public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
 
     public static final Color[] AVAILABLE_COLORS = {
         new Color(231, 76,  60),   //Red Color
@@ -86,8 +89,11 @@ public class PawnColorPickerPanel extends JPanel {
         }
     }
 
-    /** Disabilita i colori già scelti da altre squadre (escluso il proprio). */
-    public void setTakenColors(Set<Color> takenByOthers) {
+    /**
+     *{@inheritDoc}
+     */
+    @Override
+    public void setTakenColors(final Set<Color> takenByOthers) {
         for (int i = 0; i < AVAILABLE_COLORS.length; i++) {
             boolean isMine = AVAILABLE_COLORS[i].equals(selectedColor);
             buttons.get(i).setEnabled(!takenByOthers.contains(AVAILABLE_COLORS[i]) || isMine);
@@ -95,16 +101,29 @@ public class PawnColorPickerPanel extends JPanel {
         repaint();
     }
 
-    public Color getSelectedColor() { return selectedColor; }
+    /**
+     *{@inheritDoc}
+     */
+    @Override
+    public Color getSelectedColor() {
+        return selectedColor; 
+    }
 
-    /** Reset completo (usato quando cambia il numero di squadre). */
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public void reset() {
         selectedColor = null;
         buttons.forEach(btn -> btn.setEnabled(true));
         repaint();
     }
 
-    public void setOnColorChanged(Consumer<Color> callback) {
+    /**
+     *{@inheritDoc}
+     */
+    @Override
+    public void setOnColorChanged(final Consumer<Color> callback) {
         this.onColorChanged = callback;
     }
 }
