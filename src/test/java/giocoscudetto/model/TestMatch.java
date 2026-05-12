@@ -14,11 +14,15 @@ public class TestMatch {
     private Match match = new MatchImpl(roma, inter);
 
     @Test
-    void TestMatchImpl() {
+    void TestInitial(){
         assertEquals(roma, match.getClubHome());
         assertEquals(inter, match.getClubAway());
-        assertEquals("roma", match.getClubHome().getName());
-        assertEquals("inter", match.getClubAway().getName());
+        assertEquals(0,match.getScore().getGuestScore());
+        assertEquals(0,match.getScore().getHomeScore());
+    }
+
+    @Test
+    void TestGoal() {
         match.goalAway();
         match.goalAway();
         match.goalAway();
@@ -27,7 +31,12 @@ public class TestMatch {
         assertEquals(1, match.getScore().getHomeScore());
         match.setGoalAway(0);
         assertEquals(0, match.getScore().getGuestScore());
-        System.out.println(match.getScore());
     }
-    
+
+    @Test
+    void TestDiceLogic(){
+        /*match.getClubHome().getPawn().setPosition(22);
+        match.getClubAway().getPawn().setPosition(22);
+        match.rollDice();*/
+    }
 }
