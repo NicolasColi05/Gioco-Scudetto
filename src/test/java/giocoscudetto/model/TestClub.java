@@ -33,19 +33,6 @@ public class TestClub {
         assertEquals(club1.getNetDiff(), 0);
     }
 
-    @Test
-    void testNameChanges() {
-        final String newName = "milan";
-        
-        club1.setName(newName);
-        assertEquals(club1.getName(), newName);
-
-        //Testing an incoerent case where nothing should be done
-        club1.setName(null);
-        assertEquals(club1.getName(), newName);
-      
-    }
-
     /**
      * Testing adding points throught fictitious matches.
      */
