@@ -92,7 +92,7 @@ public class BoardPanel extends DefaultPanelImpl  {
         if (position >= 17 && position <= 24) {
             g2d.drawImage(img, (position - 16)*box_w, 0, box_w, box_h, null);
         }
-        if (position >= 25 && position <= 31) {
+        if (position >= 25 && position <= 32) {
             g2d.drawImage(img, x - box_w, (position - 24)*box_h, box_w, box_h, null);
         }
     }
@@ -116,12 +116,10 @@ public class BoardPanel extends DefaultPanelImpl  {
         g2d.setFont(new Font("Boh", Font.BOLD, x/2));
         g2d.drawString("GIOCO DELLO SCUDETTO", x + x/3, y*2);
 
-
-        final String result = this.controller.getScore();
         g2d.setColor(Color.black);
         g2d.setFont(new Font("Boh", Font.BOLD, x/2));
         g2d.drawString("SCORE", 4*x, y*5);
-        g2d.drawString(result, 4*x, y*6);
+        g2d.drawString(this.controller.getScore(), 4*x, y*6);
 
     }
 
