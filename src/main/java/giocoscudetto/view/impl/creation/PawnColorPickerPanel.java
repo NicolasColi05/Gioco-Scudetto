@@ -3,7 +3,6 @@ package giocoscudetto.view.impl.creation;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -17,7 +16,6 @@ public class PawnColorPickerPanel extends JPanel {
         new Color(241, 196, 15)    //Yellow Color
     };
 
-    private static final String[] LABELS = {"Red", "Blue", "Green", "Yellow"};
     private static final int BTN_SIZE = 38;
 
     private Color selectedColor = null;
@@ -30,7 +28,6 @@ public class PawnColorPickerPanel extends JPanel {
 
         for (int i = 0; i < AVAILABLE_COLORS.length; i++) {
             final Color c = AVAILABLE_COLORS[i];
-            final String label = LABELS[i];
 
             JButton btn = new JButton() {
                 @Override
@@ -66,18 +63,21 @@ public class PawnColorPickerPanel extends JPanel {
                 }
             };
 
+            //Changing button size and properties when going on it
             btn.setPreferredSize(new Dimension(BTN_SIZE, BTN_SIZE));
             btn.setBorderPainted(false);
             btn.setContentAreaFilled(false);
             btn.setFocusPainted(false);
-            btn.setToolTipText(label);
             btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
             btn.addActionListener(e -> {
                 if (btn.isEnabled()) {
                     selectedColor = c;
                     buttons.forEach(JButton::repaint);
-                    if (onColorChanged != null) onColorChanged.accept(c);
+
+                    if (onColorChanged != null) {
+                        onColorChanged.accept(c);
+                    } 
                 }
             });
 
