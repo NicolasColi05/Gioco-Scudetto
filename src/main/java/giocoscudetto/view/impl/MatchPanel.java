@@ -48,7 +48,7 @@ public class MatchPanel extends DefaultPanelImpl {
         netWrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
         netWrapper.add(new NetPanel(this.controller), BorderLayout.CENTER);
 
-        JPanel bottomDice = new DicePanel(this.controller);
+        JPanel bottomDice = new DicePanel(this.controller,boardJPanel);
         bottomDice.setAlignmentX(Component.CENTER_ALIGNMENT);
         bottomDice.setMaximumSize(new Dimension(280, 120));
 
@@ -81,7 +81,7 @@ public class MatchPanel extends DefaultPanelImpl {
         public void run() {
             while (!this.stop) {
                 try {
-                    SwingUtilities.invokeAndWait(() -> MatchPanel.this.turnLabel.setText("Turn of :"));
+                    SwingUtilities.invokeAndWait(() -> MatchPanel.this.turnLabel.setText("Turn of :"+controller.getCurrentPlayer()));
                     Thread.sleep(100);
                 } catch (InvocationTargetException | InterruptedException ex) {
                         ex.printStackTrace(); //NOPMD

@@ -17,7 +17,7 @@ public class FixturesImpl implements Fixtures {
 
     private final List<Club> listOfClubs = new LinkedList<>();
     private final List<Match> listOfMatches = new ArrayList<>();
-    private final Iterator<Match> listOfMatchesIterator = this.listOfMatches.iterator();
+    private Iterator<Match> listOfMatchesIterator ;
     private final Map<Match,Scoreboard> fixture = new LinkedHashMap<>(); //oppure solo hashmap?
     private Match currentMatch;
 
@@ -49,6 +49,7 @@ public class FixturesImpl implements Fixtures {
         for (Match match : listOfMatches) {
             fixture.put(match, null);
         }
+        listOfMatchesIterator = listOfMatches.iterator();
     }
 
     @Override

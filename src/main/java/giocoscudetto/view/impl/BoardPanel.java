@@ -51,8 +51,8 @@ public class BoardPanel extends DefaultPanelImpl  {
     private void drawAllPawns(Graphics2D g2d) {
 
         
-        this.drawPawn(g2d, this.getPawnColor("Yellow"), 0, OFFSET_HOME_PAWN);//this.getPawnColor(this.controller.getHomeTeamColor())
-        this.drawPawn(g2d, this.getPawnColor("Red"), 0, OFFSET_GUEST_PAWN);//this.controller.getGuestTeamColor())
+        this.drawPawn(g2d, this.getPawnColor("Yellow"), this.controller.getHomePosition(), OFFSET_HOME_PAWN);//this.getPawnColor(this.controller.getHomeTeamColor())
+        this.drawPawn(g2d, this.getPawnColor("Red"), this.controller.getGuestPosition(), OFFSET_GUEST_PAWN);//this.controller.getGuestTeamColor())
 
     }
 
