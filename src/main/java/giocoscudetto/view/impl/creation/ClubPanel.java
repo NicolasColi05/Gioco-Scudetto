@@ -114,8 +114,8 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel switchingButtonPanel = new JPanel(new BorderLayout());
         switchingButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
-        final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK,null);
-        final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK,null  );
+        final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66));
+        final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66)  );
         
         switchingButtonPanel.add(btnBack, BorderLayout.WEST);
         switchingButtonPanel.add(btnCont, BorderLayout.EAST);
