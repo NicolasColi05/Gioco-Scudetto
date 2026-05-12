@@ -25,7 +25,7 @@ public class PawnColorPickerPanel extends JPanel {
     private Consumer<Color> onColorChanged;
 
     public PawnColorPickerPanel() {
-        setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 6, 0));
         setOpaque(false);
 
         for (int i = 0; i < AVAILABLE_COLORS.length; i++) {
