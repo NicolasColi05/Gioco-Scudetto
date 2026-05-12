@@ -14,11 +14,13 @@ public class MatchImpl implements Match {
     private final Dice dice6;
     private static final int HALF_BOARD = 16;
 
-    public MatchImpl() {
+    public MatchImpl(Club clubHome, Club clubAway) {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
         this.dice6 = new Dice6Impl();
         turn.chooseStartingPlayer();
+        this.clubHome = clubHome;
+        this.clubAway = clubAway;
     }
 
     @Override

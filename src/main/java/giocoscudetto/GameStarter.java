@@ -18,17 +18,18 @@ public class GameStarter {
         //Creating the View Manger 
         final ViewManager viewManager = new ViewManagerImpl();
 
-        //Creating the controller to change the panel
-        final Starter viewChangerController = new StarterImpl(viewManager);
 
         //Creating the controller to make the view work with model rules
         final CreateUpdateController controller = new CreateUpdateControllerImpl();
+
+        //Creating the controller to change the panel
+        final Starter viewChangerController = new StarterImpl(viewManager, controller);
 
 
         //Creating the Views that we will use during the game
         final HomePanel homeView = new HomePanel(viewChangerController);
         final ClubPanel clubView = new ClubPanel(viewChangerController, controller);
-        final PreMatchView preMatch = new PreMatchView(viewChangerController);
+        final PreMatchView preMatch = new PreMatchView(viewChangerController, controller);
         final BotView botView = new BotView(viewChangerController);
         //final MatchPanel MatchPanel = new MatchPanel(viewChangerController);
 

@@ -1,6 +1,5 @@
 package giocoscudetto.model;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
@@ -41,23 +40,24 @@ public class TestFixtures {
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
         listOfClubs.add(juventus);
-        final FixturesImpl fixture = new FixturesImpl(listOfClubs);
+        final FixturesImpl fixture = new FixturesImpl();
+        fixture.fixtureGeneration(listOfClubs);
         for (final Club club : listOfClubs) {
             System.out.println("" + club.getName() + "\n");
         }
         assertNotNull(fixture);
         assertEquals(4, listOfClubs.size());
         while (fixture.getNextMatch()!= null){
-            if (fixture.getCurrentMatch().e1().getName() == INTER || fixture.getCurrentMatch().e2().getName() == INTER){
+            if (fixture.getCurrentMatch().getClubHome().getName() == INTER || fixture.getCurrentMatch().getClubAway().getName() == INTER){
                 intercount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == ROMA || fixture.getCurrentMatch().e2().getName() == ROMA){
+            if (fixture.getCurrentMatch().getClubHome().getName() == ROMA || fixture.getCurrentMatch().getClubAway().getName() == ROMA){
                 romacount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == NAPOLI || fixture.getCurrentMatch().e2().getName() == NAPOLI){
+            if (fixture.getCurrentMatch().getClubHome().getName() == NAPOLI || fixture.getCurrentMatch().getClubAway().getName() == NAPOLI){
                 napolicount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == JUVENTUS || fixture.getCurrentMatch().e2().getName() == JUVENTUS){
+            if (fixture.getCurrentMatch().getClubHome().getName() == JUVENTUS || fixture.getCurrentMatch().getClubAway().getName() == JUVENTUS){
                 juventuscount++;
             }
         }
