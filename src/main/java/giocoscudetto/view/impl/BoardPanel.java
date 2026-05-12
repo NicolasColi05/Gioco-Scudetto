@@ -142,7 +142,7 @@ public class BoardPanel extends DefaultPanelImpl  {
             pawnY = y - ((position - 8) * box_h + (int)(box_h * offset));           
         }
         else if (position >= 17 && position <= 24) {
-            pawnX = (position - 18) * box_w - (int)(box_w * offset);
+            pawnX = (position - 15) * box_w - (int)(box_w * offset);
             pawnY = box_h / 2;
         }
         else if (position >= 25 && position <= 32) {
