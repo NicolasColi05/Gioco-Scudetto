@@ -77,15 +77,17 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel clubNamePanel = new JPanel();
         final TitledBorder nameTitle = new TitledBorder("CLUB'S NAME");
         nameTitle.setBorder(BorderFactory.createEmptyBorder());
+        nameTitle.setTitleJustification(TitledBorder.CENTER);
         clubNamePanel.setLayout(new BoxLayout(clubNamePanel, BoxLayout.Y_AXIS));
         clubNamePanel.setBorder(nameTitle);
         
 
         final JPanel clubPawnPanel = new JPanel();
-        final TitledBorder pawnColor = new TitledBorder("PAWN'S COLOR"); 
-        pawnColor.setBorder(BorderFactory.createEmptyBorder()); 
+        final TitledBorder pawnTitle = new TitledBorder("PAWN'S COLOR"); 
+        pawnTitle.setBorder(BorderFactory.createEmptyBorder());
+        pawnTitle.setTitleJustification(TitledBorder.CENTER); 
         clubPawnPanel.setLayout(new BoxLayout(clubPawnPanel, BoxLayout.Y_AXIS));
-        clubPawnPanel.setBorder(pawnColor);
+        clubPawnPanel.setBorder(pawnTitle);
 
         //List which will contains the JTextFields to select each clubs name
         final List<JTextField> clubsName = new ArrayList<>();
