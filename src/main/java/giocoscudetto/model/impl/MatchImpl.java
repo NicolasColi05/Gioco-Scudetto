@@ -71,10 +71,15 @@ public class MatchImpl implements Match {
 
     @Override
     public int rollDice() {
+        int dice6;
         if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD){
-            return this.dice6.rollDice() + this.dice6.rollDice();
+            dice6 = this.dice6.rollDice() + this.dice6.rollDice();
+            System.out.println("due dadi" +dice6);
+            return dice6;
         }
-        return this.dice6.rollDice();
+        dice6 = this.dice6.rollDice();
+        System.out.println("un dado" + dice6);
+        return dice6;
     }
     
     @Override
