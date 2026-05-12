@@ -6,7 +6,6 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.impl.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.util.ArrayList;
 
