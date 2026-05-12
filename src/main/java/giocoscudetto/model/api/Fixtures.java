@@ -19,14 +19,14 @@ public interface Fixtures {
      * 
      * @return the next match to be played
      */
-    Pair<Club, Club> getNextMatch();
+    Match getNextMatch();
 
     /**
      * Method that returns the current match being played, it returns a pair of clubs that are playing against each other.
      * 
      * @return the current match being played
      */
-    Pair<Club, Club> getCurrentMatch();
+    Match getCurrentMatch();
 
     /**
      * Method that returns a string representing the fixture, with all the matches
