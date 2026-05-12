@@ -30,18 +30,20 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import giocoscudetto.model.api.Pair;
+import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
 import giocoscudetto.view.impl.creation.ClubPanel;
+import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 
 public class PreMatchView extends DefaultPanelImpl{
     
-    private Starter controller;
+    private Starter starter;
+    private CreateUpdateController controller;
     //dati di prova
-    private static String[] columnNames = {"Clubs", "Points", "Net Diff"};
+    private static String[] columnNamesS = {"Clubs", "Points", "Net Diff"};
     private Object[][] dati = {
         {"Inter", 6, 3},
         {"Roma", 7, 2},
@@ -64,10 +66,10 @@ public class PreMatchView extends DefaultPanelImpl{
         {"Inter", 6, 3},
         {"Roma", 7, 2}
     };
-    private static String[] columnNames2 = {"Clubs", "Results"};
+    private static String[] columnNamesF = {"Clubs", "Results"};
     private Object[][] dati2 = {
         { "prova", "0-0"},
-        {new Pair("Inter", "Roma"), "0-0"}
+        { "inter-roma", "0-0"}
     };
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -76,8 +78,15 @@ public class PreMatchView extends DefaultPanelImpl{
     private static final int BUTTON_BORDER = 5;
     private final Image image;
 
-    public PreMatchView(Starter controller){
+    public PreMatchView(Starter starter, final CreateUpdateController controller){
+        this.starter = starter;
         this.controller = controller;
+
+        Table tablee = this.controller.getTable();
+
+        Object[][] datiprova = {
+            {tablee}
+        };
 
         this.setLayout(new BorderLayout());
 
@@ -97,7 +106,7 @@ public class PreMatchView extends DefaultPanelImpl{
         lowerPanel.setOpaque(false);
 
         //prima tabella
-        final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNames2), getTitleFont(), Color.BLACK, null);
+        final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNamesF), getTitleFont(), Color.BLACK, null);
         fixtureTable.setEnabled(false);
         fixtureTable.setOpaque(false);
         fixtureTable.getTableHeader().setReorderingAllowed(false);
@@ -105,7 +114,7 @@ public class PreMatchView extends DefaultPanelImpl{
         
 
         //seconda tabella
-        final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNames), getTitleFont(), Color.BLACK, null);
+        final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNamesS), getTitleFont(), Color.BLACK, null);
         standingsTable.setEnabled(false);
         standingsTable.setOpaque(false);
         //standingsTable.setBackground(new Color(0, 0, 0, 0));
@@ -117,11 +126,11 @@ public class PreMatchView extends DefaultPanelImpl{
         JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
 
         backButton.addActionListener(e -> { 
-            this.controller.changeView("club");
+            this.starter.changeView("club");
         });
 
         continueButton.addActionListener(e -> { 
-            this.controller.changeView("match");
+            this.starter.changeView("match");
         });
 
         //aggiunte al panel inferiore

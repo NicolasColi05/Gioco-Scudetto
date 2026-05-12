@@ -20,7 +20,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
 
     private final List<Club> clubs = new LinkedList<>();
     private final Table table = new TableImpl();
-    private Fixtures fixture;
+    private final Fixtures fixture = new FixturesImpl();
     
     /**
      * {@inheritDoc}
@@ -34,7 +34,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
 
         this.table.addAllClubs(this.clubs);
 
-        this.fixture = new FixturesImpl(clubs); 
+        this.fixture.fixtureGeneration(this.clubs);
 
     }
 

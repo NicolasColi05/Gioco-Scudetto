@@ -3,37 +3,56 @@ package giocoscudetto.model.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
-import giocoscudetto.model.api.Pair;
 import giocoscudetto.model.api.Scoreboard;
 
 
 public class FixturesImpl implements Fixtures {
 
-    private final List<Club> listOfClubs;
-    private List<Pair<Club, Club>> listOfMatches;
-    private final Iterator<Pair<Club, Club>> listOfMatchesIterator;
-    private Map<Pair<Club, Club>,Scoreboard> fixture;
-    private Pair<Club, Club> currentMatch;
+    private final List<Club> listOfClubs = new LinkedList<>();
+    private final List<Match> listOfMatches = new ArrayList<>();
+    private final Iterator<Match> listOfMatchesIterator = this.listOfMatches.iterator();
+    private final Map<Match,Scoreboard> fixture = new LinkedHashMap<>(); //oppure solo hashmap?
+    private Match currentMatch;
 
     /**
      * Constructor of the class, it takes a list of clubs and generates the fixture of the championship.
      * 
      * @param listOfClubs it's the list of the clubs that will take part in the fixture
-     */
+     
     public FixturesImpl(final List<Club> listOfClubs) {
         this.listOfClubs = listOfClubs;
         this.fixtureGeneration();
         this.listOfMatchesIterator = this.listOfMatches.iterator();
         this.currentMatch = null;
+    }*/ 
+
+    @Override
+    public void fixtureGeneration(final List<Club> listOClubs) {
+        this.listOfClubs.addAll(listOClubs);
+        int i;
+        int j;
+        for (i = 0; i < listOfClubs.size(); i++) {
+            for (j = 0; j < listOfClubs.size(); j++) {
+                if (!(listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName()))) {
+                    listOfMatches.add(new MatchImpl(listOfClubs.get(i), listOfClubs.get(j)));
+                }
+            }
+        }
+        java.util.Collections.shuffle(listOfMatches);
+        for (Match match : listOfMatches) {
+            fixture.put(match, null);
+        }
     }
 
     @Override
-    public Pair<Club, Club> getNextMatch() {
+    public Match getNextMatch() {
         if(this.listOfMatchesIterator.hasNext()){
             this.currentMatch = this.listOfMatchesIterator.next();
             return this.currentMatch;
@@ -42,30 +61,8 @@ public class FixturesImpl implements Fixtures {
     }
 
     @Override
-    public Pair<Club, Club> getCurrentMatch() {
+    public Match getCurrentMatch() {
         return this.currentMatch;
-    }
-
-    /**
-     * Method that generates the fixture of the championship, it creates a list of pairs 
-     * of the clubs that will play against each other.
-     */
-    private void fixtureGeneration() {
-        this.fixture = new LinkedHashMap<>();
-        this.listOfMatches = new ArrayList<>();
-        int i;
-        int j;
-        for (i = 0; i < listOfClubs.size(); i++) {
-            for (j = 0; j < listOfClubs.size(); j++) {
-                if (!(listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName()))) {
-                    listOfMatches.add(new Pair<>(listOfClubs.get(i), listOfClubs.get(j)));
-                }
-            }
-        }
-        java.util.Collections.shuffle(listOfMatches);
-        for (Pair<Club,Club> match : listOfMatches) {
-            fixture.put(match, null);
-        }
     }
 
     @Override
@@ -93,14 +90,14 @@ public class FixturesImpl implements Fixtures {
     }
 
     // Iteriamo sull'entry set per avere accesso a chiave e valore
-    for (Map.Entry<Pair<Club, Club>, Scoreboard> entry : fixture.entrySet()) {
-        Pair<Club, Club> match = entry.getKey();
+    for (Map.Entry<Match, Scoreboard> entry : fixture.entrySet()) {
+        Match match = entry.getKey();
         Scoreboard result = entry.getValue();
 
         // Costruzione della riga
         sb.append(String.format("%-15s vs %15s", 
-                  match.e1().getName(),
-                  match.e2().getName()));
+                  match.getClubHome().getName(),
+                  match.getClubAway().getName()));
 
         sb.append("  |  Risultato: ");
         
