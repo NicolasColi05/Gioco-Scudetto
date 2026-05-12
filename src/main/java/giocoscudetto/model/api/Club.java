@@ -23,13 +23,6 @@ public interface Club {
     Pawn getPawn();
     
     /**
-     * Set the name of the club.
-     * 
-     * @param name is the name selected by the team.
-     */
-    void setName(String name);
-
-    /**
      * Increments the points of the club.
      * 
      * @param points to be summed to the actual total.
@@ -43,15 +36,6 @@ public interface Club {
      * @param goalConceded in the match that just ended.
      */
     void changeNetDiffs(int goalScored, int goalConceded);
-    void changePawn(Pawn pawnSelected);
-
-
-    /**
-     * Setting the pawn selected by the club.
-     * 
-     * @param pawnSelected
-     */
-    void setPawn(Pawn pawnSelected);
 
 }
   
