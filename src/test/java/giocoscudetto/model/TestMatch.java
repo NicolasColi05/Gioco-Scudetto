@@ -5,7 +5,6 @@ import giocoscudetto.model.api.Match;
 import giocoscudetto.model.impl.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,7 @@ public class TestMatch {
     private Match match = new MatchImpl(roma, inter);
 
     @Test
-    void TestMatch() {
+    void TestMatchImpl() {
         assertEquals(roma, match.getClubHome());
         assertEquals(inter, match.getClubAway());
         assertEquals("roma", match.getClubHome().getName());
@@ -23,8 +22,11 @@ public class TestMatch {
         match.goalAway();
         match.goalAway();
         match.goalAway();
-        
+        match.goalHome();
         assertEquals(3, match.getScore().getGuestScore());
+        assertEquals(1, match.getScore().getHomeScore());
+        match.setGoalAway(0);
+        assertEquals(0, match.getScore().getGuestScore());
         System.out.println(match.getScore());
     }
     
