@@ -49,16 +49,16 @@ public class TestFixtures {
         assertNotNull(fixture);
         assertEquals(4, listOfClubs.size());
         while (fixture.getNextMatch()!= null){
-            if (fixture.getCurrentMatch().e1().getName() == INTER || fixture.getCurrentMatch().e2().getName() == INTER){
+            if (fixture.getCurrentMatch().getClubHome().getName() == INTER || fixture.getCurrentMatch().getClubAway().getName() == INTER){
                 intercount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == ROMA || fixture.getCurrentMatch().e2().getName() == ROMA){
+            if (fixture.getCurrentMatch().getClubHome().getName() == ROMA || fixture.getCurrentMatch().getClubAway().getName() == ROMA){
                 romacount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == NAPOLI || fixture.getCurrentMatch().e2().getName() == NAPOLI){
+            if (fixture.getCurrentMatch().getClubHome().getName() == NAPOLI || fixture.getCurrentMatch().getClubAway().getName() == NAPOLI){
                 napolicount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == JUVENTUS || fixture.getCurrentMatch().e2().getName() == JUVENTUS){
+            if (fixture.getCurrentMatch().getClubHome().getName() == JUVENTUS || fixture.getCurrentMatch().getClubAway().getName() == JUVENTUS){
                 juventuscount++;
             }
         }
