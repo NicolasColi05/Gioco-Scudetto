@@ -36,6 +36,7 @@ public class StarterImpl implements Starter {
     public StarterImpl(final ViewManager manager, CreateUpdateController controller) {
         this.viewManager = manager;
         this.fixture = controller.getFixture();
+        this.setMatch();
     }
 
     @Override
@@ -104,7 +105,7 @@ public class StarterImpl implements Starter {
 
     @Override
     public void move() {
-        this.match.getCurrentPlayer().getPawn().changePosition(this.match.rollDice());
+        this.match.turn().getPawn().changePosition(this.match.rollDice());
     }
 
     @Override
