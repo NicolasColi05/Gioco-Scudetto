@@ -47,6 +47,7 @@ public class TestFixtures {
         }
         assertNotNull(fixture);
         assertEquals(4, listOfClubs.size());
+        System.out.println(fixture);
         while (fixture.getNextMatch()!= null){
             if (fixture.getCurrentMatch().getClubHome().getName() == INTER || fixture.getCurrentMatch().getClubAway().getName() == INTER){
                 intercount++;
@@ -65,7 +66,6 @@ public class TestFixtures {
         assertEquals(6, napolicount);
         assertEquals(6, romacount);
         assertEquals(6, juventuscount);
-        System.out.println(fixture);
     }
 
     @Test
