@@ -17,6 +17,7 @@ public class TestMatchPanel extends JFrame{
         this.setSize(650, 670);
         Starter s = new StarterImpl(null);
         s.setClubs(new ArrayList<>(List.of("Fede","Nico")), new ArrayList<>(List.of("giallo","rosso")));
+        
         JPanel pa = new giocoscudetto.view.impl.MatchPanel(s);
         this.setContentPane(pa);
         this.setVisible(true);
