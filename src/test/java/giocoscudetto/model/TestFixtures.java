@@ -1,13 +1,11 @@
 package giocoscudetto.model;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.impl.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.util.ArrayList;
 
@@ -25,10 +23,10 @@ public class TestFixtures {
     private final static String NAPOLI = "napoli";
     private final static String JUVENTUS = "juventus";
 
-    final Club roma = new ClubImpl(ROMA, new PawnImpl("red"));
-    final Club inter = new ClubImpl(INTER, new PawnImpl("red"));
-    final Club napoli = new ClubImpl(NAPOLI, new PawnImpl("red"));
-    final Club juventus = new ClubImpl(JUVENTUS, new PawnImpl("red"));
+    final Club roma = new ClubImpl(ROMA, new PawnImpl(1));
+    final Club inter = new ClubImpl(INTER, new PawnImpl(1));
+    final Club napoli = new ClubImpl(NAPOLI, new PawnImpl(1));
+    final Club juventus = new ClubImpl(JUVENTUS, new PawnImpl(1));
     final ArrayList<Club> listOfClubs = new ArrayList<>();
 
     @Test
@@ -41,23 +39,24 @@ public class TestFixtures {
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
         listOfClubs.add(juventus);
-        final FixturesImpl fixture = new FixturesImpl(listOfClubs);
+        final FixturesImpl fixture = new FixturesImpl();
+        fixture.fixtureGeneration(listOfClubs);
         for (final Club club : listOfClubs) {
             System.out.println("" + club.getName() + "\n");
         }
         assertNotNull(fixture);
         assertEquals(4, listOfClubs.size());
         while (fixture.getNextMatch()!= null){
-            if (fixture.getCurrentMatch().e1().getName() == INTER || fixture.getCurrentMatch().e2().getName() == INTER){
+            if (fixture.getCurrentMatch().getClubHome().getName() == INTER || fixture.getCurrentMatch().getClubAway().getName() == INTER){
                 intercount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == ROMA || fixture.getCurrentMatch().e2().getName() == ROMA){
+            if (fixture.getCurrentMatch().getClubHome().getName() == ROMA || fixture.getCurrentMatch().getClubAway().getName() == ROMA){
                 romacount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == NAPOLI || fixture.getCurrentMatch().e2().getName() == NAPOLI){
+            if (fixture.getCurrentMatch().getClubHome().getName() == NAPOLI || fixture.getCurrentMatch().getClubAway().getName() == NAPOLI){
                 napolicount++;
             }
-            if (fixture.getCurrentMatch().e1().getName() == JUVENTUS || fixture.getCurrentMatch().e2().getName() == JUVENTUS){
+            if (fixture.getCurrentMatch().getClubHome().getName() == JUVENTUS || fixture.getCurrentMatch().getClubAway().getName() == JUVENTUS){
                 juventuscount++;
             }
         }

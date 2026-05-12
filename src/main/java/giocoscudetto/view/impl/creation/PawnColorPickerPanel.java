@@ -1,14 +1,16 @@
-package giocoscudetto.view.impl.selection;
+package giocoscudetto.view.impl.creation;
 
 import javax.swing.*;
+
+import giocoscudetto.view.api.PawnColorPicker;
+
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public class PawnColorPickerPanel extends JPanel {
+public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
 
     public static final Color[] AVAILABLE_COLORS = {
         new Color(231, 76,  60),   //Red Color
@@ -17,7 +19,6 @@ public class PawnColorPickerPanel extends JPanel {
         new Color(241, 196, 15)    //Yellow Color
     };
 
-    private static final String[] LABELS = {"Red", "Blue", "Green", "Yellow"};
     private static final int BTN_SIZE = 38;
 
     private Color selectedColor = null;
@@ -25,12 +26,11 @@ public class PawnColorPickerPanel extends JPanel {
     private Consumer<Color> onColorChanged;
 
     public PawnColorPickerPanel() {
-        setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 6, 0));
         setOpaque(false);
 
         for (int i = 0; i < AVAILABLE_COLORS.length; i++) {
             final Color c = AVAILABLE_COLORS[i];
-            final String label = LABELS[i];
 
             JButton btn = new JButton() {
                 @Override
@@ -66,18 +66,21 @@ public class PawnColorPickerPanel extends JPanel {
                 }
             };
 
+            //Changing button size and properties when going on it
             btn.setPreferredSize(new Dimension(BTN_SIZE, BTN_SIZE));
             btn.setBorderPainted(false);
             btn.setContentAreaFilled(false);
             btn.setFocusPainted(false);
-            btn.setToolTipText(label);
             btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
             btn.addActionListener(e -> {
                 if (btn.isEnabled()) {
                     selectedColor = c;
                     buttons.forEach(JButton::repaint);
-                    if (onColorChanged != null) onColorChanged.accept(c);
+
+                    if (onColorChanged != null) {
+                        onColorChanged.accept(c);
+                    } 
                 }
             });
 
@@ -86,8 +89,11 @@ public class PawnColorPickerPanel extends JPanel {
         }
     }
 
-    /** Disabilita i colori già scelti da altre squadre (escluso il proprio). */
-    public void setTakenColors(Set<Color> takenByOthers) {
+    /**
+     *{@inheritDoc}
+     */
+    @Override
+    public void setTakenColors(final Set<Color> takenByOthers) {
         for (int i = 0; i < AVAILABLE_COLORS.length; i++) {
             boolean isMine = AVAILABLE_COLORS[i].equals(selectedColor);
             buttons.get(i).setEnabled(!takenByOthers.contains(AVAILABLE_COLORS[i]) || isMine);
@@ -95,16 +101,29 @@ public class PawnColorPickerPanel extends JPanel {
         repaint();
     }
 
-    public Color getSelectedColor() { return selectedColor; }
+    /**
+     *{@inheritDoc}
+     */
+    @Override
+    public Color getSelectedColor() {
+        return selectedColor; 
+    }
 
-    /** Reset completo (usato quando cambia il numero di squadre). */
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public void reset() {
         selectedColor = null;
         buttons.forEach(btn -> btn.setEnabled(true));
         repaint();
     }
 
-    public void setOnColorChanged(Consumer<Color> callback) {
+    /**
+     *{@inheritDoc}
+     */
+    @Override
+    public void setOnColorChanged(final Consumer<Color> callback) {
         this.onColorChanged = callback;
     }
 }

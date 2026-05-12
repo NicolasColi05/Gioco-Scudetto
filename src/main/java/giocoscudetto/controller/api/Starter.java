@@ -29,18 +29,6 @@ public interface Starter {
      */
     void checkBox();
 
-     /**
-     * this method is used to set the number of clubs that
-     * will participate in the championship
-     */
-    void setNumberOfClubs(int n);
-    
-    /**
-     * this method is used to create a new club
-     * 
-     */
-    void setClubs(ArrayList<String> names, ArrayList<String> pawns);
-
     /**
      * this method is for get the image of a box.
      * 
@@ -57,13 +45,6 @@ public interface Starter {
     String getScore();
  
     /**
-     * this method is for get the color of the home team.
-     * 
-     * @return the Color of the home team.
-     */
-    String getHomeTeamColor();
-
-    /**
      * this method is for get the position of the home team pawn.
      * 
      * @return the position of the pawn of the home team.
@@ -76,13 +57,6 @@ public interface Starter {
      * @param i the position occupied by the keeper.
      */
     void setKeeperPosition(int i);
-
-    /**
-     * this method is for get the color of the guest team.
-     * 
-     * @return the Color of the guest team.
-     */
-    String getGuestTeamColor();
 
     /**
      * this method is for get the position of the guest team pawn.
@@ -110,13 +84,6 @@ public interface Starter {
      */
     void move();
 
-     /**
-      * this method is for get the fixture of the championship. 
-      * 
-      * @return the fixture of the championship.
-      */
-    Fixtures getFixture();
-
     /**
      * when called this method returns the fixture
      * 
@@ -130,4 +97,10 @@ public interface Starter {
      * @return a string that contains the description of the current box.
      */
     String getDescription();
+
+    /**
+     * this method sets the match with the next fixture match
+     * 
+     */
+	void setMatch();
 }

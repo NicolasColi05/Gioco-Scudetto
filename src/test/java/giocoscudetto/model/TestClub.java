@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class TestClub {
 
-    private final Pawn pawn = new PawnImpl("red"); 
+    private final Pawn pawn = new PawnImpl(1); 
     private final Club club1 = new ClubImpl("inter", pawn);
 
     /**
@@ -31,19 +31,6 @@ public class TestClub {
         assertNotNull(club1.getPawn());
         assertEquals(club1.getPoints(), 0);
         assertEquals(club1.getNetDiff(), 0);
-    }
-
-    @Test
-    void testNameChanges() {
-        final String newName = "milan";
-        
-        club1.setName(newName);
-        assertEquals(club1.getName(), newName);
-
-        //Testing an incoerent case where nothing should be done
-        club1.setName(null);
-        assertEquals(club1.getName(), newName);
-      
     }
 
     /**

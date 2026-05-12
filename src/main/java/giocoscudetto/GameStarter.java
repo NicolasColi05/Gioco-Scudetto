@@ -1,8 +1,8 @@
 package giocoscudetto;
 
-import giocoscudetto.controller.api.Controller;
+import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.controller.impl.ControllerImpl;
+import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.BotView;
@@ -11,24 +11,25 @@ import giocoscudetto.view.impl.MainFrame;
 import giocoscudetto.view.impl.MatchPanel;
 import giocoscudetto.view.impl.PreMatchView;
 import giocoscudetto.view.impl.ViewManagerImpl;
-import giocoscudetto.view.impl.selection.ClubPanel;
+import giocoscudetto.view.impl.creation.ClubPanel;
 public class GameStarter {
     public static void main(String[] args) {
 
         //Creating the View Manger 
         final ViewManager viewManager = new ViewManagerImpl();
 
-        //Creating the controller to change the panel
-        final Starter viewChangerController = new StarterImpl(viewManager);
 
         //Creating the controller to make the view work with model rules
-        final Controller controller = new ControllerImpl();
+        final CreateUpdateController controller = new CreateUpdateControllerImpl();
+
+        //Creating the controller to change the panel
+        final Starter viewChangerController = new StarterImpl(viewManager, controller);
 
 
         //Creating the Views that we will use during the game
         final HomePanel homeView = new HomePanel(viewChangerController);
         final ClubPanel clubView = new ClubPanel(viewChangerController, controller);
-        final PreMatchView preMatch = new PreMatchView(viewChangerController);
+        final PreMatchView preMatch = new PreMatchView(viewChangerController, controller);
         final BotView botView = new BotView(viewChangerController);
         //final MatchPanel MatchPanel = new MatchPanel(viewChangerController);
 

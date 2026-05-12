@@ -8,13 +8,16 @@ import giocoscudetto.model.api.Pawn;
  */
 public class ClubImpl implements Club{
 
-    //Class Fields not final cause they can ben changed.
-    private String name;
-    private Pawn pawn;
+    private final String name;
+    private final Pawn pawn;
     private int points;
     private int netDiff;
 
-    //Class Constructor
+    /**
+     * 
+     * @param name, the name selected for the club
+     * @param pawnSelected, the pawn assigned to the club
+     */
     public ClubImpl(final String name,final Pawn pawnSelected) {
          //Setting a standard name and pawn selected
         this.pawn = pawnSelected;
@@ -57,16 +60,6 @@ public class ClubImpl implements Club{
      * {@inheritDoc}
      */
     @Override
-    public void setName(final String name) {
-        if (!("".equals(name)) && name != null) {
-            this.name = name;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void incrementPoints(final int points) {
         if (points >= 0) {
             this.points += points;
@@ -83,24 +76,4 @@ public class ClubImpl implements Club{
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setPawn(final Pawn pawnSelected) {
-        if (pawnSelected != null) {
-            this.pawn = pawnSelected;
-        }
-    }
-
-    @Override
-    public String getColor() {
-        return this.pawn.getColor();
-    }
-
-    @Override
-    public void changePawn(Pawn pawnSelected) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'changePawn'");
-    }
 }

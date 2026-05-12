@@ -1,4 +1,4 @@
-package giocoscudetto.view.impl.selection;
+package giocoscudetto.view.impl.creation;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -24,8 +24,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
-import giocoscudetto.controller.api.Controller;
+import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.impl.DefaultPanelImpl;
 
@@ -39,11 +40,11 @@ public class ClubPanel extends DefaultPanelImpl{
     private static final int TEXT_FIELDS_HEIGHT = 40;
 
     private final Starter viewChanger;
-    private final Controller controller;
+    private final CreateUpdateController controller;
     private final Image image;
 
 
-    public ClubPanel(final Starter viewChanger, final Controller controller) {
+    public ClubPanel(final Starter viewChanger, final CreateUpdateController controller) {
         this.viewChanger = viewChanger;
         this.controller = controller;
 
@@ -72,11 +73,21 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel clubInfoPanel = new JPanel();
         clubInfoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 
+
         final JPanel clubNamePanel = new JPanel();
+        final TitledBorder nameTitle = new TitledBorder("CLUB'S NAME");
+        nameTitle.setBorder(BorderFactory.createEmptyBorder());
+        nameTitle.setTitleJustification(TitledBorder.CENTER);
         clubNamePanel.setLayout(new BoxLayout(clubNamePanel, BoxLayout.Y_AXIS));
+        clubNamePanel.setBorder(nameTitle);
+        
 
         final JPanel clubPawnPanel = new JPanel();
+        final TitledBorder pawnTitle = new TitledBorder("PAWN'S COLOR"); 
+        pawnTitle.setBorder(BorderFactory.createEmptyBorder());
+        pawnTitle.setTitleJustification(TitledBorder.CENTER); 
         clubPawnPanel.setLayout(new BoxLayout(clubPawnPanel, BoxLayout.Y_AXIS));
+        clubPawnPanel.setBorder(pawnTitle);
 
         //List which will contains the JTextFields to select each clubs name
         final List<JTextField> clubsName = new ArrayList<>();
@@ -103,8 +114,8 @@ public class ClubPanel extends DefaultPanelImpl{
         final JPanel switchingButtonPanel = new JPanel(new BorderLayout());
         switchingButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
-        final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK,null);
-        final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK,null  );
+        final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66));
+        final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66)  );
         
         switchingButtonPanel.add(btnBack, BorderLayout.WEST);
         switchingButtonPanel.add(btnCont, BorderLayout.EAST);
@@ -171,62 +182,79 @@ public class ClubPanel extends DefaultPanelImpl{
         g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
     }
 
+    /**
+     * This method is used to show the correct number of rows depending on clubs number selected
+     * and showing the textfields to write the clubs name and color picker to pick the club
+     * pawn color.
+     * 
+     * @param rows selected from the combobox
+     * @param namePanel .
+     * @param pawnPanel .
+     * @param clubsName .
+     * @param clubsPawn .
+     */
     private void updateTeamPanels(final int rows, final JPanel namePanel,
                 final JPanel pawnPanel,
                 final List<JTextField> clubsName, 
                 final List<PawnColorPickerPanel> clubsPawn){
                     
-            namePanel.removeAll();
-            pawnPanel.removeAll();
+        namePanel.removeAll();
+        pawnPanel.removeAll();
+        clubsName.clear();
+        clubsPawn.clear();
 
-            clubsName.clear();
-            clubsPawn.clear();
+        int i = 0;
+        for (i = 0; i < rows; i++) {
 
-            int i = 0;
-            for (i = 0; i < rows; i++) {
-                
-                //Creating textFields to choose the name for each team
-                final JTextField nameTextField = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK, null);
-                nameTextField.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
-                nameTextField.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
-                nameTextField.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
-                
-                //Adding the new textField to the panel and list, then adding little space under it
-                namePanel.add(nameTextField);
-                namePanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                clubsName.add(nameTextField);
+            //Creating textFields to choose the name for each team
+            final JTextField nameTextField = (JTextField) createComponent(new JTextField(), getFont(), Color.BLACK, null);
+            nameTextField.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+            nameTextField.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+            nameTextField.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
 
-                final PawnColorPickerPanel colorPicker = new PawnColorPickerPanel();
-                colorPicker.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
-                colorPicker.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
-                colorPicker.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+            //Adding the new textField to the panel and list, then adding little space under it
+            namePanel.add(nameTextField);
+            namePanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
+            clubsName.add(nameTextField);
 
-                colorPicker.setOnColorChanged(c -> refreshColorConstraints(clubsPawn));
+            final PawnColorPickerPanel colorPicker = new PawnColorPickerPanel();
+            colorPicker.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+            colorPicker.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
+            colorPicker.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
 
-                pawnPanel.add(colorPicker);
-                pawnPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-                clubsPawn.add(colorPicker);
-            }
+            colorPicker.setOnColorChanged(c -> refreshColorTaken(clubsPawn));
 
-            //Revalidate and Repaint are necessery to update the interface
-            this.revalidate(); 
-            this.repaint();
-        
+            pawnPanel.add(colorPicker);
+            pawnPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
+            clubsPawn.add(colorPicker);
         }
 
-
-    private void refreshColorConstraints(final List<PawnColorPickerPanel> pickers) {
-    //Get all the selected color
-    final Set<Color> allTaken = new HashSet<>();
-    for (PawnColorPickerPanel p : pickers) {
-        if (p.getSelectedColor() != null) allTaken.add(p.getSelectedColor());
+        //Revalidate and Repaint are necessery to update the interface
+        this.revalidate(); 
+        this.repaint();
+        
     }
 
-    //and then i disable them
-    for (PawnColorPickerPanel p : pickers) {
-        final Set<Color> takenByOthers = new HashSet<>(allTaken);
-        if (p.getSelectedColor() != null) takenByOthers.remove(p.getSelectedColor());
-        p.setTakenColors(takenByOthers);
+    /**
+     * This method disable the color already taken from a club.
+     * @param pickers are the picker assigned to each club.
+     */
+    private void refreshColorTaken(final List<PawnColorPickerPanel> pickers) {
+        final Set<Color> allTaken = new HashSet<>();
+        for (PawnColorPickerPanel p : pickers) {
+            if (p.getSelectedColor() != null) {
+                allTaken.add(p.getSelectedColor());
+            }
+        }
+
+        //and then i disable them
+        for (PawnColorPickerPanel p : pickers) {
+            final Set<Color> takenByOthers = new HashSet<>(allTaken);
+            if (p.getSelectedColor() != null) {
+                takenByOthers.remove(p.getSelectedColor());
+            }
+
+            p.setTakenColors(takenByOthers);
+        }
     }
-}
 }

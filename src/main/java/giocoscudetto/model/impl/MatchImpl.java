@@ -14,11 +14,13 @@ public class MatchImpl implements Match {
     private final Dice dice6;
     private static final int HALF_BOARD = 16;
 
-    public MatchImpl() {
+    public MatchImpl(Club clubHome, Club clubAway) {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
         this.dice6 = new Dice6Impl();
         turn.chooseStartingPlayer();
+        this.clubHome = clubHome;
+        this.clubAway = clubAway;
     }
 
     @Override
@@ -69,10 +71,15 @@ public class MatchImpl implements Match {
 
     @Override
     public int rollDice() {
+        int dice6;
         if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD){
-            return this.dice6.rollDice() + this.dice6.rollDice();
+            dice6 = this.dice6.rollDice() + this.dice6.rollDice();
+            System.out.println("due dadi" +dice6);
+            return dice6;
         }
-        return this.dice6.rollDice();
+        dice6 = this.dice6.rollDice();
+        System.out.println("un dado" + dice6);
+        return dice6;
     }
     
     @Override
