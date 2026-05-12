@@ -30,7 +30,6 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import giocoscudetto.model.api.Pair;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.PawnImpl;
@@ -70,7 +69,7 @@ public class PreMatchView extends DefaultPanelImpl{
     private static String[] columnNamesF = {"Clubs", "Results"};
     private Object[][] dati2 = {
         { "prova", "0-0"},
-        {new Pair("Inter", "Roma"), "0-0"}
+        { "inter-roma", "0-0"}
     };
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
