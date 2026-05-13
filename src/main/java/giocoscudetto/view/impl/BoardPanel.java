@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+
+import javax.swing.SwingUtilities;
+
 import giocoscudetto.view.api.ImageBoardLoader;
 import giocoscudetto.controller.api.Starter;
 
@@ -20,6 +23,9 @@ public class BoardPanel extends DefaultPanelImpl  {
     
     private final ImageBoardLoader imageLoaded;
     private final Starter controller;
+    private volatile boolean animating = false;
+    private int animatedHomePos = 0;
+    private int animatedGuestPos = 0;
     private int board_size_h;
     private int board_size_w;
     private int box_w;
@@ -35,6 +41,7 @@ public class BoardPanel extends DefaultPanelImpl  {
         this.controller = controller;
         this.imageLoaded = new ImageBoardLoaderImpl(controller);
         setBackground(BACKGROUND_COLOR);
+        new Thread(this::animationLoop).start();
     }
 
     @Override
@@ -48,11 +55,36 @@ public class BoardPanel extends DefaultPanelImpl  {
         drawAllPawns(g2d);
     }
 
-    private void drawAllPawns(Graphics2D g2d) {
+    private void animationLoop() {
+        while (true) {
+            try {
+                int targetHome = controller.getHomePosition();
+                int targetGuest = controller.getGuestPosition();
 
-        
-        this.drawPawn(g2d, this.getPawnColor("Yellow"), this.controller.getHomePosition(), OFFSET_HOME_PAWN);//this.getPawnColor(this.controller.getHomeTeamColor())
-        this.drawPawn(g2d, this.getPawnColor("Red"), this.controller.getGuestPosition(), OFFSET_GUEST_PAWN);//this.controller.getGuestTeamColor())
+                if (animatedHomePos != targetHome || animatedGuestPos != targetGuest) {
+                    this.animating = true;
+
+                    if (animatedHomePos < targetHome) animatedHomePos++;
+                    if (animatedGuestPos < targetGuest) animatedGuestPos++;
+
+                    SwingUtilities.invokeLater(this::repaint);
+                    Thread.sleep(200);
+
+                } else {
+                    this.animating = false;
+                    Thread.sleep(50);
+                }
+
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
+        }
+    }
+
+    private void drawAllPawns(Graphics2D g2d) {
+        this.drawPawn(g2d, this.getPawnColor("Yellow"), this.animatedHomePos, OFFSET_HOME_PAWN);
+        this.drawPawn(g2d, this.getPawnColor("Red"), this.animatedGuestPos, OFFSET_GUEST_PAWN);
 
     }
 
@@ -169,5 +201,13 @@ public class BoardPanel extends DefaultPanelImpl  {
         this.board_size_w = this.getWidth();
         this.box_h = this.board_size_h/BOX_SIDE ;
         this.box_w = this.board_size_w/BOX_SIDE ;
+    }
+
+    public int getAnimatedHomePosition() {
+        return this.animatedHomePos;
+    }
+
+    public int getAnimatedGuestPosition() {
+        return this.animatedGuestPos;
     }
 }
