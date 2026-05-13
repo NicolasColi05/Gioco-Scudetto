@@ -20,6 +20,7 @@ import giocoscudetto.model.api.Table;
 public class StarterImpl implements Starter {
 
     private final ViewManager viewManager;
+    private final CreateUpdateController controller;
     private final Board board = new BoardImpl();
     private final GoalNet net = new GoalNetImpl();
     private Fixtures fixture;
@@ -33,8 +34,7 @@ public class StarterImpl implements Starter {
      */
     public StarterImpl(final ViewManager manager, CreateUpdateController controller) {
         this.viewManager = manager;
-        this.fixture = controller.getFixture();
-        this.setMatch();
+        this.controller = controller;
     }
 
     @Override
@@ -120,6 +120,7 @@ public class StarterImpl implements Starter {
 
     @Override
     public void setMatch(){
+        this.fixture = controller.getFixture();
         this.match = this.fixture.getNextMatch();
     }
 }

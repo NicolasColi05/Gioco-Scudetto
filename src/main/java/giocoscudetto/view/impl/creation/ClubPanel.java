@@ -130,6 +130,7 @@ public class ClubPanel extends DefaultPanelImpl{
             this.controller.createClubs(clubsName.stream()
                                                  .map(JTextField::getText)
                                                  .toList()); 
+            this.viewChanger.setMatch();                                    
             this.viewChanger.changeView("pre");
         }); 
 
