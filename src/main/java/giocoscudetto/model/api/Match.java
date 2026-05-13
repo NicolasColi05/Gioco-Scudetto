@@ -86,7 +86,7 @@ public interface Match {
     /**
      * This method is for controll the state of the penalty mode.
      * 
-     * @return a boolena rappresenting if is active the penalty mode.
+     * @return a boolean rappresenting if is active the penalty mode.
      */
     boolean isPenaltyMode();
 
