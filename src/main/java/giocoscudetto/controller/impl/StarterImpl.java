@@ -57,7 +57,6 @@ public class StarterImpl implements Starter {
     @Override
     public void checkBox() {
         this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).event(this.match);
-        this.match.turn();
     }
 
     @Override
@@ -106,7 +105,6 @@ public class StarterImpl implements Starter {
     @Override
     public void move() {
         this.match.getCurrentPlayer().getPawn().changePosition(this.match.rollDice());
-        this.checkBox();
     }
 
     @Override

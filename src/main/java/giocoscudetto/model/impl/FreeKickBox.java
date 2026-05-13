@@ -28,6 +28,7 @@ public class FreeKickBox implements Boxes{
                 match.goalAway();
             }
         }
+        match.turn();
     }
 
     @Override

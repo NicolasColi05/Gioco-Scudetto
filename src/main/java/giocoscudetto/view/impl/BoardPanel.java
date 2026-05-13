@@ -71,6 +71,7 @@ public class BoardPanel extends DefaultPanelImpl  {
                     Thread.sleep(200);
 
                 } else {
+                    controller.checkBox();
                     this.animating = false;
                     Thread.sleep(50);
                 }

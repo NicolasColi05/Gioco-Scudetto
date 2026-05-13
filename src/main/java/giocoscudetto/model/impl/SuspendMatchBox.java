@@ -24,6 +24,7 @@ public class SuspendMatchBox implements Boxes {
         match.getClubHome().getPawn().setPosition(0);
         match.setGoalHome(0);
         match.setGoalAway(0);
+        match.turn();
     }
 
     @Override

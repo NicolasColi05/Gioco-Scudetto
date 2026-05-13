@@ -21,7 +21,7 @@ public class CornerBox implements Boxes{
 
     @Override
     public void event(Match match) {
-        
+        match.turn();
     }
 
     @Override
