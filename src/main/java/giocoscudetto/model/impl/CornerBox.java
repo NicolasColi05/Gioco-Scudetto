@@ -21,8 +21,7 @@ public class CornerBox implements Boxes{
 
     @Override
     public void event(Match match) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'event'");
+        
     }
 
     @Override

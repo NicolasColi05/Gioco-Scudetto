@@ -30,10 +30,8 @@ public class BackToStartBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        Club club= match.turn();
-
-        pawn.setPosition( 0);
-        System.out.println(club + "go back to start");
+        match.getCurrentPlayer().getPawn().setPosition(0);
+        System.out.println(match.getCurrentPlayer() + "go back to start");
     }
 
     @Override
