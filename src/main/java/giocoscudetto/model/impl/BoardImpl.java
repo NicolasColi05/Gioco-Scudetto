@@ -44,6 +44,7 @@ public class BoardImpl implements Board {
         this.board.add(29,new ResultBox(29));
         this.board.add(30,new GoalRemovedBox(30));
         this.board.add(31,new CesariniBox(31));
+        this.board.add(32,new StartBox(32));
     }
 
     @Override

@@ -106,4 +106,6 @@ public interface Starter {
     boolean isPenalty();
 
     void setPenaltyMode(boolean active);
+
+    void penaltyFinished();
 }

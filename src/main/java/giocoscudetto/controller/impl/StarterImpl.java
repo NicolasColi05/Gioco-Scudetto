@@ -139,5 +139,11 @@ public class StarterImpl implements Starter {
         this.match.setPenaltyMode(active);
     }
 
+    @Override
+    public void penaltyFinished() {
+        this.match.setPenaltyMode(false);
+        this.match.turn();
+    }
+
     
 }

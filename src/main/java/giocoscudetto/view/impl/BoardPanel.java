@@ -56,6 +56,7 @@ public class BoardPanel extends DefaultPanelImpl  {
     }
 
     private void animationLoop() {
+        boolean wasAnimating = false;
         while (true) {
             try {
                 int targetHome = controller.getHomePosition();
@@ -63,7 +64,7 @@ public class BoardPanel extends DefaultPanelImpl  {
 
                 if (animatedHomePos != targetHome || animatedGuestPos != targetGuest) {
                     this.animating = true;
-
+                    wasAnimating = true;
                     if (animatedHomePos < targetHome) animatedHomePos++;
                     if (animatedGuestPos < targetGuest) animatedGuestPos++;
 
@@ -71,7 +72,10 @@ public class BoardPanel extends DefaultPanelImpl  {
                     Thread.sleep(200);
 
                 } else {
-                    controller.checkBox();
+                    if (wasAnimating) {
+                        wasAnimating = false;
+                        this.controller.checkBox();
+                    }
                     this.animating = false;
                     Thread.sleep(50);
                 }
