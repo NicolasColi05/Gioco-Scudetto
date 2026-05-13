@@ -13,6 +13,7 @@ import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
+import giocoscudetto.view.impl.MatchPanel;
 
 /**
  * Starter implementation.
@@ -122,5 +123,11 @@ public class StarterImpl implements Starter {
     public void setMatch(){
         this.fixture = controller.getFixture();
         this.match = this.fixture.getNextMatch();
+    }
+
+    @Override
+    public void newMatchView(){
+        MatchPanel MatchPanel = new MatchPanel(this);
+        viewManager.addView(MatchPanel, "match");
     }
 }

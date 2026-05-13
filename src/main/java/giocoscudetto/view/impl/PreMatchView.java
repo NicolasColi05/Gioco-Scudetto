@@ -130,6 +130,7 @@ public class PreMatchView extends DefaultPanelImpl{
         });
 
         continueButton.addActionListener(e -> { 
+            this.starter.newMatchView();
             this.starter.changeView("match");
         });
 
