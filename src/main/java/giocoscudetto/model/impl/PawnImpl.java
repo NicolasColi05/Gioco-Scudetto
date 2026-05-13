@@ -4,7 +4,7 @@ import giocoscudetto.model.api.Pawn;
 
 public class PawnImpl implements Pawn {
 
-    private static final int MAX_POSITION = 31;
+    private static final int MAX_POSITION = 32;
 
     private final int colorId;
     private int position;
