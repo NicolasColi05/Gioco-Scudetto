@@ -27,6 +27,7 @@ public class DicePanel extends DefaultPanelImpl {
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
         messageLabel = new JLabel();
+        messageLabel.setAutoscrolls(true);
         messageLabel.setBackground(BACKGROUND_COLOR);
         messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -41,10 +42,13 @@ public class DicePanel extends DefaultPanelImpl {
                 this.controller.move();
                 this.board.repaint();
             });
+
+        final Agent2 agent = new Agent2();
+        new Thread(agent).start();
     }
 
     //da cambiare nel caso facciamo che il controller possa chiamare il repaint() sulle view
-    private final class Agent implements Runnable {
+    private final class Agent2 implements Runnable {
         /**
          * 
          */

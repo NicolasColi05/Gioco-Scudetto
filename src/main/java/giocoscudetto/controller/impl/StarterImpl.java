@@ -1,8 +1,6 @@
 package giocoscudetto.controller.impl;
 
 import java.util.Random;
-import java.util.ArrayList;
-
 import javax.swing.SwingUtilities;
 
 import giocoscudetto.controller.api.CreateUpdateController;
@@ -57,7 +55,8 @@ public class StarterImpl implements Starter {
 
     @Override
     public void checkBox() {
-        
+        this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).event(this.match);
+        this.match.turn();
     }
 
     @Override
@@ -105,7 +104,8 @@ public class StarterImpl implements Starter {
 
     @Override
     public void move() {
-        this.match.turn().getPawn().changePosition(this.match.rollDice());
+        this.match.getCurrentPlayer().getPawn().changePosition(this.match.rollDice());
+        this.checkBox();
     }
 
     @Override
