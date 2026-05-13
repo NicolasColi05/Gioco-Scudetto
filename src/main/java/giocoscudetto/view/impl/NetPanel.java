@@ -56,6 +56,7 @@ public class NetPanel extends DefaultPanelImpl {
                 } else {
                     label.setText(" WHAT A SAVE BY THE KEEPER!!!");
                 }
+                this.controller.setPenaltyMode(false);
             });
 
             button1.addActionListener(e -> {

@@ -12,6 +12,7 @@ public class MatchImpl implements Match {
     private final Scoreboard score;
     private final TurnImpl turn;
     private final Dice dice6;
+    private boolean penalty = false;
     private static final int HALF_BOARD = 16;
 
     public MatchImpl(Club clubHome, Club clubAway) {
@@ -85,6 +86,16 @@ public class MatchImpl implements Match {
     @Override
     public int freeKickDice() {
         return this.dice6.rollDice() + this.dice6.rollDice();
+    }
+
+    @Override
+    public void setPenaltyMode(boolean active) {
+        this.penalty  = active;
+    }
+
+    @Override
+    public boolean isPenaltyMode() {
+        return this.penalty;
     }
 
 }

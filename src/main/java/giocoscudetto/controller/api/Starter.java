@@ -1,8 +1,5 @@
 package giocoscudetto.controller.api;
 
-import java.util.ArrayList;
-
-import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
 
 public interface Starter {
@@ -105,4 +102,8 @@ public interface Starter {
 	void setMatch();
 
     void newMatchView();
+
+    boolean isPenalty();
+
+    void setPenaltyMode(boolean active);
 }

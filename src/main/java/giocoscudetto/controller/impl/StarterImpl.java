@@ -130,4 +130,16 @@ public class StarterImpl implements Starter {
         MatchPanel MatchPanel = new MatchPanel(this);
         viewManager.addView(MatchPanel, "match");
     }
+
+    @Override
+    public boolean isPenalty() {
+        return this.match.isPenaltyMode();
+    }
+
+    @Override
+    public void setPenaltyMode(boolean active) {
+        this.match.setPenaltyMode(active);
+    }
+
+    
 }
