@@ -21,8 +21,7 @@ public class StartBox implements Boxes{
 
     @Override
     public void event(Match match) {
-        //potremmo fare che parte sempre la squadra di casa e se il turno è della squadra fuori casa imposto un booleano 
-        //così quando arriverà la squadra per finire la partita il booleano darà il permesso per attivare la procedura di fine partita
+        System.out.println("Il gioco è iniziato");
     }
 
     @Override
