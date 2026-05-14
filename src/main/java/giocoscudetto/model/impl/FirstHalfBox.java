@@ -23,11 +23,8 @@ public class FirstHalfBox implements Boxes {
 
     @Override
     public void event(Match match) {
-<<<<<<< HEAD
         System.out.println("Fine primo tempo");
-=======
         match.turn();
->>>>>>> featureNio2
     }
 
     @Override
