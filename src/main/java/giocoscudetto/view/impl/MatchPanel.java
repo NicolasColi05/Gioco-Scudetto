@@ -18,15 +18,19 @@ public class MatchPanel extends DefaultPanelImpl {
      private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
     private final JLabel turnLabel;
+    private final NetPanel netPanel;
+    private final DicePanel bottomDice;
 
     public MatchPanel(final Starter controller) {
+
+        final BoardPanel boardJPanel = new BoardPanel(controller);
+        this.bottomDice = new DicePanel(controller,boardJPanel);
+        this.netPanel = new NetPanel(controller);
         this.controller = controller;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
 
-        final JPanel boardJPanel = new BoardPanel(this.controller);
         this.add(boardJPanel, BorderLayout.CENTER);
-
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
@@ -46,9 +50,8 @@ public class MatchPanel extends DefaultPanelImpl {
             
         netWrapper.setOpaque(false);
         netWrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
-        netWrapper.add(new NetPanel(this.controller), BorderLayout.CENTER);
+        netWrapper.add(netPanel, BorderLayout.CENTER);
 
-        JPanel bottomDice = new DicePanel(this.controller,boardJPanel);
         bottomDice.setAlignmentX(Component.CENTER_ALIGNMENT);
         bottomDice.setMaximumSize(new Dimension(280, 120));
 
@@ -82,6 +85,8 @@ public class MatchPanel extends DefaultPanelImpl {
             while (!this.stop) {
                 try {
                     SwingUtilities.invokeAndWait(() -> MatchPanel.this.turnLabel.setText("Turn of :"+controller.getCurrentPlayer()));
+                    SwingUtilities.invokeAndWait(() -> MatchPanel.this.netPanel.setButtonsEnabled(controller.isPenalty()));
+                    SwingUtilities.invokeAndWait(() -> MatchPanel.this.bottomDice.setDice(!controller.isPenalty()));
                     Thread.sleep(100);
                 } catch (InvocationTargetException | InterruptedException ex) {
                         ex.printStackTrace(); //NOPMD

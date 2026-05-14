@@ -28,7 +28,7 @@ public class JoinBox implements Boxes {
 
     @Override
     public void event (Match match) {
-        Club current= match.turn();
+        Club current= match.getCurrentPlayer();
         Club opponent;
     
         if (current == match.getClubHome()){
@@ -44,6 +44,7 @@ public class JoinBox implements Boxes {
         opponent.getPawn().setPosition(currentPosition);
 
         System.out.println(opponent + "joined current player at position" + currentPosition);
+        match.turn();
     }
 
     @Override

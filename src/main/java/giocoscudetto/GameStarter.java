@@ -8,7 +8,6 @@ import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.BotView;
 import giocoscudetto.view.impl.HomePanel;
 import giocoscudetto.view.impl.MainFrame;
-import giocoscudetto.view.impl.MatchPanel;
 import giocoscudetto.view.impl.PreMatchView;
 import giocoscudetto.view.impl.ViewManagerImpl;
 import giocoscudetto.view.impl.creation.ClubPanel;

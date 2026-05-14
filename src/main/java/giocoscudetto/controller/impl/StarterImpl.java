@@ -57,7 +57,6 @@ public class StarterImpl implements Starter {
     @Override
     public void checkBox() {
         this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).event(this.match);
-        this.match.turn();
     }
 
     @Override
@@ -106,7 +105,6 @@ public class StarterImpl implements Starter {
     @Override
     public void move() {
         this.match.getCurrentPlayer().getPawn().changePosition(this.match.rollDice());
-        this.checkBox();
     }
 
     @Override
@@ -130,4 +128,22 @@ public class StarterImpl implements Starter {
         MatchPanel MatchPanel = new MatchPanel(this);
         viewManager.addView(MatchPanel, "match");
     }
+
+    @Override
+    public boolean isPenalty() {
+        return this.match.isPenaltyMode();
+    }
+
+    @Override
+    public void setPenaltyMode(boolean active) {
+        this.match.setPenaltyMode(active);
+    }
+
+    @Override
+    public void penaltyFinished() {
+        this.match.setPenaltyMode(false);
+        this.match.turn();
+    }
+
+    
 }

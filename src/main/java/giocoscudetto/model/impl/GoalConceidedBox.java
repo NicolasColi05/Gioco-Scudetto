@@ -22,8 +22,7 @@ public class GoalConceidedBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'event'");
+        match.turn();
     }
 
     @Override

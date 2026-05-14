@@ -76,4 +76,18 @@ public interface Match {
      */
     int freeKickDice();
 
+    /**
+     * this method set the penalty mode.
+     * 
+     * @param active boolean for setting the mode.
+     */
+    void setPenaltyMode(boolean active);
+
+    /**
+     * This method is for controll the state of the penalty mode.
+     * 
+     * @return a boolean rappresenting if is active the penalty mode.
+     */
+    boolean isPenaltyMode();
+
 }

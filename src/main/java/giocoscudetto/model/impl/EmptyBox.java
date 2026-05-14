@@ -64,7 +64,9 @@ public class EmptyBox implements Boxes {
     }
 
     @Override
-    public void event(Match match) {    }
+    public void event(Match match) {  
+        match.turn();
+      }
 
     @Override
     public String getName() {
