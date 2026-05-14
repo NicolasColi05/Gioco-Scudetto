@@ -23,8 +23,7 @@ public class FirstHalfBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'event'");
+        System.out.println("Fine primo tempo");
     }
 
     @Override
