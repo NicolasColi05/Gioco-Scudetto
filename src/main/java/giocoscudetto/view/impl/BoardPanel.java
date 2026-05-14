@@ -62,11 +62,16 @@ public class BoardPanel extends DefaultPanelImpl  {
                 int targetHome = controller.getHomePosition();
                 int targetGuest = controller.getGuestPosition();
 
-                if (animatedHomePos != targetHome || animatedGuestPos != targetGuest) {
-                    this.animating = true;
-                    wasAnimating = true;
-                    if (animatedHomePos < targetHome) animatedHomePos++;
-                    if (animatedGuestPos < targetGuest) animatedGuestPos++;
+                boolean homeMoving  = animatedHomePos  != targetHome;
+                boolean guestMoving = animatedGuestPos != targetGuest;
+
+                if (homeMoving || guestMoving) {
+                animating = true;
+                wasAnimating = true;
+
+                // muovi di una casella verso il target (avanti O indietro)
+                if (homeMoving)  animatedHomePos  += (animatedHomePos  < targetHome)  ? 1 : -1;
+                if (guestMoving) animatedGuestPos += (animatedGuestPos < targetGuest) ? 1 : -1;
 
                     SwingUtilities.invokeLater(this::repaint);
                     Thread.sleep(200);
