@@ -84,6 +84,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public Fixtures getFixture() {
+        System.out.println("fixture" + this.fixture.toString());
         return this.fixture;
     }
     
