@@ -138,6 +138,7 @@ public class StarterImpl implements Starter {
     public void newMatchView(){
         MatchPanel MatchPanel = new MatchPanel(this);
         viewManager.addView(MatchPanel, "match");
+        this.notifyViews();
     }
 
     @Override
