@@ -64,8 +64,10 @@ public class NetPanel extends DefaultPanelImpl {
                     this.controller.setKeeperPosition(1);
                     count++;
                     checkButtons(1);
-                } else {
+                } else if (count == 1)  {
                     this.controller.setKeeperPosition(1);
+                    this.button1.setEnabled(false);
+                    count++;
                     kickButton.setEnabled(true);
                 }
             });
@@ -74,8 +76,10 @@ public class NetPanel extends DefaultPanelImpl {
                     this.controller.setKeeperPosition(2);
                     count++;
                     checkButtons(2);
-                } else {
+                } else if (count == 1) {
                     this.controller.setKeeperPosition(2);
+                    count++;
+                    this.button2.setEnabled(false);
                     kickButton.setEnabled(true);
                 }
             });
@@ -84,8 +88,10 @@ public class NetPanel extends DefaultPanelImpl {
                     this.controller.setKeeperPosition(3);
                     count++;
                     checkButtons(3);
-                } else {
+                } else if (count == 1) {
                     this.controller.setKeeperPosition(3);
+                    count++;
+                    this.button3.setEnabled(false);
                     kickButton.setEnabled(true);
                 }
             });
@@ -93,8 +99,10 @@ public class NetPanel extends DefaultPanelImpl {
                 if (count == 0) {
                     this.controller.setKeeperPosition(4);
                     count++;
-                } else {
+                } else if (count == 1) {
                     this.controller.setKeeperPosition(4);
+                    count++;
+                    this.button4.setEnabled(false);
                     kickButton.setEnabled(true);
                 }
             });
@@ -102,8 +110,10 @@ public class NetPanel extends DefaultPanelImpl {
                 if (count == 0) {
                     this.controller.setKeeperPosition(5);
                     count++;
-                } else {
+                } else if(count == 1) {
                     this.controller.setKeeperPosition(5);
+                    count++;
+                    this.button5.setEnabled(false);
                     kickButton.setEnabled(true);
                 }
             });
@@ -111,8 +121,10 @@ public class NetPanel extends DefaultPanelImpl {
                 if (count == 0) {
                     this.controller.setKeeperPosition(6);
                     count++;
-                } else {
+                } else if (count == 1) {
                     this.controller.setKeeperPosition(6);
+                    count++;
+                    this.button6.setEnabled(false);
                     kickButton.setEnabled(true);
                 }
             });
