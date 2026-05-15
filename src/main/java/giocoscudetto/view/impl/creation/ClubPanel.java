@@ -43,6 +43,9 @@ public class ClubPanel extends DefaultPanelImpl{
     private final CreateUpdateController controller;
     private final Image image;
 
+    private final List<JTextField> clubsName = new ArrayList<>();
+    private final List<PawnColorPickerPanel> clubsPawn = new ArrayList<>(); 
+
 
     public ClubPanel(final Starter viewChanger, final CreateUpdateController controller) {
         this.viewChanger = viewChanger;
@@ -78,6 +81,7 @@ public class ClubPanel extends DefaultPanelImpl{
         final TitledBorder nameTitle = new TitledBorder("CLUB'S NAME");
         nameTitle.setBorder(BorderFactory.createEmptyBorder());
         nameTitle.setTitleJustification(TitledBorder.CENTER);
+
         clubNamePanel.setLayout(new BoxLayout(clubNamePanel, BoxLayout.Y_AXIS));
         clubNamePanel.setBorder(nameTitle);
         
@@ -86,29 +90,15 @@ public class ClubPanel extends DefaultPanelImpl{
         final TitledBorder pawnTitle = new TitledBorder("PAWN'S COLOR"); 
         pawnTitle.setBorder(BorderFactory.createEmptyBorder());
         pawnTitle.setTitleJustification(TitledBorder.CENTER); 
+
         clubPawnPanel.setLayout(new BoxLayout(clubPawnPanel, BoxLayout.Y_AXIS));
         clubPawnPanel.setBorder(pawnTitle);
 
-        //List which will contains the JTextFields to select each clubs name
-        final List<JTextField> clubsName = new ArrayList<>();
-
-        //List which will contains the Pawn Color that each clubs can choose
-        final List<PawnColorPickerPanel> clubsPawn = new ArrayList<>(); 
-
         //Adding by default 2 rows to select a name and pawn
-        updateTeamPanels(2, clubNamePanel, clubPawnPanel, clubsName, clubsPawn);
+        updateTeamPanels(2, clubNamePanel, clubPawnPanel);
 
         clubInfoPanel.add(clubNamePanel);
         clubInfoPanel.add(clubPawnPanel);
-
-        selectNumberOfClub.addActionListener(e -> {
-            
-            final Integer numberSelected = (Integer) selectNumberOfClub.getSelectedItem();
-            
-            if (numberSelected != null) {
-                updateTeamPanels(numberSelected, clubNamePanel, clubPawnPanel, clubsName, clubsPawn);
-            }
-        });
 
         //Creating button to go back in the home or continue to visualize the pre match view
         final JPanel switchingButtonPanel = new JPanel(new BorderLayout());
@@ -120,17 +110,26 @@ public class ClubPanel extends DefaultPanelImpl{
         switchingButtonPanel.add(btnBack, BorderLayout.WEST);
         switchingButtonPanel.add(btnCont, BorderLayout.EAST);
 
-        //Adding the action listener to the buttons
+        //Adding the action listener to the buttons and ComboBox
+        
+        selectNumberOfClub.addActionListener(e -> {
+            
+            final Integer numberSelected = (Integer) selectNumberOfClub.getSelectedItem();
+            
+            if (numberSelected != null) {
+                updateTeamPanels(numberSelected, clubNamePanel, clubPawnPanel);
+            }
+        });
+
         btnBack.addActionListener(e -> { 
             this.viewChanger.changeView("home");
         }); 
         
         btnCont.addActionListener(e -> { 
             //Creating clubs, table and fixtures to start the match
-            this.controller.createClubs(clubsName.stream()
+            this.controller.createClubs(this.clubsName.stream()
                                                  .map(JTextField::getText)
                                                  .toList()); 
-            this.viewChanger.setMatch();                                    
             this.viewChanger.changeView("pre");
         }); 
 
@@ -156,7 +155,7 @@ public class ClubPanel extends DefaultPanelImpl{
         centerWrapper.add(numberOfClubPanel);
         centerWrapper.add(clubInfoPanel);
 
-        //Setting the main panels opacity on false to show the backgorund color
+        //Setting the main panels opacity on false to show the background color
         clubInfoPanel.setOpaque(false);
         clubNamePanel.setOpaque(false);
         clubPawnPanel.setOpaque(false);
@@ -191,18 +190,13 @@ public class ClubPanel extends DefaultPanelImpl{
      * @param rows selected from the combobox
      * @param namePanel .
      * @param pawnPanel .
-     * @param clubsName .
-     * @param clubsPawn .
      */
-    private void updateTeamPanels(final int rows, final JPanel namePanel,
-                final JPanel pawnPanel,
-                final List<JTextField> clubsName, 
-                final List<PawnColorPickerPanel> clubsPawn){
+    private void updateTeamPanels(final int rows, final JPanel namePanel,final JPanel pawnPanel){
                     
         namePanel.removeAll();
         pawnPanel.removeAll();
-        clubsName.clear();
-        clubsPawn.clear();
+        this.clubsName.clear();
+        this.clubsPawn.clear();
 
         int i = 0;
         for (i = 0; i < rows; i++) {
@@ -216,18 +210,18 @@ public class ClubPanel extends DefaultPanelImpl{
             //Adding the new textField to the panel and list, then adding little space under it
             namePanel.add(nameTextField);
             namePanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-            clubsName.add(nameTextField);
+            this.clubsName.add(nameTextField);
 
             final PawnColorPickerPanel colorPicker = new PawnColorPickerPanel();
             colorPicker.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
             colorPicker.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
             colorPicker.setMinimumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
 
-            colorPicker.setOnColorChanged(c -> refreshColorTaken(clubsPawn));
+            colorPicker.setOnColorChanged(c -> refreshColorTaken(this.clubsPawn));
 
             pawnPanel.add(colorPicker);
             pawnPanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
-            clubsPawn.add(colorPicker);
+            this.clubsPawn.add(colorPicker);
         }
 
         //Revalidate and Repaint are necessery to update the interface
