@@ -115,4 +115,8 @@ public interface Starter {
     int getHomePawnRGB();
 
     int getGuestPawnRGB();
+
+    boolean isLastBox();
+
+    void LastBox();
 }

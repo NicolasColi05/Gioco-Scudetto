@@ -178,4 +178,14 @@ public class StarterImpl implements Starter {
         return this.match.getClubAway().getPawn().getPawnRGB();
     }
     
+    @Override
+    public boolean isLastBox(){
+        return this.match.getCurrentPlayer().getPawn().getPosition() == 32;
+    }
+
+    @Override
+    public void LastBox(){
+        this.fixture.setScore(match, this.match.getScore());
+        System.out.println (this.fixture.toString());
+    }
 }
