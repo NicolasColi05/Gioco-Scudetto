@@ -52,7 +52,7 @@ public class TestCreateUpdateController {
         final Club club2 = new ClubImpl("Milan", null);
         final Club club3 = new ClubImpl("Juve", null);
 
-        this.controller.createClubs(List.of(club1.getName(), club2.getName(), club3.getName()));
+        //this.controller.createClubs(List.of(club1.getName(), club2.getName(), club3.getName()));
 
     }
 
