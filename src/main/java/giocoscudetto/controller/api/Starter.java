@@ -113,4 +113,8 @@ public interface Starter {
     void addObserver(GameObserver ob);
 
     void removeObserver(GameObserver ob);
+
+    int getHomePawnRGB();
+
+    int getGuestPawnRGB();
 }

@@ -173,5 +173,15 @@ public class StarterImpl implements Starter {
             ob.updateState();
         }
     }
+
+    @Override
+    public int getHomePawnRGB() {
+        return this.match.getClubHome().getPawn().getPawnRGB();
+    }
+
+    @Override
+    public int getGuestPawnRGB() {
+        return this.match.getClubAway().getPawn().getPawnRGB();
+    }
     
 }
