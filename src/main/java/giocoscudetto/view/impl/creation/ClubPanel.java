@@ -128,8 +128,14 @@ public class ClubPanel extends DefaultPanelImpl{
         btnCont.addActionListener(e -> { 
             //Creating clubs, table and fixtures to start the match
             this.controller.createClubs(this.clubsName.stream()
-                                                 .map(JTextField::getText)
-                                                 .toList()); 
+                                            .map(JTextField::getText)
+                                            .toList(),
+                                        this.clubsPawn.stream()
+                                            .map(i -> i.getName())
+                                            .toList()); 
+
+
+            //Then going to the next view
             this.viewChanger.changeView("pre");
         }); 
 

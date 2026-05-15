@@ -26,10 +26,15 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public void createClubs(List<String> clubsName) {
+    public void createClubs(final List<String> clubsName, final List<String> pawnName) {
         
-        for (String name : clubsName) {
+        for (final String name : clubsName) {
             clubs.add(new ClubImpl(name, new PawnImpl(1)));
+        }
+
+        int i = 1;
+        for (final String name : pawnName) {
+            System.out.println("Nome " + i + " ->" + name);
         }
 
         this.table.addAllClubs(this.clubs);
@@ -42,9 +47,12 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public void updateClubScores(final int pawnId, final int points, final int goalScored, final int goalConceded) {
-        this.clubs.get(pawnId).changeNetDiffs(goalScored, goalConceded);
-        this.clubs.get(pawnId).incrementPoints(points);
+    public void updateClubScores(final int pawnId,
+        final int points,
+        final int goalScored,
+        final int goalConceded) {
+            this.clubs.get(pawnId).changeNetDiffs(goalScored, goalConceded);
+            this.clubs.get(pawnId).incrementPoints(points);
     }
 
     /**

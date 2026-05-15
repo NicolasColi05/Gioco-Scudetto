@@ -19,7 +19,7 @@ public interface CreateUpdateController {
      * 
      * @param clubs, the clubs that will play the match.
      */
-    void createClubs(List<String> clubsName);
+    void createClubs(List<String> clubsName, List<String> pawnName);
 
     /**
      * Method to update a specific team point and net diff.
