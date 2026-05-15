@@ -26,15 +26,11 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public void createClubs(final List<String> clubsName, final List<String> pawnName) {
+    public void createClubs(final List<String> clubsName, final List<Integer> pawnRGB) {
         
-        for (final String name : clubsName) {
-            clubs.add(new ClubImpl(name, new PawnImpl(1)));
-        }
-
-        int i = 1;
-        for (final String name : pawnName) {
-            System.out.println("Nome " + i + " ->" + name);
+        int i = 0;
+        for(; i < clubsName.size(); i++) {
+            clubs.add(new ClubImpl(clubsName.get(i), new PawnImpl(pawnRGB.get(i))));
         }
 
         this.table.addAllClubs(this.clubs);
