@@ -131,7 +131,7 @@ public class ClubPanel extends DefaultPanelImpl{
                                             .map(JTextField::getText)
                                             .toList(),
                                         this.clubsPawn.stream()
-                                            .map(i -> i.getName())
+                                            .map(i -> i.getSelectedColor().getRGB())
                                             .toList()); 
 
 
