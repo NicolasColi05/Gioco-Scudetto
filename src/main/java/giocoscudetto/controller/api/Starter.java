@@ -102,8 +102,6 @@ public interface Starter {
      */
 	void setMatch();
 
-    void newMatchView();
-
     boolean isPenalty();
 
     void setPenaltyMode(boolean active);

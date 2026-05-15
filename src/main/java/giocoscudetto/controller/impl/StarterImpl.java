@@ -134,12 +134,6 @@ public class StarterImpl implements Starter {
         this.match = this.fixture.getNextMatch();
     }
 
-    @Override
-    public void newMatchView(){
-        MatchPanel MatchPanel = new MatchPanel(this);
-        viewManager.addView(MatchPanel, "match");
-        this.notifyViews();
-    }
 
     @Override
     public boolean isPenalty() {

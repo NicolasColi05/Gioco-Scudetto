@@ -34,6 +34,7 @@ import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
+import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.creation.ClubPanel;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
@@ -42,25 +43,10 @@ public class PreMatchView extends DefaultPanelImpl{
     
     private Starter starter;
     private CreateUpdateController controller;
+    private ViewManager viewManager;
     //dati di prova
     private static String[] columnNamesS = {"Clubs", "Points", "Net Diff"};
     private Object[][] dati = {
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
         {"Inter", 6, 3},
         {"Roma", 7, 2},
         {"Inter", 6, 3},
@@ -78,15 +64,12 @@ public class PreMatchView extends DefaultPanelImpl{
     private static final int BUTTON_BORDER = 5;
     private final Image image;
 
-    public PreMatchView(Starter starter, final CreateUpdateController controller){
+    public PreMatchView(final Starter starter, final CreateUpdateController controller, final ViewManager viewManager){
         this.starter = starter;
         this.controller = controller;
+        this.viewManager = viewManager;
 
         Table tablee = this.controller.getTable();
-
-        Object[][] datiprova = {
-            {tablee}
-        };
 
         this.setLayout(new BorderLayout());
 
@@ -131,7 +114,8 @@ public class PreMatchView extends DefaultPanelImpl{
 
         continueButton.addActionListener(e -> { 
             this.starter.setMatch();
-            this.starter.newMatchView();
+            MatchPanel MatchPanel = new MatchPanel(this.starter);
+            viewManager.addView(MatchPanel, "match");
             this.starter.changeView("match");
         });
 
