@@ -1,5 +1,7 @@
 package giocoscudetto.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import javax.swing.SwingUtilities;
 
@@ -14,6 +16,7 @@ import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.view.impl.MatchPanel;
+import giocoscudetto.view.api.GameObserver;
 
 /**
  * Starter implementation.
@@ -27,6 +30,7 @@ public class StarterImpl implements Starter {
     private Fixtures fixture;
     private Match match;
     private Table table;
+    private List<GameObserver> observers = new ArrayList<>();
 
     /**
      * Constructor for StarterImpl.
@@ -57,6 +61,7 @@ public class StarterImpl implements Starter {
     @Override
     public void checkBox() {
         this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).event(this.match);
+        notifyViews();
     }
 
     @Override
@@ -104,7 +109,13 @@ public class StarterImpl implements Starter {
 
     @Override
     public void move() {
-        this.match.getCurrentPlayer().getPawn().changePosition(this.match.rollDice());
+        int resultDice = this.match.rollDice();
+        if (resultDice == 0) {
+            this.match.turn();
+        } else {
+        this.match.getCurrentPlayer().getPawn().changePosition(resultDice);
+        }
+        notifyViews();
     }
 
     @Override
@@ -143,7 +154,23 @@ public class StarterImpl implements Starter {
     public void penaltyFinished() {
         this.match.setPenaltyMode(false);
         this.match.turn();
+        notifyViews();
     }
 
+    @Override
+    public void addObserver(final GameObserver ob) {
+        this.observers.add(ob);
+    }
+
+    @Override
+    public void removeObserver(final GameObserver ob) {
+        this.observers.remove(ob);
+    }
+
+    private void notifyViews() {
+        for (GameObserver ob : observers) {
+            ob.updateState();
+        }
+    }
     
 }

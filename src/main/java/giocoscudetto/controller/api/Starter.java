@@ -1,6 +1,7 @@
 package giocoscudetto.controller.api;
 
 import giocoscudetto.model.api.Table;
+import giocoscudetto.view.api.GameObserver;
 
 public interface Starter {
     
@@ -108,4 +109,8 @@ public interface Starter {
     void setPenaltyMode(boolean active);
 
     void penaltyFinished();
+
+    void addObserver(GameObserver ob);
+
+    void removeObserver(GameObserver ob);
 }

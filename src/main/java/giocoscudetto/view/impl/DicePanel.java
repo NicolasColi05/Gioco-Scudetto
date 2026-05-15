@@ -3,7 +3,6 @@ package giocoscudetto.view.impl;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,8 +11,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import giocoscudetto.controller.api.Starter;
+import giocoscudetto.view.api.GameObserver;
 
-public class DicePanel extends DefaultPanelImpl {
+public class DicePanel extends DefaultPanelImpl implements GameObserver{
     
     private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
@@ -22,9 +22,9 @@ public class DicePanel extends DefaultPanelImpl {
     private final JButton rollDiceButton;
 
     public DicePanel(final Starter controller,final BoardPanel board) {
-
         this.rollDiceButton = new JButton("Roll Dice");
         this.controller = controller;
+        this.controller.addObserver(this);
         this.board = board;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
@@ -42,38 +42,19 @@ public class DicePanel extends DefaultPanelImpl {
                 this.controller.move();
                 this.board.repaint();
             });
-
-        final Agent2 agent = new Agent2();
-        new Thread(agent).start();
-    }
-
-    //da cambiare nel caso facciamo che il controller possa chiamare il repaint() sulle view
-    private final class Agent2 implements Runnable {
-        /**
-         * 
-         */
-        private volatile boolean stop;
-
-        @Override
-        public void run() {
-            while (!this.stop) {
-                try {
-                    SwingUtilities.invokeAndWait(() -> {
-                        boolean isAnimating = controller.getHomePosition() != board.getAnimatedHomePosition()
-                       || controller.getGuestPosition() != board.getAnimatedGuestPosition();
-                        rollDiceButton.setEnabled(!isAnimating && !controller.isPenalty());
-                        messageLabel.setText(controller.getDescription());
-                    });
-                    Thread.sleep(100);
-                } catch (InvocationTargetException | InterruptedException ex) {
-                        ex.printStackTrace(); //NOPMD
-                }
-               
-            }
-        }
     }
 
     public void setDice(boolean active) {
        this.rollDiceButton.setEnabled(active);
+    }
+
+    @Override
+    public void updateState() {
+        SwingUtilities.invokeLater(() -> {
+            boolean isAnimating = controller.getHomePosition() != board.getAnimatedHomePosition()
+                                || controller.getGuestPosition() != board.getAnimatedGuestPosition();
+            rollDiceButton.setEnabled(!isAnimating && !controller.isPenalty());
+            messageLabel.setText(controller.getDescription());
+        });
     }
 }

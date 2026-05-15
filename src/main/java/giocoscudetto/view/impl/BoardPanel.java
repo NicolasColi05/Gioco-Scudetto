@@ -74,7 +74,7 @@ public class BoardPanel extends DefaultPanelImpl  {
                 if (guestMoving) animatedGuestPos += (animatedGuestPos < targetGuest) ? 1 : -1;
 
                     SwingUtilities.invokeLater(this::repaint);
-                    Thread.sleep(200);
+                    Thread.sleep(300);
 
                 } else {
                     if (wasAnimating) {
