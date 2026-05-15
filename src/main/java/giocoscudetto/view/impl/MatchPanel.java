@@ -1,19 +1,20 @@
 package giocoscudetto.view.impl;
 
 import giocoscudetto.controller.api.Starter;
+import giocoscudetto.view.api.GameObserver;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class MatchPanel extends DefaultPanelImpl {
+public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
      private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
@@ -29,7 +30,7 @@ public class MatchPanel extends DefaultPanelImpl {
         this.controller = controller;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
-
+        this.controller.addObserver(this);
         this.add(boardJPanel, BorderLayout.CENTER);
 
         JPanel rightPanel = new JPanel();
@@ -68,31 +69,14 @@ public class MatchPanel extends DefaultPanelImpl {
                 repaint();
             }
         });
-
-        final Agent agent = new Agent();
-        new Thread(agent).start();
     }
 
-    //da cambiare nel caso facciamo che il controller possa chiamare il repaint() sulle view
-    private final class Agent implements Runnable {
-        /**
-         * 
-         */
-        private volatile boolean stop;
-
-        @Override
-        public void run() {
-            while (!this.stop) {
-                try {
-                    SwingUtilities.invokeAndWait(() -> MatchPanel.this.turnLabel.setText("Turn of :"+controller.getCurrentPlayer()));
-                    SwingUtilities.invokeAndWait(() -> MatchPanel.this.netPanel.setButtonsEnabled(controller.isPenalty()));
-                    SwingUtilities.invokeAndWait(() -> MatchPanel.this.bottomDice.setDice(!controller.isPenalty()));
-                    Thread.sleep(100);
-                } catch (InvocationTargetException | InterruptedException ex) {
-                        ex.printStackTrace(); //NOPMD
-                }
-               
-            }
-        }
+    @Override
+    public void updateState() {
+        SwingUtilities.invokeLater(() -> {
+            turnLabel.setText("Turn of :"+controller.getCurrentPlayer());
+            netPanel.setButtonsEnabled(controller.isPenalty());
+            bottomDice.setDice(!controller.isPenalty());
+        });
     }
 }
