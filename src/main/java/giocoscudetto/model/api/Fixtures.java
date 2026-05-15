@@ -33,4 +33,11 @@ public interface Fixtures {
      * @return a string that represents the fixture
      */
     String toString();
+
+    /**
+     * Method that adds the score to the related match
+     * @param match refers to the match where we need to update the score
+     * @param score is the updated score for the match
+     */
+    void setScore(Match match, Scoreboard score);
 }

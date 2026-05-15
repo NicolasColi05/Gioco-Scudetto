@@ -67,6 +67,11 @@ public class FixturesImpl implements Fixtures {
     }
 
     @Override
+    public void setScore(Match match, Scoreboard score){
+        this.fixture.replace(match,null,score);
+    }
+
+    @Override
     public String toString() {
     /*if (this.listOfMatches == null || this.listOfMatches.isEmpty()) {
         return "Nessun match programmato.";
