@@ -9,7 +9,9 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -21,6 +23,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private final JLabel turnLabel;
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
+    private final JButton continueButton;
 
     public MatchPanel(final Starter controller) {
 
@@ -48,7 +51,11 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
         JPanel netWrapper = new JPanel(new BorderLayout());
         netWrapper.setMaximumSize(new Dimension(300,200 ));
-            
+        
+        this.continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
+        continueButton.setEnabled(false);
+        continueButton.setVisible(false);
+
         netWrapper.setOpaque(false);
         netWrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
         netWrapper.add(netPanel, BorderLayout.CENTER);
@@ -59,7 +66,12 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(turnPanel);
         rightPanel.add(netWrapper);
         rightPanel.add(bottomDice);
+        rightPanel.add(Box.createVerticalGlue());
+        rightPanel.add(continueButton);
 
+        continueButton.addActionListener(e -> { 
+            this.controller.changeView("pre");
+        });
         this.add(rightPanel, BorderLayout.EAST);
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -77,6 +89,17 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
             turnLabel.setText("Turn of :"+controller.getCurrentPlayer());
             netPanel.setButtonsEnabled(controller.isPenalty());
             bottomDice.setDice(!controller.isPenalty());
+
+            continueButton.setVisible(controller.isLastBox());
+            continueButton.setEnabled(controller.isLastBox());
+            if(controller.isLastBox()){
+                this.LastBox();
+            }
+            
         });
+    }
+
+    private void LastBox(){
+        controller.LastBox();
     }
 }
