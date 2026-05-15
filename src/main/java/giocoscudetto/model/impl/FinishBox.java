@@ -20,7 +20,8 @@ public class FinishBox implements Boxes{
 
     @Override
     public void event(Match match) {
-        
+        match.getClubHome().getPawn().setPosition(32);
+        match.getClubAway().getPawn().setPosition(32);
     }
 
     @Override
