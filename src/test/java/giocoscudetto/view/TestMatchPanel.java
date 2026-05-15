@@ -18,7 +18,7 @@ public class TestMatchPanel extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(650, 670);
         CreateUpdateController controller = new CreateUpdateControllerImpl();
-        controller.createClubs(List.of("juve","inter"));
+        controller.createClubs(List.of("juve","inter"), List.of(1,2));
         Starter contro = new StarterImpl(null, controller);
         JPanel pa = new MatchPanel(contro);
         this.setContentPane(pa);

@@ -126,4 +126,5 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
     public void setOnColorChanged(final Consumer<Color> callback) {
         this.onColorChanged = callback;
     }
+
 }
