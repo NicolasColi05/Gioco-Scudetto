@@ -6,12 +6,12 @@ public class PawnImpl implements Pawn {
 
     private static final int MAX_POSITION = 32;
 
-    private final int pawnId;
+    private final int pawnRGB;
     private int position;
 
-    public PawnImpl(final int pawnId) {
+    public PawnImpl(final int pawnRGB) {
         this.position = 0;
-        this.pawnId = pawnId;
+        this.pawnRGB = pawnRGB;
     }
 
     @Override
@@ -35,8 +35,8 @@ public class PawnImpl implements Pawn {
     }
 
     @Override
-    public int getPawnId() {
-        return this.pawnId;
+    public int getPawnRGB() {
+        return this.pawnRGB;
     }
 
     @Override
