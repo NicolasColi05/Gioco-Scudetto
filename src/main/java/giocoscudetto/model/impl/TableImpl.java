@@ -42,4 +42,8 @@ public class TableImpl implements Table{
         return this.clubRank;
     }
     
+    @Override
+    public void reset(){
+        this.clubRank.clear();
+    }
 }

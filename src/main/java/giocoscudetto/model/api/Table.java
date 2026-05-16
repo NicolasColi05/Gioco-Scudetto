@@ -23,4 +23,6 @@ public interface Table {
      */
     List<Club> showPosition();
 
+    void reset();
+
 }
