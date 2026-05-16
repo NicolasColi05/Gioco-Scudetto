@@ -31,7 +31,7 @@ public class FixtureTableModel extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         return switch (col) {
             case 0 -> matches.get(row).toString();
-            case 1 -> (scores.get(row)!= null ? scores.get(row).toString() : "  vs");
+            case 1 -> (scores.get(row)!= null ? scores.get(row).toString() : " vs");
             default -> null;
         };
     }
