@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Club;
@@ -91,6 +92,11 @@ public class FixturesImpl implements Fixtures {
     @Override
     public Scoreboard getScoreboard(Match match){
         return this.fixture.get(match);
+    }
+
+    @Override
+    public Set<Match> getListOfMatches() {
+        return this.fixture.keySet();
     }
 
     @Override

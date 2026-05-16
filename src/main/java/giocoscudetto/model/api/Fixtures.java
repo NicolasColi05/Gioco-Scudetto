@@ -47,4 +47,6 @@ public interface Fixtures {
     void resetFixture();
 
     Scoreboard getScoreboard(Match match);
+
+    Set<Match> getListOfMatches();
 }
