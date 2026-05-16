@@ -35,8 +35,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
 
         this.table.addAllClubs(this.clubs);
 
-        this.fixture.fixtureGeneration(this.clubs);
-
+        this.fixture.fixtureGeneration(this.clubs);        
     }
 
     /**
