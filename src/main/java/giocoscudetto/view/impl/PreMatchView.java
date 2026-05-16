@@ -90,7 +90,9 @@ public class PreMatchView extends DefaultPanelImpl{
         lowerPanel.setOpaque(false);
 
         //prima tabella
-        final JTable fixtureTable = (JTable) createComponent(new JTable(dati2, columnNamesF), getTitleFont(), Color.BLACK, null);
+        FixtureTableModel model = new FixtureTableModel(controller.getFixture());
+        System.out.println(controller.getFixture());
+        final JTable fixtureTable = (JTable) createComponent(new JTable(model), getTitleFont(), Color.BLACK, null);
         fixtureTable.setEnabled(false);
         fixtureTable.setOpaque(false);
         fixtureTable.getTableHeader().setReorderingAllowed(false);
@@ -116,7 +118,7 @@ public class PreMatchView extends DefaultPanelImpl{
         continueButton.addActionListener(e -> { 
             this.starter.setMatch();
             if (count == 0) {
-            MatchPanel MatchPanel = new MatchPanel(this.starter, this.viewManager);
+            MatchPanel MatchPanel = new MatchPanel(this.starter, this.viewManager, this.controller);
             viewManager.addView(MatchPanel, "match");
             count ++;
             }
