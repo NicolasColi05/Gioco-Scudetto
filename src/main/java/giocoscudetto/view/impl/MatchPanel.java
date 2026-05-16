@@ -2,6 +2,8 @@ package giocoscudetto.view.impl;
 
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.GameObserver;
+import giocoscudetto.view.api.ViewManager;
+import giocoscudetto.view.impl.EndGameView;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,7 +27,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private final DicePanel bottomDice;
     private final JButton continueButton;
 
-    public MatchPanel(final Starter controller) {
+    public MatchPanel(final Starter controller, final ViewManager viewManager) {
 
         final BoardPanel boardJPanel = new BoardPanel(controller);
         this.bottomDice = new DicePanel(controller,boardJPanel);
@@ -69,7 +71,13 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(continueButton);
 
         continueButton.addActionListener(e -> { 
-            this.controller.changeView("pre");
+            if(this.controller.isLastMatch()){
+                EndGameView EndGameView = new EndGameView(this.controller);
+                viewManager.addView(EndGameView, "end");
+                this.controller.changeView("end");
+            }else{
+                this.controller.changeView("pre");
+            }
         });
         this.add(rightPanel, BorderLayout.EAST);
 
