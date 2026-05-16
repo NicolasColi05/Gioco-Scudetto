@@ -44,7 +44,7 @@ public class JoinBox implements Boxes {
         opponent.getPawn().setPosition(currentPosition);
 
         System.out.println(opponent + "joined current player at position" + currentPosition);
-        match.turn();
+        
     }
 
     @Override
