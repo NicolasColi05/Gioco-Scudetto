@@ -27,8 +27,7 @@ public class ResultBox implements Boxes{
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return "result box";
     }
 
     @Override

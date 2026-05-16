@@ -33,8 +33,7 @@ public class FreeKickBox implements Boxes{
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return "freekick box";
     }
 
     @Override

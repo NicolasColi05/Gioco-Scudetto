@@ -26,8 +26,7 @@ public class CornerBox implements Boxes{
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return "corner box";
     }
 
     @Override
