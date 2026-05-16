@@ -19,7 +19,7 @@ public class FixturesImpl implements Fixtures {
     private final List<Club> listOfClubs = new LinkedList<>();
     private final List<Match> listOfMatches = new ArrayList<>();
     private Iterator<Match> listOfMatchesIterator;
-    private final Map<Match,Scoreboard> fixture = new LinkedHashMap<>(); //oppure solo hashmap?
+    private final Map<Match,Scoreboard> fixture = new LinkedHashMap<>();
     private Match currentMatch;
 
     /**
@@ -41,7 +41,7 @@ public class FixturesImpl implements Fixtures {
         int j;
         for (i = 0; i < listOfClubs.size(); i++) {
             for (j = 0; j < listOfClubs.size(); j++) {
-                if (!(listOfClubs.get(i).getName().equals(listOfClubs.get(j).getName()))) {
+                if (i != j) {
                     listOfMatches.add(new MatchImpl(listOfClubs.get(i), listOfClubs.get(j)));
                 }
             }
@@ -85,6 +85,8 @@ public class FixturesImpl implements Fixtures {
     @Override
     public void resetFixture(){
         this.fixture.clear();
+        this.listOfMatches.clear();
+        this.listOfClubs.clear();
     }
 
     @Override
