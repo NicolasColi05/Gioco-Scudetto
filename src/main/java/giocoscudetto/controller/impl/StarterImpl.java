@@ -8,6 +8,7 @@ import javax.swing.SwingUtilities;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.model.api.Board;
+import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.GoalNet;
 import giocoscudetto.model.impl.BoardImpl;
 import giocoscudetto.model.impl.GoalNetImpl;
@@ -131,7 +132,7 @@ public class StarterImpl implements Starter {
     @Override
     public void setMatch(){
         this.fixture = controller.getFixture();
-        this.match = this.fixture.getNextMatch();
+        this.match = this.fixture.setNextMatch();
     }
 
 
@@ -187,5 +188,17 @@ public class StarterImpl implements Starter {
     public void LastBox(){
         this.fixture.setScore(match, this.match.getScore());
         System.out.println (this.fixture.toString());
+    }
+
+    @Override
+    public boolean isLastMatch(){
+        return this.fixture.seeNextMatch(this.match)==null;
+    }
+
+    @Override 
+    public void setPositionsZero(){
+        for (Club club : this.controller.getClubs()) {
+            club.getPawn().setPosition(0);
+        }
     }
 }

@@ -119,4 +119,8 @@ public interface Starter {
     boolean isLastBox();
 
     void LastBox();
+
+    boolean isLastMatch();
+
+    void setPositionsZero();
 }
