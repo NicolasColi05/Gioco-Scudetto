@@ -11,6 +11,7 @@ import giocoscudetto.controller.api.Starter;
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
 import giocoscudetto.view.impl.MatchPanel;
+import giocoscudetto.view.impl.ViewManagerImpl;
 
 public class TestMatchPanel extends JFrame{
     
@@ -20,7 +21,8 @@ public class TestMatchPanel extends JFrame{
         CreateUpdateController controller = new CreateUpdateControllerImpl();
         controller.createClubs(List.of("juve","inter"), List.of(1,2));
         Starter contro = new StarterImpl(null, controller);
-        JPanel pa = new MatchPanel(contro);
+        ViewManagerImpl viewManager = new ViewManagerImpl();
+        JPanel pa = new MatchPanel(contro, viewManager);
         this.setContentPane(pa);
         this.setVisible(true);
     }

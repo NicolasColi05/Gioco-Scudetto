@@ -46,7 +46,7 @@ public class TestFixtures {
         }
         assertNotNull(fixture);
         assertEquals(4, listOfClubs.size());
-        while (fixture.getNextMatch()!= null){
+        while (fixture.setNextMatch()!= null){
             if (fixture.getCurrentMatch().getClubHome().getName() == INTER || fixture.getCurrentMatch().getClubAway().getName() == INTER){
                 intercount++;
             }
