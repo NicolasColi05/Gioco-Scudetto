@@ -1,15 +1,12 @@
 package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Boxes;
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.Pawn;
 
 public class BackToStartBox implements Boxes {
 
     private final String description = "Box Event: Back to Start. If you land on this box, you must return to the starting point of the board.";
     private final int position;
-    private Pawn pawn;
     private final String image;
 
     public BackToStartBox(final int position) {
@@ -33,6 +30,7 @@ public class BackToStartBox implements Boxes {
         match.getCurrentPlayer().getPawn().setPosition(0);
         System.out.println(match.getCurrentPlayer() + "go back to start");
         match.turn();
+        System.out.println("turno di "+ match.getCurrentPlayer());
     }
 
     @Override
