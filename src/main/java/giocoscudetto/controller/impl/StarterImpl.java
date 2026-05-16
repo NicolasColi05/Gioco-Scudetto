@@ -109,7 +109,7 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public void move() {
+    public int move() {
         int resultDice = this.match.rollDice();
         if (resultDice == 0) {
             this.match.turn();
@@ -117,6 +117,7 @@ public class StarterImpl implements Starter {
         this.match.getCurrentPlayer().getPawn().changePosition(resultDice);
         }
         notifyViews();
+        return resultDice;
     }
 
     @Override

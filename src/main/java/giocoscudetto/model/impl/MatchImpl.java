@@ -18,7 +18,7 @@ public class MatchImpl implements Match {
     public MatchImpl(Club clubHome, Club clubAway) {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
-        this.dice6 = new Dice6Impl();
+        this.dice6 = new MainDice();
         turn.chooseStartingPlayer();
         this.clubHome = clubHome;
         this.clubAway = clubAway;
