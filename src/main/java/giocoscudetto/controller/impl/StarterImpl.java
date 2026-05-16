@@ -202,4 +202,9 @@ public class StarterImpl implements Starter {
             club.getPawn().setPosition(0);
         }
     }
+
+    @Override
+    public void resetFixture(){
+        this.fixture.resetFixture();
+    }
 }

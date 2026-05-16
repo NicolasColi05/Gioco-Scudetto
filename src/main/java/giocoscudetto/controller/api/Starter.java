@@ -124,4 +124,6 @@ public interface Starter {
     boolean isLastMatch();
 
     void setPositionsZero();
+
+    void resetFixture();
 }
