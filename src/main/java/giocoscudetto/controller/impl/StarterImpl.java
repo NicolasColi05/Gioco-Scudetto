@@ -134,6 +134,7 @@ public class StarterImpl implements Starter {
     public void setMatch(){
         this.fixture = controller.getFixture();
         this.match = this.fixture.setNextMatch();
+        notifyViews();
     }
 
 
@@ -201,6 +202,7 @@ public class StarterImpl implements Starter {
         for (Club club : this.controller.getClubs()) {
             club.getPawn().setPosition(0);
         }
+        notifyViews();
     }
 
     @Override
