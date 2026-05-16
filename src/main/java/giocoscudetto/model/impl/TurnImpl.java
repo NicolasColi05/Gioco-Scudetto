@@ -11,14 +11,14 @@ public class TurnImpl implements Turn {
     private Club club1;
     private Club club2;
     private Club currentPlayer;
-    private Dice6Impl dice;
+    private MainDice dice;
 
     //Class Constructor
     public TurnImpl(Club club1, Club club2) {
 
         this.club1 = club1;
         this.club2 = club2;
-        this.dice = new Dice6Impl();
+        this.dice = new MainDice();
         chooseStartingPlayer(); 
     }
 
