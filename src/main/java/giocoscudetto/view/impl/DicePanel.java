@@ -29,7 +29,6 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
         messageLabel = new JLabel();
-        messageLabel.setAutoscrolls(true);
         messageLabel.setBackground(BACKGROUND_COLOR);
         messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -39,7 +38,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
         this.add(messageLabel,BorderLayout.CENTER);
 
         rollDiceButton.addActionListener(e -> {
-            this.controller.move();
+            messageLabel.setText(""+this.controller.move());
             this.board.repaint();
         });
     }
@@ -57,6 +56,5 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
             } else {
                 this.setDice(true);
             }
-            messageLabel.setText(controller.getDescription());
     }
 }

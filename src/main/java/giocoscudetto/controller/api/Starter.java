@@ -79,8 +79,9 @@ public interface Starter {
 
     /**
      * this method is for move the pawn of the current player.
+     * @return 
      */
-    void move();
+    int move();
 
     /**
      * when called this method returns the fixture
