@@ -69,7 +69,6 @@ public class BoardPanel extends DefaultPanelImpl  {
                 animating = true;
                 wasAnimating = true;
 
-                // muovi di una casella verso il target (avanti O indietro)
                 if (homeMoving)  animatedHomePos  += (animatedHomePos  < targetHome)  ? 1 : -1;
                 if (guestMoving) animatedGuestPos += (animatedGuestPos < targetGuest) ? 1 : -1;
 

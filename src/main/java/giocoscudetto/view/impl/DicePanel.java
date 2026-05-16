@@ -39,9 +39,9 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
         this.add(messageLabel,BorderLayout.CENTER);
 
         rollDiceButton.addActionListener(e -> {
-                this.controller.move();
-                this.board.repaint();
-            });
+            this.controller.move();
+            this.board.repaint();
+        });
     }
 
     public void setDice(boolean active) {
@@ -50,11 +50,13 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
 
     @Override
     public void updateState() {
-        SwingUtilities.invokeLater(() -> {
             boolean isAnimating = controller.getHomePosition() != board.getAnimatedHomePosition()
                                 || controller.getGuestPosition() != board.getAnimatedGuestPosition();
-            rollDiceButton.setEnabled(!isAnimating && !controller.isPenalty());
+            if (isAnimating || this.controller.isPenalty()) {
+                this.setDice(false);
+            } else {
+                this.setDice(true);
+            }
             messageLabel.setText(controller.getDescription());
-        });
     }
 }

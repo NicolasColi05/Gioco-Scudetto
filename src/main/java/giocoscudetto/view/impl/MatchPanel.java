@@ -88,6 +88,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         SwingUtilities.invokeLater(() -> {
             turnLabel.setText("Turn of :"+controller.getCurrentPlayer());
             netPanel.setButtonsEnabled(controller.isPenalty());
+<<<<<<< HEAD
             bottomDice.setDice(!controller.isPenalty());
 
             continueButton.setVisible(controller.isLastBox());
@@ -96,6 +97,8 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
                 this.LastBox();
             }
             
+=======
+>>>>>>> featureNio2
         });
     }
 

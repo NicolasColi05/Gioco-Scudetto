@@ -27,6 +27,7 @@ public class NetPanel extends DefaultPanelImpl {
     private final JButton button4 = new JButton("4");
     private final JButton button5 = new JButton("5");
     private final JButton button6 = new JButton("6");
+    private final JButton kickButton = new JButton("KICK THE PENALTY");
     private final JLabel label;
     private int count = 0;
 
@@ -37,7 +38,6 @@ public class NetPanel extends DefaultPanelImpl {
         this.label.setBackground(new java.awt.Color(0xC8E6C9));
         label.setHorizontalAlignment(JLabel.CENTER);
         this.add(label, BorderLayout.NORTH);
-        JButton kickButton = new JButton("KICK THE PENALTY");
         kickButton.setEnabled(false);
         JPanel net = new JPanel();
         net.setOpaque(false);
@@ -157,6 +157,7 @@ public class NetPanel extends DefaultPanelImpl {
         if (b) {
             label.setText("Choose the position of the keeper");
         }
+        this.kickButton.setEnabled(b);
     }
 
     private void checkButtons(final int position) {

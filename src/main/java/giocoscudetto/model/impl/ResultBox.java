@@ -21,6 +21,7 @@ public class ResultBox implements Boxes{
 
     @Override
     public void event(Match match) {
+        
         match.turn();
     }
 
