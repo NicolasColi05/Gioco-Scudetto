@@ -98,4 +98,9 @@ public class MatchImpl implements Match {
         return this.penalty;
     }
 
+    @Override
+    public void setSkipTurn(Club club) {
+        turn.setSkipTurn(club);
+    }
+
 }

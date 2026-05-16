@@ -12,6 +12,8 @@ public class TurnImpl implements Turn {
     private Club club2;
     private Club currentPlayer;
     private MainDice dice;
+    private boolean skipClub1;
+    private boolean skipClub2;
 
     //Class Constructor
     public TurnImpl(Club club1, Club club2) {
@@ -20,6 +22,14 @@ public class TurnImpl implements Turn {
         this.club2 = club2;
         this.dice = new MainDice();
         chooseStartingPlayer(); 
+    }
+
+    public void setSkipTurn(Club club) {
+        if (club == club1) {
+            skipClub1 = true;
+        } else {
+            skipClub2 = true;
+        }
     }
 
     @Override
@@ -41,9 +51,26 @@ public class TurnImpl implements Turn {
     @Override
     public void switchTurn() {
         if (currentPlayer == club1) {
-            currentPlayer = club2;
+            if (skipClub2) {
+                skipClub2 = false;
+                currentPlayer = club1;
+
+                System.out.println(club2 + "skip the turn");
+            } else {
+
+                currentPlayer = club2;
+            }
         } else {
-            currentPlayer = club1;
+
+            if (skipClub1) {
+                skipClub1 = false;
+                currentPlayer = club2;
+
+                System.out.println(club1 + "skip the turn");
+            } else {
+
+                currentPlayer = club1;
+            }
         }
     }
 

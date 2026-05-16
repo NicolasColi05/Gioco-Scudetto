@@ -90,4 +90,6 @@ public interface Match {
      */
     boolean isPenaltyMode();
 
+    void setSkipTurn(Club club);
+
 }
