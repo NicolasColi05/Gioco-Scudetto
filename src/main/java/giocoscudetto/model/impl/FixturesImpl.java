@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Club;
@@ -53,12 +54,22 @@ public class FixturesImpl implements Fixtures {
     }
 
     @Override
-    public Match getNextMatch() {
+    public Match setNextMatch() {
         if(this.listOfMatchesIterator.hasNext()){
             this.currentMatch = this.listOfMatchesIterator.next();
             return this.currentMatch;
         }
         return null;
+    }
+
+    @Override 
+    public Match seeNextMatch(Match match){
+        int i = listOfMatches.indexOf(match);
+        if (i+1 >= listOfMatches.size()){
+            return null;
+        }else{
+            return listOfMatches.get(++i);
+        }
     }
 
     @Override

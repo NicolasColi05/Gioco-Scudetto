@@ -19,7 +19,7 @@ public interface Fixtures {
      * 
      * @return the next match to be played
      */
-    Match getNextMatch();
+    Match setNextMatch();
 
     /**
      * Method that returns the current match being played, it returns a pair of clubs that are playing against each other.
@@ -40,4 +40,6 @@ public interface Fixtures {
      * @param score is the updated score for the match
      */
     void setScore(Match match, Scoreboard score);
+    
+    Match seeNextMatch(Match match);
 }
