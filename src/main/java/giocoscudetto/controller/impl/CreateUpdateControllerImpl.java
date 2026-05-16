@@ -91,5 +91,12 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
         System.out.println("fixture" + this.fixture.toString());
         return this.fixture;
     }
+
+    @Override
+    public void reset(){
+        this.clubs.clear();
+        this.fixture.resetFixture();
+        this.table.reset();
+    }
     
 }

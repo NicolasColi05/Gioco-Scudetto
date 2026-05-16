@@ -208,5 +208,8 @@ public class StarterImpl implements Starter {
     @Override
     public void resetFixture(){
         this.fixture.resetFixture();
+        System.out.println(this.fixture.toString());
+        System.out.println("OK");
+        this.controller.reset();
     }
 }

@@ -54,6 +54,8 @@ public interface CreateUpdateController {
      */
     Fixtures getFixture();
 
+    void reset();
+
 
 
 }
