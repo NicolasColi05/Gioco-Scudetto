@@ -28,7 +28,9 @@ import javax.swing.border.TitledBorder;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
+import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.DefaultPanelImpl;
+import giocoscudetto.view.impl.PreMatchView;
 
 public class ClubPanel extends DefaultPanelImpl{
     
@@ -41,15 +43,17 @@ public class ClubPanel extends DefaultPanelImpl{
 
     private final Starter viewChanger;
     private final CreateUpdateController controller;
+    private final ViewManager viewManager; 
     private final Image image;
 
     private final List<JTextField> clubsName = new ArrayList<>();
-    private final List<PawnColorPickerPanel> clubsPawn = new ArrayList<>(); 
+    private final List<PawnColorPickerPanel> clubsPawn = new ArrayList<>();
 
 
-    public ClubPanel(final Starter viewChanger, final CreateUpdateController controller) {
+    public ClubPanel(final Starter viewChanger, final CreateUpdateController controller,  final ViewManager viewManager) {
         this.viewChanger = viewChanger;
         this.controller = controller;
+        this.viewManager = viewManager;
 
         this.setLayout(new BorderLayout());
 
@@ -136,6 +140,8 @@ public class ClubPanel extends DefaultPanelImpl{
 
 
             //Then going to the next view
+            PreMatchView preMatchView = new PreMatchView(viewChanger, controller, viewManager);
+            this.viewManager.addView(preMatchView, "pre");
             this.viewChanger.changeView("pre");
         }); 
 
