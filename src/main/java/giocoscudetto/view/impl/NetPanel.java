@@ -99,6 +99,7 @@ public class NetPanel extends DefaultPanelImpl {
                 if (count == 0) {
                     this.controller.setKeeperPosition(4);
                     count++;
+                    checkButtons(4);
                 } else if (count == 1) {
                     this.controller.setKeeperPosition(4);
                     count++;
@@ -110,6 +111,7 @@ public class NetPanel extends DefaultPanelImpl {
                 if (count == 0) {
                     this.controller.setKeeperPosition(5);
                     count++;
+                    checkButtons(5);
                 } else if(count == 1) {
                     this.controller.setKeeperPosition(5);
                     count++;
@@ -121,6 +123,7 @@ public class NetPanel extends DefaultPanelImpl {
                 if (count == 0) {
                     this.controller.setKeeperPosition(6);
                     count++;
+                    checkButtons(6);
                 } else if (count == 1) {
                     this.controller.setKeeperPosition(6);
                     count++;

@@ -41,9 +41,10 @@ import giocoscudetto.controller.api.Starter;
 
 public class PreMatchView extends DefaultPanelImpl{
     
-    private Starter starter;
-    private CreateUpdateController controller;
-    private ViewManager viewManager;
+    private final Starter starter;
+    private final CreateUpdateController controller;
+    private final ViewManager viewManager;
+    private int count=0;
     //dati di prova
     private static String[] columnNamesS = {"Clubs", "Points", "Net Diff"};
     private Object[][] dati = {
@@ -114,8 +115,11 @@ public class PreMatchView extends DefaultPanelImpl{
 
         continueButton.addActionListener(e -> { 
             this.starter.setMatch();
+            if (count == 0) {
             MatchPanel MatchPanel = new MatchPanel(this.starter, this.viewManager);
             viewManager.addView(MatchPanel, "match");
+            count ++;
+            }
             this.starter.setPositionsZero();
             this.starter.changeView("match");
         });
