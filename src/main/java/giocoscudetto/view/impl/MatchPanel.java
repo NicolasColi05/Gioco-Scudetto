@@ -42,7 +42,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.setPreferredSize(new Dimension(280, 0));
 
         JPanel turnPanel = new JPanel();
-        turnLabel = new JLabel();//mettere this.controller.getCurrentPlayer() +
+        turnLabel = new JLabel("Turn of :"+controller.getCurrentPlayer());
         turnPanel.setBackground(BACKGROUND_COLOR);
         turnLabel.setFont(new Font("Turn",Font.BOLD,20));
         turnPanel.add(turnLabel);
@@ -87,8 +87,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         SwingUtilities.invokeLater(() -> {
             turnLabel.setText("Turn of :"+controller.getCurrentPlayer());
             netPanel.setButtonsEnabled(controller.isPenalty());
-            bottomDice.setDice(!controller.isPenalty());
-
             continueButton.setVisible(controller.isLastBox());
             continueButton.setEnabled(controller.isLastBox());
             if(controller.isLastBox()){
