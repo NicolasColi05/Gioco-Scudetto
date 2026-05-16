@@ -103,4 +103,9 @@ public class MatchImpl implements Match {
         turn.setSkipTurn(club);
     }
 
+    @Override
+    public String toString(){
+        return this.clubHome.getName() + " - " + this.clubAway.getName();
+    }
+
 }

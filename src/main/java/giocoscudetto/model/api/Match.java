@@ -92,4 +92,6 @@ public interface Match {
 
     void setSkipTurn(Club club);
 
+    String toString();
+
 }
