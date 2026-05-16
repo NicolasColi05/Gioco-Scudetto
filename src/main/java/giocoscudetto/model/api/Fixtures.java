@@ -42,4 +42,6 @@ public interface Fixtures {
     void setScore(Match match, Scoreboard score);
     
     Match seeNextMatch(Match match);
+    
+    void resetFixture();
 }
