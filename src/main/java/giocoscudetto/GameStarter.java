@@ -27,15 +27,14 @@ public class GameStarter {
 
         //Creating the Views that we will use during the game
         final HomePanel homeView = new HomePanel(viewChangerController);
-        final ClubPanel clubView = new ClubPanel(viewChangerController, controller);
-        final PreMatchView preMatch = new PreMatchView(viewChangerController, controller, viewManager);
+        final ClubPanel clubView = new ClubPanel(viewChangerController, controller, viewManager);
         final BotView botView = new BotView(viewChangerController);
+        //final PreMatchView preMatch = new PreMatchView(viewChangerController, controller, viewManager);
         //final MatchPanel MatchPanel = new MatchPanel(viewChangerController);
 
         //Adding the views to the manager
         viewManager.addView(homeView, "home");
         viewManager.addView(clubView, "club");
-        viewManager.addView(preMatch, "pre");
         viewManager.addView(botView, "bot");
         //viewManager.addView(MatchPanel, "match");
 
