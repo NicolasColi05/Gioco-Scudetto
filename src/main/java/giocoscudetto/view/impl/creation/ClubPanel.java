@@ -129,6 +129,9 @@ public class ClubPanel extends DefaultPanelImpl{
         }); 
         
         btnCont.addActionListener(e -> { 
+            if(!controller.getFixture().isEmpty()){
+                viewChanger.resetFixture();
+            }
             //Creating clubs, table and fixtures to start the match
             this.controller.createClubs(this.clubsName.stream()
                                             .map(JTextField::getText)
