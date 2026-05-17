@@ -1,6 +1,7 @@
 package giocoscudetto.view.impl;
 
 import giocoscudetto.controller.api.Starter;
+import giocoscudetto.view.EventPanel;
 import giocoscudetto.view.api.GameObserver;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.EndGameView;
@@ -11,12 +12,13 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import ch.qos.logback.core.spi.ConfigurationEvent.EventType;
 
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
@@ -37,6 +39,9 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.setBackground(BACKGROUND_COLOR);
         this.controller.addObserver(this);
         this.add(boardJPanel, BorderLayout.CENTER);
+
+        JPanel eventPanel = new EventPanel(controller, giocoscudetto.view.EventPanel.EventType.CORNER);
+        eventPanel.setMaximumSize(new Dimension(300,200 ));
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
@@ -68,7 +73,9 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(turnPanel);
         rightPanel.add(netWrapper);
         rightPanel.add(bottomDice);
+        rightPanel.add(eventPanel);
         rightPanel.add(continueButton);
+        
 
         continueButton.addActionListener(e -> { 
             if(this.controller.isLastMatch()){
