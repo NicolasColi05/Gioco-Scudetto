@@ -25,4 +25,6 @@ public interface Table {
 
     void reset();
 
+    boolean isEmpty();
+
 }

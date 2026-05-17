@@ -46,4 +46,9 @@ public class TableImpl implements Table{
     public void reset(){
         this.clubRank.clear();
     }
+
+    @Override
+    public boolean isEmpty(){
+        return this.clubRank.isEmpty();
+    }
 }
