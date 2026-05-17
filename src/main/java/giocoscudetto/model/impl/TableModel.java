@@ -6,8 +6,6 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.Scoreboard;
 import giocoscudetto.model.api.Table;
 
 public class TableModel extends AbstractTableModel {
