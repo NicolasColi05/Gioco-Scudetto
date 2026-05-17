@@ -94,4 +94,8 @@ public interface Match {
 
     String toString();
 
+    Club getWinnerClub();
+
+    Club getLoserClub();
+
 }
