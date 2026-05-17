@@ -73,7 +73,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(turnPanel);
         rightPanel.add(netWrapper);
         rightPanel.add(bottomDice);
-        rightPanel.add(Box.createVerticalGlue());
         rightPanel.add(continueButton);
 
         continueButton.addActionListener(e -> { 
@@ -82,8 +81,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
                 viewManager.addView(EndGameView, "end");
                 this.controller.changeView("end");
             }else{
-                PreMatchView preMatchView = new PreMatchView(controller, updateController, viewManager);
-                this.viewManager.addView(preMatchView, "pre");
                 this.controller.changeView("pre");
             }
         });
