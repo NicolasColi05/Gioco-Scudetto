@@ -5,6 +5,7 @@ import java.util.List;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
+import giocoscudetto.model.impl.FixtureTableModel;
 
 
 /**
@@ -55,5 +56,7 @@ public interface CreateUpdateController {
     Fixtures getFixture();
 
     void reset();
+
+    FixtureTableModel getFixtureTableModel();
 
 }
