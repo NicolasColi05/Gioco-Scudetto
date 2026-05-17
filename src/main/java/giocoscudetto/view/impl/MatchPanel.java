@@ -82,8 +82,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
                 viewManager.addView(EndGameView, "end");
                 this.controller.changeView("end");
             }else{
-                PreMatchView preMatchView = new PreMatchView(controller, updateController, viewManager);
-                this.viewManager.addView(preMatchView, "pre");
                 this.controller.changeView("pre");
             }
         });

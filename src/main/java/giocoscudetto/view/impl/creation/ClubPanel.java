@@ -140,8 +140,6 @@ public class ClubPanel extends DefaultPanelImpl{
 
 
             //Then going to the next view
-            PreMatchView preMatchView = new PreMatchView(viewChanger, controller, viewManager);
-            this.viewManager.addView(preMatchView, "pre");
             this.viewChanger.changeView("pre");
         }); 
 
