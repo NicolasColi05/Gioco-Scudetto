@@ -30,7 +30,6 @@ import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.DefaultPanelImpl;
-import giocoscudetto.view.impl.PreMatchView;
 
 public class ClubPanel extends DefaultPanelImpl{
     
