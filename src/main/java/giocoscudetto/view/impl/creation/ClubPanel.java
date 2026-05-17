@@ -30,7 +30,6 @@ import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.DefaultPanelImpl;
-import giocoscudetto.view.impl.PreMatchView;
 
 public class ClubPanel extends DefaultPanelImpl{
     
@@ -130,6 +129,9 @@ public class ClubPanel extends DefaultPanelImpl{
         }); 
         
         btnCont.addActionListener(e -> { 
+            if(!controller.getFixture().isEmpty()){
+                viewChanger.resetFixture();
+            }
             //Creating clubs, table and fixtures to start the match
             this.controller.createClubs(this.clubsName.stream()
                                             .map(JTextField::getText)
@@ -140,8 +142,6 @@ public class ClubPanel extends DefaultPanelImpl{
 
 
             //Then going to the next view
-            PreMatchView preMatchView = new PreMatchView(viewChanger, controller, viewManager);
-            this.viewManager.addView(preMatchView, "pre");
             this.viewChanger.changeView("pre");
         }); 
 

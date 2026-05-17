@@ -23,20 +23,18 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
      private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
-    private final CreateUpdateController updateController;
     private final ViewManager viewManager;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
     private final JButton continueButton;
 
-    public MatchPanel(final Starter controller, final ViewManager viewManager, final CreateUpdateController updateController) {
+    public MatchPanel(final Starter controller, final ViewManager viewManager) {
 
         final BoardPanel boardJPanel = new BoardPanel(controller);
         this.bottomDice = new DicePanel(controller,boardJPanel);
         this.netPanel = new NetPanel(controller);
         this.controller = controller;
-        this.updateController = updateController;
         this.viewManager = viewManager;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);

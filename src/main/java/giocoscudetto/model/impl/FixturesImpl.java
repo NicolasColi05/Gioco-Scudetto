@@ -100,6 +100,10 @@ public class FixturesImpl implements Fixtures {
     }
 
     @Override
+    public boolean isEmpty(){
+        return this.fixture.isEmpty();
+    }
+    @Override
     public String toString() {
     /*if (this.listOfMatches == null || this.listOfMatches.isEmpty()) {
         return "Nessun match programmato.";

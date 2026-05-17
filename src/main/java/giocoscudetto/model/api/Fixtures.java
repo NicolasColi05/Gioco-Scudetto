@@ -49,4 +49,6 @@ public interface Fixtures {
     Scoreboard getScoreboard(Match match);
 
     Set<Match> getListOfMatches();
+    
+    boolean isEmpty();
 }

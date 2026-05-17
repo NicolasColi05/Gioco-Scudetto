@@ -22,8 +22,7 @@ public class TestMatchPanel extends JFrame{
         controller.createClubs(List.of("juve","inter"), List.of(1,2));
         Starter contro = new StarterImpl(null, controller);
         ViewManagerImpl viewManager = new ViewManagerImpl();
-        CreateUpdateController updateController = new CreateUpdateControllerImpl();
-        JPanel pa = new MatchPanel(contro, viewManager , updateController);
+        JPanel pa = new MatchPanel(contro, viewManager);
         this.setContentPane(pa);
         this.setVisible(true);
     }

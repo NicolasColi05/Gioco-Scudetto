@@ -1,16 +1,9 @@
 package giocoscudetto.view.impl;
 
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.JTableHeader;
 
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.TextArea;
 
 
 import java.awt.BorderLayout;
@@ -30,12 +23,7 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import giocoscudetto.model.api.Table;
-import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.PawnImpl;
-import giocoscudetto.model.impl.TableImpl;
 import giocoscudetto.view.api.ViewManager;
-import giocoscudetto.view.impl.creation.ClubPanel;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 
@@ -44,7 +32,8 @@ public class PreMatchView extends DefaultPanelImpl{
     private final Starter starter;
     private final CreateUpdateController controller;
     private final ViewManager viewManager;
-    private int count=0;
+    private int count = 0;
+    final JTable fixtureTable;
     //dati di prova
     private static String[] columnNamesS = {"Clubs", "Points", "Net Diff"};
     private Object[][] dati = {
@@ -52,11 +41,6 @@ public class PreMatchView extends DefaultPanelImpl{
         {"Roma", 7, 2},
         {"Inter", 6, 3},
         {"Roma", 7, 2}
-    };
-    private static String[] columnNamesF = {"Clubs", "Results"};
-    private Object[][] dati2 = {
-        { "prova", "0-0"},
-        { "inter-roma", "0-0"}
     };
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -69,8 +53,8 @@ public class PreMatchView extends DefaultPanelImpl{
         this.starter = starter;
         this.controller = controller;
         this.viewManager = viewManager;
-
-        Table tablee = this.controller.getTable();
+        this.fixtureTable = (JTable) createComponent(new JTable(), getTitleFont(), Color.BLACK, null);
+        
 
         this.setLayout(new BorderLayout());
 
@@ -90,9 +74,6 @@ public class PreMatchView extends DefaultPanelImpl{
         lowerPanel.setOpaque(false);
 
         //prima tabella
-        FixtureTableModel model = new FixtureTableModel(controller.getFixture());
-        System.out.println(controller.getFixture());
-        final JTable fixtureTable = (JTable) createComponent(new JTable(model), getTitleFont(), Color.BLACK, null);
         fixtureTable.setEnabled(false);
         fixtureTable.setOpaque(false);
         fixtureTable.getTableHeader().setReorderingAllowed(false);
@@ -118,7 +99,7 @@ public class PreMatchView extends DefaultPanelImpl{
         continueButton.addActionListener(e -> { 
             this.starter.setMatch();
             if (count == 0) {
-            MatchPanel MatchPanel = new MatchPanel(this.starter, this.viewManager, this.controller);
+            MatchPanel MatchPanel = new MatchPanel(this.starter, this.viewManager);
             viewManager.addView(MatchPanel, "match");
             count ++;
             }
@@ -155,6 +136,12 @@ public class PreMatchView extends DefaultPanelImpl{
         this.add(lowerPanel, BorderLayout.SOUTH);
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
+
+            @Override
+            public void componentShown(final java.awt.event.ComponentEvent e){
+                PreMatchView.this.updateFixtureTable();
+            }
+
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
 
@@ -187,4 +174,7 @@ public class PreMatchView extends DefaultPanelImpl{
         g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
     }
 
+    public void updateFixtureTable(){
+        fixtureTable.setModel(controller.getFixtureTableModel());
+    }
 }
