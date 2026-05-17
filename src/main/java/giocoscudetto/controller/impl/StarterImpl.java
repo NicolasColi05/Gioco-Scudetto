@@ -207,17 +207,21 @@ public class StarterImpl implements Starter {
 
     @Override
     public void resetFixture(){
-        this.fixture.resetFixture();
-        System.out.println(this.fixture.toString());
-        System.out.println("OK");
-        this.controller.reset();
+        if(!this.fixture.isEmpty()){
+            this.fixture.resetFixture();
+            System.out.println(this.fixture.toString());
+            System.out.println("OK");
+            this.controller.reset();
+        }
     }
 
     @Override
     public void resetTable(){
-        this.table.reset();
-        System.out.println(this.table.toString());
-        System.out.println("OK");
-        this.controller.reset();
+        if(!this.table.isEmpty()){
+            this.table.reset();
+            System.out.println(this.table.toString());
+            System.out.println("OK");
+            this.controller.reset();
+        }
     }
 }

@@ -129,10 +129,10 @@ public class ClubPanel extends DefaultPanelImpl{
         }); 
         
         btnCont.addActionListener(e -> { 
-            if(!controller.getFixture().isEmpty()){
+            if(!controller.getFixture().isEmpty()){ //da sistemare che è da fare nel controller
                 viewChanger.resetFixture();
             }
-            if(!controller.getTable().isEmpty()){
+            if(!controller.getTable().isEmpty()){ //da sistemare che è da fare nel controller
                 viewChanger.resetTable();
             }
             //Creating clubs, table and fixtures to start the match
