@@ -2,6 +2,7 @@ package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
+import giocoscudetto.model.impl.MatchImpl.GameMode;
 
 public class FreeKickBox implements Boxes{
 
@@ -21,13 +22,7 @@ public class FreeKickBox implements Boxes{
 
     @Override
     public void event(final Match match) {
-        if (match.freeKickDice() == 7) {
-            if (match.getCurrentPlayer() == match.getClubHome()) {
-                match.goalHome();
-            } else {
-                match.goalAway();
-            }
-        }
+        match.setGameMode(GameMode.FREE_KICK);
         match.turn();
     }
 

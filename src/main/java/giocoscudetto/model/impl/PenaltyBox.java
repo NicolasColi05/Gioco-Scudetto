@@ -2,6 +2,7 @@ package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
+import giocoscudetto.model.impl.MatchImpl.GameMode;
 
 public final class PenaltyBox implements Boxes {
     
@@ -24,7 +25,7 @@ public final class PenaltyBox implements Boxes {
 
     @Override
     public void event(final Match match) {
-        match.setPenaltyMode(true);
+        match.setGameMode(GameMode.PENALTY);;
     }
 
     @Override

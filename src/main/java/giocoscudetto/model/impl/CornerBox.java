@@ -2,6 +2,7 @@ package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
+import giocoscudetto.model.impl.MatchImpl.GameMode;
 
 public class CornerBox implements Boxes{
 
@@ -21,6 +22,7 @@ public class CornerBox implements Boxes{
 
     @Override
     public void event(Match match) {
+        match.setGameMode(GameMode.CORNER);
         match.turn();
     }
 
