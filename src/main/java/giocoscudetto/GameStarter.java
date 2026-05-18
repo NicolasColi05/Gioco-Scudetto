@@ -27,7 +27,7 @@ public class GameStarter {
 
         //Creating the Views that we will use during the game
         final HomePanel homeView = new HomePanel(viewChangerController);
-        final ClubPanel clubView = new ClubPanel(viewChangerController, controller, viewManager);
+        final ClubPanel clubView = new ClubPanel(viewChangerController, controller);
         final BotView botView = new BotView(viewChangerController);
         final PreMatchView preMatch = new PreMatchView(viewChangerController, controller, viewManager);
         //final MatchPanel MatchPanel = new MatchPanel(viewChangerController);
