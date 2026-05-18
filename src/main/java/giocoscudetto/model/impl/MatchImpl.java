@@ -147,7 +147,6 @@ public class MatchImpl implements Match {
         }
     }
 
-<<<<<<< HEAD
     @Override
     public int diceEvent() {
         int result;
@@ -197,7 +196,5 @@ public class MatchImpl implements Match {
         }
         this.eventDices.clear();
     }
-=======
->>>>>>> fd219cc0b917676e3a8179cdc9151115bb5caeb5
 
 }
