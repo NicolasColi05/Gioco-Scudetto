@@ -136,6 +136,14 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
         final int y = box_h;
         final int w = board_size_w - 2*x;
         final int h = board_size_h - 2*y;
+        final int score_y = y*5;
+        final int center = board_size_w/2;
+        final int scoreText_y = y*6;
+        final int scoreText_x =  center - g2d.getFontMetrics().stringWidth(this.controller.getScore())/2;
+        final String homeName = this.controller.getHomeName();
+        final int homeNameW = g2d.getFontMetrics().stringWidth(homeName);
+        final String guestName = this.controller.getGuestName();
+        final int guestNAmew = g2d.getFontMetrics().stringWidth(guestName);
 
         g2d.setColor(BACKGROUND_COLOR);
         g2d.fillRect(x, y, w, h);
@@ -150,10 +158,17 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
         g2d.drawString("GIOCO DELLO SCUDETTO", x + x/3, y*2);
 
         g2d.setColor(Color.black);
-        g2d.setFont(new Font("Boh", Font.BOLD, x/2));
-        g2d.drawString("SCORE", 4*x, y*5);
-        g2d.drawString(this.controller.getScore(), 4*x, y*6);
+        g2d.setFont(new Font("Boh", Font.BOLD, x/3));
+        g2d.drawString("SCORE", center - g2d.getFontMetrics().stringWidth("SCORE")/2, score_y);
+        g2d.drawString(this.controller.getScore(), scoreText_x, scoreText_y);
 
+        g2d.setColor(Color.BLACK);
+        g2d.setFont(new Font("Arial", Font.BOLD, x / 3));
+        g2d.drawString(homeName, scoreText_x - homeNameW - x, scoreText_y);
+
+        g2d.setColor(Color.BLACK);
+        g2d.setFont(new Font("Arial", Font.BOLD, x / 3));
+        g2d.drawString(guestName, center + g2d.getFontMetrics().stringWidth(this.controller.getScore()) + x/2, scoreText_y);
     }
 
     private void drawPawn(final Graphics2D g2d, final Color PawnColor, final int position,final double offset) {

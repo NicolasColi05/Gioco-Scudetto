@@ -29,12 +29,12 @@ public class GoalRemovedBox implements Boxes {
      */
     @Override
     public void event(Match match) {
-        //match.turn();
         if(match.getCurrentPlayer() == match.getClubHome()) {
             match.removeGoalHome();
         } else {
             match.removeGoalAway();
         }
+        match.turn();
     }
 
     /**
