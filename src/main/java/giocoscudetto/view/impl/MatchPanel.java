@@ -71,7 +71,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(turnPanel);
         rightPanel.add(netWrapper);
         rightPanel.add(bottomDice);
-        rightPanel.add(Box.createVerticalGlue());
         rightPanel.add(continueButton);
 
         continueButton.addActionListener(e -> { 
