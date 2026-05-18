@@ -2,7 +2,6 @@ package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.impl.MatchImpl.GameMode;
 
 public class ResultBox implements Boxes{
 
@@ -22,7 +21,7 @@ public class ResultBox implements Boxes{
 
     @Override
     public void event(Match match) {
-        match.setGameMode(GameMode.RESULT);
+        match.setGameMode(Match.GameMode.RESULT);
         match.turn();
     }
 
