@@ -1,11 +1,15 @@
 package giocoscudetto.model.api;
 
-import giocoscudetto.model.impl.MatchImpl.GameMode;
-
 /**
  * Interface that represents a match between two clubs, it keeps track of the score and of the clubs that are playing
  */
 public interface Match {
+
+    enum GameMode {
+        CORNER, FREE_KICK,
+        RESULT, PENALTY,
+        NONE
+    }
 
     /**
      * Method that returns the club that has the turn to play

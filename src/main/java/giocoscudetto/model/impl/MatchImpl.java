@@ -15,12 +15,6 @@ public class MatchImpl implements Match {
     private GameMode mode = GameMode.NONE;
     private static final int HALF_BOARD = 16;
 
-    public enum GameMode {
-        CORNER, FREE_KICK,
-        RESULT, PENALTY,
-        NONE
-    }
-
     public MatchImpl(Club clubHome, Club clubAway) {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
