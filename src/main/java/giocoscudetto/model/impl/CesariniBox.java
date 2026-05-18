@@ -23,12 +23,12 @@ public class CesariniBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        //match.turn();
         if(match.getCurrentPlayer() == match.getClubHome()) {
             match.goalHome();
         } else {
             match.goalAway();
         }
+        match.turn();
     }
 
     @Override
