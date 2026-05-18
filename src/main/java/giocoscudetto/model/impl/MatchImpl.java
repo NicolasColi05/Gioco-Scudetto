@@ -1,5 +1,8 @@
 package giocoscudetto.model.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Dice;
 import giocoscudetto.model.api.Match;
@@ -7,18 +10,21 @@ import giocoscudetto.model.api.Scoreboard;
 
 public class MatchImpl implements Match {
 
+    private static final int HALF_BOARD = 16;
     private Club clubHome;
     private Club clubAway;
     private final Scoreboard score;
     private final TurnImpl turn;
     private final Dice dice6;
+    private final Dice dice3;
     private GameMode mode = GameMode.NONE;
-    private static final int HALF_BOARD = 16;
+    private List<Integer> eventDices = new ArrayList<>();
 
     public MatchImpl(Club clubHome, Club clubAway) {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
         this.dice6 = new MainDice();
+        this.dice3 = new ResultDice();
         turn.chooseStartingPlayer();
         this.clubHome = clubHome;
         this.clubAway = clubAway;
@@ -128,6 +134,56 @@ public class MatchImpl implements Match {
         }else{
             return null;
         }
+    }
+
+    @Override
+    public int diceEvent() {
+        int result;
+        if (eventDices.size() < 1) {
+            if (this.mode == GameMode.RESULT) {
+                result = this.dice3.rollDice();
+            } else {
+                result = this.dice6.rollDice();
+            }
+            this.eventDices.add(result);
+            return result;
+        } else {
+            if (this.mode == GameMode.RESULT) {
+                result = this.dice3.rollDice();
+            } else {
+                result = this.dice6.rollDice();
+            }
+            this.eventDices.add(result);
+            this.eventMode();
+            return result;
+        }
+    }
+
+    private void eventMode() {
+        if (this.mode == GameMode.RESULT) {
+
+            this.setGoalHome(this.eventDices.get(0));
+            this.setGoalAway(this.eventDices.get(1));
+        } else if (this.mode == GameMode.FREE_KICK) {
+
+            if (this.eventDices.get(0) + this.eventDices.get(1) == 7) {
+
+                if (this.getCurrentPlayer() == this.getClubAway()) {
+                    this.goalAway();
+                } else {
+                    this.goalHome();
+                }
+            }
+        } else if (this.mode == GameMode.CORNER) {
+            if (this.eventDices.get(0) == 1|| this.eventDices.get(1) == 1) {
+                if (this.getCurrentPlayer() == this.getClubAway()) {
+                    this.goalAway();
+                } else {
+                    this.goalHome();
+                }
+            }
+        }
+        this.eventDices.clear();
     }
 
 }
