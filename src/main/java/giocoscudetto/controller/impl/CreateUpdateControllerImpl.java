@@ -118,6 +118,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
 
     @Override
     public TableModel getLeagueTableModel(){
+        this.table.updateClubRank();
         TableModel model = new TableModel(this.getTable());
         return model;
     }

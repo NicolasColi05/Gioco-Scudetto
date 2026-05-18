@@ -126,4 +126,6 @@ public interface Starter {
     void resetFixture();
 
     void resetTable();
+
+    void addPoints();
 }
