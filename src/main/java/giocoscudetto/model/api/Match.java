@@ -29,6 +29,16 @@ public interface Match {
     void goalAway();
 
     /**
+     * Method that decrease the amount of goals scored by the home team
+     */
+    void removeGoalHome();
+
+    /**
+     * Method that decrease the amount of goals scored by the away team
+     */
+    void removeGoalAway();
+
+    /**
      * sets the number of goals of the home Club to goal 
      * @param goal
      */

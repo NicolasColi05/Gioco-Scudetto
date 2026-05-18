@@ -45,6 +45,17 @@ public class MatchImpl implements Match {
         this.score.setHomeScore(goal);
     }
 
+
+    @Override
+    public void removeGoalHome() {
+        this.score.decreaseHomeScore();
+    }
+
+    @Override
+    public void removeGoalAway() {
+        this.score.decreaseGuestScore();
+    }
+
     @Override
     public final void setGoalAway(int goal){
         this.score.setGuestScore(goal);
@@ -129,5 +140,6 @@ public class MatchImpl implements Match {
             return null;
         }
     }
+
 
 }
