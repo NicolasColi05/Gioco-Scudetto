@@ -104,4 +104,6 @@ public interface Match {
 
     Club getLoserClub();
 
+    int diceEvent();
+
 }

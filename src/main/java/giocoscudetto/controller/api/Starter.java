@@ -128,4 +128,6 @@ public interface Starter {
     void resetTable();
 
     void addPoints();
+    
+    int diceEvent();
 }

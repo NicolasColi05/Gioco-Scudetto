@@ -23,18 +23,18 @@ public class EventPanel extends DefaultPanelImpl {
     }
 
     private final Starter controller;
-    private EventType currentType;
     private final JLabel dice1Label = new JLabel("?", SwingConstants.CENTER);
     private final JLabel dice2Label = new JLabel("?", SwingConstants.CENTER);
     private final JLabel outcomeLabel = new JLabel("", SwingConstants.CENTER);
     private final JButton spinButton = new JButton("kick");
     private final JButton continueButton = new JButton("continue");
     private final JLabel titleLabel = new JLabel("", SwingConstants.CENTER);
-    final JLabel plusLabel = new JLabel("+", SwingConstants.CENTER);
+    private final JLabel plusLabel = new JLabel("+", SwingConstants.CENTER);
 
-    public EventPanel(final Starter controller, final EventType type) {
+    private EventType currentType = EventType.CORNER;
+
+    public EventPanel(final Starter controller) {
         this.controller = controller;
-        this.currentType = type;
         buildUI();
         this.setBackground(BACKGROUND_COLOR);
     }
@@ -64,7 +64,9 @@ public class EventPanel extends DefaultPanelImpl {
         add(bottomPanel, BorderLayout.SOUTH);
 
         spinButton.addActionListener(e -> animateAndResolve());
+
         continueButton.addActionListener(e -> {
+            this.controller.gameModeFinished();
         });
     }
 
@@ -100,6 +102,23 @@ public class EventPanel extends DefaultPanelImpl {
     }
 
     private void showResult() {
+        dice1Label.setText(String.valueOf(this.controller.diceEvent()));
+        dice2Label.setText(String.valueOf(this.controller.diceEvent()));
+
+        if (EventType.FREE_KICK == currentType) {
+            if (Integer.valueOf(dice1Label.getText()) + Integer.valueOf(dice2Label.getText()) == 7) {
+                outcomeLabel.setText("GOAL");
+            } else {
+                outcomeLabel.setText("NO GOAL");
+            }
+        } else if (EventType.CORNER == currentType) {
+            if (Integer.valueOf(dice1Label.getText()) == 1 || Integer.valueOf(dice2Label.getText()) == 1) {
+                outcomeLabel.setText("GOAL");
+            } else {
+                outcomeLabel.setText("NO GOAL");
+            }
+        }
+        this.continueButton.setVisible(true);
     }
 
     public void configure(final EventType type) {
@@ -111,9 +130,12 @@ public class EventPanel extends DefaultPanelImpl {
         continueButton.setVisible(false);
         spinButton.setEnabled(true);
         if (type == EventType.RESULT) {
-            
+            plusLabel.setText("-");
             spinButton.setText("new Result");
-        } else {
+        } else if (this.currentType == EventType.CORNER) {
+            plusLabel.setText("");
+            spinButton.setText("kick the "+ getTitleType(type));
+        } else if (this.currentType == EventType.FREE_KICK) {
             spinButton.setText("kick the "+ getTitleType(type));
         }
     }

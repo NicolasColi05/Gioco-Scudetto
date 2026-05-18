@@ -8,11 +8,12 @@ import java.awt.Image;
 
 import javax.swing.SwingUtilities;
 
+import giocoscudetto.view.api.GameObserver;
 import giocoscudetto.view.api.ImageBoardLoader;
 import giocoscudetto.controller.api.Starter;
 
 
-public class BoardPanel extends DefaultPanelImpl  {
+public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
 
     private static final int BORDER_SIZE = 5;
     private static final Color CENTER_COLOR = new Color(223,189,138);
@@ -32,15 +33,17 @@ public class BoardPanel extends DefaultPanelImpl  {
     private int box_h;
 
     public BoardPanel(Starter controller) {
+        this.controller = controller;
+        this.controller.addObserver(this);
+        this.imageLoaded = new ImageBoardLoaderImpl(controller);
+        setBackground(BACKGROUND_COLOR);
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
                 repaint();
             }
         });
-        this.controller = controller;
-        this.imageLoaded = new ImageBoardLoaderImpl(controller);
-        setBackground(BACKGROUND_COLOR);
+
         new Thread(this::animationLoop).start();
     }
 
@@ -207,5 +210,10 @@ public class BoardPanel extends DefaultPanelImpl  {
 
     public int getAnimatedGuestPosition() {
         return this.animatedGuestPos;
+    }
+
+    @Override
+    public void updateState() {
+        this.repaint();
     }
 }

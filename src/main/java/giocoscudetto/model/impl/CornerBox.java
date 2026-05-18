@@ -22,7 +22,6 @@ public class CornerBox implements Boxes{
     @Override
     public void event(Match match) {
         match.setGameMode(Match.GameMode.CORNER);
-        match.turn();
     }
 
     @Override

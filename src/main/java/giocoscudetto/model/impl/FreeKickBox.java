@@ -22,7 +22,6 @@ public class FreeKickBox implements Boxes{
     @Override
     public void event(final Match match) {
         match.setGameMode(Match.GameMode.FREE_KICK);
-        match.turn();
     }
 
     @Override
