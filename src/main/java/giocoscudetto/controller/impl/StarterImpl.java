@@ -16,7 +16,6 @@ import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
-import giocoscudetto.view.impl.MatchPanel;
 import giocoscudetto.view.api.GameObserver;
 
 /**
@@ -209,6 +208,15 @@ public class StarterImpl implements Starter {
     public void resetFixture(){
         this.fixture.resetFixture();
         System.out.println(this.fixture.toString());
+        System.out.println("OK");
+        this.controller.reset();
+        
+    }
+
+    @Override
+    public void resetTable(){
+        this.table.reset();
+        System.out.println(this.table.toString());
         System.out.println("OK");
         this.controller.reset();
     }

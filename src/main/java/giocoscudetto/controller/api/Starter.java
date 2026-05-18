@@ -126,4 +126,6 @@ public interface Starter {
     void setPositionsZero();
 
     void resetFixture();
+
+    void resetTable();
 }

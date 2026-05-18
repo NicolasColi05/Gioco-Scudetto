@@ -8,13 +8,13 @@ import giocoscudetto.model.api.Scoreboard;
 
 import java.util.*;
 
-public class FixtureTableModel extends AbstractTableModel {
+public class FixtureModel extends AbstractTableModel {
 
     private final List<Match> matches;
     private final List<Scoreboard> scores;
     private final String[] columns = {"Match", "Score"};
 
-    public FixtureTableModel(Fixtures fixture) {
+    public FixtureModel(Fixtures fixture) {
         System.out.println(fixture.toString());
         // Congela l'ordine della mappa in due liste parallele
         this.matches = new ArrayList<>(fixture.getListOfMatches());

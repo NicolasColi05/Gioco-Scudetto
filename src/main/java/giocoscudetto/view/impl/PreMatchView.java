@@ -34,14 +34,7 @@ public class PreMatchView extends DefaultPanelImpl{
     private final ViewManager viewManager;
     private int count = 0;
     final JTable fixtureTable;
-    //dati di prova
-    private static String[] columnNamesS = {"Clubs", "Points", "Net Diff"};
-    private Object[][] dati = {
-        {"Inter", 6, 3},
-        {"Roma", 7, 2},
-        {"Inter", 6, 3},
-        {"Roma", 7, 2}
-    };
+    final JTable leagueTable;
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
@@ -54,7 +47,7 @@ public class PreMatchView extends DefaultPanelImpl{
         this.controller = controller;
         this.viewManager = viewManager;
         this.fixtureTable = (JTable) createComponent(new JTable(), getTitleFont(), Color.BLACK, null);
-        
+        this.leagueTable = (JTable) createComponent(new JTable(), getTitleFont(), Color.BLACK, null);
 
         this.setLayout(new BorderLayout());
 
@@ -81,19 +74,19 @@ public class PreMatchView extends DefaultPanelImpl{
         
 
         //seconda tabella
-        final JTable standingsTable = (JTable) createComponent(new JTable(dati, columnNamesS), getTitleFont(), Color.BLACK, null);
-        standingsTable.setEnabled(false);
-        standingsTable.setOpaque(false);
-        //standingsTable.setBackground(new Color(0, 0, 0, 0));
-        standingsTable.getTableHeader().setReorderingAllowed(false);
-        standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
+        leagueTable.setEnabled(false);
+        leagueTable.setOpaque(false);
+        leagueTable.getTableHeader().setReorderingAllowed(false);
+        leagueTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
 
         //pulsanti in basso
         JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK, null);
         JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
 
         backButton.addActionListener(e -> { 
+            this.controller.reset();
             this.starter.changeView("club");
+            this.controller.reset();
         });
 
         continueButton.addActionListener(e -> { 
@@ -121,7 +114,7 @@ public class PreMatchView extends DefaultPanelImpl{
         scrollPaneF.setBorder(titleF);
         centralPanel.add(scrollPaneF);
 
-        JScrollPane scrollPaneS = new JScrollPane(standingsTable);
+        JScrollPane scrollPaneS = new JScrollPane(leagueTable);
         TitledBorder titleS = new TitledBorder("STANDINGS");
         titleS.setTitleJustification(TitledBorder.CENTER);
         titleS.setTitleColor(new Color(195, 45, 35));
@@ -140,6 +133,7 @@ public class PreMatchView extends DefaultPanelImpl{
             @Override
             public void componentShown(final java.awt.event.ComponentEvent e){
                 PreMatchView.this.updateFixtureTable();
+                PreMatchView.this.updateLeagueTable();
             }
 
             @Override
@@ -150,13 +144,13 @@ public class PreMatchView extends DefaultPanelImpl{
 
                 continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 backButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
-                standingsTable.setFont(new Font(FONT_SELECTED, Font.ROMAN_BASELINE, currentWidth / 100));
+                leagueTable.setFont(new Font(FONT_SELECTED, Font.ROMAN_BASELINE, currentWidth / 100));
                 fixtureTable.setFont(new Font(FONT_SELECTED, Font.ROMAN_BASELINE, currentWidth / 100));
-                standingsTable.setRowMargin(3);
+                leagueTable.setRowMargin(3);
                 fixtureTable.setRowMargin(3);
-                standingsTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
+                leagueTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
                 fixtureTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
-                standingsTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
+                leagueTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
                 fixtureTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
                 titleS.setTitleFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 70));
                 titleF.setTitleFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 70));
@@ -176,5 +170,9 @@ public class PreMatchView extends DefaultPanelImpl{
 
     public void updateFixtureTable(){
         fixtureTable.setModel(controller.getFixtureTableModel());
+    }
+
+    public void updateLeagueTable(){
+        leagueTable.setModel(controller.getLeagueTableModel());
     }
 }
