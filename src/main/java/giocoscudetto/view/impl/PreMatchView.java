@@ -85,6 +85,7 @@ public class PreMatchView extends DefaultPanelImpl{
 
         backButton.addActionListener(e -> { 
             this.starter.changeView("club");
+            this.controller.reset();
         });
 
         continueButton.addActionListener(e -> { 
