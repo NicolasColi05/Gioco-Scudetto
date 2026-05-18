@@ -5,6 +5,8 @@ import giocoscudetto.model.api.Match;
 
 public class GoalConceidedBox implements Boxes {
 
+    private static final String BOX_NAME = "Goal Conceded";
+
     private final int position;
     private final String image;
     private final String description = "Box Event: Goal Conceded. If you land on this box, you concede a goal.";
@@ -22,13 +24,17 @@ public class GoalConceidedBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        match.turn();
+        //match.turn();
+        if(match.getCurrentPlayer() == match.getClubHome()) {
+            match.goalAway();
+        } else {
+            match.goalHome();
+        }
     }
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return BOX_NAME;
     }
 
     @Override
