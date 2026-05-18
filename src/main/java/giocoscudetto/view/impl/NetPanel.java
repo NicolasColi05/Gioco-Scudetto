@@ -51,7 +51,7 @@ public class NetPanel extends DefaultPanelImpl {
                 boolean goal = this.controller.kickPenalty();
                 setButtonsEnabled(false);
                 this.count = 0;
-                this.controller.penaltyFinished();
+                this.controller.gameModeFinished();
                 if (goal) {
                     label.setText("GOOOOOOOOOOAL!!!");
                 } else {
