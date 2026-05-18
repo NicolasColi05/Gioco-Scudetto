@@ -5,6 +5,8 @@ import giocoscudetto.model.api.Match;
 
 public class CesariniBox implements Boxes {
 
+    private static final String BOX_NAME = "Cesarini Zone";
+
     private final int position;
     private final String image;
     private final String description = "Box Event: Cesarini zone. If you land on this box, you automatically score a goal.";
@@ -21,13 +23,17 @@ public class CesariniBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        match.turn();
+        //match.turn();
+        if(match.getCurrentPlayer() == match.getClubHome()) {
+            match.goalHome();
+        } else {
+            match.goalAway();
+        }
     }
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return BOX_NAME;
     }
 
     @Override
