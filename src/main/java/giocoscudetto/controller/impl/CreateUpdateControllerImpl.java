@@ -28,6 +28,16 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
+    public boolean isClubNameComplete(final List<String> clubsName) {
+        return !clubsName.stream().anyMatch(name -> "".equals(name)) &&
+            clubsName.stream().distinct().toList().size() == clubsName.size();
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void createClubs(final List<String> clubsName, final List<Integer> pawnRGB) {
         
         int i = 0;
