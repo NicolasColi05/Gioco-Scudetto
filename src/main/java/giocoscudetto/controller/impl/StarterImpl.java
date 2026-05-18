@@ -12,6 +12,7 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.GoalNet;
 import giocoscudetto.model.impl.BoardImpl;
 import giocoscudetto.model.impl.GoalNetImpl;
+import giocoscudetto.model.impl.MatchImpl.GameMode;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
@@ -138,18 +139,13 @@ public class StarterImpl implements Starter {
 
 
     @Override
-    public boolean isPenalty() {
-        return this.match.isPenaltyMode();
+    public String getGameMode() {
+        return this.match.getGameMode();
     }
 
     @Override
-    public void setPenaltyMode(boolean active) {
-        this.match.setPenaltyMode(active);
-    }
-
-    @Override
-    public void penaltyFinished() {
-        this.match.setPenaltyMode(false);
+    public void gameModeFinished() {
+        this.match.setGameMode(GameMode.NONE);
         this.match.turn();
         notifyViews();
     }

@@ -103,11 +103,9 @@ public interface Starter {
      */
 	void setMatch();
 
-    boolean isPenalty();
+    String getGameMode();
 
-    void setPenaltyMode(boolean active);
-
-    void penaltyFinished();
+    void gameModeFinished();
 
     void addObserver(GameObserver ob);
 

@@ -12,8 +12,14 @@ public class MatchImpl implements Match {
     private final Scoreboard score;
     private final TurnImpl turn;
     private final Dice dice6;
-    private boolean penalty = false;
+    private GameMode mode = GameMode.NONE;
     private static final int HALF_BOARD = 16;
+
+    public enum GameMode {
+        CORNER, FREE_KICK,
+        RESULT, PENALTY,
+        NONE
+    }
 
     public MatchImpl(Club clubHome, Club clubAway) {
         this.score = new ScoreboardImpl();
@@ -89,13 +95,13 @@ public class MatchImpl implements Match {
     }
 
     @Override
-    public void setPenaltyMode(boolean active) {
-        this.penalty  = active;
+    public void setGameMode(final GameMode mode) {
+        this.mode  = mode;
     }
 
     @Override
-    public boolean isPenaltyMode() {
-        return this.penalty;
+    public String getGameMode() {
+        return this.mode.toString();
     }
 
     @Override

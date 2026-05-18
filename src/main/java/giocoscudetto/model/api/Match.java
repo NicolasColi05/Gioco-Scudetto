@@ -1,5 +1,7 @@
 package giocoscudetto.model.api;
 
+import giocoscudetto.model.impl.MatchImpl.GameMode;
+
 /**
  * Interface that represents a match between two clubs, it keeps track of the score and of the clubs that are playing
  */
@@ -79,16 +81,16 @@ public interface Match {
     /**
      * this method set the penalty mode.
      * 
-     * @param active boolean for setting the mode.
+     * @param mode the gamemode of the match.
      */
-    void setPenaltyMode(boolean active);
+    void setGameMode(GameMode mode);
 
     /**
      * This method is for controll the state of the penalty mode.
      * 
      * @return a boolean rappresenting if is active the penalty mode.
      */
-    boolean isPenaltyMode();
+    String getGameMode();
 
     void setSkipTurn(Club club);
 
