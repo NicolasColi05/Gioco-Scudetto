@@ -103,4 +103,31 @@ public class MatchImpl implements Match {
         turn.setSkipTurn(club);
     }
 
+    @Override
+    public String toString(){
+        return this.clubHome.getName() + " - " + this.clubAway.getName();
+    }
+
+    @Override
+    public Club getWinnerClub(){
+        if(this.score.getHomeScore() > this.score.getGuestScore()){
+            return this.clubHome;
+        }else if (this.score.getHomeScore() < this.score.getGuestScore()){
+            return this.clubAway;
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Club getLoserClub(){
+        if(this.score.getHomeScore() < this.score.getGuestScore()){
+            return this.clubHome;
+        }else if (this.score.getHomeScore() > this.score.getGuestScore()){
+            return this.clubAway;
+        }else{
+            return null;
+        }
+    }
+
 }

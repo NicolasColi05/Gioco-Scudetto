@@ -1,6 +1,7 @@
 package giocoscudetto.model.api;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interface that represents the fixture of the championship, it is responsible for generating the matches
@@ -44,4 +45,10 @@ public interface Fixtures {
     Match seeNextMatch(Match match);
     
     void resetFixture();
+
+    Scoreboard getScoreboard(Match match);
+
+    Set<Match> getListOfMatches();
+    
+    boolean isEmpty();
 }

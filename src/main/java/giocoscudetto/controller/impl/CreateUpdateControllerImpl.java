@@ -8,9 +8,11 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
+import giocoscudetto.model.impl.FixtureModel;
 import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
+import giocoscudetto.model.impl.TableModel;
 
 
 /**
@@ -35,8 +37,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
 
         this.table.addAllClubs(this.clubs);
 
-        this.fixture.fixtureGeneration(this.clubs);
-
+        this.fixture.fixtureGeneration(this.clubs);        
     }
 
     /**
@@ -91,5 +92,23 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
         System.out.println("fixture" + this.fixture.toString());
         return this.fixture;
     }
+
+    @Override
+    public void reset(){
+        this.clubs.clear();
+        this.fixture.resetFixture();
+        this.table.reset();
+    }
     
+    @Override
+    public FixtureModel getFixtureTableModel(){
+        FixtureModel model = new FixtureModel(this.getFixture());
+        return model;
+    }
+
+    @Override
+    public TableModel getLeagueTableModel(){
+        TableModel model = new TableModel(this.getTable());
+        return model;
+    }
 }

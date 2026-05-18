@@ -1,5 +1,6 @@
 package giocoscudetto.view.impl;
 
+import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.EventPanel;
 import giocoscudetto.view.api.GameObserver;
@@ -24,6 +25,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
      private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
+    private final ViewManager viewManager;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
@@ -35,6 +37,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.bottomDice = new DicePanel(controller,boardJPanel);
         this.netPanel = new NetPanel(controller);
         this.controller = controller;
+        this.viewManager = viewManager;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
         this.controller.addObserver(this);

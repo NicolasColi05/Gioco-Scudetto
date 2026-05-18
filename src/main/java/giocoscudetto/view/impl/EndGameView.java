@@ -60,7 +60,6 @@ public class EndGameView extends DefaultPanelImpl {
 
         //torna al menu
         menuButton.addActionListener(e -> {
-            controller.resetFixture();
             controller.changeView("club");
         });
 
