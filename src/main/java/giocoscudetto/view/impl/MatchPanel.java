@@ -78,7 +78,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
         continueButton.addActionListener(e -> { 
             if(this.controller.isLastMatch()){
-                EndGameView EndGameView = new EndGameView(this.controller);
+                EndGameView EndGameView = new EndGameView(this.controller, this.controller.getWinner());
                 viewManager.addView(EndGameView, "end");
                 this.controller.addPoints();
                 this.controller.changeView("end");
@@ -137,4 +137,5 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private void LastBox(){
         controller.LastBox();
     }
+
 }

@@ -228,4 +228,20 @@ public class StarterImpl implements Starter {
         this.match.getClubHome().changeNetDiffs(this.match.getScore().getHomeScore(), this.match.getScore().getGuestScore());
         this.match.getClubAway().changeNetDiffs(this.match.getScore().getGuestScore(), this.match.getScore().getHomeScore());
     }
+
+    @Override
+    public String getWinner() {
+        Club winner = null;
+        for (Club club : controller.getClubs()) {
+            if (winner == null) {
+
+                winner = club;
+            } else if (club.getPoints() > winner.getPoints()) {
+
+                winner = club;
+            }
+        }
+
+        return winner.getName();
+    }
 }

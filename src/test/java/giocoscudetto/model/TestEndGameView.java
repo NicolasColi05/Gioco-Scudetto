@@ -11,7 +11,7 @@ public class TestEndGameView extends JFrame {
 public TestEndGameView() {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(650, 670);
-    JPanel pa = new giocoscudetto.view.impl.EndGameView(new StarterImpl(null, null));
+    JPanel pa = new giocoscudetto.view.impl.EndGameView(new StarterImpl(null, null), "Roma");
     this.setContentPane(pa);
      this.setVisible(true);
     }
