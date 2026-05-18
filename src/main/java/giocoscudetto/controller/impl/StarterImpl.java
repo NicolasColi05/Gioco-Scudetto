@@ -16,6 +16,7 @@ import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
+import giocoscudetto.model.api.Match.GameMode;
 import giocoscudetto.view.api.GameObserver;
 
 /**
@@ -214,5 +215,10 @@ public class StarterImpl implements Starter {
         System.out.println(this.table.toString());
         System.out.println("OK");
         this.controller.reset();
+    }
+
+    @Override
+    public int diceEvent() {
+       return this.match.diceEvent();
     }
 }
