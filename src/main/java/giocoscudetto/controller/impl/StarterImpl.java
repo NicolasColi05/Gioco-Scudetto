@@ -12,7 +12,6 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.GoalNet;
 import giocoscudetto.model.impl.BoardImpl;
 import giocoscudetto.model.impl.GoalNetImpl;
-import giocoscudetto.model.impl.MatchImpl.GameMode;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
@@ -145,7 +144,7 @@ public class StarterImpl implements Starter {
 
     @Override
     public void gameModeFinished() {
-        this.match.setGameMode(GameMode.NONE);
+        this.match.setGameMode(Match.GameMode.NONE);
         this.match.turn();
         notifyViews();
     }
