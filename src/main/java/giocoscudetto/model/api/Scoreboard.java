@@ -35,5 +35,15 @@ public interface Scoreboard {
       * this method increase the score of the guest team by 1.
      */
     void increaseGuestScore();
+
+    /**
+      * this method decrease the score of the home team by 1.
+     */
+    void decreaseHomeScore();
+
+    /**
+      * this method decrease the score of the guest team by 1.
+     */
+    void decreaseGuestScore();
     
 }
