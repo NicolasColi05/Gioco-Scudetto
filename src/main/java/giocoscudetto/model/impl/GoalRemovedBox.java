@@ -5,36 +5,57 @@ import giocoscudetto.model.api.Match;
 
 public class GoalRemovedBox implements Boxes {
 
+    private static final String BOX_NAME = "Remove Goal";
+
     private final String image;
     private final int position;
-    private final String description = "Box Event: Back to Start. If you land on this box, the ref removes a goal from your score.";
+    private final String description = "Box Event: Remove Goal. If you land on this box, the ref removes a goal from your score.";
 
     public GoalRemovedBox(final int position) {
         this.position = position;
         this.image = "caselle_precise/casella_33.png";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPosition() {
         return this.position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void event(Match match) {
-        match.turn();
+        //match.turn();
+        if(match.getCurrentPlayer() == match.getClubHome()) {
+            match.removeGoalHome();
+        } else {
+            match.removeGoalAway();
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return BOX_NAME;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getImage() {
         return this.image;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
         return this.description;
