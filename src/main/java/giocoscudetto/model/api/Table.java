@@ -23,8 +23,14 @@ public interface Table {
      */
     List<Club> showPosition();
 
+    /**
+     * Method to clear the table list, removing teams from it.
+     */
     void reset();
 
+    /**
+     * @return if the table list is empty.
+     */
     boolean isEmpty();
 
 }

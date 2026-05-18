@@ -42,13 +42,21 @@ public class TableImpl implements Table{
         return this.clubRank;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void reset(){
         this.clubRank.clear();
     }
 
-    @Override
-    public boolean isEmpty(){
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isEmpty() {
         return this.clubRank.isEmpty();
     }
+
+
+
 }
