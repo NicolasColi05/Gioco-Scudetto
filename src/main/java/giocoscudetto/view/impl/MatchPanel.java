@@ -39,7 +39,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.controller.addObserver(this);
         this.add(boardJPanel, BorderLayout.CENTER);
 
-        this.eventPanel = new EventPanel(controller, giocoscudetto.view.impl.EventPanel.EventType.CORNER);
+        this.eventPanel = new EventPanel(controller);
         eventPanel.setMaximumSize(new Dimension(300,200 ));
 
         JPanel rightPanel = new JPanel();
