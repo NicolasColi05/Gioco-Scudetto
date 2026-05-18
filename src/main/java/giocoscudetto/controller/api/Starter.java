@@ -130,4 +130,10 @@ public interface Starter {
     void addPoints();
 
     String getWinner();
+    
+    int diceEvent();
+
+    String getHomeName();
+
+    String getGuestName();
 }

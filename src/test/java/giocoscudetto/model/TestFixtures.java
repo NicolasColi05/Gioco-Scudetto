@@ -1,13 +1,16 @@
 package giocoscudetto.model;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.Match;
 import giocoscudetto.model.impl.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /*
  * CHECKSTYLE: MagicNumber OFF
@@ -23,27 +26,36 @@ public class TestFixtures {
     private final static String NAPOLI = "napoli";
     private final static String JUVENTUS = "juventus";
 
-    final Club roma = new ClubImpl(ROMA, new PawnImpl(1));
-    final Club inter = new ClubImpl(INTER, new PawnImpl(1));
-    final Club napoli = new ClubImpl(NAPOLI, new PawnImpl(1));
-    final Club juventus = new ClubImpl(JUVENTUS, new PawnImpl(1));
-    final ArrayList<Club> listOfClubs = new ArrayList<>();
+    private Club roma;
+    private Club inter;
+    private Club napoli;
+    private Club juventus;
+    private List<Club> listOfClubs;
+    private FixturesImpl fixture;
+
+    @BeforeEach
+    void setUp() {
+        roma = new ClubImpl(ROMA, new PawnImpl(1));
+        inter = new ClubImpl(INTER, new PawnImpl(1));
+        napoli = new ClubImpl(NAPOLI, new PawnImpl(1));
+        juventus = new ClubImpl(JUVENTUS, new PawnImpl(1));
+        listOfClubs = List.of(roma, inter, napoli, juventus);
+        fixture = new FixturesImpl();
+    }
 
     @Test
-    void TestFixturesGeneration() {
+    void testFixtureGenerationMatchCount(){
+        fixture.fixtureGeneration(listOfClubs);
+        assertEquals(12 , fixture.getListOfMatches().size());
+    }
+
+    @Test
+    void testFixturesGenerationClubCount() {
         int intercount = 0;
         int romacount = 0;
         int napolicount = 0;
         int juventuscount = 0;
-        listOfClubs.add(roma);
-        listOfClubs.add(inter);
-        listOfClubs.add(napoli);
-        listOfClubs.add(juventus);
-        final FixturesImpl fixture = new FixturesImpl();
         fixture.fixtureGeneration(listOfClubs);
-        for (final Club club : listOfClubs) {
-            System.out.println("" + club.getName() + "\n");
-        }
         assertNotNull(fixture);
         assertEquals(4, listOfClubs.size());
         while (fixture.setNextMatch()!= null){
@@ -68,7 +80,34 @@ public class TestFixtures {
     }
 
     @Test
-    void Test(){
-
+    void testIsEmpty(){
+        assertTrue(fixture.isEmpty());
+        fixture.fixtureGeneration(listOfClubs);
+        assertFalse(fixture.isEmpty());
+        fixture.resetFixture();
+        fixture.isEmpty();
     }
+
+    @Test
+    void testResetFixture() {
+        fixture.fixtureGeneration(listOfClubs);
+        fixture.resetFixture();
+        assertTrue(fixture.isEmpty());
+    }
+
+    @Test
+    void testNextMatch(){
+        fixture.fixtureGeneration(listOfClubs);
+        Match match = fixture.getCurrentMatch();
+        assertEquals(fixture.seeNextMatch(match), fixture.setNextMatch());
+        fixture.resetFixture();
+        fixture.fixtureGeneration(listOfClubs);
+        int count = 0;
+        while (fixture.setNextMatch() != null) {
+            count++;
+        }
+        assertEquals(12, count);
+    }
+
+
 }

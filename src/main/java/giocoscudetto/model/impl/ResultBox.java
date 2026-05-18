@@ -22,7 +22,6 @@ public class ResultBox implements Boxes{
     @Override
     public void event(Match match) {
         match.setGameMode(Match.GameMode.RESULT);
-        match.turn();
     }
 
     @Override

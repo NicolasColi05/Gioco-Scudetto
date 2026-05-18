@@ -3,10 +3,12 @@ package giocoscudetto.view.impl;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import giocoscudetto.controller.api.Starter;
@@ -29,7 +31,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
         this.setBackground(BACKGROUND_COLOR);
         messageLabel = new JLabel();
         messageLabel.setBackground(BACKGROUND_COLOR);
-        messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setBorder(new EmptyBorder(8, 4, 8, 4));
 
@@ -37,9 +39,28 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
         this.add(messageLabel,BorderLayout.CENTER);
 
         rollDiceButton.addActionListener(e -> {
-            messageLabel.setText(""+this.controller.move());
-            this.board.repaint();
+            this.animateAndResolve();
         });
+    }
+
+    private void animateAndResolve() {
+        final Random rnd = new Random();
+        final long startTime = System.currentTimeMillis();
+        final Timer animTimer = new Timer(80, null);
+
+        animTimer.addActionListener(e -> {
+            messageLabel.setText(String.valueOf(rnd.nextInt(13)));
+            if (System.currentTimeMillis() - startTime > 700) {
+                animTimer.stop();
+                showResult();
+            }
+        });
+        animTimer.start();
+    }
+
+    private void showResult() {
+        messageLabel.setText(""+this.controller.move());
+        this.board.repaint();
     }
 
     public void setDice(boolean active) {

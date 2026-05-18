@@ -24,12 +24,12 @@ public class GoalConceidedBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        //match.turn();
         if(match.getCurrentPlayer() == match.getClubHome()) {
             match.goalAway();
         } else {
             match.goalHome();
         }
+        match.turn();
     }
 
     @Override
