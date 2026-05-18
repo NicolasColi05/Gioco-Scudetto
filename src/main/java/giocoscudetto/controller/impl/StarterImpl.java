@@ -146,8 +146,8 @@ public class StarterImpl implements Starter {
     @Override
     public void gameModeFinished() {
         this.match.setGameMode(Match.GameMode.NONE);
-        this.match.turn();
         notifyViews();
+        this.match.turn();
     }
 
     @Override
