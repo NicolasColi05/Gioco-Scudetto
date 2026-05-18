@@ -5,7 +5,7 @@ import giocoscudetto.model.api.Match;
 
 public class GoalRemovedBox implements Boxes {
 
-    private static final String BOX_NAME = "Remove Goal";
+    private static final String BOX_NAME = "Goal Removed";
 
     private final String image;
     private final int position;
