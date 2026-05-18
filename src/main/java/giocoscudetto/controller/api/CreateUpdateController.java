@@ -16,6 +16,14 @@ import giocoscudetto.model.impl.TableModel;
 public interface CreateUpdateController {
     
     /**
+     * 
+     * @param clubsName is the list of name to be verify.
+     * @return false if there are duplicate/empty name and missing club color,
+     *         true if all information are present.
+     */
+    boolean isClubNameComplete(List<String> clubsName);
+
+    /**
      * Method to create the clubs that will play the incoming match, the table
      * to memorize their position and the fixture.
      * 

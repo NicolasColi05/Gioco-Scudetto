@@ -25,10 +25,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.DefaultPanelImpl;
 
 public class ClubPanel extends DefaultPanelImpl{
@@ -42,17 +43,16 @@ public class ClubPanel extends DefaultPanelImpl{
 
     private final Starter viewChanger;
     private final CreateUpdateController controller;
-    private final ViewManager viewManager; 
     private final Image image;
 
     private final List<JTextField> clubsName = new ArrayList<>();
     private final List<PawnColorPickerPanel> clubsPawn = new ArrayList<>();
+    private final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66));
 
 
-    public ClubPanel(final Starter viewChanger, final CreateUpdateController controller,  final ViewManager viewManager) {
+    public ClubPanel(final Starter viewChanger, final CreateUpdateController controller) {
         this.viewChanger = viewChanger;
         this.controller = controller;
-        this.viewManager = viewManager;
 
         this.setLayout(new BorderLayout());
 
@@ -108,10 +108,13 @@ public class ClubPanel extends DefaultPanelImpl{
         switchingButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
         final JButton btnBack = (JButton) createComponent(new JButton("BACK"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66));
-        final JButton btnCont = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66)  );
-        
+
+        btnCont.setVisible(false);
+
         switchingButtonPanel.add(btnBack, BorderLayout.WEST);
         switchingButtonPanel.add(btnCont, BorderLayout.EAST);
+
+
 
         //Adding the action listener to the buttons and ComboBox
         
@@ -221,6 +224,25 @@ public class ClubPanel extends DefaultPanelImpl{
             namePanel.add(Box.createVerticalStrut(TEAM_INFO_VERTICAL_SPACE));
             this.clubsName.add(nameTextField);
 
+            nameTextField.getDocument().addDocumentListener(new DocumentListener() {
+
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    updateButtonVisibility();
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    updateButtonVisibility();
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    updateButtonVisibility();
+                }
+                
+            });
+
             final PawnColorPickerPanel colorPicker = new PawnColorPickerPanel();
             colorPicker.setPreferredSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
             colorPicker.setMaximumSize(new Dimension(TEXT_FIELDS_WIDTH, TEXT_FIELDS_HEIGHT));
@@ -257,8 +279,17 @@ public class ClubPanel extends DefaultPanelImpl{
             if (p.getSelectedColor() != null) {
                 takenByOthers.remove(p.getSelectedColor());
             }
-
+            
             p.setTakenColors(takenByOthers);
+                        this.updateButtonVisibility();
         }
+    }
+
+    private void updateButtonVisibility() {
+        System.out.println("sentro");
+        btnCont.setVisible(this.clubsPawn.stream().allMatch(i -> i.getSelectedColor() != null) &&
+                           this.controller.isClubNameComplete(this.clubsName.stream()
+                                        .map(JTextField::getText)
+                                        .toList()));
     }
 }
