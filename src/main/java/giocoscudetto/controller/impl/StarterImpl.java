@@ -133,6 +133,7 @@ public class StarterImpl implements Starter {
     public void setMatch(){
         this.fixture = controller.getFixture();
         this.match = this.fixture.setNextMatch();
+        this.table = controller.getTable();
         notifyViews();
     }
 
@@ -219,5 +220,17 @@ public class StarterImpl implements Starter {
         System.out.println(this.table.toString());
         System.out.println("OK");
         this.controller.reset();
+    }
+
+    @Override
+    public void addPoints(){
+        if(this.match.getScore().getHomeScore()==this.match.getScore().getGuestScore()){
+            this.match.getClubHome().incrementPoints(1);
+            this.match.getClubAway().incrementPoints(1);
+        }else{
+            this.match.getWinnerClub().incrementPoints(3);
+        }
+        this.match.getClubHome().changeNetDiffs(this.match.getScore().getHomeScore(), this.match.getScore().getGuestScore());
+        this.match.getClubAway().changeNetDiffs(this.match.getScore().getGuestScore(), this.match.getScore().getHomeScore());
     }
 }
