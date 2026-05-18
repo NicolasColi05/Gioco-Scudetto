@@ -51,6 +51,17 @@ public class MatchImpl implements Match {
         this.score.setHomeScore(goal);
     }
 
+
+    @Override
+    public void removeGoalHome() {
+        this.score.decreaseHomeScore();
+    }
+
+    @Override
+    public void removeGoalAway() {
+        this.score.decreaseGuestScore();
+    }
+
     @Override
     public final void setGoalAway(int goal){
         this.score.setGuestScore(goal);
@@ -136,6 +147,7 @@ public class MatchImpl implements Match {
         }
     }
 
+<<<<<<< HEAD
     @Override
     public int diceEvent() {
         int result;
@@ -185,5 +197,7 @@ public class MatchImpl implements Match {
         }
         this.eventDices.clear();
     }
+=======
+>>>>>>> fd219cc0b917676e3a8179cdc9151115bb5caeb5
 
 }
