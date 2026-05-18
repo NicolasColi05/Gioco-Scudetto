@@ -84,6 +84,7 @@ public class PreMatchView extends DefaultPanelImpl{
         JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
 
         backButton.addActionListener(e -> { 
+            this.controller.reset();
             this.starter.changeView("club");
             this.controller.reset();
         });
