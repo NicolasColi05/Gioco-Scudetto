@@ -233,5 +233,15 @@ public class StarterImpl implements Starter {
     public int diceEvent() {
        return this.match.diceEvent();
     }
+
+    @Override
+    public String getHomeName() {
+        return this.match.getClubHome().getName();
+    }
+
+    @Override
+    public String getGuestName() {
+        return this.match.getClubAway().getName();
+    }
     
 }
