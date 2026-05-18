@@ -1,11 +1,8 @@
 package giocoscudetto.view.impl;
 
-import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.view.EventPanel;
 import giocoscudetto.view.api.GameObserver;
 import giocoscudetto.view.api.ViewManager;
-import giocoscudetto.view.impl.EndGameView;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,17 +16,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import ch.qos.logback.core.spi.ConfigurationEvent.EventType;
-
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
-     private static final Color BACKGROUND_COLOR = new Color(223,189,138);
+    private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
     private final ViewManager viewManager;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
     private final JButton continueButton;
+    private final EventPanel eventPanel;
 
     public MatchPanel(final Starter controller, final ViewManager viewManager) {
 
@@ -43,7 +39,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.controller.addObserver(this);
         this.add(boardJPanel, BorderLayout.CENTER);
 
-        JPanel eventPanel = new EventPanel(controller, giocoscudetto.view.EventPanel.EventType.CORNER);
+        this.eventPanel = new EventPanel(controller, giocoscudetto.view.impl.EventPanel.EventType.CORNER);
         eventPanel.setMaximumSize(new Dimension(300,200 ));
 
         JPanel rightPanel = new JPanel();
@@ -104,7 +100,29 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     public void updateState() {
         SwingUtilities.invokeLater(() -> {
             turnLabel.setText("Turn of :"+controller.getCurrentPlayer());
-            netPanel.setButtonsEnabled(controller.isPenalty());
+
+            switch (this.controller.getGameMode()) {
+                case "PENALTY": 
+                    netPanel.setButtonsEnabled(true);
+                    break;
+                case "FREE_KICK":
+                    this.eventPanel.configure(giocoscudetto.view.impl.EventPanel.EventType.FREE_KICK);
+                    this.eventPanel.setVisible(true);
+                    break;
+                case "CORNER":
+                    this.eventPanel.configure(giocoscudetto.view.impl.EventPanel.EventType.CORNER);
+                    this.eventPanel.setVisible(true);
+                    break;
+                case "RESULT":
+                    this.eventPanel.configure(giocoscudetto.view.impl.EventPanel.EventType.RESULT);
+                    this.eventPanel.setVisible(true);
+                    break;
+                default:
+                    this.eventPanel.setVisible(false);
+                    break;
+            }
+
+            // netPanel.setButtonsEnabled(controller.isPenalty());
             continueButton.setVisible(controller.isLastBox());
             continueButton.setEnabled(controller.isLastBox());
             if(controller.isLastBox()){
