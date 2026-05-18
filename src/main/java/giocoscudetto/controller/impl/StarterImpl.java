@@ -228,4 +228,10 @@ public class StarterImpl implements Starter {
         this.match.getClubHome().changeNetDiffs(this.match.getScore().getHomeScore(), this.match.getScore().getGuestScore());
         this.match.getClubAway().changeNetDiffs(this.match.getScore().getGuestScore(), this.match.getScore().getHomeScore());
     }
+
+    @Override
+    public int diceEvent() {
+       return this.match.diceEvent();
+    }
+    
 }
