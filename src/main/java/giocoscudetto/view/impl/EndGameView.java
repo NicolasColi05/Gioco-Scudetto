@@ -56,6 +56,8 @@ public class EndGameView extends DefaultPanelImpl {
 
         //se necessario
         JScrollPane tableScroll = new JScrollPane(standingsTable);
+        tableScroll.setPreferredSize(new Dimension(1000, 600));
+        tableScroll.setMaximumSize(new Dimension(1000, 600));
         tableScroll.setOpaque(false);
         tableScroll.getViewport().setOpaque(false);
 
@@ -99,10 +101,17 @@ public class EndGameView extends DefaultPanelImpl {
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
         //aggiunte al panel centrale
-        centerPanel.add(Box.createVerticalStrut(20));
+        centerPanel.add(Box.createVerticalStrut(80));
         centerPanel.add(winnerLabel);
-        centerPanel.add(Box.createVerticalStrut(190));
-        centerPanel.add(tableScroll);
+        centerPanel.add(Box.createVerticalStrut(120));
+
+        JPanel tablePanel = new JPanel();
+        tablePanel.setOpaque(false);
+
+        tablePanel.add(tableScroll);
+
+        centerPanel.add(tablePanel);
+
 
         //aggiunte al panel principale
         this.add(centerPanel, BorderLayout.CENTER);
