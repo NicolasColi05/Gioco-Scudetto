@@ -57,6 +57,11 @@ public class TableImpl implements Table{
         return this.clubRank.isEmpty();
     }
 
+    @Override
+    public List<Club> getClubs() {
+        return this.clubRank;
+    }
+
 
 
 }

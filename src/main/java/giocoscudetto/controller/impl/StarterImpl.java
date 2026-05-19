@@ -211,10 +211,11 @@ public class StarterImpl implements Starter {
 
     @Override
     public void resetTable(){
-        this.table.reset();
+        /*this.table.reset();
         System.out.println(this.table.toString());
         System.out.println("OK");
-        this.controller.reset();
+        this.controller.reset();/* */
+        controller.reset();
     }
 
     @Override
@@ -257,5 +258,6 @@ public class StarterImpl implements Starter {
     public String getGuestName() {
         return this.match.getClubAway().getName();
     }
+
     
 }

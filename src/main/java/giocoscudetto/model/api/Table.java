@@ -1,6 +1,7 @@
 package giocoscudetto.model.api;
 
 import java.util.List;
+import giocoscudetto.model.api.Club;
 
 /**
  * Interface that defines the correct position of each club in the table.
@@ -33,4 +34,5 @@ public interface Table {
      */
     boolean isEmpty();
 
+    List<Club> getClubs();
 }

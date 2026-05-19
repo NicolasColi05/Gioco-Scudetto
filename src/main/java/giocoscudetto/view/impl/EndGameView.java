@@ -1,5 +1,7 @@
 package giocoscudetto.view.impl;
 
+import giocoscudetto.model.impl.LeagueTableModel;
+import giocoscudetto.model.api.Table;
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,12 +21,7 @@ public class EndGameView extends DefaultPanelImpl {
     private final Image image;
     
     //intestazione tabella
-    private static String[] columnNames = {"Club", "Points", "Net Diff"};
-    //dati di prova
-    private Object[][] data = {
-        {"Inter", 10, 5},
-        {"Roma", 8, 2}
-    };
+    
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
@@ -49,7 +46,13 @@ public class EndGameView extends DefaultPanelImpl {
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         //tabella
-        JTable standingsTable = new JTable(data, columnNames);
+        /*JTable standingsTable = new JTable(new LeagueTableModel(controller.getTable()));/* */
+        Table table = controller.getTable();
+        if (table == null) {
+            throw new IllegalStateException("Table non inizializzata prima di EndGameView");
+        }
+
+        JTable standingsTable = new JTable(new LeagueTableModel(table));
         standingsTable.setEnabled(false);
         standingsTable.setOpaque(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / 70));
