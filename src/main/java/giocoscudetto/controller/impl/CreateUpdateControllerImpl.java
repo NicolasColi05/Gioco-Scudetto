@@ -29,9 +29,14 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public boolean isClubNameComplete(final List<String> clubsName) {
-        clubsName.stream().forEach(n -> n.replaceAll("\\s+", "") );
-        return !clubsName.stream().anyMatch(name -> "".equals(name)) &&
-            clubsName.stream().distinct().toList().size() == clubsName.size();
+        //Removing spaces from names, to avoid equal names that jst differs for some spaces
+        final List<String> namesWithoutSpaces = clubsName.stream()
+                        .map(n -> n.replaceAll("\\s+", ""))
+                        .toList();
+        //namesWithoutSpaces.stream().forEach(n -> System.out.println(n));
+
+        return !namesWithoutSpaces.stream().anyMatch(name -> "".equals(name)) &&
+            namesWithoutSpaces.stream().distinct().toList().size() == namesWithoutSpaces.size();
 
     }
 
