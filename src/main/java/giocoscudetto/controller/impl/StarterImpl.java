@@ -230,21 +230,7 @@ public class StarterImpl implements Starter {
         this.match.getClubAway().changeNetDiffs(this.match.getScore().getGuestScore(), this.match.getScore().getHomeScore());
     }
 
-    @Override
-    public String getWinner() {
-        Club winner = null;
-        for (Club club : controller.getClubs()) {
-            if (winner == null) {
-
-                winner = club;
-            } else if (club.getPoints() > winner.getPoints()) {
-
-                winner = club;
-            }
-        }
-
-        return winner.getName();
-    }
+    
     public int diceEvent() {
        return this.match.diceEvent();
     }
@@ -257,6 +243,11 @@ public class StarterImpl implements Starter {
     @Override
     public String getGuestName() {
         return this.match.getClubAway().getName();
+    }
+
+    @Override
+    public String getWinner() {
+        return this.table.getClubs().get(0).getName();
     }
 
     
