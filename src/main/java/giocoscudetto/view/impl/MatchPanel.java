@@ -12,8 +12,11 @@ import java.awt.Font;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
@@ -26,6 +29,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private final DicePanel bottomDice;
     private final JButton continueButton;
     private final EventPanel eventPanel;
+    private final JCheckBox helpBox;
 
     public MatchPanel(final Starter controller, final ViewManager viewManager) {
 
@@ -38,9 +42,21 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.setBackground(BACKGROUND_COLOR);
         this.controller.addObserver(this);
         this.add(boardJPanel, BorderLayout.CENTER);
+        this.helpBox = new JCheckBox("Help for box");
+        this.helpBox.setSelected(false);
+
+        this.helpBox.addActionListener(e -> { 
+            this.controller.setHelpFlag(this.helpBox.isSelected());
+                
+        });
 
         this.eventPanel = new EventPanel(controller);
         eventPanel.setMaximumSize(new Dimension(300,200 ));
+
+        JPanel helpPanel = new JPanel();
+        helpPanel.setBackground(BACKGROUND_COLOR);
+        helpPanel.setLayout(new BoxLayout(helpPanel, BoxLayout.X_AXIS));
+        helpPanel.add(helpBox);
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
@@ -69,6 +85,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         bottomDice.setAlignmentX(Component.CENTER_ALIGNMENT);
         bottomDice.setMaximumSize(new Dimension(280, 120));
 
+        rightPanel.add(helpPanel);
         rightPanel.add(turnPanel);
         rightPanel.add(netWrapper);
         rightPanel.add(bottomDice);
