@@ -96,7 +96,7 @@ public class EndGameView extends DefaultPanelImpl {
         //ricomincia
         restartButton.addActionListener(e -> {
             controller.resetFixture();
-            controller.changeView("prematch");
+            controller.changeView("pre");
         });
 
         JPanel centerPanel = new JPanel();
