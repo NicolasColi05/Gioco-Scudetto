@@ -14,8 +14,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
@@ -27,7 +25,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
     private final JButton continueButton;
-    private final JTextArea winnerField;
     private final EventPanel eventPanel;
 
     public MatchPanel(final Starter controller, final ViewManager viewManager) {
@@ -65,10 +62,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         continueButton.setEnabled(false);
         continueButton.setVisible(false);
 
-        //new JTextField(controller.getTable().getClubs().getFirst().toString())
-        this.winnerField = (JTextArea) createComponent(new JTextArea("vincitore"), getExitFont(), Color.BLACK, null);
-        winnerField.setVisible(false);
-        winnerField.setEditable(false);
 
         netWrapper.setOpaque(false);
         netWrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -81,7 +74,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(netWrapper);
         rightPanel.add(bottomDice);
         rightPanel.add(eventPanel);
-        rightPanel.add(winnerField);
         rightPanel.add(continueButton);
         
 
