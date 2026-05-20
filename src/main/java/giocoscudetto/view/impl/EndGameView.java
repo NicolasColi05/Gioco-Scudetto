@@ -27,7 +27,7 @@ public class EndGameView extends DefaultPanelImpl {
     private final int minimumWidht = screenSize.width / 2;
     private static final int BUTTON_BORDER = 5;
 
-    public EndGameView(Starter controller, String winner) {
+    public EndGameView(Starter controller) {
         this.controller = controller;
         this.setLayout(new BorderLayout());
 
@@ -40,7 +40,7 @@ public class EndGameView extends DefaultPanelImpl {
         }
 
         //vincitore
-        JLabel winnerLabel = new JLabel("WINNER:" + winner, SwingConstants.RIGHT);
+        JLabel winnerLabel = new JLabel("WINNER:" + controller.getWinner(), SwingConstants.RIGHT);
         winnerLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, 30));
         winnerLabel.setForeground(Color.BLACK);
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
