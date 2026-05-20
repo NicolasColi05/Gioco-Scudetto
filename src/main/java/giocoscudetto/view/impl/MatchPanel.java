@@ -14,6 +14,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
@@ -25,6 +27,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
     private final JButton continueButton;
+    private final JTextArea winnerField;
     private final EventPanel eventPanel;
 
     public MatchPanel(final Starter controller, final ViewManager viewManager) {
@@ -62,6 +65,11 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         continueButton.setEnabled(false);
         continueButton.setVisible(false);
 
+        //new JTextField(controller.getTable().getClubs().getFirst().toString())
+        this.winnerField = (JTextArea) createComponent(new JTextArea("vincitore"), getExitFont(), Color.BLACK, null);
+        winnerField.setVisible(false);
+        winnerField.setEditable(false);
+
         netWrapper.setOpaque(false);
         netWrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
         netWrapper.add(netPanel, BorderLayout.CENTER);
@@ -73,6 +81,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(netWrapper);
         rightPanel.add(bottomDice);
         rightPanel.add(eventPanel);
+        rightPanel.add(winnerField);
         rightPanel.add(continueButton);
         
 
@@ -92,8 +101,11 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
+                final int currentWidth = getWidth();
+
                 revalidate();
                 repaint();
+                continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / (SWITCHER_BUTTON_FONT_RESIZING*2)));
             }
         });
     }
