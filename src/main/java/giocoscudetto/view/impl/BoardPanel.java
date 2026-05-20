@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import giocoscudetto.view.api.GameObserver;
@@ -25,6 +26,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
     private final ImageBoardLoader imageLoaded;
     private final Starter controller;
     private volatile boolean animating = false;
+    private volatile boolean checkBoxDone = false;
     private int animatedHomePos = 0;
     private int animatedGuestPos = 0;
     private int board_size_h;
@@ -69,21 +71,25 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
                 boolean guestMoving = animatedGuestPos != targetGuest;
 
                 if (homeMoving || guestMoving) {
-                animating = true;
-                wasAnimating = true;
-
-                if (homeMoving)  animatedHomePos  += (animatedHomePos  < targetHome)  ? 1 : -1;
-                if (guestMoving) animatedGuestPos += (animatedGuestPos < targetGuest) ? 1 : -1;
+                    wasAnimating = true;
+                    if (homeMoving)  animatedHomePos  += (animatedHomePos  < targetHome)  ? 1 : -1;
+                    if (guestMoving) animatedGuestPos += (animatedGuestPos < targetGuest) ? 1 : -1;
 
                     SwingUtilities.invokeLater(this::repaint);
                     Thread.sleep(300);
-
                 } else {
                     if (wasAnimating) {
                         wasAnimating = false;
-                        this.controller.checkBox();
+
+                        if (!this.checkBoxDone) {
+                            if(this.controller.isHelpFlag()) {
+                            JOptionPane.showMessageDialog(this,"","Event of ",JOptionPane.INFORMATION_MESSAGE); 
+                            }
+                            this.checkBoxDone = true;
+                            this.controller.checkBox();
+                        }
+                        this.controller.notifyViews();
                     }
-                    this.animating = false;
                     Thread.sleep(50);
                 }
 
@@ -92,6 +98,10 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
                 break;
             }
         }
+    }
+
+    public void resetCheckBoxDone() {
+        this.checkBoxDone = false;
     }
 
     private void drawAllPawns(Graphics2D g2d) {

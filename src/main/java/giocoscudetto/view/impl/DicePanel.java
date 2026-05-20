@@ -39,6 +39,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
         this.add(messageLabel,BorderLayout.CENTER);
 
         rollDiceButton.addActionListener(e -> {
+            this.board.resetCheckBoxDone();
             this.rollDiceButton.setEnabled(false);
             this.animateAndResolve();
         });
