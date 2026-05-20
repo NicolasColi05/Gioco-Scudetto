@@ -25,7 +25,6 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
     
     private final ImageBoardLoader imageLoaded;
     private final Starter controller;
-    private volatile boolean animating = false;
     private volatile boolean checkBoxDone = false;
     private int animatedHomePos = 0;
     private int animatedGuestPos = 0;
@@ -83,7 +82,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
 
                         if (!this.checkBoxDone) {
                             if(this.controller.isHelpFlag()) {
-                            JOptionPane.showMessageDialog(this,"","Event of ",JOptionPane.INFORMATION_MESSAGE); 
+                            JOptionPane.showMessageDialog(this,this.controller.getBoxDescript(),"Event of " + this.controller.getBoxName(),JOptionPane.INFORMATION_MESSAGE); 
                             }
                             this.checkBoxDone = true;
                             this.controller.checkBox();
