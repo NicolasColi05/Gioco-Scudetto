@@ -11,6 +11,7 @@ import giocoscudetto.view.impl.MainFrame;
 import giocoscudetto.view.impl.PreMatchView;
 import giocoscudetto.view.impl.ViewManagerImpl;
 import giocoscudetto.view.impl.creation.ClubPanel;
+
 public class GameStarter {
     public static void main(String[] args) {
 

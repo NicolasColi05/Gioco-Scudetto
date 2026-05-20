@@ -136,4 +136,14 @@ public interface Starter {
     String getHomeName();
 
     String getGuestName();
+
+    void setHelpFlag(boolean selected);
+
+    boolean isHelpFlag();
+
+    void notifyViews();
+
+    String getBoxName();
+
+    String getBoxDescript();
 }
