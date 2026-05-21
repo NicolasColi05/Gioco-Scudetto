@@ -1,19 +1,18 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.boxes;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class ResultBox implements Boxes{
+public class FinishBox implements Boxes{
 
-    private final String image;
     private final int position;
-    private final String description = "Box Event: Result. If you land on this box, you have to throw 2 dice and the numbers you get makes the new score";
+    private final String image;
+    private final String description = "Box event: Last Box. If you land on this box the game will end";
 
-    public ResultBox(final int position) {
+    public FinishBox(final int position){
         this.position = position;
-        this.image = "caselle_precise/casella_3.png";  
+        this.image = "caselle_precise/casella_32.png";
     }
-
     @Override
     public int getPosition() {
         return this.position;
@@ -21,21 +20,23 @@ public class ResultBox implements Boxes{
 
     @Override
     public void event(Match match) {
-        match.setGameMode(Match.GameMode.RESULT);
+        match.getClubHome().getPawn().setPosition(32);
+        match.getClubAway().getPawn().setPosition(32);
     }
 
     @Override
     public String getName() {
-        return "result box";
+        return "Finish Box";
     }
 
     @Override
     public String getImage() {
         return this.image;
     }
+
     @Override
     public String getDescription() {
         return this.description;
     }
-
+    
 }

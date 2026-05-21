@@ -7,6 +7,8 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Dice;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Scoreboard;
+import giocoscudetto.model.impl.dices.MainDice;
+import giocoscudetto.model.impl.dices.ResultDice;
 
 public class MatchImpl implements Match {
 

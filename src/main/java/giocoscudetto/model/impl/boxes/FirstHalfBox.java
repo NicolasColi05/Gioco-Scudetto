@@ -1,18 +1,21 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.boxes;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class FinishBox implements Boxes{
+public class FirstHalfBox implements Boxes {
 
     private final int position;
     private final String image;
-    private final String description = "Box event: Last Box. If you land on this box the game will end";
+    private final String description = "Box Event: First Half. If you land on this box,"
+                                        +" you are in the second half of the game the dice"
+                                        + " that you throw is a 0-3 dice";
 
-    public FinishBox(final int position){
+    public FirstHalfBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_32.png";
+        this.image = "caselle_precise/casella_1.png";
     }
+
     @Override
     public int getPosition() {
         return this.position;
@@ -20,13 +23,13 @@ public class FinishBox implements Boxes{
 
     @Override
     public void event(Match match) {
-        match.getClubHome().getPawn().setPosition(32);
-        match.getClubAway().getPawn().setPosition(32);
+        System.out.println("Fine primo tempo");
+        match.turn();
     }
 
     @Override
     public String getName() {
-        return "Finish Box";
+        return "First Half";
     }
 
     @Override
@@ -38,5 +41,5 @@ public class FinishBox implements Boxes{
     public String getDescription() {
         return this.description;
     }
-    
+
 }

@@ -1,19 +1,19 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.boxes;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class CornerBox implements Boxes{
+public class ResultBox implements Boxes{
 
-    private final int position;
     private final String image;
-    private final String description = "Box Event: Corner. If you land on this box, you throw two dice and if you get a 1 you score a goal";
+    private final int position;
+    private final String description = "Box Event: Result. If you land on this box, you have to throw 2 dice and the numbers you get makes the new score";
 
-
-    public CornerBox(final int position) {
+    public ResultBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_19.png";
+        this.image = "caselle_precise/casella_3.png";  
     }
+
     @Override
     public int getPosition() {
         return this.position;
@@ -21,21 +21,21 @@ public class CornerBox implements Boxes{
 
     @Override
     public void event(Match match) {
-        match.setGameMode(Match.GameMode.CORNER);
+        match.setGameMode(Match.GameMode.RESULT);
     }
 
     @Override
     public String getName() {
-        return "corner box";
+        return "result box";
     }
 
     @Override
     public String getImage() {
         return this.image;
     }
-
     @Override
     public String getDescription() {
         return this.description;
     }
+
 }

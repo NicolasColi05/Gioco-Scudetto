@@ -1,19 +1,19 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.boxes;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class FirstHalfBox implements Boxes {
+public class CesariniBox implements Boxes {
+
+    private static final String BOX_NAME = "Cesarini Zone";
 
     private final int position;
     private final String image;
-    private final String description = "Box Event: First Half. If you land on this box,"
-                                        +" you are in the second half of the game the dice"
-                                        + " that you throw is a 0-3 dice";
+    private final String description = "Box Event: Cesarini zone. If you land on this box, you automatically score a goal.";
 
-    public FirstHalfBox(final int position) {
+    public CesariniBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_1.png";
+        this.image = "caselle_precise/casella_30.png";
     }
 
     @Override
@@ -23,13 +23,17 @@ public class FirstHalfBox implements Boxes {
 
     @Override
     public void event(Match match) {
-        System.out.println("Fine primo tempo");
+        if(match.getCurrentPlayer() == match.getClubHome()) {
+            match.goalHome();
+        } else {
+            match.goalAway();
+        }
         match.turn();
     }
 
     @Override
     public String getName() {
-        return "First Half";
+        return BOX_NAME;
     }
 
     @Override
@@ -41,5 +45,4 @@ public class FirstHalfBox implements Boxes {
     public String getDescription() {
         return this.description;
     }
-
 }
