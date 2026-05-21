@@ -152,8 +152,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver  {
         final String homeName = this.controller.getHomeName();
         final int homeNameW = g2d.getFontMetrics().stringWidth(homeName);
         final String guestName = this.controller.getGuestName();
-        final int guestNAmew = g2d.getFontMetrics().stringWidth(guestName);
-
+        
         g2d.setColor(BACKGROUND_COLOR);
         g2d.fillRect(x, y, w, h);
         g2d.drawRect(x, y, w, h);

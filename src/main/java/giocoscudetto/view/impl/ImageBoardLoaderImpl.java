@@ -34,7 +34,7 @@ public class ImageBoardLoaderImpl implements ImageBoardLoader{
     }
 
     @Override
-    public Image getImage(int position) {
+    public Image getImage(final int position) {
         return images.get(position);
     }
     
