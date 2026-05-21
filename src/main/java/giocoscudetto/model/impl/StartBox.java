@@ -11,7 +11,7 @@ public class StartBox implements Boxes{
 
     public StartBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_32.png";
+        this.image = "caselle_precise/casella_31.png";
     }
 
     @Override
