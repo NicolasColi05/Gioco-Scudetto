@@ -9,7 +9,7 @@ public class JoinBox implements Boxes {
 
     private final int position;
     private final String image;
-    private final String description = "Box Event: Join. If you land on this box, the opponent must have to reach your box.";
+    private final String description = "Box Event: Join. If you land on this box, the opponent has to reach your box.";
 
     public JoinBox(int position) {
         this.position = position;
