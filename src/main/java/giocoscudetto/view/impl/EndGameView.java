@@ -95,7 +95,7 @@ public class EndGameView extends DefaultPanelImpl {
 
         //ricomincia
         restartButton.addActionListener(e -> {
-            controller.resetFixture();
+            controller.restartLeague();
             controller.changeView("pre");
         });
 
