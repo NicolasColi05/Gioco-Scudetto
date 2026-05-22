@@ -1,4 +1,4 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.dices;
 
 import giocoscudetto.model.api.Dice;
 import java.util.Random;

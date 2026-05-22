@@ -1,4 +1,4 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.boxes;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Club;

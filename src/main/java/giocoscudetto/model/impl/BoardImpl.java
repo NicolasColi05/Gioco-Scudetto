@@ -5,6 +5,21 @@ import java.util.List;
 
 import giocoscudetto.model.api.Board;
 import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.impl.boxes.BackToStartBox;
+import giocoscudetto.model.impl.boxes.CesariniBox;
+import giocoscudetto.model.impl.boxes.CornerBox;
+import giocoscudetto.model.impl.boxes.EmptyBox;
+import giocoscudetto.model.impl.boxes.FinishBox;
+import giocoscudetto.model.impl.boxes.FirstHalfBox;
+import giocoscudetto.model.impl.boxes.FreeKickBox;
+import giocoscudetto.model.impl.boxes.GoalConceidedBox;
+import giocoscudetto.model.impl.boxes.GoalRemovedBox;
+import giocoscudetto.model.impl.boxes.JoinBox;
+import giocoscudetto.model.impl.boxes.PenaltyBox;
+import giocoscudetto.model.impl.boxes.ResultBox;
+import giocoscudetto.model.impl.boxes.SkipTurnBox;
+import giocoscudetto.model.impl.boxes.StartBox;
+import giocoscudetto.model.impl.boxes.SuspendMatchBox;
 
 public class BoardImpl implements Board {
 
