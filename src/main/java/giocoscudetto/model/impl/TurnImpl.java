@@ -52,26 +52,22 @@ public class TurnImpl implements Turn {
     @Override
     public void switchTurn() {
         if (currentPlayer == club1) {
-            if (skipClub2) {
-                skipClub2 = false;
-                currentPlayer = club1;
-
-                System.out.println(club2 + "skip the turn");
-            } else {
-
-                currentPlayer = club2;
-            }
+            currentPlayer = club2;
         } else {
+            currentPlayer = club1;
+        }
 
-            if (skipClub1) {
-                skipClub1 = false;
-                currentPlayer = club2;
+        if (currentPlayer == club1 && skipClub1) {
+            skipClub1 = false;
 
-                System.out.println(club1 + "skip the turn");
-            } else {
+            System.out.println(club1 + "skip the turn");
+            currentPlayer = club2;
 
-                currentPlayer = club1;
-            }
+        } else if (currentPlayer == club2 && skipClub2) {
+            skipClub2 = false;
+
+            System.out.println(club2 + "skip the turn");
+            currentPlayer = club1;
         }
     }
 
