@@ -146,4 +146,6 @@ public interface Starter {
     String getBoxName();
 
     String getBoxDescript();
+
+    void restartLeague();
 }

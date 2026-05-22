@@ -270,5 +270,18 @@ public class StarterImpl implements Starter {
         return this.table.getClubs().get(0).getName();
     }
 
-    
+    @Override
+    public void restartLeague(){
+        List<Club> clubs = controller.getClubs();
+        List<Integer> pawns = new ArrayList<>();
+        List<String> clubsname = new ArrayList<>();
+        for (Club club : clubs) {
+            pawns.add(club.getPawn().getPawnRGB());
+            clubsname.add(club.getName());
+        }
+        this.setPositionsZero();
+        this.resetFixture();
+        this.resetTable();
+        controller.createClubs(clubsname,pawns);
+    }
 }
