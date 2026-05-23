@@ -30,7 +30,6 @@ public class SkipTurnBox implements Boxes {
         
         Club current = match.getCurrentPlayer();
         match.setSkipTurn(current);
-        match.turn();
         System.out.println(current + "skip the next turn");
     }
 

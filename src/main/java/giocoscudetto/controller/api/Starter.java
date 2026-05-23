@@ -2,6 +2,7 @@ package giocoscudetto.controller.api;
 
 import giocoscudetto.model.api.Table;
 import giocoscudetto.view.api.GameObserver;
+import javax.swing.table.TableModel;
 
 public interface Starter {
     
@@ -128,6 +129,8 @@ public interface Starter {
     void resetTable();
 
     void addPoints();
+
+    TableModel getLeagueTableModel();
 
     String getWinner();
     
