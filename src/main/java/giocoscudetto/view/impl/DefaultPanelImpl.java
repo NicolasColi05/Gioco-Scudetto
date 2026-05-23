@@ -35,19 +35,19 @@ public class DefaultPanelImpl extends JPanel implements DefaultPanel{
     
     //Getter Method
     @Override
-    public Font getTitleFont() {
+    public final Font getTitleFont() {
         return this.titleFont;
     }
     @Override
-    public Font getButtonFont() {
+    public final Font getButtonFont() {
         return this.buttonFont;
     }
     @Override
-    public Font getExitFont() {
+    public final Font getExitFont() {
         return this.exitFont;
     }
 
-    protected JComponent createComponent(final JComponent component, final Font font, final Color textColor, final Color backgroundColor) {
+    protected final JComponent createComponent(final JComponent component, final Font font, final Color textColor, final Color backgroundColor) {
         component.setFont(font);
         component.setForeground(textColor);
         component.setBackground(backgroundColor);

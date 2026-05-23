@@ -27,14 +27,15 @@ import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 
-public class PreMatchView extends DefaultPanelImpl{
-    
+public class PreMatchView extends DefaultPanelImpl {
+
+    private final JTable fixtureTable;
+    private final JTable leagueTable;
+
     private final Starter starter;
     private final CreateUpdateController controller;
     private final ViewManager viewManager;
-    private int count = 0;
-    final JTable fixtureTable;
-    final JTable leagueTable;
+    private int count;
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
@@ -42,7 +43,7 @@ public class PreMatchView extends DefaultPanelImpl{
     private static final int BUTTON_BORDER = 5;
     private final Image image;
 
-    public PreMatchView(final Starter starter, final CreateUpdateController controller, final ViewManager viewManager){
+    public PreMatchView(final Starter starter, final CreateUpdateController controller, final ViewManager viewManager) {
         this.starter = starter;
         this.controller = controller;
         this.viewManager = viewManager;
@@ -53,16 +54,16 @@ public class PreMatchView extends DefaultPanelImpl{
 
         try {
             this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/pre-match-background.jpeg"));
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException("Failed to load image", e);
         }
 
         //pannello centrale
-        JPanel centralPanel = new JPanel(new GridBagLayout());
+        final JPanel centralPanel = new JPanel(new GridBagLayout());
         centralPanel.setOpaque(false);
 
         //pannello inferiore
-        JPanel lowerPanel = new JPanel(new BorderLayout());
+        final JPanel lowerPanel = new JPanel(new BorderLayout());
         lowerPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
         lowerPanel.setOpaque(false);
 
@@ -71,7 +72,6 @@ public class PreMatchView extends DefaultPanelImpl{
         fixtureTable.setOpaque(false);
         fixtureTable.getTableHeader().setReorderingAllowed(false);
         fixtureTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
-        
 
         //seconda tabella
         leagueTable.setEnabled(false);
@@ -80,20 +80,20 @@ public class PreMatchView extends DefaultPanelImpl{
         leagueTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / BUTTON_FONT_REDUCTION));
 
         //pulsanti in basso
-        JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK, null);
-        JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
+        final JButton backButton = (JButton) createComponent(new JButton("BACK"), getExitFont(), Color.BLACK, null);
+        final JButton continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
 
         backButton.addActionListener(e -> { 
             this.controller.reset();
             this.starter.changeView("club");
         });
 
-        continueButton.addActionListener(e -> { 
+        continueButton.addActionListener(e -> {
             this.starter.setMatch();
             if (count == 0) {
-            MatchPanel MatchPanel = new MatchPanel(this.starter, this.viewManager);
-            viewManager.addView(MatchPanel, "match");
-            count ++;
+            final MatchPanel matchPanel = new MatchPanel(this.starter, this.viewManager);
+            viewManager.addView(matchPanel, "match");
+            count++;
             }
             this.starter.setPositionsZero();
             this.starter.changeView("match");
@@ -104,8 +104,8 @@ public class PreMatchView extends DefaultPanelImpl{
         lowerPanel.add(continueButton, BorderLayout.EAST);
 
         //aggiunte al panel centrale
-        JScrollPane scrollPaneF = new JScrollPane(fixtureTable);
-        TitledBorder titleF = new TitledBorder("FIXTURE");
+        final JScrollPane scrollPaneF = new JScrollPane(fixtureTable);
+        final TitledBorder titleF = new TitledBorder("FIXTURE");
         titleF.setTitleJustification(TitledBorder.CENTER);
         titleF.setTitleColor(new Color(195, 45, 35));
         scrollPaneF.setOpaque(false);
@@ -113,15 +113,14 @@ public class PreMatchView extends DefaultPanelImpl{
         scrollPaneF.setBorder(titleF);
         centralPanel.add(scrollPaneF);
 
-        JScrollPane scrollPaneS = new JScrollPane(leagueTable);
-        TitledBorder titleS = new TitledBorder("STANDINGS");
+        final JScrollPane scrollPaneS = new JScrollPane(leagueTable);
+        final TitledBorder titleS = new TitledBorder("STANDINGS");
         titleS.setTitleJustification(TitledBorder.CENTER);
         titleS.setTitleColor(new Color(195, 45, 35));
         scrollPaneS.setOpaque(false);
         scrollPaneS.getViewport().setOpaque(false);
         scrollPaneS.setBorder(titleS);
         centralPanel.add(scrollPaneS);
-
 
         //aggiunte al panel principale
         this.add(centralPanel, BorderLayout.CENTER);
@@ -130,7 +129,7 @@ public class PreMatchView extends DefaultPanelImpl{
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
 
             @Override
-            public void componentShown(final java.awt.event.ComponentEvent e){
+            public void componentShown(final java.awt.event.ComponentEvent e) {
                 PreMatchView.this.updateFixtureTable();
                 PreMatchView.this.updateLeagueTable();
             }
@@ -149,12 +148,11 @@ public class PreMatchView extends DefaultPanelImpl{
                 fixtureTable.setRowMargin(3);
                 leagueTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
                 fixtureTable.setRowHeight(currentHeight / SWITCHER_BUTTON_FONT_RESIZING);
-                leagueTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
-                fixtureTable.setPreferredScrollableViewportSize(new Dimension(currentWidth/3, currentHeight/3));
+                leagueTable.setPreferredScrollableViewportSize(new Dimension(currentWidth / 3, currentHeight / 3));
+                fixtureTable.setPreferredScrollableViewportSize(new Dimension(currentWidth / 3, currentHeight / 3));
                 titleS.setTitleFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 70));
                 titleF.setTitleFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / 70));
                 revalidate();
-            
             }
         });
     }
@@ -163,15 +161,15 @@ public class PreMatchView extends DefaultPanelImpl{
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D) g;
+        final Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
     }
 
-    public void updateFixtureTable(){
+    public void updateFixtureTable()  {
         fixtureTable.setModel(controller.getFixtureTableModel());
     }
 
-    public void updateLeagueTable(){
+    public void updateLeagueTable() {
         leagueTable.setModel(controller.getLeagueTableModel());
     }
 }
