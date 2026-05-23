@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.SwingUtilities;
+import javax.swing.table.TableModel;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
@@ -17,6 +18,8 @@ import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.view.api.GameObserver;
+import giocoscudetto.model.impl.LeagueTableModel;
+
 
 /**
  * Starter implementation.
@@ -230,6 +233,9 @@ public class StarterImpl implements Starter {
         }
         this.match.getClubHome().changeNetDiffs(this.match.getScore().getHomeScore(), this.match.getScore().getGuestScore());
         this.match.getClubAway().changeNetDiffs(this.match.getScore().getGuestScore(), this.match.getScore().getHomeScore());
+
+        this.table.updateClubRank();
+        
     }
 
     
@@ -283,5 +289,10 @@ public class StarterImpl implements Starter {
         this.resetFixture();
         this.resetTable();
         controller.createClubs(clubsname,pawns);
+    }
+
+    @Override
+    public TableModel getLeagueTableModel() {
+        return new LeagueTableModel(this.table);
     }
 }

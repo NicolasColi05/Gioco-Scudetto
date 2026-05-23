@@ -18,7 +18,21 @@ public TestEndGameView() {
     var cr=new CreateUpdateControllerImpl();
     cr.createClubs(List.of("Milan","Juve","Roma","Inter"), List.of(255,128,10,255,128,10));
     var starter=new StarterImpl(null, cr);
-    cr.getTable().showPosition().get(0).changeNetDiffs(12, 10);
+
+    cr.getTable().getClubs().get(0).incrementPoints(10);
+    cr.getTable().getClubs().get(0).changeNetDiffs(12, 2);
+
+    cr.getTable().getClubs().get(1).incrementPoints(8);
+    cr.getTable().getClubs().get(1).changeNetDiffs(10, 5);
+
+    cr.getTable().getClubs().get(2).incrementPoints(6);
+    cr.getTable().getClubs().get(2).changeNetDiffs(8, 7);
+
+    cr.getTable().getClubs().get(3).incrementPoints(3);
+    cr.getTable().getClubs().get(3).changeNetDiffs(4, 10);
+
+    cr.getTable().updateClubRank();
+
     
     starter.setMatch();
     
