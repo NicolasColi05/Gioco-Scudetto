@@ -36,7 +36,6 @@ public TestEndGameView() {
     
     starter.setMatch();
     
-    starter.addPoints();
     JPanel pa = new giocoscudetto.view.impl.EndGameView(starter);
     this.setContentPane(pa);
      this.setVisible(true);
