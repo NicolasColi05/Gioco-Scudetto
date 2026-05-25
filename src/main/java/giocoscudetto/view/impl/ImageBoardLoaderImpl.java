@@ -25,7 +25,7 @@ public class ImageBoardLoaderImpl implements ImageBoardLoader{
         for (int i = 0; i < NUMBER_OF_IMAGES; i++) {
 
             try {
-                BufferedImage img = ImageIO.read(new File(this.controller.getBoxImage(i)));
+                BufferedImage img = ImageIO.read(new File("src/main/resources/images/backgrounds/boxes_image/"+this.controller.getBoxImage(i)));
                 this.images.add(img);
             } catch(Exception e) {
                 throw new RuntimeException("Failed to load image", e);

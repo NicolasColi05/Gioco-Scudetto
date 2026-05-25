@@ -13,7 +13,7 @@ public class GoalRemovedBox implements Boxes {
 
     public GoalRemovedBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_33.png";
+        this.image = "casella_33.png";
     }
 
     /**

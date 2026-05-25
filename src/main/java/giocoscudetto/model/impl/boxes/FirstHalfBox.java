@@ -13,7 +13,7 @@ public class FirstHalfBox implements Boxes {
 
     public FirstHalfBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_1.png";
+        this.image = "casella_1.png";
     }
 
     @Override

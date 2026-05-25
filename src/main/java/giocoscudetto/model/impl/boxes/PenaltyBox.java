@@ -14,7 +14,7 @@ public final class PenaltyBox implements Boxes {
     public PenaltyBox(final int position) {
         this.position = position;
         this.name = "Penalty Box";
-        this.image = "caselle_precise/casella_16.png";
+        this.image = "casella_16.png";
     }
 
     @Override

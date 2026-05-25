@@ -142,7 +142,7 @@ public class NetPanel extends DefaultPanelImpl {
 
 
         try {
-        this.image = ImageIO.read(new File("caselle_precise/net.png"));
+        this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/net.png"));
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to load image", e);

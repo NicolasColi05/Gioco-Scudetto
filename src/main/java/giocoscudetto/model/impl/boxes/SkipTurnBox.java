@@ -12,7 +12,7 @@ public class SkipTurnBox implements Boxes {
 
     public SkipTurnBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_7.png";
+        this.image = "casella_7.png";
     }
 
     @Override

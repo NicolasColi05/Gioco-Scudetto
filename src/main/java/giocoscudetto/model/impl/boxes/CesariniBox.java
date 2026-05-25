@@ -13,7 +13,7 @@ public class CesariniBox implements Boxes {
 
     public CesariniBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_30.png";
+        this.image = "casella_30.png";
     }
 
     @Override

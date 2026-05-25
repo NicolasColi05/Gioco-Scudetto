@@ -13,7 +13,7 @@ public class GoalConceidedBox implements Boxes {
 
     public GoalConceidedBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_9.png";
+        this.image = "casella_9.png";
 
     }
     

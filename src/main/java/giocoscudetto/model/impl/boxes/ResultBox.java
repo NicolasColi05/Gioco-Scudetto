@@ -11,7 +11,7 @@ public class ResultBox implements Boxes{
 
     public ResultBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_3.png";  
+        this.image = "casella_3.png";  
     }
 
     @Override

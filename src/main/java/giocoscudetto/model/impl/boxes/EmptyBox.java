@@ -17,43 +17,43 @@ public class EmptyBox implements Boxes {
        
         switch (position) {
             case(1): 
-                this.image = "caselle_precise/casella_12.png";
+                this.image = "casella_12.png";
                 break;
             case(3):
-                this.image = "caselle_precise/casella_13.png";
+                this.image = "casella_13.png";
                 break;
             case(5):
-                this.image = "caselle_precise/casella_23.png";
+                this.image = "casella_23.png";
                 break;
             case(7):
-                this.image = "caselle_precise/casella_24.png";
+                this.image = "casella_24.png";
                 break;
             case(9):
-                this.image = "caselle_precise/casella_25.png";
+                this.image = "casella_25.png";
                 break;
             case(11):
-                this.image = "caselle_precise/casella_27.png";
+                this.image = "casella_27.png";
                 break;
             case(13):
-                this.image = "caselle_precise/casella_29.png";
+                this.image = "casella_29.png";
                 break;
             case(18):
-                this.image = "caselle_precise/casella_4.png";
+                this.image = "casella_4.png";
                 break;
             case(20):
-                this.image = "caselle_precise/casella_6.png";
+                this.image = "casella_6.png";
                 break;
             case(22):
-                this.image = "caselle_precise/casella_8.png";
+                this.image = "casella_8.png";
                 break;
             case(25):
-                this.image = "caselle_precise/casella_17.png";
+                this.image = "casella_17.png";
                 break;
             case(27):
-                this.image = "caselle_precise/casella_20.png";
+                this.image = "casella_20.png";
                 break;
             default: 
-                this.image = "caselle_precise/casella_12.png";
+                this.image = "casella_12.png";
                 break;
         } 
     }

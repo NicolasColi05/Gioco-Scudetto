@@ -11,7 +11,7 @@ public class FreeKickBox implements Boxes{
 
     public FreeKickBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_26.png";
+        this.image = "casella_26.png";
     }
 
     @Override

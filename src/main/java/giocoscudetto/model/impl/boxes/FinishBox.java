@@ -11,7 +11,7 @@ public class FinishBox implements Boxes{
 
     public FinishBox(final int position){
         this.position = position;
-        this.image = "caselle_precise/casella_32.png";
+        this.image = "casella_32.png";
     }
     @Override
     public int getPosition() {

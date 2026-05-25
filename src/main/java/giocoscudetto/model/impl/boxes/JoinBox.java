@@ -13,7 +13,7 @@ public class JoinBox implements Boxes {
 
     public JoinBox(int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_2.png";
+        this.image = "casella_2.png";
     }
 
     @Override

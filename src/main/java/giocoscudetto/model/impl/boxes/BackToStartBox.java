@@ -12,7 +12,7 @@ public class BackToStartBox implements Boxes {
     public BackToStartBox(final int position) {
 
         this.position = position;
-        this.image = "caselle_precise/casella_34.png";
+        this.image = "casella_34.png";
     }
 
     @Override

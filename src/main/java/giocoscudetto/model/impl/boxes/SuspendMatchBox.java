@@ -11,7 +11,7 @@ public class SuspendMatchBox implements Boxes {
 
     public SuspendMatchBox(final int position) {
         this.position = position;
-        this.image = "caselle_precise/casella_10.png";
+        this.image = "casella_10.png";
     }
     @Override
     public int getPosition() {
