@@ -232,7 +232,8 @@ public class MatchImpl implements Match {
     }
 
     /**
-     * Method that manage the event mode, it check the game mode and the value of the event dices and update the score accordingly.
+     * Method that manage the event mode, it check the game mode and the value of the event 
+     * dices and update the score accordingly.
      */
     private void eventMode() {
         if (this.mode == GameMode.RESULT) {
