@@ -32,63 +32,98 @@ public class MatchImpl implements Match {
         this.clubAway = clubAway;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Club turn() {
         turn.switchTurn();
         return turn.getCurrentPlayer();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void goalHome() {
         this.score.increaseHomeScore();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void goalAway() {
         this.score.increaseGuestScore();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void setGoalHome(int goal){
         this.score.setHomeScore(goal);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void removeGoalHome() {
         this.score.decreaseHomeScore();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void removeGoalAway() {
         this.score.decreaseGuestScore();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void setGoalAway(int goal){
         this.score.setGuestScore(goal);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Club getClubHome() {
         return clubHome;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Club getClubAway() {
         return clubAway;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Scoreboard getScore() {
         return score;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Club getCurrentPlayer() {
         return turn.getCurrentPlayer();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int rollDice() {
         int dice6;
@@ -102,31 +137,49 @@ public class MatchImpl implements Match {
         return dice6;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int freeKickDice() {
         return this.dice6.rollDice() + this.dice6.rollDice();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setGameMode(final GameMode mode) {
         this.mode  = mode;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getGameMode() {
         return this.mode.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setSkipTurn(Club club) {
         turn.setSkipTurn(club);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString(){
         return this.clubHome.getName() + " - " + this.clubAway.getName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Club getWinnerClub(){
         if(this.score.getHomeScore() > this.score.getGuestScore()){
@@ -138,6 +191,9 @@ public class MatchImpl implements Match {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Club getLoserClub(){
         if(this.score.getHomeScore() < this.score.getGuestScore()){
@@ -149,6 +205,9 @@ public class MatchImpl implements Match {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int diceEvent() {
         int result;
@@ -172,6 +231,9 @@ public class MatchImpl implements Match {
         }
     }
 
+    /**
+     * Method that manage the event mode, it check the game mode and the value of the event dices and update the score accordingly.
+     */
     private void eventMode() {
         if (this.mode == GameMode.RESULT) {
 
