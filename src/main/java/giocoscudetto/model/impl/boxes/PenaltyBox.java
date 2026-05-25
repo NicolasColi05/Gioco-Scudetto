@@ -24,7 +24,7 @@ public final class PenaltyBox implements Boxes {
 
     @Override
     public void event(final Match match) {
-        match.setGameMode(Match.GameMode.PENALTY);;
+        match.setGameMode(Match.GameMode.PENALTY);
     }
 
     @Override
