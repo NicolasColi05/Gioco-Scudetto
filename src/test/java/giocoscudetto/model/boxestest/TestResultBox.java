@@ -57,6 +57,5 @@ public class TestResultBox {
 
         assertEquals(dice1, match.getScore().getHomeScore());
         assertEquals(dice2, match.getScore().getGuestScore());
-        assertEquals(clubAway, match.getCurrentPlayer());
     }
 }

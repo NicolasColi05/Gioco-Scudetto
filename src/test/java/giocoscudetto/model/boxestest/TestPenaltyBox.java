@@ -1,34 +1,49 @@
 package giocoscudetto.model.boxestest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.*;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
-import giocoscudetto.model.impl.boxes.CesariniBox;
+import giocoscudetto.model.impl.boxes.PenaltyBox;
 
 public class TestPenaltyBox {
-    private final Club clubHome = new ClubImpl("home", null);
-    private final Club clubAway = new ClubImpl("away", null);
-    private final Match match = new MatchImpl(clubHome, clubAway);
-    private final Scoreboard scoreboard = match.getScore();
-    private final Boxes cesariniBox = new CesariniBox(0);
+    private Club clubHome;
+    private Club clubAway;
+    private Match match;
+    private PenaltyBox penaltyBox;
 
-    
     @BeforeEach
-    public void setUpCurrentPlayer() {
-
-        //Setting initially the current club the home club, and fixing match status
-        //to have the homeClub as the current Club
-        if(match.getCurrentPlayer() != clubHome) {
-            match.turn();
-        }
+    public void setUp() {
+        clubHome = new ClubImpl("home", null);
+        clubAway = new ClubImpl("away", null);
+        match = new MatchImpl(clubHome, clubAway);
+        penaltyBox = new PenaltyBox(5);
     }
 
     @Test
-    public void testBox() {
+    public void testEventSetsGameModeToPenalty() {
+        assertNotEquals("PENALTY", match.getGameMode());
+        penaltyBox.event(match);
+        assertEquals("PENALTY", match.getGameMode());
+    }
 
-        
+    @Test
+    public void testPenaltyBoxPosition() {
+        assertEquals(5, penaltyBox.getPosition());
+    }
+
+    @Test
+    public void testPenaltyBoxName() {
+        assertEquals("Penalty Box", penaltyBox.getName());
+    }
+
+    @Test
+    public void testPenaltyBoxImage() {
+        assertEquals("casella_16.png", penaltyBox.getImage());
     }
 }
