@@ -106,12 +106,28 @@ public interface Match {
      */
     String getGameMode();
 
+    /**
+     * Method that set the skip turn for the club that is passed as parameter, this method is used for the corner event.
+     * @param club the club that has to skip the turn
+     */
     void setSkipTurn(Club club);
 
+    /**
+     * Method that return a string representation of the match, it contains the name of the home and away club and the score.
+     * @return a string representation of the match, it contains the name of the home and away club and the score.
+     */
     String toString();
 
+    /**
+     * Method that return the club that has won the match, if there is a draw it returns null.
+     * @return the club that has won the match, if there is a draw it returns null.
+     */
     Club getWinnerClub();
 
+    /**
+     * Method that return the club that has lost the match, if there is a draw it returns null.
+     * @return the club that has lost the match, if there is a draw it returns null.
+     */
     Club getLoserClub();
 
     int diceEvent();

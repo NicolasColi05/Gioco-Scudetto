@@ -42,13 +42,34 @@ public interface Fixtures {
      */
     void setScore(Match match, Scoreboard score);
     
+    /**
+     * Method that when given a match returns the next match to be played, without changing the value of the iterator
+     * @param match the match for which you want to see the next match
+     * @return the match after the match given
+     */
     Match seeNextMatch(Match match);
     
+    /**
+     * Method that resets the fixture, clearing all matches and scores
+     */
     void resetFixture();
 
+    /**
+     * Method that returns the scoreboard of a match, it returns null if the match has not been played yet
+     * @param match the match for which you want to see the scoreboard
+     * @return the scoreboard of the match, or null if the match has not been played yet
+     */
     Scoreboard getScoreboard(Match match);
 
+    /**
+     * Method that returns the list of matches of the fixture
+     * @return the list of matches of the fixture
+     */
     Set<Match> getListOfMatches();
     
+    /**
+     * Method that returns true if the fixture is empty, false otherwise
+     * @return true if the fixture is empty, false otherwise
+     */
     boolean isEmpty();
 }

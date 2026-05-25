@@ -23,17 +23,8 @@ public class FixturesImpl implements Fixtures {
     private Match currentMatch;
 
     /**
-     * Constructor of the class, it takes a list of clubs and generates the fixture of the championship.
-     * 
-     * @param listOfClubs it's the list of the clubs that will take part in the fixture
-     
-    public FixturesImpl(final List<Club> listOfClubs) {
-        this.listOfClubs = listOfClubs;
-        this.fixtureGeneration();
-        this.listOfMatchesIterator = this.listOfMatches.iterator();
-        this.currentMatch = null;
-    }*/ 
-
+     * {@inheritDoc}
+     */
     @Override
     public void fixtureGeneration(final List<Club> listOClubs) {
         this.listOfClubs.addAll(listOClubs);
@@ -53,6 +44,9 @@ public class FixturesImpl implements Fixtures {
         this.listOfMatchesIterator = listOfMatches.iterator();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Match setNextMatch() {
         if(this.listOfMatchesIterator.hasNext()){
@@ -62,6 +56,9 @@ public class FixturesImpl implements Fixtures {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override 
     public Match seeNextMatch(Match match){
         int i = listOfMatches.indexOf(match);
@@ -72,16 +69,25 @@ public class FixturesImpl implements Fixtures {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Match getCurrentMatch() {
         return this.currentMatch;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setScore(Match match, Scoreboard score){
         this.fixture.replace(match,null,score);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void resetFixture(){
         this.fixture.clear();
@@ -89,35 +95,35 @@ public class FixturesImpl implements Fixtures {
         this.listOfClubs.clear();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Scoreboard getScoreboard(Match match){
         return this.fixture.get(match);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Match> getListOfMatches() {
         return this.fixture.keySet();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEmpty(){
         return this.fixture.isEmpty();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-    /*if (this.listOfMatches == null || this.listOfMatches.isEmpty()) {
-        return "Nessun match programmato.";
-    }
-
-    final StringBuilder sb = new StringBuilder("Calendario Partite:\n");
-    for (final Pair<Club, Club> match : listOfMatches) {
-        sb.append(match.e1().getName())  // Assumendo che Club abbia getName()
-          .append(" vs ")
-          .append(match.e2().getName())
-          .append("\n");
-    }
-    
-    return sb.toString();*/
     StringBuilder sb = new StringBuilder();
     
     sb.append("--- CALENDARIO E RISULTATI ---\n");

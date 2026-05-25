@@ -1,7 +1,5 @@
 package giocoscudetto.view.impl;
 
-import giocoscudetto.model.impl.LeagueTableModel;
-import giocoscudetto.model.api.Table;
 import javax.swing.*;
 import java.awt.*;
 
@@ -46,13 +44,7 @@ public class EndGameView extends DefaultPanelImpl {
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         //tabella
-        /*JTable standingsTable = new JTable(new LeagueTableModel(controller.getTable()));/* */
-        Table table = controller.getTable();
-        if (table == null) {
-            throw new IllegalStateException("Table non inizializzata prima di EndGameView");
-        }
-
-        JTable standingsTable = new JTable(new LeagueTableModel(table));
+        JTable standingsTable = new JTable(controller.getLeagueTableModel());
         standingsTable.setEnabled(false);
         standingsTable.setOpaque(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / 70));
@@ -95,7 +87,7 @@ public class EndGameView extends DefaultPanelImpl {
 
         //ricomincia
         restartButton.addActionListener(e -> {
-            controller.resetFixture();
+            controller.restartLeague();
             controller.changeView("pre");
         });
 
