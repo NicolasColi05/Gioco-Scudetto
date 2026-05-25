@@ -132,4 +132,12 @@ public interface Match {
 
     int diceEvent();
 
+    void setKeeperPosition(int i);
+
+    /**
+     * Method that manage the event mode, it check the game mode and the value of the event 
+     * dices and update the score accordingly.
+     */
+    void eventMode();
+
 }

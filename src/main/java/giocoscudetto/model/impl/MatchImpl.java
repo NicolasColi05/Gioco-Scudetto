@@ -2,9 +2,11 @@ package giocoscudetto.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Dice;
+import giocoscudetto.model.api.GoalNet;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Scoreboard;
 import giocoscudetto.model.impl.dices.MainDice;
@@ -19,6 +21,7 @@ public class MatchImpl implements Match {
     private final TurnImpl turn;
     private final Dice dice6;
     private final Dice dice3;
+    private final GoalNet net = new GoalNetImpl();
     private GameMode mode = GameMode.NONE;
     private List<Integer> eventDices = new ArrayList<>();
 
@@ -235,7 +238,8 @@ public class MatchImpl implements Match {
      * Method that manage the event mode, it check the game mode and the value of the event 
      * dices and update the score accordingly.
      */
-    private void eventMode() {
+    @Override
+    public void eventMode() {
         if (this.mode == GameMode.RESULT) {
 
             this.setGoalHome(this.eventDices.get(0));
@@ -258,8 +262,21 @@ public class MatchImpl implements Match {
                     this.goalHome();
                 }
             }
+        } else if (this.mode == GameMode.PENALTY) {
+            if (this.net.isGoal(new Random().nextInt(6) + 1)) {
+                if (this.getCurrentPlayer().equals(this.getClubHome())) {
+                    this.goalHome();
+                } else {
+                    this.goalAway();
+                }
+            }
         }
         this.eventDices.clear();
+    }
+
+    @Override
+    public void setKeeperPosition(int i) {
+        this.net.setGoalKeeperPosition(i);
     }
 
 }

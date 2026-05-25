@@ -2,7 +2,6 @@ package giocoscudetto.controller.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
 
@@ -10,9 +9,7 @@ import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.model.api.Board;
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.GoalNet;
 import giocoscudetto.model.impl.BoardImpl;
-import giocoscudetto.model.impl.GoalNetImpl;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
@@ -29,7 +26,6 @@ public class StarterImpl implements Starter {
     private final ViewManager viewManager;
     private final CreateUpdateController controller;
     private final Board board = new BoardImpl();
-    private final GoalNet net = new GoalNetImpl();
     private Fixtures fixture;
     private Match match;
     private Table table;
@@ -85,7 +81,7 @@ public class StarterImpl implements Starter {
 
     @Override
     public void setKeeperPosition(int i) {
-        this.net.setGoalKeeperPosition(i);
+        this.match.setKeeperPosition(i);
     }
 
     @Override
@@ -95,15 +91,10 @@ public class StarterImpl implements Starter {
 
     @Override
     public boolean kickPenalty() {
-        if (this.net.isGoal(new Random().nextInt(6) + 1)) {
-            if (this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
-                this.match.goalHome();
-            } else {
-                this.match.goalAway();
-            }
-            return true;
-        }
-        return false;
+        final int oldGuestScore = this.match.getScore().getGuestScore();
+        final int oldHomeScore = this.match.getScore().getHomeScore();
+        this.match.eventMode();
+        return (this.match.getScore().getGuestScore() != oldGuestScore || this.match.getScore().getHomeScore() != oldHomeScore);
     }
 
     @Override
