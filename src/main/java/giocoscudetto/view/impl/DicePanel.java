@@ -73,7 +73,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
     public void updateState() {
             boolean isAnimating = controller.getHomePosition() != board.getAnimatedHomePosition()
                                 || controller.getGuestPosition() != board.getAnimatedGuestPosition();
-            if (isAnimating || this.controller.getGameMode() != "NONE") {
+            if (isAnimating ||  this.controller.getGameMode() !="NONE")  {
                 this.setDice(false);
             } else {
                 this.setDice(true);

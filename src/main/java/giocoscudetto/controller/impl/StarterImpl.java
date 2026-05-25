@@ -286,4 +286,5 @@ public class StarterImpl implements Starter {
     public TableModel getLeagueTableModel() {
         return new LeagueTableModel(this.table);
     }
+
 }
