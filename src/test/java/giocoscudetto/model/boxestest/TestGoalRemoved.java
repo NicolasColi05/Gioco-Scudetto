@@ -32,8 +32,7 @@ public class TestGoalRemoved {
     @BeforeEach
     public void setUpCurrentPlayer() {
 
-        //Setting initially the current club the home club, and fixing match status
-        //to have the homeClub as the current Club
+        //Setting homeClub as the match current club
         if(match.getCurrentPlayer() != clubHome) {
             match.turn();
         }
