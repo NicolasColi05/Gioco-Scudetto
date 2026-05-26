@@ -11,6 +11,13 @@ import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.model.impl.boxes.PenaltyBox;
 
+/*
+ * CHECKSTYLE: MagicNumber OFF
+ * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
+ */
+/**
+ * Test for {@link giocoscudetto.model.impl.boxes.PenaltyBox}.
+ */
 public class TestPenaltyBox {
     private Club clubHome;
     private Club clubAway;
