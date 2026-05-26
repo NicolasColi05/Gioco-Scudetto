@@ -40,25 +40,31 @@ public class TestCesariniBox {
         }
     }
 
+    private void verifyResult(final int homeResult,
+                            final int guestResult,
+                            final Club actualCurrentClub) {
+        assertEquals(homeResult, scoreboard.getHomeScore());
+        assertEquals(guestResult, scoreboard.getGuestScore());
+        assertEquals(actualCurrentClub, match.getCurrentPlayer());
+    }
+
     @Test
     public void testBoxEvent() {
 
-        int homeClubScore = scoreboard.getHomeScore();
-        int awayClubScore = scoreboard.getGuestScore();
+        scoreboard.setHomeScore(3);
+        scoreboard.setGuestScore(1);
+
+        //Testing Initial Values
+        verifyResult(3, 1, match.getClubHome());
 
         //Testing CesariniBox for each team, assuming they use it
         //consecutevely on it in the match
         cesariniBox.event(match);
-
-        assertEquals(homeClubScore + 1, scoreboard.getHomeScore());
-        assertEquals(awayClubScore, scoreboard.getGuestScore());
-        assertEquals(match.getClubAway(), match.getCurrentPlayer());
+        verifyResult(4, 1, match.getClubAway());
 
         cesariniBox.event(match);
+        verifyResult(4, 2, match.getClubHome());
 
-        assertEquals(homeClubScore + 1, scoreboard.getHomeScore());
-        assertEquals(awayClubScore + 1, scoreboard.getGuestScore());
-        assertEquals(match.getClubHome(), match.getCurrentPlayer());
     }
 
     @Test

@@ -67,10 +67,11 @@ public class TestGoalRemoved {
         scoreboard.setHomeScore(2);
         scoreboard.setGuestScore(1);
 
-        //Testing GoalRemovedBox for each team, assuming they use it
-        //consecutevely on it in the match
+        //Testing initial values
         verifyResult(2, 1, match.getClubHome());
         
+        //Testing GoalRemovedBox for each team, assuming they use it
+        //consecutevely on it in the match
         goalRemovedBox.event(match);
         verifyResult(1, 1, match.getClubAway());
 

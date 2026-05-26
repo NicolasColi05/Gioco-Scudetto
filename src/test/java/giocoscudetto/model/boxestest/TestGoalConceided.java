@@ -54,10 +54,11 @@ public class TestGoalConceided {
         scoreboard.setHomeScore(2);
         scoreboard.setGuestScore(4);
 
-        //Testing GoalConceidedBox for each team, assuming they use it
-        //consecutevely on it in the match
+        //Testing initial values
         verifyResult(2, 4, match.getClubHome());
 
+        //Testing GoalConceidedBox for each team, assuming they use it
+        //consecutevely on it in the match
         goalConceidedBox.event(match);
         verifyResult(2, 5, match.getClubAway());
 
