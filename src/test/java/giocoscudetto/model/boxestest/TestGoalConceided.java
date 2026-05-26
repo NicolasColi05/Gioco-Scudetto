@@ -40,27 +40,30 @@ public class TestGoalConceided {
         }
     }
 
+    private void verifyResult(final int homeResult,
+                            final int guestResult,
+                            final Club actualCurrentClub) {
+        assertEquals(homeResult, scoreboard.getHomeScore());
+        assertEquals(guestResult, scoreboard.getGuestScore());
+        assertEquals(actualCurrentClub, match.getCurrentPlayer());
+    }
+
     @Test
     public void testBoxEvent() {
 
-        int homeClubScore = scoreboard.getHomeScore();
-        int awayClubScore = scoreboard.getGuestScore();
+        scoreboard.setHomeScore(2);
+        scoreboard.setGuestScore(4);
 
         //Testing GoalConceidedBox for each team, assuming they use it
         //consecutevely on it in the match
-        assertEquals(match.getClubHome(), match.getCurrentPlayer());
+        verifyResult(2, 4, match.getClubHome());
 
         goalConceidedBox.event(match);
-
-        assertEquals(homeClubScore, scoreboard.getHomeScore());
-        assertEquals(awayClubScore + 1, scoreboard.getGuestScore());
-        assertEquals(match.getClubAway(), match.getCurrentPlayer());
+        verifyResult(2, 5, match.getClubAway());
 
         goalConceidedBox.event(match);
+        verifyResult(3, 5, match.getClubHome());
 
-        assertEquals(homeClubScore + 1, scoreboard.getHomeScore());
-        assertEquals(awayClubScore + 1, scoreboard.getGuestScore());
-        assertEquals(match.getClubHome(), match.getCurrentPlayer());
     }
 
     @Test
