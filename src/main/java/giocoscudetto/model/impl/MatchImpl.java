@@ -129,20 +129,11 @@ public class MatchImpl implements Match {
      */
     @Override
     public int rollDice() {
-        if (turn.hasToSkip(turn.getCurrentPlayer())) {
-            System.out.println(turn.getCurrentPlayer().getName() + " skips the turn");
-            turn.consumeSkip(turn.getCurrentPlayer());
-            turn.switchTurn();
-            return 0;
-        }
-
-
-
         int dice6;
         if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD){
             dice6 = this.dice6.rollDice() + this.dice6.rollDice();
             System.out.println("due dadi" +dice6);
-            return 21;// dice6;
+            return dice6;
         }
         dice6 = this.dice6.rollDice();
         System.out.println("un dado" + dice6);
