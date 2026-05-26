@@ -142,7 +142,7 @@ public class MatchImpl implements Match {
         if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD){
             dice6 = this.dice6.rollDice() + this.dice6.rollDice();
             System.out.println("due dadi" +dice6);
-            return 21;// dice6;
+            return dice6;
         }
         dice6 = this.dice6.rollDice();
         System.out.println("un dado" + dice6);
