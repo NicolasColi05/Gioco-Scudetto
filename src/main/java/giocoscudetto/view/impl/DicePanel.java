@@ -40,8 +40,8 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
         this.controller = controller;
         this.controller.addObserver(this);
         this.board = board;
-        this.setLayout(new BorderLayout());//NOPMD
-        this.setBackground(BACKGROUND_COLOR);//NOPMD
+        this.setLayout(new BorderLayout()); //NOPMD
+        this.setBackground(BACKGROUND_COLOR); //NOPMD
         messageLabel = new JLabel();
         messageLabel.setBackground(BACKGROUND_COLOR);
         messageLabel.setFont(new Font("SansSerif", Font.PLAIN, FONT_SIZE));
@@ -49,7 +49,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
         messageLabel.setBorder(new EmptyBorder(8, 4, 8, 4));
 
         this.add(rollDiceButton, BorderLayout.SOUTH);
-        this.add(messageLabel,BorderLayout.CENTER);
+        this.add(messageLabel, BorderLayout.CENTER);
 
         rollDiceButton.addActionListener(e -> {
             this.board.resetCheckBoxDone();
