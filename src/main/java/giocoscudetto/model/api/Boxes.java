@@ -1,7 +1,10 @@
 package giocoscudetto.model.api;
 
+/**
+ * This interface represents the boxes of the game, each box has a position, an event, a name, an image and a description.
+ */
 public interface Boxes {
-    
+
     /**
      * this method returns the position of the box.
      * 
@@ -23,10 +26,9 @@ public interface Boxes {
      */
     String getName();
 
-
     /**
      * this method is for get the image of a box.
-      *
+     *
      * @return an Image that represents the image of the box
      */
     String getImage();

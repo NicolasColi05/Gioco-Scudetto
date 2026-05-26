@@ -8,21 +8,33 @@ import javax.swing.SwingUtilities;
 
 import giocoscudetto.view.api.ViewManager;
 
-public class ViewManagerImpl implements ViewManager{
+/**
+ * This class manages the different views of the game, it uses a CardLayout to switch between the different panels.
+ */
+public class ViewManagerImpl implements ViewManager {
 
     private final CardLayout cardLayout;
     private final JPanel container;
 
+    /**
+     * Constructor of the ViewManagerImpl class, it initializes the CardLayout and the container panel.
+     */
     public ViewManagerImpl() {
         this.cardLayout = new CardLayout();
         this.container = new JPanel(cardLayout);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addView(final JPanel panel, final String name) {
         container.add(panel, name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void showView(final String name) {
         this.cardLayout.show(container, name);
@@ -31,11 +43,17 @@ public class ViewManagerImpl implements ViewManager{
         container.repaint();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JPanel getContainer() {
         return this.container;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void quit() {
         final Window frame = SwingUtilities.getWindowAncestor(this.container);

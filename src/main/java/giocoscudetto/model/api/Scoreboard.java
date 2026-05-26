@@ -1,49 +1,53 @@
 package giocoscudetto.model.api;
 
+/**
+ * This Class rappresent the scoreboard of the Match.
+ */
 public interface Scoreboard {
 
-    /**
-     * this method returns the score of the guest team.
-     * 
-     * @return the guest team score of the game.
-     */
-    int getGuestScore();
+  /**
+   * This method returns the score of the guest team.
+   * 
+   * 
+   * @return the guest team score of the game.
+   */
+  int getGuestScore();
 
-     /**
-     * this method returns the score of the home team.
-     * 
-     * @return the home team score of the game.
-     */
-    int getHomeScore();
+  /**
+   * this method returns the score of the home team.
+   * 
+   * @return the home team score of the game.
+   */
+  int getHomeScore();
 
-     /**
-      * this method sets the score of the home team.
-     */
-    void setHomeScore(int n_goals);
+  /**
+   * this method sets the score of the home team.
+   */
+  void setHomeScore(int goals);
 
-    /**
-      * this method sets the score of the guest team.
-     */
-    void setGuestScore(int n_goals);
+  /**
+   * this method sets the score of the guest team.
+   */
+  void setGuestScore(int goals);
 
-    /**
-      * this method increase the score of the home team by 1.
-     */
-    void increaseHomeScore();
+  /**
+   * this method increase the score of the home team by 1.
+   */
+  void increaseHomeScore();
 
-    /**
-      * this method increase the score of the guest team by 1.
-     */
-    void increaseGuestScore();
+  /**
+   * this method increase the score of the guest team by 1.
+   */
+  void increaseGuestScore();
 
-    /**
-      * this method decrease the score of the home team by 1.
-     */
-    void decreaseHomeScore();
+  /**
+   * this method decrease the score of the home team by 1.
+   */
+  void decreaseHomeScore();
 
-    /**
-      * this method decrease the score of the guest team by 1.
-     */
-    void decreaseGuestScore();
-    
+  /**
+   * this method decrease the score of the guest team by 1.
+   */
+  void decreaseGuestScore();
+
 }

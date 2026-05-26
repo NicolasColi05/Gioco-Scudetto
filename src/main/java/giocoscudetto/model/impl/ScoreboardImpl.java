@@ -2,11 +2,18 @@ package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Scoreboard;
 
+/**
+ * This class represents the scoreboard of the match.
+ */
 public class ScoreboardImpl implements Scoreboard {
 
     private int homeScore;
     private int guestScore;
 
+    /**
+     * Constructor of the ScoreboardImpl class,
+     * it initializes the home and guest score to 0.
+     */
     public ScoreboardImpl() {
         this.homeScore = 0;
         this.guestScore = 0;
@@ -14,7 +21,7 @@ public class ScoreboardImpl implements Scoreboard {
 
 
     /**
-      * {@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public int getGuestScore() {
@@ -24,56 +31,51 @@ public class ScoreboardImpl implements Scoreboard {
 
 
     /**
-      * {@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public int getHomeScore() {
-        
         return homeScore;
     }
 
 
     /**
-      * {@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
-    public void setHomeScore(final int new_score) {
-        
-        this.homeScore = new_score;
+    public void setHomeScore(final int newScore) {
+        this.homeScore = newScore;
     }
 
 
     /**
-      * {@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
-    public void setGuestScore(final int new_score) {
-
-        this.guestScore = new_score;
+    public void setGuestScore(final int newScore) {
+        this.guestScore = newScore;
     }
 
 
     /**
-      * {@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void increaseHomeScore() {
-        
         this.homeScore = homeScore + 1;
     }
 
 
     /**
-      * {@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void increaseGuestScore() {
-        
         this.guestScore = guestScore + 1;
     }
 
     /**
-      * {@inheritDoc}
+     * {@inheritDoc}
      */
     public void decreaseHomeScore() {
         this.homeScore = this.homeScore - 1;
@@ -83,19 +85,20 @@ public class ScoreboardImpl implements Scoreboard {
     }
 
     /**
-      * {@inheritDoc}
+     * {@inheritDoc}
      */
     public void decreaseGuestScore() {
         this.guestScore = this.guestScore - 1;
         if (this.guestScore < 0) {
             this.guestScore = 0;
         }
-        
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return homeScore + " - " + guestScore;
     }
-    
 }

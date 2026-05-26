@@ -3,38 +3,63 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class FreeKickBox implements Boxes{
+/**
+ * This class represents the Free Kick Box.
+ */
+public class FreeKickBox implements Boxes {
 
-    private static final String image = "casella_26.png";
+    private final String image;
     private final int position;
-    private static final String description = "Box Event: Free Kick. If you land on this box, you throw two dice(0-6) and if the sum is exactly 7 you score a goal";
+    private final String description = "Box Event: Free Kick. If you land on this box,"
+                                       + "you throw two dice(0-6) and if the sum is exactly 7 you score a goal";
 
+    /**
+     * Constructor of the FreeKickBox class.
+     * 
+     * @param position the position of the box on the board.
+     */
     public FreeKickBox(final int position) {
         this.position = position;
+        this.image = "casella_26.png";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPosition() {
         return this.position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void event(final Match match) {
         match.setGameMode(Match.GameMode.FREE_KICK);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
         return "Freekick Box";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getImage() {
-        return FreeKickBox.image;
+        return this.image;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
-        return FreeKickBox.description;
+        return this.description;
     }
 }

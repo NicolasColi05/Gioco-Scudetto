@@ -3,38 +3,64 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class ResultBox implements Boxes{
+/**
+ * This class represents the Result Box.
+ */
+public class ResultBox implements Boxes {
 
-    private static final String image = "casella_3.png";
+    private final String image;
     private final int position;
-    private static final String description = "Box Event: Result. If you land on this box, you have to throw 2 dice and the numbers you get makes the new score";
+    private final String description = "Box Event: Result. If you land on this box"
+                                     + ", you have to throw 2 dice and the numbers you get makes the new score";
 
+    /**
+     * Constructor of the ResultBox class.
+     * 
+     * @param position the position of the box on the board.
+     */
     public ResultBox(final int position) {
-        this.position = position; 
+        this.position = position;
+        this.image = "casella_3.png";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPosition() {
         return this.position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void event(Match match) {
+    public void event(final Match match) {
         match.setGameMode(Match.GameMode.RESULT);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
         return "result box";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getImage() {
-        return ResultBox.image;
+        return this.image;
     }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
-        return ResultBox.description;
+        return this.description;
     }
 
 }

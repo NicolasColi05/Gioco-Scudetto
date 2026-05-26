@@ -17,22 +17,36 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+/**
+ * This class represents the panel where the match is played, 
+ * it contains the board, 
+ * the dice panel, the net panel and the event panel.
+ */
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
-    private static final Color BACKGROUND_COLOR = new Color(223,189,138);
+    // CHECKSTYLE: MagicNumber OFF
+    private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
+    private static final int DIM_X = 300;
+    private static final int DIM_Y = 200;
     private final Starter controller;
-    private final ViewManager viewManager;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
     private final JButton continueButton;
     private final EventPanel eventPanel;
     private final JCheckBox helpBox;
+    private ViewManager viewManager;
 
+    /**
+     * Constructor of the MatchPanel class.
+     * 
+     * @param controller the game controller.
+     * @param viewManager the view manager.
+     */
     public MatchPanel(final Starter controller, final ViewManager viewManager) {
 
         final BoardPanel boardJPanel = new BoardPanel(controller);
-        this.bottomDice = new DicePanel(controller,boardJPanel);
+        this.bottomDice = new DicePanel(controller, boardJPanel);
         this.netPanel = new NetPanel(controller);
         this.controller = controller;
         this.viewManager = viewManager;
@@ -45,33 +59,31 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
         this.helpBox.addActionListener(e -> { 
             this.controller.setHelpFlag(this.helpBox.isSelected());
-                
         });
 
         this.eventPanel = new EventPanel(controller);
-        eventPanel.setMaximumSize(new Dimension(300,200 ));
+        eventPanel.setMaximumSize(new Dimension(DIM_X, DIM_Y));
 
-        JPanel helpPanel = new JPanel();
+        final JPanel helpPanel = new JPanel();
         helpPanel.setBackground(BACKGROUND_COLOR);
         helpPanel.setLayout(new BoxLayout(helpPanel, BoxLayout.X_AXIS));
         helpPanel.add(helpBox);
 
-        JPanel rightPanel = new JPanel();
+        final JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setOpaque(false);
         rightPanel.setPreferredSize(new Dimension(280, 0));
 
-        JPanel turnPanel = new JPanel();
-        turnLabel = new JLabel("Turn of :"+controller.getCurrentPlayer());
+        final JPanel turnPanel = new JPanel();
+        turnLabel = new JLabel("Turn of :" + controller.getCurrentPlayer());
         turnPanel.setBackground(BACKGROUND_COLOR);
-        turnLabel.setFont(new Font("Turn",Font.BOLD,20));
+        turnLabel.setFont(new Font("Turn", Font.BOLD, 20));
         turnPanel.add(turnLabel);
         turnPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         turnPanel.setMaximumSize(new Dimension(280, 120));
 
-        JPanel netWrapper = new JPanel(new BorderLayout());
-        netWrapper.setMaximumSize(new Dimension(300,200 ));
-        
+        final JPanel netWrapper = new JPanel(new BorderLayout());
+        netWrapper.setMaximumSize(new Dimension(DIM_X, DIM_Y));
         this.continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
         continueButton.setEnabled(false);
         continueButton.setVisible(false);
@@ -90,15 +102,14 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(bottomDice);
         rightPanel.add(eventPanel);
         rightPanel.add(continueButton);
-        
 
-        continueButton.addActionListener(e -> { 
-            if(this.controller.isLastMatch()){
-                EndGameView EndGameView = new EndGameView(this.controller);
-                this.viewManager.addView(EndGameView, "end");
+        continueButton.addActionListener(e -> {
+            if (this.controller.isLastMatch()) {
+                final EndGameView endGameView = new EndGameView(this.controller);
+                this.viewManager.addView(endGameView, "end");
                 this.controller.addPoints();
                 this.controller.changeView("end");
-            }else{
+            } else {
                 this.controller.addPoints();
                 this.controller.changeView("pre");
             }
@@ -112,15 +123,18 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
                 revalidate();
                 repaint();
-                continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / (SWITCHER_BUTTON_FONT_RESIZING*2)));
+                continueButton.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / (SWITCHER_BUTTON_FONT_RESIZING * 2)));
             }
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateState() {
         SwingUtilities.invokeLater(() -> {
-            turnLabel.setText("Turn of :"+controller.getCurrentPlayer());
+            turnLabel.setText("Turn of :" + controller.getCurrentPlayer());
 
             switch (this.controller.getGameMode()) {
                 case "PENALTY": 
@@ -143,17 +157,15 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
                     break;
             }
 
-            // netPanel.setButtonsEnabled(controller.isPenalty());
             continueButton.setVisible(controller.isLastBox());
             continueButton.setEnabled(controller.isLastBox());
-            if(controller.isLastBox()){
-                this.LastBox();
+            if (controller.isLastBox()) {
+                this.lastBox();
             }
-            
         });
     }
 
-    private void LastBox(){
+    private void lastBox() {
         controller.LastBox();
     }
 
