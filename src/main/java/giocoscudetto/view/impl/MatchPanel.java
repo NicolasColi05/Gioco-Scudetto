@@ -14,9 +14,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
@@ -97,7 +95,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         continueButton.addActionListener(e -> { 
             if(this.controller.isLastMatch()){
                 EndGameView EndGameView = new EndGameView(this.controller);
-                viewManager.addView(EndGameView, "end");
+                this.viewManager.addView(EndGameView, "end");
                 this.controller.addPoints();
                 this.controller.changeView("end");
             }else{

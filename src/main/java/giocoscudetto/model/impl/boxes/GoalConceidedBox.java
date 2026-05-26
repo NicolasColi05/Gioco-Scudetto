@@ -37,11 +37,11 @@ public class GoalConceidedBox implements Boxes {
 
     @Override
     public String getImage() {
-       return this.image;
+       return GoalConceidedBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return GoalConceidedBox.description;
     }
 }

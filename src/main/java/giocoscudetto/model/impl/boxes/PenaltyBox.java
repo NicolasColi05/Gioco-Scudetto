@@ -27,17 +27,17 @@ public final class PenaltyBox implements Boxes {
 
     @Override
     public String getName() {
-        return this.name;
+        return PenaltyBox.name;
     }
 
     @Override
     public String getImage() {
-        return this.image;
+        return PenaltyBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return PenaltyBox.description;
     }
 
 }

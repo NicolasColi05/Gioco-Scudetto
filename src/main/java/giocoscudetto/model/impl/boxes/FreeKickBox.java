@@ -30,11 +30,11 @@ public class FreeKickBox implements Boxes{
 
     @Override
     public String getImage() {
-        return this.image;
+        return FreeKickBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return FreeKickBox.description;
     }
 }

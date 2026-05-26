@@ -1,7 +1,6 @@
 package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Pawn;
 import giocoscudetto.model.api.Turn;
 import giocoscudetto.model.impl.dices.MainDice;
 

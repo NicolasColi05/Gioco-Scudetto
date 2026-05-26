@@ -30,11 +30,11 @@ public class StartBox implements Boxes{
 
     @Override
     public String getImage() {
-        return this.image;
+        return StartBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return StartBox.description;
     }
 }

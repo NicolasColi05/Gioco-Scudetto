@@ -33,11 +33,11 @@ public class SuspendMatchBox implements Boxes {
 
     @Override
     public String getImage() {
-       return this.image;
+       return SuspendMatchBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return SuspendMatchBox.description;
     }
 }

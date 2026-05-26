@@ -1,18 +1,12 @@
 package giocoscudetto.view.impl;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import giocoscudetto.view.api.ViewManager;
 
 public class MainFrame extends JFrame {
-
-    private static final String FONT_SELECTED = Font.MONOSPACED;
-    private static final int TITLE_FONT_REDUCTION = 30;
-    private static final int BUTTON_FONT_REDUCTION = 50;
-    private static final int EXIT_FONT_REDUCTION = 80;
 
     private final ViewManager viewManager;
 

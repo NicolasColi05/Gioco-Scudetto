@@ -48,11 +48,11 @@ public class JoinBox implements Boxes {
 
     @Override
     public String getImage() {
-        return this.image;
+        return JoinBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return JoinBox.description;
     }
 }

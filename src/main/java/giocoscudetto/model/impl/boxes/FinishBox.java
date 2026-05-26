@@ -30,12 +30,12 @@ public class FinishBox implements Boxes{
 
     @Override
     public String getImage() {
-        return this.image;
+        return FinishBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return FinishBox.description;
     }
     
 }

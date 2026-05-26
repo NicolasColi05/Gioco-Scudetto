@@ -33,12 +33,12 @@ public class FirstHalfBox implements Boxes {
 
     @Override
     public String getImage() {
-        return this.image;
+        return FirstHalfBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return FirstHalfBox.description;
     }
 
 }

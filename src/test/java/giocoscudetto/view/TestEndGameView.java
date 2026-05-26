@@ -6,9 +6,6 @@ import javax.swing.SwingUtilities;
 
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
-import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.MatchImpl;
-import giocoscudetto.model.impl.PawnImpl;
 
 public class TestEndGameView extends JFrame {
 

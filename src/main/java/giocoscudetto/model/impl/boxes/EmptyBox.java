@@ -80,6 +80,6 @@ public class EmptyBox implements Boxes {
 
     @Override
     public String getDescription() {
-        return this.description;
+        return EmptyBox.description;
     }
 }

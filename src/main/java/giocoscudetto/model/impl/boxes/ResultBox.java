@@ -30,11 +30,11 @@ public class ResultBox implements Boxes{
 
     @Override
     public String getImage() {
-        return this.image;
+        return ResultBox.image;
     }
     @Override
     public String getDescription() {
-        return this.description;
+        return ResultBox.description;
     }
 
 }

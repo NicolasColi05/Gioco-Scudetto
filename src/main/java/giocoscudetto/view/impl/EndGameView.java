@@ -38,13 +38,13 @@ public class EndGameView extends DefaultPanelImpl {
         }
 
         //vincitore
-        JLabel winnerLabel = new JLabel("WINNER:" + controller.getWinner(), SwingConstants.RIGHT);
+        JLabel winnerLabel = new JLabel("WINNER:" + this.controller.getWinner(), SwingConstants.RIGHT);
         winnerLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, 30));
         winnerLabel.setForeground(Color.BLACK);
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         //tabella
-        JTable standingsTable = new JTable(controller.getLeagueTableModel());
+        JTable standingsTable = new JTable(this.controller.getLeagueTableModel());
         standingsTable.setEnabled(false);
         standingsTable.setOpaque(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / 70));
@@ -80,15 +80,15 @@ public class EndGameView extends DefaultPanelImpl {
 
         //torna al menu
         menuButton.addActionListener(e -> {
-            controller.resetFixture();
-            controller.resetTable();
-            controller.changeView("club");
+            this.controller.resetFixture();
+            this.controller.resetTable();
+            this.controller.changeView("club");
         });
 
         //ricomincia
         restartButton.addActionListener(e -> {
-            controller.restartLeague();
-            controller.changeView("pre");
+            this.controller.restartLeague();
+            this.controller.changeView("pre");
         });
 
         JPanel centerPanel = new JPanel();

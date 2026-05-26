@@ -30,11 +30,11 @@ public class CornerBox implements Boxes{
 
     @Override
     public String getImage() {
-        return this.image;
+        return CornerBox.image;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return CornerBox.description;
     }
 }
