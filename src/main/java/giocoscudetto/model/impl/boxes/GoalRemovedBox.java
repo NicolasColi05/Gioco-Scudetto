@@ -7,13 +7,12 @@ public class GoalRemovedBox implements Boxes {
 
     private static final String BOX_NAME = "Goal Removed";
 
-    private final String image;
+    private static final String image = "casella_33.png";
     private final int position;
-    private final String description = "Box Event: Remove Goal. If you land on this box, the ref removes a goal from your score.";
+    private static final String description = "Box Event: Remove Goal. If you land on this box, the ref removes a goal from your score.";
 
     public GoalRemovedBox(final int position) {
         this.position = position;
-        this.image = "casella_33.png";
     }
 
     /**

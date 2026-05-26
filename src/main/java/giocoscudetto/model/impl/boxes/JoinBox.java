@@ -8,12 +8,11 @@ import giocoscudetto.model.api.Match;
 public class JoinBox implements Boxes {
 
     private final int position;
-    private final String image;
-    private final String description = "Box Event: Join. If you land on this box, the opponent has to reach your box.";
+    private static final String image = "casella_2.png";
+    private static final String description = "Box Event: Join. If you land on this box, the opponent has to reach your box.";
 
     public JoinBox(int position) {
         this.position = position;
-        this.image = "casella_2.png";
     }
 
     @Override

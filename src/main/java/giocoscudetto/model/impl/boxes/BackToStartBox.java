@@ -5,14 +5,12 @@ import giocoscudetto.model.api.Match;
 
 public class BackToStartBox implements Boxes {
 
-    private final String description = "Box Event: Back to Start. If you land on this box, you must return to the starting point of the board.";
     private final int position;
-    private final String image;
+    private static final String image = "casella_34.png";
+    private static final String description = "Box Event: Back to Start. If you land on this box, you must return to the starting point of the board.";
 
     public BackToStartBox(final int position) {
-
         this.position = position;
-        this.image = "casella_34.png";
     }
 
     @Override

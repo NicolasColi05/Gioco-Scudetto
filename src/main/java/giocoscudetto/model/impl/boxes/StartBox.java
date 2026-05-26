@@ -5,13 +5,12 @@ import giocoscudetto.model.api.Match;
 
 public class StartBox implements Boxes{
 
-    private final String image ;
+    private static final String image = "casella_31.png";
     private final int position;
-    private final String description = "Box Event: Start. Start of the match, throw the dice[0-6]";
+    private static final String description = "Box Event: Start. Start of the match, throw the dice[0-6]";
 
     public StartBox(final int position) {
         this.position = position;
-        this.image = "casella_31.png";
     }
 
     @Override

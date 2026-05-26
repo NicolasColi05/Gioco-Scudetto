@@ -7,7 +7,7 @@ public class EmptyBox implements Boxes {
 
     private final int position;
     private final String image;
-    private final String description = "Box Event: Empty. If you land on this box, you do nothing.";
+    private static final String description = "Box Event: Empty. If you land on this box, you do nothing.";
 
     /**
      * @param position the position of the box in the board.

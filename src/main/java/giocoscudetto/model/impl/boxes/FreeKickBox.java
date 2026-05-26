@@ -5,13 +5,12 @@ import giocoscudetto.model.api.Match;
 
 public class FreeKickBox implements Boxes{
 
-    private final String image;
+    private static final String image = "casella_26.png";
     private final int position;
-    private final String description = "Box Event: Free Kick. If you land on this box, you throw two dice(0-6) and if the sum is exactly 7 you score a goal";
+    private static final String description = "Box Event: Free Kick. If you land on this box, you throw two dice(0-6) and if the sum is exactly 7 you score a goal";
 
     public FreeKickBox(final int position) {
         this.position = position;
-        this.image = "casella_26.png";
     }
 
     @Override

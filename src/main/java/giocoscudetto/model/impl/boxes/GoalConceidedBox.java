@@ -8,13 +8,11 @@ public class GoalConceidedBox implements Boxes {
     private static final String BOX_NAME = "Goal Conceded";
 
     private final int position;
-    private final String image;
-    private final String description = "Box Event: Goal Conceded. If you land on this box, you concede a goal.";
+    private static final String image = "casella_9.png";
+    private static final String description = "Box Event: Goal Conceded. If you land on this box, you concede a goal.";
 
     public GoalConceidedBox(final int position) {
         this.position = position;
-        this.image = "casella_9.png";
-
     }
     
     @Override

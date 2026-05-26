@@ -6,13 +6,12 @@ import giocoscudetto.model.api.Match;
 
 public class SkipTurnBox implements Boxes {
 
-    private final String image;
+    private static final String image = "casella_7.png";
     private final int position;
-    private final String description = "Box Event: Skip Turn. If you land on this box, you lose your next turn.";
+    private static final String description = "Box Event: Skip Turn. If you land on this box, you lose your next turn.";
 
     public SkipTurnBox(final int position) {
         this.position = position;
-        this.image = "casella_7.png";
     }
 
     @Override

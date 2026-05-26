@@ -5,13 +5,12 @@ import giocoscudetto.model.api.Match;
 
 public class SuspendMatchBox implements Boxes {
 
-    private final String image;
+    private static final String image = "casella_10.png";
     private final int position;
-    private final String description = "Box Event: Suspend Match. If you land on this box, you and your opponent have to restart the game with a score of 0-0.";
+    private static final String description = "Box Event: Suspend Match. If you land on this box, you and your opponent have to restart the game with a score of 0-0.";
 
     public SuspendMatchBox(final int position) {
         this.position = position;
-        this.image = "casella_10.png";
     }
     @Override
     public int getPosition() {

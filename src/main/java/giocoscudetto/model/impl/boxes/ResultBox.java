@@ -5,13 +5,12 @@ import giocoscudetto.model.api.Match;
 
 public class ResultBox implements Boxes{
 
-    private final String image;
+    private static final String image = "casella_3.png";
     private final int position;
-    private final String description = "Box Event: Result. If you land on this box, you have to throw 2 dice and the numbers you get makes the new score";
+    private static final String description = "Box Event: Result. If you land on this box, you have to throw 2 dice and the numbers you get makes the new score";
 
     public ResultBox(final int position) {
-        this.position = position;
-        this.image = "casella_3.png";  
+        this.position = position; 
     }
 
     @Override
