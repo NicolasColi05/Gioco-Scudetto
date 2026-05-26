@@ -23,6 +23,9 @@ public class TestPenaltyBox {
         clubAway = new ClubImpl("away", null);
         match = new MatchImpl(clubHome, clubAway);
         penaltyBox = new PenaltyBox(5);
+        if(match.getCurrentPlayer() != clubHome) {
+            match.turn();
+        }
     }
 
     @Test

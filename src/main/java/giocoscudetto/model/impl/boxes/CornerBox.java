@@ -26,7 +26,7 @@ public class CornerBox implements Boxes{
 
     @Override
     public String getName() {
-        return "corner box";
+        return "Corner Box";
     }
 
     @Override

@@ -22,6 +22,9 @@ public class TestResultBox {
         clubAway = new ClubImpl("away", null);
         match = new MatchImpl(clubHome, clubAway);
         resultBox = new ResultBox(5);
+        if(match.getCurrentPlayer() != clubHome) {
+            match.turn();
+        }
     }
 
     @Test

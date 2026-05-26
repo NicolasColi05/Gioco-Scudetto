@@ -26,7 +26,7 @@ public class FreeKickBox implements Boxes{
 
     @Override
     public String getName() {
-        return "freekick box";
+        return "Freekick Box";
     }
 
     @Override
