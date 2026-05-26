@@ -76,12 +76,17 @@ public class TestMatch {
 
     @Test
     void TestDiceLogic(){
+        int count;
         match.getClubHome().getPawn().setPosition(0);
         if (match.getCurrentPlayer() != match.getClubHome()){
             match.turn();
         }
-        assertTrue(match.rollDice()<=12);
+        for (count = 0; count < 1000; count++){
+            assertTrue(match.rollDice()<=12);
+        }
         match.getClubHome().getPawn().setPosition(24);
-        assertTrue(match.rollDice()<=6);
+        for (count = 0; count < 1000; count++){
+            assertTrue(match.rollDice()<=6);
+        }
     }
 }
