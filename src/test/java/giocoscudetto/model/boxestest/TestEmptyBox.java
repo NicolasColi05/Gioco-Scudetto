@@ -8,7 +8,6 @@ import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Scoreboard;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
-import giocoscudetto.model.impl.boxes.CesariniBox;
 import giocoscudetto.model.impl.boxes.EmptyBox;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
