@@ -70,4 +70,23 @@ public class TurnImpl implements Turn {
         }
     }
 
+
+    public boolean hasToSkip(Club club) {
+
+        if (club == club1) {
+            return skipClub1;
+        }
+
+        return skipClub2;
+    }
+
+    public void consumeSkip(Club club) {
+
+        if (club == club1) {
+            skipClub1 = false;
+        } else {
+            skipClub2 = false;
+        }
+    }
+
 }
