@@ -27,7 +27,7 @@ public class TestCesariniBox {
     private final Club clubAway = new ClubImpl("away", null);
     private final Match match = new MatchImpl(clubHome, clubAway);
     private final Scoreboard scoreboard = match.getScore();
-    private final Boxes cesariniBox = new CesariniBox(0);
+    private final Boxes cesariniBox = new CesariniBox(31);
 
     
     @BeforeEach
@@ -59,6 +59,21 @@ public class TestCesariniBox {
         assertEquals(homeClubScore + 1, scoreboard.getHomeScore());
         assertEquals(awayClubScore + 1, scoreboard.getGuestScore());
         assertEquals(match.getClubHome(), match.getCurrentPlayer());
+    }
+
+    @Test
+    public void testBoxPosition() {
+        assertEquals(31, cesariniBox.getPosition());
+    }
+
+    @Test
+    public  void testBoxName() {
+        assertEquals("Cesarini Zone", cesariniBox.getName());
+    }        
+        
+    @Test
+    public void testBoxImage() {
+        assertEquals("casella_30.png", cesariniBox.getImage());
     }
 
 }
