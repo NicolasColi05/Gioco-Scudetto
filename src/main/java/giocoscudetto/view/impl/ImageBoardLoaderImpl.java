@@ -3,6 +3,7 @@ package giocoscudetto.view.impl;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -10,12 +11,22 @@ import javax.imageio.ImageIO;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.ImageBoardLoader;
 
-public class ImageBoardLoaderImpl implements ImageBoardLoader{
+/**
+ * This class implements the ImageBoardLoader interface, 
+ * it loads the images for the board and provides 
+ * a method to get the image at a specific position.
+ */
+public class ImageBoardLoaderImpl implements ImageBoardLoader {
 
     private static final int NUMBER_OF_IMAGES = 32;
     private final Starter controller;
     private final ArrayList<Image> images = new ArrayList<>();
 
+    /**
+     * Constructor of the ImageBoardLoaderImpl class.
+     * 
+     * @param controller the game controller, used to get the image names for the boxes.
+     */
     public ImageBoardLoaderImpl(final Starter controller) {
         this.controller = controller;
         loadImages();
@@ -25,18 +36,20 @@ public class ImageBoardLoaderImpl implements ImageBoardLoader{
         for (int i = 0; i < NUMBER_OF_IMAGES; i++) {
 
             try {
-                BufferedImage img = ImageIO.read(new File("src/main/resources/images/backgrounds/boxes_image/"+this.controller.getBoxImage(i)));
+                final BufferedImage img = ImageIO.read(new File("src/main/resources/images/backgrounds/boxes_image/"
+                                 + this.controller.getBoxImage(i)));
                 this.images.add(img);
-            } catch(Exception e) {
+            } catch (final IOException e) {
                 throw new RuntimeException("Failed to load image", e);
             }
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getImage(final int position) {
         return images.get(position);
     }
-    
-    
 }

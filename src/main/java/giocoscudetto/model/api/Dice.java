@@ -1,5 +1,8 @@
 package giocoscudetto.model.api;
 
+/**
+ * This interface represents the dice of the game, it has a method to throw the dice and get the value of the throw.
+ */
 public interface Dice {
 
     /**

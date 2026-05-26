@@ -14,17 +14,26 @@ import javax.swing.Timer;
 
 import giocoscudetto.controller.api.Starter;
 
+/**
+ * This class represents the panel where the events of the game are resolved.
+ */
 public class EventPanel extends DefaultPanelImpl {
 
-    private static final Color BACKGROUND_COLOR = new Color(223,189,138);
+    // CHECKSTYLE: MagicNumber OFF
+    private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
+    private static final String FONT_NAME = "Arial";
+    private static final String QUESTION_MARK = "?";
 
+    /**
+     * Enum representing the type of event.
+     */
     public enum EventType {
         FREE_KICK, CORNER, RESULT
     }
 
     private final Starter controller;
-    private final JLabel dice1Label = new JLabel("?", SwingConstants.CENTER);
-    private final JLabel dice2Label = new JLabel("?", SwingConstants.CENTER);
+    private final JLabel dice1Label = new JLabel(QUESTION_MARK, SwingConstants.CENTER);
+    private final JLabel dice2Label = new JLabel(QUESTION_MARK, SwingConstants.CENTER);
     private final JLabel outcomeLabel = new JLabel("", SwingConstants.CENTER);
     private final JButton spinButton = new JButton("kick");
     private final JButton continueButton = new JButton("continue");
@@ -33,6 +42,11 @@ public class EventPanel extends DefaultPanelImpl {
 
     private EventType currentType = EventType.CORNER;
 
+    /**
+     * Constructor of the EventPanel class.
+     * 
+     * @param controller the game controller.
+     */
     public EventPanel(final Starter controller) {
         this.controller = controller;
         buildUI();
@@ -42,21 +56,21 @@ public class EventPanel extends DefaultPanelImpl {
     private void buildUI() {
         setLayout(new BorderLayout());
 
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        titleLabel.setFont(new Font(FONT_NAME, Font.BOLD, 20));
         titleLabel.setText(getTitleType(currentType));
         add(titleLabel, BorderLayout.NORTH);
 
         final JPanel dicePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
-        dice1Label.setFont(new Font("Arial", Font.BOLD, 20));
-        dice2Label.setFont(new Font("Arial", Font.BOLD, 20));
-        plusLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        dice1Label.setFont(new Font(FONT_NAME, Font.BOLD, 20));
+        dice2Label.setFont(new Font(FONT_NAME, Font.BOLD, 20));
+        plusLabel.setFont(new Font(FONT_NAME, Font.BOLD, 20));
         dicePanel.add(dice1Label);
         dicePanel.add(plusLabel);
         dicePanel.add(dice2Label);
         add(dicePanel, BorderLayout.CENTER);
 
         final JPanel bottomPanel = new JPanel(new BorderLayout(5, 5));
-        outcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        outcomeLabel.setFont(new Font(FONT_NAME, Font.BOLD, 24));
         continueButton.setVisible(false);
         bottomPanel.add(outcomeLabel, BorderLayout.NORTH);
         bottomPanel.add(spinButton, BorderLayout.CENTER);
@@ -80,8 +94,8 @@ public class EventPanel extends DefaultPanelImpl {
 
     private void animateAndResolve() {
         spinButton.setEnabled(false);
-        dice1Label.setText("?");
-        dice2Label.setText("?");
+        dice1Label.setText(QUESTION_MARK);
+        dice2Label.setText(QUESTION_MARK);
         outcomeLabel.setText("");
         continueButton.setVisible(false);
 
@@ -121,11 +135,16 @@ public class EventPanel extends DefaultPanelImpl {
         this.continueButton.setVisible(true);
     }
 
+    /**
+     * This method configures the panel for a specific event type, setting the appropriate texts and button states.
+     * 
+     * @param type the type of event.
+     */
     public void configure(final EventType type) {
         this.currentType = type;
         titleLabel.setText(getTitleType(type));
-        dice1Label.setText("?");
-        dice2Label.setText("?");
+        dice1Label.setText(QUESTION_MARK);
+        dice2Label.setText(QUESTION_MARK);
         outcomeLabel.setText("");
         continueButton.setVisible(false);
         spinButton.setEnabled(true);
@@ -134,9 +153,9 @@ public class EventPanel extends DefaultPanelImpl {
             spinButton.setText("new Result");
         } else if (this.currentType == EventType.CORNER) {
             plusLabel.setText("");
-            spinButton.setText("kick the "+ getTitleType(type));
+            spinButton.setText("kick the " + getTitleType(type));
         } else if (this.currentType == EventType.FREE_KICK) {
-            spinButton.setText("kick the "+ getTitleType(type));
+            spinButton.setText("kick the " + getTitleType(type));
         }
     }
 }

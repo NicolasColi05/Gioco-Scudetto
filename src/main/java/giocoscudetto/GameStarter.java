@@ -12,19 +12,26 @@ import giocoscudetto.view.impl.PreMatchView;
 import giocoscudetto.view.impl.ViewManagerImpl;
 import giocoscudetto.view.impl.creation.ClubPanel;
 
+/**
+ * This class is the entry point of the game.
+ */
 public class GameStarter {
-    public static void main(String[] args) {
+
+    /**
+     * The main method of the game.
+     * 
+     * @param args the command line arguments, not used in this implementation.
+     */
+    public static void main(final String[] args) {
 
         //Creating the View Manger 
         final ViewManager viewManager = new ViewManagerImpl();
-
 
         //Creating the controller to make the view work with model rules
         final CreateUpdateController controller = new CreateUpdateControllerImpl();
 
         //Creating the controller to change the panel
         final Starter viewChangerController = new StarterImpl(viewManager, controller);
-
 
         //Creating the Views that we will use during the game
         final HomePanel homeView = new HomePanel(viewChangerController);
@@ -41,13 +48,9 @@ public class GameStarter {
         //viewManager.addView(MatchPanel, "match");
 
         //Creating the MainFrame
-        final MainFrame mainFrame =  new MainFrame(viewManager);
+        new MainFrame(viewManager);
 
         //Starting game
         viewChangerController.startGame();
-
-
-        
-
     }
 }

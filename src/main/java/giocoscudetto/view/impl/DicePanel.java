@@ -14,28 +14,41 @@ import javax.swing.border.EmptyBorder;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.GameObserver;
 
-public class DicePanel extends DefaultPanelImpl implements GameObserver{
-    
-    private static final Color BACKGROUND_COLOR = new Color(223,189,138);
+/**
+ * This class represents the panel where the dice are rolled.
+ */
+public class DicePanel extends DefaultPanelImpl implements GameObserver {
+
+    private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
+    private static final int FONT_SIZE = 20;
+    private static final long TIMER_WAIT = 700;
+    private static final int TIMER_DELAY = 80;
+    private static final int BOUND = 13;
     private final Starter controller;
     private final JLabel messageLabel;
     private final BoardPanel board;
     private final JButton rollDiceButton;
 
-    public DicePanel(final Starter controller,final BoardPanel board) {
+    /**
+     * Constructor of the DicePanel class.
+     * 
+     * @param controller the controller of the game.
+     * @param board the board panel to update the positions of the players after the dice roll.
+     */
+    public DicePanel(final Starter controller, final BoardPanel board) {
         this.rollDiceButton = new JButton("Roll Dice");
         this.controller = controller;
         this.controller.addObserver(this);
         this.board = board;
-        this.setLayout(new BorderLayout());
-        this.setBackground(BACKGROUND_COLOR);
+        this.setLayout(new BorderLayout());//NOPMD
+        this.setBackground(BACKGROUND_COLOR);//NOPMD
         messageLabel = new JLabel();
         messageLabel.setBackground(BACKGROUND_COLOR);
-        messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        messageLabel.setFont(new Font("SansSerif", Font.PLAIN, FONT_SIZE));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setBorder(new EmptyBorder(8, 4, 8, 4));
 
-        this.add(rollDiceButton, BorderLayout.SOUTH);        
+        this.add(rollDiceButton, BorderLayout.SOUTH);
         this.add(messageLabel,BorderLayout.CENTER);
 
         rollDiceButton.addActionListener(e -> {
@@ -45,14 +58,17 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
         });
     }
 
+    /**
+     * This method animates the dice roll and then shows the result of the roll.
+     */
     private void animateAndResolve() {
         final Random rnd = new Random();
         final long startTime = System.currentTimeMillis();
-        final Timer animTimer = new Timer(80, null);
+        final Timer animTimer = new Timer(TIMER_DELAY, null);
 
         animTimer.addActionListener(e -> {
-            messageLabel.setText(String.valueOf(rnd.nextInt(13)));
-            if (System.currentTimeMillis() - startTime > 700) {
+            messageLabel.setText(String.valueOf(rnd.nextInt(BOUND)));
+            if (System.currentTimeMillis() - startTime > TIMER_WAIT) {
                 animTimer.stop();
                 showResult();
             }
@@ -60,20 +76,31 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
         animTimer.start();
     }
 
+    /**
+     * This method shows the result of the dice roll and repaints the board.
+     */
     private void showResult() {
-        messageLabel.setText(""+this.controller.move());
+        messageLabel.setText(String.valueOf(this.controller.move()));
         this.board.repaint();
     }
 
-    public void setDice(boolean active) {
+    /**
+     * This method enables or disables the roll dice button.
+     * 
+     * @param active true to enable the button, false to disable it.
+     */
+    public void setDice(final boolean active) {
        this.rollDiceButton.setEnabled(active);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateState() {
-            boolean isAnimating = controller.getHomePosition() != board.getAnimatedHomePosition()
+            final boolean isAnimating = controller.getHomePosition() != board.getAnimatedHomePosition()
                                 || controller.getGuestPosition() != board.getAnimatedGuestPosition();
-            if (isAnimating ||  this.controller.getGameMode() !="NONE")  {
+            if (isAnimating || !"NONE".equals(this.controller.getGameMode())) {
                 this.setDice(false);
             } else {
                 this.setDice(true);

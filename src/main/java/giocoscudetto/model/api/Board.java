@@ -13,7 +13,12 @@ public interface Board {
      */
     Boxes getBox(int index);
 
+    /**
+     * This method is for obtain the image of the box in a certain index.
+     * 
+     * @param i the position on the board.
+     * @return the path of the image.
+     */
     String getBoxImage(int i);
-    
 
 } 

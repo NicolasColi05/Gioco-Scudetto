@@ -1,6 +1,8 @@
 package giocoscudetto.view.impl;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
@@ -15,10 +17,17 @@ import javax.swing.JPanel;
 
 import giocoscudetto.controller.api.Starter;
 
+/**
+ * This class represents the panel where the penalty is resolved.
+ */
 public class NetPanel extends DefaultPanelImpl {
-    
+
+    // CHECKSTYLE: MagicNumber OFF
+    private static final Color BACKGROUND_COLOR = new Color(0xC8E6C9);
     private static final int ROWS = 2;
     private static final int COLS = 3;
+    private static final int H_GAP = 6;
+    private static final int BORDER_SIZE = 8;
     private final Starter controller;
     private final BufferedImage image;
     private final JButton button1 = new JButton("1");
@@ -29,33 +38,38 @@ public class NetPanel extends DefaultPanelImpl {
     private final JButton button6 = new JButton("6");
     private final JButton kickButton = new JButton("KICK THE PENALTY");
     private final JLabel label;
-    private int count = 0;
+    private int count;
 
+    /**
+     * Constructor of the NetPanel class.
+     * 
+     * @param controller the game controller.
+     */
     public NetPanel(final Starter controller) {
         this.controller = controller;
         this.setLayout(new BorderLayout());
         this.label = new JLabel();
-        this.label.setBackground(new java.awt.Color(0xC8E6C9));
+        this.label.setBackground(new java.awt.Color(BACKGROUND_COLOR.getRGB()));
         label.setHorizontalAlignment(JLabel.CENTER);
         this.add(label, BorderLayout.NORTH);
         kickButton.setEnabled(false);
-        JPanel net = new JPanel();
+        final JPanel net = new JPanel();
         net.setOpaque(false);
-        net.setLayout(new GridLayout(ROWS,COLS,6,6));
-        net.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        this.add(net,BorderLayout.CENTER);
+        net.setLayout(new GridLayout(ROWS, COLS, H_GAP, H_GAP));
+        net.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
+        this.add(net, BorderLayout.CENTER);
         this.add(kickButton, BorderLayout.SOUTH);
         setButtonsEnabled(false);
 
             kickButton.addActionListener(e -> {
-                boolean goal = this.controller.kickPenalty();
+                final boolean goal = this.controller.kickPenalty();
                 setButtonsEnabled(false);
                 this.count = 0;
                 this.controller.gameModeFinished();
                 if (goal) {
                     label.setText("GOOOOOOOOOOAL!!!");
                 } else {
-                    label.setText(" WHAT A SAVE BY THE KEEPER!!!");
+                    label.setText("WHAT A SAVE BY THE KEEPER!!!");
                 }
             });
 
@@ -64,7 +78,7 @@ public class NetPanel extends DefaultPanelImpl {
                     this.controller.setKeeperPosition(1);
                     count++;
                     checkButtons(1);
-                } else if (count == 1)  {
+                } else if (count == 1) {
                     this.controller.setKeeperPosition(1);
                     this.button1.setEnabled(false);
                     count++;
@@ -112,7 +126,7 @@ public class NetPanel extends DefaultPanelImpl {
                     this.controller.setKeeperPosition(5);
                     count++;
                     checkButtons(5);
-                } else if(count == 1) {
+                } else if (count == 1) {
                     this.controller.setKeeperPosition(5);
                     count++;
                     this.button5.setEnabled(false);
@@ -139,17 +153,20 @@ public class NetPanel extends DefaultPanelImpl {
         net.add(button5);
         net.add(button6);
 
-
-
         try {
         this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/net.png"));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to load image", e);
         }
 
     }
 
+    /**
+     * This method enables or disables the buttons of the net panel.
+     * 
+     * @param b true to enable the buttons, false to disable them.
+     */
     public void setButtonsEnabled(final boolean b) {
         this.button1.setEnabled(b);
         this.button2.setEnabled(b);
@@ -194,10 +211,13 @@ public class NetPanel extends DefaultPanelImpl {
         }
     }
 
+    /**
+     *  {@inheritDoc}.
+     */
     @Override
-    public void paintComponent(java.awt.Graphics g) {
+    public void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
+        final Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.image, 0, label.getSize().height, getWidth(), getHeight(), null);
     }
 }
