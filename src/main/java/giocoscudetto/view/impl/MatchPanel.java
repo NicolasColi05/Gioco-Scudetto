@@ -147,14 +147,10 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
             continueButton.setVisible(controller.isLastBox());
             continueButton.setEnabled(controller.isLastBox());
             if(controller.isLastBox()){
-                this.LastBox();
+                controller.lastBox();
             }
             
         });
-    }
-
-    private void LastBox(){
-        controller.LastBox();
     }
 
 }
