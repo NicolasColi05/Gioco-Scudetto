@@ -166,7 +166,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     }
 
     private void lastBox() {
-        controller.LastBox();
+        controller.lastBox();
     }
 
 }

@@ -49,6 +49,9 @@ public class FixturesImpl implements Fixtures {
      */
     @Override
     public Match setNextMatch() {
+        if(this.listOfMatchesIterator == null){
+            this.listOfMatchesIterator = listOfMatches.iterator();
+        }
         if(this.listOfMatchesIterator.hasNext()){
             this.currentMatch = this.listOfMatchesIterator.next();
             return this.currentMatch;

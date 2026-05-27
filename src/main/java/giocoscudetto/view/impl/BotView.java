@@ -28,7 +28,7 @@ public class BotView extends DefaultPanelImpl {
 
     private final Starter controller;
 
-    private final Image image;
+    private transient final Image image;
 
     /**
      * Constructor for the BotView.
@@ -43,7 +43,7 @@ public class BotView extends DefaultPanelImpl {
         try {
             this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/bot-background.jpeg"));
         } catch (final IOException e) {
-            throw new RuntimeException("Failed to load image", e);
+            throw new IllegalStateException("Failed to load image", e);
         }
 
         //pannello inferiore
@@ -80,7 +80,9 @@ public class BotView extends DefaultPanelImpl {
     public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        final Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        if (g instanceof Graphics2D) {
+            final Graphics2D g2d = (Graphics2D) g;
+            g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        }
     }
 }

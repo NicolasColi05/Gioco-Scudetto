@@ -15,6 +15,7 @@ import giocoscudetto.model.impl.dices.ResultDice;
 public class MatchImpl implements Match {
 
     private static final int HALF_BOARD = 16;
+    private static final Random RANDOM = new Random();
     private Club clubHome;
     private Club clubAway;
     private final Scoreboard score;
@@ -268,7 +269,7 @@ public class MatchImpl implements Match {
                 }
             }
         } else if (this.mode == GameMode.PENALTY) {
-            if (this.net.isGoal(new Random().nextInt(6) + 1)) {
+            if (this.net.isGoal(RANDOM.nextInt(6) + 1)) {
                 if (this.getCurrentPlayer().equals(this.getClubHome())) {
                     this.goalHome();
                 } else {

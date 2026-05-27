@@ -178,7 +178,7 @@ public class StarterImpl implements Starter {
     }
 
     @Override
-    public void LastBox(){
+    public void lastBox(){
         this.fixture.setScore(match, this.match.getScore());
         System.out.println (this.fixture.toString());
     }
