@@ -21,8 +21,8 @@ import giocoscudetto.model.impl.boxes.FreeKickBox;
  * Test for {@link giocoscudetto.model.impl.boxes.FreeKickBox}.
  */
 class TestFreekickBox {
-    private Club clubHome = new ClubImpl("home", null);
-    private Club clubAway = new ClubImpl("away", null);
+    private final Club clubHome = new ClubImpl("home", null);
+    private final Club clubAway = new ClubImpl("away", null);
     private Match match;
     private Boxes cornerBox;
 
@@ -33,7 +33,7 @@ class TestFreekickBox {
     void setUp() {
         match = new MatchImpl(clubHome, clubAway);
         cornerBox = new FreeKickBox(5);
-        if(match.getCurrentPlayer() != clubHome) {
+        if (!match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }

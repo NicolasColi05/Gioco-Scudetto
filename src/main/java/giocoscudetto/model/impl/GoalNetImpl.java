@@ -12,10 +12,16 @@ public class GoalNetImpl implements GoalNet {
 
     private final List<Integer> goalKeeperPositions;
 
+    /**
+     * Constructor for GoalNetImpl, it initializes the list of goalkeeper positions.
+     */
     public GoalNetImpl() {
-        this.goalKeeperPositions = new ArrayList<Integer>();
+        this.goalKeeperPositions = new ArrayList<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setGoalKeeperPosition(final int position) {
         if (goalKeeperPositions.size() < 2) {
@@ -24,6 +30,9 @@ public class GoalNetImpl implements GoalNet {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isGoal(final int ballPosition) {
         if (goalKeeperPositions.contains(ballPosition)) {

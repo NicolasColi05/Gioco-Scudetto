@@ -22,6 +22,7 @@ import giocoscudetto.controller.api.Starter;
  */
 public class BoardPanel extends DefaultPanelImpl implements GameObserver {
 
+    private static final long serialVersionUID = 1L;
     private static final int BORDER_SIZE = 5;
     private static final Color CENTER_COLOR = new Color(223, 189, 138);
     private static final double OFFSET_HOME_PAWN = 1.0 / 3.0;
@@ -74,11 +75,11 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      */
     @SuppressFBWarnings 
     public BoardPanel(final Starter controller) throws IOException {
-        this.controller = controller;
+        this.controller = controller; //NOPMD
         this.controller.addObserver(this);
         this.imageLoaded = new ImageBoardLoaderImpl(controller);
-        setBackground(BACKGROUND_COLOR);
-        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+        setBackground(BACKGROUND_COLOR); //NOPMD
+        this.addComponentListener(new java.awt.event.ComponentAdapter() { //NOPMD
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
                 repaint();
@@ -186,7 +187,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
     private void drawAllBoxes(final Graphics2D g2d) {
 
         for (int i = 0; i < DRAWABLE_BOX_COUNT; i++) {
-            this.drawBox(g2d, this.controller.getBoxImage(i), i);
+            this.drawBox(g2d, this.imageLoaded.getImage(i), i);
         }
     }
 
@@ -197,24 +198,22 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      * @param image the image to draw.
      * @param position the position of the box.
      */
-    private void drawBox(final Graphics2D g2d, final String image, final int position) {
+    private void drawBox(final Graphics2D g2d, final Image image, final int position) {
 
         final int x = this.boardSizew;
         final int y = this.boardSizeh;
-        final Image img;
-        img = this.imageLoaded.getImage(position);
 
         if (position >= TOP_ROW_FIRST_POSITION && position <= TOP_ROW_END_POSITION) {
-            g2d.drawImage(img, x - (position + 1) * boxW, y - boxH, boxW, boxH, null);
+            g2d.drawImage(image, x - (position + 1) * boxW, y - boxH, boxW, boxH, null);
         }
         if (position >= RIGHT_COLUMN_START_POSITION && position <= RIGHT_COLUMN_END_POSITION) {
-            g2d.drawImage(img, 0, y - (position - RIGHT_COLUMN_DRAW_OFFSET) * boxH, boxW, boxH, null);
+            g2d.drawImage(image, 0, y - (position - RIGHT_COLUMN_DRAW_OFFSET) * boxH, boxW, boxH, null);
         }
         if (position >= BOTTOM_ROW_START_POSITION && position <= BOTTOM_ROW_END_POSITION) {
-            g2d.drawImage(img, (position - BOTTOM_ROW_DRAW_OFFSET) * boxW, 0, boxW, boxH, null);
+            g2d.drawImage(image, (position - BOTTOM_ROW_DRAW_OFFSET) * boxW, 0, boxW, boxH, null);
         }
         if (position >= LEFT_COLUMN_START_POSITION && position <= LEFT_COLUMN_END_POSITION) {
-            g2d.drawImage(img, x - boxW, (position - LEFT_COLUMN_DRAW_OFFSET) * boxH, boxW, boxH, null);
+            g2d.drawImage(image, x - boxW, (position - LEFT_COLUMN_DRAW_OFFSET) * boxH, boxW, boxH, null);
         }
     }
 

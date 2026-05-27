@@ -20,8 +20,8 @@ import giocoscudetto.model.impl.boxes.ResultBox;
  * Test for {@link giocoscudetto.model.impl.boxes.ResultBox}.
  */
 class TestResultBox {
-    private Club clubHome = new ClubImpl("home", null);
-    private Club clubAway = new ClubImpl("away", null);
+    private final Club clubHome = new ClubImpl("home", null);
+    private final Club clubAway = new ClubImpl("away", null);
     private Match match;
     private ResultBox resultBox;
 
