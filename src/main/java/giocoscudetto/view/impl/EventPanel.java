@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.Starter;
 
 /**
@@ -47,6 +48,7 @@ public class EventPanel extends DefaultPanelImpl {
      * 
      * @param controller the game controller.
      */
+    @SuppressFBWarnings
     public EventPanel(final Starter controller) {
         this.controller = controller;
         buildUI();

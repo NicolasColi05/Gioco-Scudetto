@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.view.api.GameObserver;
 import giocoscudetto.view.api.ImageBoardLoader;
 import giocoscudetto.controller.api.Starter;
@@ -35,10 +36,10 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
     private volatile boolean checkBoxDone;
     private int animatedHomePos;
     private int animatedGuestPos;
-    private int boardSizeh;
-    private int boardSizew;
-    private int boxW;
-    private int boxH;
+    private volatile int boardSizeh;
+    private volatile int boardSizew;
+    private volatile int boxW;
+    private volatile int boxH;
 
     /**
      * Constructor of the BoardPanel class.
@@ -46,6 +47,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      * @param controller the controller of the game.
      * @throws IOException if an error occurs while loading the image in ImageBoardLoaderImpl.
      */
+    @SuppressFBWarnings 
     public BoardPanel(final Starter controller) throws IOException {
         this.controller = controller;
         this.controller.addObserver(this);
@@ -65,6 +67,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings 
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         this.setSizes();

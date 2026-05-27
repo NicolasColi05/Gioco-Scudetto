@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.GameObserver;
 
@@ -35,6 +36,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
      * @param controller the controller of the game.
      * @param board the board panel to update the positions of the players after the dice roll.
      */
+    @SuppressFBWarnings
     public DicePanel(final Starter controller, final BoardPanel board) {
         this.rollDiceButton = new JButton("Roll Dice");
         this.controller = controller;

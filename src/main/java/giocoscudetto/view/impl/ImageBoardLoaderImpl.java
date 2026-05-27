@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.ImageBoardLoader;
 
@@ -29,6 +30,7 @@ public class ImageBoardLoaderImpl implements ImageBoardLoader {
      * @param controller the game controller, used to get the image names for the boxes.
      * @throws IOException if an error occurs while loading the images. 
      */
+    @SuppressFBWarnings
     public ImageBoardLoaderImpl(final Starter controller) throws IOException {
         this.controller = controller;
         loadImages();

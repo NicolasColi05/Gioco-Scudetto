@@ -10,7 +10,7 @@ public class MainFrame extends JFrame {
 
     private final ViewManager viewManager;
 
-    public MainFrame(ViewManager manager) {
+    public MainFrame(final ViewManager manager) {
         
         this.viewManager = manager;
         this.setContentPane(viewManager.getContainer());

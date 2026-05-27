@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.Starter;
 
 /**
@@ -47,6 +48,7 @@ public class NetPanel extends DefaultPanelImpl {
      * @param controller the game controller.
      * @throws IOException if an error occurs while loading the image.
      */
+    @SuppressFBWarnings
     public NetPanel(final Starter controller) throws IOException {
         this.controller = controller;
         this.setLayout(new BorderLayout()); //NOPMD
@@ -219,6 +221,7 @@ public class NetPanel extends DefaultPanelImpl {
      *  {@inheritDoc}.
      */
     @Override
+    @SuppressFBWarnings 
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;

@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * This class represents the panel where the match is played, 
  * it contains the board, 
@@ -45,6 +47,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
      * @param viewManager the view manager.
      * @throws IOException if an error occurs while loading the image int the net panel.
      */
+    @SuppressFBWarnings
     public MatchPanel(final Starter controller, final ViewManager viewManager) throws IOException {
 
         final BoardPanel boardJPanel = new BoardPanel(controller);
