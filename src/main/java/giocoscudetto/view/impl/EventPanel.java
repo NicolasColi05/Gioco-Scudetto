@@ -24,6 +24,12 @@ public class EventPanel extends DefaultPanelImpl {
     private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
     private static final String FONT_NAME = "Arial";
     private static final String QUESTION_MARK = "?";
+    private static final int FONT_SIZE = 20;
+    private static final long TIME_WAIT = 1000;
+    private static final int BOTTOM_GAP = 5;
+    private static final int DICE_GAP = 10;
+    private static final int BOUND = 7;
+    private static final int DELAY = 80;
 
     /**
      * Enum representing the type of event.
@@ -58,25 +64,28 @@ public class EventPanel extends DefaultPanelImpl {
     private void buildUI() {
         setLayout(new BorderLayout()); //NOPMD
 
-        titleLabel.setFont(new Font(FONT_NAME, Font.BOLD, 20));
+        titleLabel.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
         titleLabel.setText(getTitleType(currentType));
+        titleLabel.setBackground(BACKGROUND_COLOR);
         add(titleLabel, BorderLayout.NORTH);
 
-        final JPanel dicePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
-        dice1Label.setFont(new Font(FONT_NAME, Font.BOLD, 20));
-        dice2Label.setFont(new Font(FONT_NAME, Font.BOLD, 20));
-        plusLabel.setFont(new Font(FONT_NAME, Font.BOLD, 20));
+        final JPanel dicePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, DICE_GAP, DICE_GAP));
+        dice1Label.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
+        dice2Label.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
+        plusLabel.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
         dicePanel.add(dice1Label);
         dicePanel.add(plusLabel);
         dicePanel.add(dice2Label);
+        dicePanel.setBackground(BACKGROUND_COLOR);
         add(dicePanel, BorderLayout.CENTER);
 
-        final JPanel bottomPanel = new JPanel(new BorderLayout(5, 5));
-        outcomeLabel.setFont(new Font(FONT_NAME, Font.BOLD, 24));
+        final JPanel bottomPanel = new JPanel(new BorderLayout(BOTTOM_GAP, BOTTOM_GAP));
+        outcomeLabel.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
         continueButton.setVisible(false);
         bottomPanel.add(outcomeLabel, BorderLayout.NORTH);
         bottomPanel.add(spinButton, BorderLayout.CENTER);
         bottomPanel.add(continueButton, BorderLayout.SOUTH);
+        bottomPanel.setBackground(BACKGROUND_COLOR);
         add(bottomPanel, BorderLayout.SOUTH);
 
         spinButton.addActionListener(e -> animateAndResolve());
@@ -103,13 +112,13 @@ public class EventPanel extends DefaultPanelImpl {
 
         final Random rnd = new Random();
         final long startTime = System.currentTimeMillis();
-        final Timer animTimer = new Timer(80, null);
+        final Timer animTimer = new Timer(DELAY, null);
 
         animTimer.addActionListener(e -> {
-            dice1Label.setText(String.valueOf(rnd.nextInt(7)));
-            dice2Label.setText(String.valueOf(rnd.nextInt(7)));
+            dice1Label.setText(String.valueOf(rnd.nextInt(BOUND)));
+            dice2Label.setText(String.valueOf(rnd.nextInt(BOUND)));
 
-            if (System.currentTimeMillis() - startTime > 1000) {
+            if (System.currentTimeMillis() - startTime > TIME_WAIT) {
                 animTimer.stop();
                 showResult();
             }

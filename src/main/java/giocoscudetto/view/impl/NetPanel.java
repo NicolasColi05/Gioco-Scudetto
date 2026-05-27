@@ -30,6 +30,13 @@ public class NetPanel extends DefaultPanelImpl {
     private static final int COLS = 3;
     private static final int H_GAP = 6;
     private static final int BORDER_SIZE = 8;
+    private static final int BOTTON1_POS = 1;
+    private static final int BOTTON2_POS = 2;
+    private static final int BOTTON3_POS = 3;
+    private static final int BOTTON4_POS = 4;
+    private static final int BOTTON5_POS = 5;
+    private static final int BOTTON6_POS = 6;
+
     private final Starter controller;
     private final BufferedImage image;
     private final JButton button1 = new JButton("1");
@@ -79,11 +86,11 @@ public class NetPanel extends DefaultPanelImpl {
 
             button1.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(1);
+                    this.controller.setKeeperPosition(BOTTON1_POS);
                     count++;
-                    checkButtons(1);
+                    checkButtons(BOTTON1_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(1);
+                    this.controller.setKeeperPosition(BOTTON1_POS);
                     this.button1.setEnabled(false);
                     count++;
                     kickButton.setEnabled(true);
@@ -91,11 +98,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button2.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(2);
+                    this.controller.setKeeperPosition(BOTTON2_POS);
                     count++;
-                    checkButtons(2);
+                    checkButtons(BOTTON2_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(2);
+                    this.controller.setKeeperPosition(BOTTON2_POS);
                     count++;
                     this.button2.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -103,11 +110,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button3.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(3);
+                    this.controller.setKeeperPosition(BOTTON3_POS);
                     count++;
-                    checkButtons(3);
+                    checkButtons(BOTTON3_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(3);
+                    this.controller.setKeeperPosition(BOTTON3_POS);
                     count++;
                     this.button3.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -115,11 +122,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button4.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(4);
+                    this.controller.setKeeperPosition(BOTTON4_POS);
                     count++;
-                    checkButtons(4);
+                    checkButtons(BOTTON4_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(4);
+                    this.controller.setKeeperPosition(BOTTON4_POS);
                     count++;
                     this.button4.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -127,11 +134,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button5.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(5);
+                    this.controller.setKeeperPosition(BOTTON5_POS);
                     count++;
-                    checkButtons(5);
+                    checkButtons(BOTTON5_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(5);
+                    this.controller.setKeeperPosition(BOTTON5_POS);
                     count++;
                     this.button5.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -139,11 +146,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button6.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(6);
+                    this.controller.setKeeperPosition(BOTTON6_POS);
                     count++;
-                    checkButtons(6);
+                    checkButtons(BOTTON6_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(6);
+                    this.controller.setKeeperPosition(BOTTON6_POS);
                     count++;
                     this.button6.setEnabled(false);
                     kickButton.setEnabled(true);

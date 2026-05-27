@@ -26,11 +26,13 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  */
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
-    // CHECKSTYLE: MagicNumber OFF
     private static final long serialVersionUID = 1L;
     private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
     private static final int DIM_X = 300;
     private static final int DIM_Y = 200;
+    private static final int PANEL_W = 280;
+    private static final int PANEL_H = 120;
+    private static final int TURN_FONT_SIZE = 20;
     private final Starter controller;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
@@ -78,15 +80,15 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         final JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setOpaque(false);
-        rightPanel.setPreferredSize(new Dimension(280, 0));
+        rightPanel.setPreferredSize(new Dimension(PANEL_W, 0));
 
         final JPanel turnPanel = new JPanel();
         turnLabel = new JLabel("Turn of :" + controller.getCurrentPlayer());
         turnPanel.setBackground(BACKGROUND_COLOR);
-        turnLabel.setFont(new Font("Turn", Font.BOLD, 20));
+        turnLabel.setFont(new Font("Turn", Font.BOLD, TURN_FONT_SIZE));
         turnPanel.add(turnLabel);
         turnPanel.setAlignmentX(CENTER_ALIGNMENT);
-        turnPanel.setMaximumSize(new Dimension(280, 120));
+        turnPanel.setMaximumSize(new Dimension(PANEL_W, PANEL_H));
 
         final JPanel netWrapper = new JPanel(new BorderLayout());
         netWrapper.setMaximumSize(new Dimension(DIM_X, DIM_Y));
@@ -100,7 +102,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         netWrapper.add(netPanel, BorderLayout.CENTER);
 
         bottomDice.setAlignmentX(CENTER_ALIGNMENT);
-        bottomDice.setMaximumSize(new Dimension(280, 120));
+        bottomDice.setMaximumSize(new Dimension(PANEL_W, PANEL_H));
 
         rightPanel.add(helpPanel);
         rightPanel.add(turnPanel);

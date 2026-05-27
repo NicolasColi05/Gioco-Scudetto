@@ -22,15 +22,39 @@ import giocoscudetto.controller.api.Starter;
  */
 public class BoardPanel extends DefaultPanelImpl implements GameObserver {
 
-    //CHECKSTYLE: MagicNumber OFF
     private static final int BORDER_SIZE = 5;
     private static final Color CENTER_COLOR = new Color(223, 189, 138);
     private static final double OFFSET_HOME_PAWN = 1.0 / 3.0;
     private static final double OFFSET_GUEST_PAWN = 2.0 / 3.0;
     private static final int BOX_SIDE = 9;
+    private static final int DRAWABLE_BOX_COUNT = 32;
+    private static final int TOP_ROW_FIRST_POSITION = 0;
+    private static final int TOP_ROW_END_POSITION = 8;
+    private static final int RIGHT_COLUMN_START_POSITION = 9;
+    private static final int RIGHT_COLUMN_END_POSITION = 16;
+    private static final int BOTTOM_ROW_START_POSITION = 17;
+    private static final int BOTTOM_ROW_END_POSITION = 24;
+    private static final int LEFT_COLUMN_START_POSITION = 25;
+    private static final int LEFT_COLUMN_END_POSITION = 32;
+    private static final int RIGHT_COLUMN_DRAW_OFFSET = 7;
+    private static final int BOTTOM_ROW_DRAW_OFFSET = 16;
+    private static final int LEFT_COLUMN_DRAW_OFFSET = 24;
+    private static final int RIGHT_PAWN_POSITION_OFFSET = 8;
+    private static final int BOTTOM_PAWN_POSITION_OFFSET = 15;
+    private static final int LEFT_PAWN_POSITION_OFFSET = 24;
+    private static final int PAWN_RADIUS_DIVISOR = 6;
+    private static final int PAWN_SHADOW_OFFSET = 3;
+    private static final int PAWN_INNER_MARGIN = 2;
+    private static final int TITLE_X_DIVISOR = 3;
+    private static final int TITLE_FONT_DIVISOR = 2;
+    private static final int LABEL_FONT_DIVISOR = 3;
+    private static final int SCORE_Y_MULTIPLIER = 5;
+    private static final int SCORE_TEXT_Y_MULTIPLIER = 6;
+    private static final int NAME_X_MARGIN_DIVISOR = 2;
     private static final Color BACKGROUND_COLOR = Color.BLACK;
     private static final int SLEEP_TIME = 300;
     private static final int SLEEP_TIME2 = 50;
+
     private final ImageBoardLoader imageLoaded;
     private final Starter controller;
     private volatile boolean checkBoxDone;
@@ -161,7 +185,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      */
     private void drawAllBoxes(final Graphics2D g2d) {
 
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < DRAWABLE_BOX_COUNT; i++) {
             this.drawBox(g2d, this.controller.getBoxImage(i), i);
         }
     }
@@ -180,17 +204,17 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         final Image img;
         img = this.imageLoaded.getImage(position);
 
-        if (position >= 0 && position <= 8) {
+        if (position >= TOP_ROW_FIRST_POSITION && position <= TOP_ROW_END_POSITION) {
             g2d.drawImage(img, x - (position + 1) * boxW, y - boxH, boxW, boxH, null);
         }
-        if (position >= 9 && position <= 16) {
-            g2d.drawImage(img, 0, y - (position - 7) * boxH, boxW, boxH, null);
+        if (position >= RIGHT_COLUMN_START_POSITION && position <= RIGHT_COLUMN_END_POSITION) {
+            g2d.drawImage(img, 0, y - (position - RIGHT_COLUMN_DRAW_OFFSET) * boxH, boxW, boxH, null);
         }
-        if (position >= 17 && position <= 24) {
-            g2d.drawImage(img, (position - 16) * boxW, 0, boxW, boxH, null);
+        if (position >= BOTTOM_ROW_START_POSITION && position <= BOTTOM_ROW_END_POSITION) {
+            g2d.drawImage(img, (position - BOTTOM_ROW_DRAW_OFFSET) * boxW, 0, boxW, boxH, null);
         }
-        if (position >= 25 && position <= 32) {
-            g2d.drawImage(img, x - boxW, (position - 24) * boxH, boxW, boxH, null);
+        if (position >= LEFT_COLUMN_START_POSITION && position <= LEFT_COLUMN_END_POSITION) {
+            g2d.drawImage(img, x - boxW, (position - LEFT_COLUMN_DRAW_OFFSET) * boxH, boxW, boxH, null);
         }
     }
 
@@ -204,9 +228,9 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         final int y = boxH;
         final int w = boardSizew - 2 * x;
         final int h = boardSizeh - 2 * y;
-        final int scoreY = boxH * 5;
+        final int scoreY = boxH * SCORE_Y_MULTIPLIER;
         final int center = boardSizew / 2;
-        final int scoreTextY = y * 6;
+        final int scoreTextY = y * SCORE_TEXT_Y_MULTIPLIER;
         final int scoreTextX = center - g2d.getFontMetrics().stringWidth(this.controller.getScore()) / 2;
         final String homeName = this.controller.getHomeName();
         final int homeNameW = g2d.getFontMetrics().stringWidth(homeName);
@@ -221,21 +245,21 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         g2d.drawRect(x + BORDER_SIZE, y + BORDER_SIZE, w - 2 * BORDER_SIZE, h - 2 * BORDER_SIZE);
 
         g2d.setColor(Color.red);
-        g2d.setFont(new Font("Boh", Font.BOLD, x / 2));
-        g2d.drawString("GIOCO DELLO SCUDETTO", x + x / 3, y * 2);
+        g2d.setFont(new Font("Boh", Font.BOLD, x / TITLE_FONT_DIVISOR));
+        g2d.drawString("GIOCO DELLO SCUDETTO", x + x / TITLE_X_DIVISOR, y * 2);
 
         g2d.setColor(Color.black);
-        g2d.setFont(new Font("Boh", Font.BOLD, x / 3));
+        g2d.setFont(new Font("Boh", Font.BOLD, x / LABEL_FONT_DIVISOR));
         g2d.drawString("SCORE", center - g2d.getFontMetrics().stringWidth("SCORE") / 2, scoreY);
         g2d.drawString(this.controller.getScore(), scoreTextX, scoreTextY);
 
         g2d.setColor(Color.BLACK);
-        g2d.setFont(new Font("Arial", Font.BOLD, x / 3));
+        g2d.setFont(new Font("Arial", Font.BOLD, x / LABEL_FONT_DIVISOR));
         g2d.drawString(homeName, scoreTextX - homeNameW - x, scoreTextY);
 
         g2d.setColor(Color.BLACK);
-        g2d.setFont(new Font("Arial", Font.BOLD, x / 3));
-        g2d.drawString(guestName, center + g2d.getFontMetrics().stringWidth(this.controller.getScore()) + x / 2, scoreTextY);
+        g2d.setFont(new Font("Arial", Font.BOLD, x / LABEL_FONT_DIVISOR));
+        g2d.drawString(guestName, center + g2d.getFontMetrics().stringWidth(this.controller.getScore()) + x / NAME_X_MARGIN_DIVISOR, scoreTextY);
     }
 
     /**
@@ -249,23 +273,23 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
     private void drawPawn(final Graphics2D g2d, final Color pawnColor, final int position, final double offset) {
         final int x = boardSizew;
         final int y = boardSizeh;
-        final int r = this.boxW / 6;
+        final int r = this.boxW / PAWN_RADIUS_DIVISOR;
 
         int pawnX = 0;
         int pawnY = 0;
 
-        if (position >= 0 && position <= 8) {
+        if (position >= TOP_ROW_FIRST_POSITION && position <= TOP_ROW_END_POSITION) {
             pawnX = x - (position * boxW + (int) (boxW * offset));
             pawnY = y - boxH / 2;
-        } else if (position >= 9 && position <= 16) {
+        } else if (position >= RIGHT_COLUMN_START_POSITION && position <= RIGHT_COLUMN_END_POSITION) {
             pawnX = boxW / 2;
-            pawnY = y - ((position - 8) * boxH + (int) (boxH * offset));   
-        } else if (position >= 17 && position <= 24) {
-            pawnX = (position - 15) * boxW - (int) (boxW * offset);
+            pawnY = y - ((position - RIGHT_PAWN_POSITION_OFFSET) * boxH + (int) (boxH * offset));   
+        } else if (position >= BOTTOM_ROW_START_POSITION && position <= BOTTOM_ROW_END_POSITION) {
+            pawnX = (position - BOTTOM_PAWN_POSITION_OFFSET) * boxW - (int) (boxW * offset);
             pawnY = boxH / 2;
-        } else if (position >= 25 && position <= 32) {
+        } else if (position >= LEFT_COLUMN_START_POSITION && position <= LEFT_COLUMN_END_POSITION) {
             pawnX = x - boxW / 2;
-            pawnY = (position - 24) * boxH + (int) (boxH * offset);
+            pawnY = (position - LEFT_PAWN_POSITION_OFFSET) * boxH + (int) (boxH * offset);
         }
         drawCircle(g2d, pawnX, pawnY, r, pawnColor);
     }
@@ -282,13 +306,13 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
     private void drawCircle(final Graphics2D g2d, final int x, final int y, final int r, final Color color) {
 
         g2d.setColor(new Color(0, 0, 0, 80));
-        g2d.fillOval(x - r + 3, y - r + 3, r * 2, r * 2);
+        g2d.fillOval(x - r + PAWN_SHADOW_OFFSET, y - r + PAWN_SHADOW_OFFSET, r * 2, r * 2);
 
         g2d.setColor(Color.BLACK);
         g2d.fillOval(x - r, y - r, r * 2, r * 2);
 
         g2d.setColor(color);
-        g2d.fillOval(x - r + 2, y - r + 2, (r - 2) * 2, (r - 2) * 2);
+        g2d.fillOval(x - r + PAWN_INNER_MARGIN, y - r + PAWN_INNER_MARGIN, (r - PAWN_INNER_MARGIN) * 2, (r - PAWN_INNER_MARGIN) * 2);
     }
 
     /**
