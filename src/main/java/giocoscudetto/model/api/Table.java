@@ -14,7 +14,12 @@ public interface Table {
     void addAllClubs(List<Club> clubs);
 
     /**
-     * This method is used to correct each team current position in the table. 
+     * Updates each club position in the table.
+     * Clubs are ordered by:
+     * 1) points,
+     * 2) goal difference,
+     * 3) club name in reverse alphabetical order (it's the only way that come to 
+     *    my mind to select a position for each club assuming they have same points and net diff ).
      */
     void updateClubRank();
 
@@ -33,5 +38,8 @@ public interface Table {
      */
     boolean isEmpty();
 
+    /**
+     * @return the list of clubs in the table
+     */
     List<Club> getClubs();
 }
