@@ -80,7 +80,9 @@ public class BotView extends DefaultPanelImpl {
     public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        final Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        if (g instanceof Graphics2D) {
+            final Graphics2D g2d = (Graphics2D) g;
+            g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        }
     }
 }
