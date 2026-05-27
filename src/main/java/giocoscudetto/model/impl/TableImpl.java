@@ -31,6 +31,7 @@ public class TableImpl implements Table{
         clubRank.sort(
             Comparator.comparingInt(Club::getPoints)
                   .thenComparingInt(Club::getNetDiff)
+                  .thenComparing(Club::getName)
                   .reversed());
     }
 
@@ -57,6 +58,9 @@ public class TableImpl implements Table{
         return this.clubRank.isEmpty();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Club> getClubs() {
         return this.clubRank;
