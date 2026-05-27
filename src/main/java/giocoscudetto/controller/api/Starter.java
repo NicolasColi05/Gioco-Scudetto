@@ -1,7 +1,5 @@
 package giocoscudetto.controller.api;
 
-import giocoscudetto.view.api.GameObserver;
-
 public interface Starter {
     
     /**
