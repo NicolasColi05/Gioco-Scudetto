@@ -8,7 +8,6 @@ import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.controller.impl.MatchControllerImpl;
-import giocoscudetto.controller.impl.StarterImpl;
 
 public class TestPreMatchView extends JFrame{
     
@@ -17,7 +16,7 @@ public class TestPreMatchView extends JFrame{
         this.setSize(650, 670);
         CreateUpdateController controller = new CreateUpdateControllerImpl();
         MatchController matchController = new MatchControllerImpl(controller);
-        JPanel pa = new giocoscudetto.view.impl.BoardPanel(new StarterImpl(null, controller, matchController), matchController);
+        JPanel pa = new giocoscudetto.view.impl.BoardPanel(matchController);
         this.setContentPane(pa);
         pa.paint(this.getGraphics());
         this.setVisible(true);

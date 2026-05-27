@@ -7,17 +7,17 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.view.api.ImageBoardLoader;
 
 public class ImageBoardLoaderImpl implements ImageBoardLoader{
 
     private static final int NUMBER_OF_IMAGES = 32;
-    private final Starter controller;
+    private final MatchController matchController;
     private final ArrayList<Image> images = new ArrayList<>();
 
-    public ImageBoardLoaderImpl(final Starter controller) {
-        this.controller = controller;
+    public ImageBoardLoaderImpl(final MatchController matchController) {
+        this.matchController = matchController;
         loadImages();
     }
 
@@ -25,7 +25,7 @@ public class ImageBoardLoaderImpl implements ImageBoardLoader{
         for (int i = 0; i < NUMBER_OF_IMAGES; i++) {
 
             try {
-                BufferedImage img = ImageIO.read(new File("src/main/resources/images/backgrounds/boxes_image/"+this.controller.getBoxImage(i)));
+                BufferedImage img = ImageIO.read(new File("src/main/resources/images/backgrounds/boxes_image/"+this.matchController.getBoxImage(i)));
                 this.images.add(img);
             } catch(Exception e) {
                 throw new RuntimeException("Failed to load image", e);

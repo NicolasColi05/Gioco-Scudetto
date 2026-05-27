@@ -11,21 +11,21 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.view.api.GameObserver;
 
 public class DicePanel extends DefaultPanelImpl implements GameObserver{
     
     private static final Color BACKGROUND_COLOR = new Color(223,189,138);
-    private final Starter controller;
+    private final MatchController matchController;
     private final JLabel messageLabel;
     private final BoardPanel board;
     private final JButton rollDiceButton;
 
-    public DicePanel(final Starter controller,final BoardPanel board) {
+    public DicePanel(final BoardPanel board, final MatchController matchController) {
+        this.matchController = matchController;
         this.rollDiceButton = new JButton("Roll Dice");
-        this.controller = controller;
-        this.controller.addObserver(this);
+        this.matchController.addObserver(this);
         this.board = board;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
@@ -61,7 +61,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
     }
 
     private void showResult() {
-        messageLabel.setText(""+this.controller.move());
+        messageLabel.setText(""+this.matchController.move());
         this.board.repaint();
     }
 
@@ -71,9 +71,9 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver{
 
     @Override
     public void updateState() {
-            boolean isAnimating = controller.getHomePosition() != board.getAnimatedHomePosition()
-                                || controller.getGuestPosition() != board.getAnimatedGuestPosition();
-            if (isAnimating ||  this.controller.getGameMode() !="NONE")  {
+            boolean isAnimating = matchController.getHomePosition() != board.getAnimatedHomePosition()
+                                || matchController.getGuestPosition() != board.getAnimatedGuestPosition();
+            if (isAnimating ||  this.matchController.getGameMode() !="NONE")  {
                 this.setDice(false);
             } else {
                 this.setDice(true);

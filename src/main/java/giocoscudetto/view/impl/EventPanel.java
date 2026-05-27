@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 
 public class EventPanel extends DefaultPanelImpl {
 
@@ -22,7 +22,7 @@ public class EventPanel extends DefaultPanelImpl {
         FREE_KICK, CORNER, RESULT
     }
 
-    private final Starter controller;
+    private final MatchController matchController;
     private final JLabel dice1Label = new JLabel("?", SwingConstants.CENTER);
     private final JLabel dice2Label = new JLabel("?", SwingConstants.CENTER);
     private final JLabel outcomeLabel = new JLabel("", SwingConstants.CENTER);
@@ -33,8 +33,8 @@ public class EventPanel extends DefaultPanelImpl {
 
     private EventType currentType = EventType.CORNER;
 
-    public EventPanel(final Starter controller) {
-        this.controller = controller;
+    public EventPanel(final MatchController matchController) {
+        this.matchController = matchController;
         buildUI();
         this.setBackground(BACKGROUND_COLOR);
     }
@@ -66,7 +66,7 @@ public class EventPanel extends DefaultPanelImpl {
         spinButton.addActionListener(e -> animateAndResolve());
 
         continueButton.addActionListener(e -> {
-            this.controller.gameModeFinished();
+            this.matchController.gameModeFinished();
         });
     }
 
@@ -102,8 +102,8 @@ public class EventPanel extends DefaultPanelImpl {
     }
 
     private void showResult() {
-        dice1Label.setText(String.valueOf(this.controller.diceEvent()));
-        dice2Label.setText(String.valueOf(this.controller.diceEvent()));
+        dice1Label.setText(String.valueOf(this.matchController.diceEvent()));
+        dice2Label.setText(String.valueOf(this.matchController.diceEvent()));
 
         if (EventType.FREE_KICK == currentType) {
             if (Integer.valueOf(dice1Label.getText()) + Integer.valueOf(dice2Label.getText()) == 7) {
