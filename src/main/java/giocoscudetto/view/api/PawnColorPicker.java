@@ -5,10 +5,11 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 /**
- * Interface used to pick the color of the pawn for each club in the ClubPanel. It is used to disable the colors already taken by other clubs and to get the selected color for each club.
+ * Interface used to pick the color of the pawn for each club in the ClubPanel.
+ * It is used to disable the colors already taken by other clubs and to get the selected color for each club.
  */
 public interface PawnColorPicker {
-    
+
     /**
      * This method disable the color selected from a team for other clubs.
      * 
