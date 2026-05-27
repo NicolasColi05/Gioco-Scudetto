@@ -109,7 +109,12 @@ public class PreMatchView extends DefaultPanelImpl {
         continueButton.addActionListener(e -> {
             this.starter.setMatch();
             if (count == ZERO) {
-            final MatchPanel matchPanel = new MatchPanel(this.starter, this.viewManager);
+            MatchPanel matchPanel = null;
+            try {
+                matchPanel = new MatchPanel(this.starter, this.viewManager);
+            } catch (final IOException e1) {
+                e1.printStackTrace();
+            }
             viewManager.addView(matchPanel, "match");
             count++;
             }

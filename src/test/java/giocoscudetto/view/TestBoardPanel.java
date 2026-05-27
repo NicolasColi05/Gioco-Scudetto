@@ -1,5 +1,7 @@
 package giocoscudetto.view;
 
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -10,7 +12,7 @@ import giocoscudetto.controller.impl.StarterImpl;
 
 public class TestBoardPanel extends JFrame{
     
-    public TestBoardPanel() {
+    public TestBoardPanel() throws IOException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(650, 670);
         CreateUpdateController controller = new CreateUpdateControllerImpl();
@@ -20,7 +22,13 @@ public class TestBoardPanel extends JFrame{
         this.setVisible(true);
     }
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TestBoardPanel());
+        SwingUtilities.invokeLater(() -> {
+            try {
+                new TestBoardPanel();
+            } catch (final IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 }

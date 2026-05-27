@@ -1,5 +1,6 @@
 package giocoscudetto.view;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -15,7 +16,7 @@ import giocoscudetto.view.impl.ViewManagerImpl;
 
 public class TestMatchPanel extends JFrame{
     
-    public TestMatchPanel() {
+    public TestMatchPanel() throws IOException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(650, 670);
         CreateUpdateController controller = new CreateUpdateControllerImpl();
@@ -31,7 +32,13 @@ public class TestMatchPanel extends JFrame{
 
     public static void main(String[] args) {
 
-        SwingUtilities.invokeLater(() -> new TestMatchPanel());
+        SwingUtilities.invokeLater(() -> {
+            try {
+                new TestMatchPanel();
+            } catch (final IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 }

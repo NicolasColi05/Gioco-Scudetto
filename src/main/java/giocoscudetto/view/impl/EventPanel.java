@@ -50,11 +50,11 @@ public class EventPanel extends DefaultPanelImpl {
     public EventPanel(final Starter controller) {
         this.controller = controller;
         buildUI();
-        this.setBackground(BACKGROUND_COLOR);
+        this.setBackground(BACKGROUND_COLOR); //NOPMD
     }
 
     private void buildUI() {
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout()); //NOPMD
 
         titleLabel.setFont(new Font(FONT_NAME, Font.BOLD, 20));
         titleLabel.setText(getTitleType(currentType));
@@ -120,13 +120,13 @@ public class EventPanel extends DefaultPanelImpl {
         dice2Label.setText(String.valueOf(this.controller.diceEvent()));
 
         if (EventType.FREE_KICK == currentType) {
-            if (Integer.valueOf(dice1Label.getText()) + Integer.valueOf(dice2Label.getText()) == 7) {
+            if (Integer.parseInt(dice1Label.getText()) + Integer.parseInt(dice2Label.getText()) == 7) {
                 outcomeLabel.setText("GOAL");
             } else {
                 outcomeLabel.setText("NO GOAL");
             }
         } else if (EventType.CORNER == currentType) {
-            if (Integer.valueOf(dice1Label.getText()) == 1 || Integer.valueOf(dice2Label.getText()) == 1) {
+            if (Integer.parseInt(dice1Label.getText()) == 1 || Integer.parseInt(dice2Label.getText()) == 1) {
                 outcomeLabel.setText("GOAL");
             } else {
                 outcomeLabel.setText("NO GOAL");

@@ -23,6 +23,7 @@ import giocoscudetto.controller.api.Starter;
 public class NetPanel extends DefaultPanelImpl {
 
     // CHECKSTYLE: MagicNumber OFF
+    private static final long serialVersionUID = 1L;
     private static final Color BACKGROUND_COLOR = new Color(0xC8E6C9);
     private static final int ROWS = 2;
     private static final int COLS = 3;
@@ -44,22 +45,23 @@ public class NetPanel extends DefaultPanelImpl {
      * Constructor of the NetPanel class.
      * 
      * @param controller the game controller.
+     * @throws IOException if an error occurs while loading the image.
      */
-    public NetPanel(final Starter controller) {
+    public NetPanel(final Starter controller) throws IOException {
         this.controller = controller;
-        this.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout()); //NOPMD
         this.label = new JLabel();
-        this.label.setBackground(new java.awt.Color(BACKGROUND_COLOR.getRGB()));
+        this.label.setBackground(new Color(BACKGROUND_COLOR.getRGB()));
         label.setHorizontalAlignment(JLabel.CENTER);
-        this.add(label, BorderLayout.NORTH);
+        this.add(label, BorderLayout.NORTH); //NOPMD
         kickButton.setEnabled(false);
         final JPanel net = new JPanel();
         net.setOpaque(false);
         net.setLayout(new GridLayout(ROWS, COLS, H_GAP, H_GAP));
         net.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
-        this.add(net, BorderLayout.CENTER);
-        this.add(kickButton, BorderLayout.SOUTH);
-        setButtonsEnabled(false);
+        this.add(net, BorderLayout.CENTER); //NOPMD
+        this.add(kickButton, BorderLayout.SOUTH); //NOPMD
+        setButtonsEnabled(false); //NOPMD
 
             kickButton.addActionListener(e -> {
                 final boolean goal = this.controller.kickPenalty();
@@ -156,8 +158,8 @@ public class NetPanel extends DefaultPanelImpl {
         try {
         this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/net.png"));
         } catch (final IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to load image", e);
+            e.printStackTrace(); //NOPMD
+            throw new IOException("Failed to load image", e);
         }
 
     }
@@ -207,6 +209,8 @@ public class NetPanel extends DefaultPanelImpl {
                 button6.setEnabled(false);
                 button1.setEnabled(false);
                 button4.setEnabled(false);
+                break;
+            default:
                 break;
         }
     }

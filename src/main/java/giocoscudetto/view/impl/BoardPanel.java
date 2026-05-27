@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -43,8 +44,9 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      * Constructor of the BoardPanel class.
      * 
      * @param controller the controller of the game.
+     * @throws IOException if an error occurs while loading the image in ImageBoardLoaderImpl.
      */
-    public BoardPanel(final Starter controller) {
+    public BoardPanel(final Starter controller) throws IOException {
         this.controller = controller;
         this.controller.addObserver(this);
         this.imageLoaded = new ImageBoardLoaderImpl(controller);
