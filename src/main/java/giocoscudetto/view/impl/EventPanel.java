@@ -20,7 +20,6 @@ import giocoscudetto.controller.api.Starter;
  */
 public class EventPanel extends DefaultPanelImpl {
 
-    // CHECKSTYLE: MagicNumber OFF
     private static final long serialVersionUID = 1L;
     private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
     private static final String FONT_NAME = "Arial";
