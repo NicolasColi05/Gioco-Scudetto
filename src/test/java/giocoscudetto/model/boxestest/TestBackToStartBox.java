@@ -7,7 +7,6 @@ import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.boxes.BackToStartBox;
-import giocoscudetto.model.impl.boxes.SkipTurnBox;
 
 public class TestBackToStartBox {
 
