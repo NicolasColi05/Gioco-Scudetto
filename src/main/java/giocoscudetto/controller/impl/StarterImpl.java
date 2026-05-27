@@ -7,14 +7,11 @@ import javax.swing.SwingUtilities;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.model.api.Board;
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.impl.BoardImpl;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
-import giocoscudetto.view.api.GameObserver;
 
 
 /**
@@ -25,12 +22,9 @@ public class StarterImpl implements Starter {
     private final ViewManager viewManager;
     private final CreateUpdateController controller;
     private final MatchController matchController;
-    private final Board board = new BoardImpl();
     private Fixtures fixture;
     private Match match;
     private Table table;
-    private List<GameObserver> observers = new ArrayList<>();
-    private boolean helpFlag = false;
 
     /**
      * Constructor for StarterImpl.
