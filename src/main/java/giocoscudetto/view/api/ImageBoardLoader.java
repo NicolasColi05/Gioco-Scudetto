@@ -2,6 +2,9 @@ package giocoscudetto.view.api;
 
 import java.awt.Image;
 
+/**
+ * Interface for loading images for the boxes insidethe game board.
+ */
 public interface ImageBoardLoader {
 
     /**
@@ -11,5 +14,5 @@ public interface ImageBoardLoader {
      * @return the image at the given position.
      */
     Image getImage(int position);
-    
+
 } 
