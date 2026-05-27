@@ -96,7 +96,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         continueButton.setEnabled(false);
         continueButton.setVisible(false);
 
-
         netWrapper.setOpaque(false);
         netWrapper.setAlignmentX(CENTER_ALIGNMENT);
         netWrapper.add(netPanel, BorderLayout.CENTER);

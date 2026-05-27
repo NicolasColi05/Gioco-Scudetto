@@ -55,6 +55,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
     private static final Color BACKGROUND_COLOR = Color.BLACK;
     private static final int SLEEP_TIME = 300;
     private static final int SLEEP_TIME2 = 50;
+    private static final Color SHADOW_COLOR = new Color(0, 0, 0, 80);
 
     private final ImageBoardLoader imageLoaded;
     private final Starter controller;
@@ -75,7 +76,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      */
     @SuppressFBWarnings 
     public BoardPanel(final Starter controller) throws IOException {
-        this.controller = controller; //NOPMD
+        this.controller = controller;
         this.controller.addObserver(this);
         this.imageLoaded = new ImageBoardLoaderImpl(controller);
         setBackground(BACKGROUND_COLOR); //NOPMD
@@ -258,7 +259,9 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
 
         g2d.setColor(Color.BLACK);
         g2d.setFont(new Font("Arial", Font.BOLD, x / LABEL_FONT_DIVISOR));
-        g2d.drawString(guestName, center + g2d.getFontMetrics().stringWidth(this.controller.getScore()) + x / NAME_X_MARGIN_DIVISOR, scoreTextY);
+        g2d.drawString(guestName,
+                        center + g2d.getFontMetrics().stringWidth(this.controller.getScore())
+                        + x / NAME_X_MARGIN_DIVISOR, scoreTextY);
     }
 
     /**
@@ -282,7 +285,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
             pawnY = y - boxH / 2;
         } else if (position >= RIGHT_COLUMN_START_POSITION && position <= RIGHT_COLUMN_END_POSITION) {
             pawnX = boxW / 2;
-            pawnY = y - ((position - RIGHT_PAWN_POSITION_OFFSET) * boxH + (int) (boxH * offset));   
+            pawnY = y - ((position - RIGHT_PAWN_POSITION_OFFSET) * boxH + (int) (boxH * offset));
         } else if (position >= BOTTOM_ROW_START_POSITION && position <= BOTTOM_ROW_END_POSITION) {
             pawnX = (position - BOTTOM_PAWN_POSITION_OFFSET) * boxW - (int) (boxW * offset);
             pawnY = boxH / 2;
@@ -304,14 +307,15 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      */
     private void drawCircle(final Graphics2D g2d, final int x, final int y, final int r, final Color color) {
 
-        g2d.setColor(new Color(0, 0, 0, 80));
+        g2d.setColor(SHADOW_COLOR);
         g2d.fillOval(x - r + PAWN_SHADOW_OFFSET, y - r + PAWN_SHADOW_OFFSET, r * 2, r * 2);
 
         g2d.setColor(Color.BLACK);
         g2d.fillOval(x - r, y - r, r * 2, r * 2);
 
         g2d.setColor(color);
-        g2d.fillOval(x - r + PAWN_INNER_MARGIN, y - r + PAWN_INNER_MARGIN, (r - PAWN_INNER_MARGIN) * 2, (r - PAWN_INNER_MARGIN) * 2);
+        g2d.fillOval(x - r + PAWN_INNER_MARGIN, y - r + PAWN_INNER_MARGIN, (r - PAWN_INNER_MARGIN) * 2,
+                    (r - PAWN_INNER_MARGIN) * 2);
     }
 
     /**

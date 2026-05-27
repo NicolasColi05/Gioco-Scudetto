@@ -21,13 +21,15 @@ import giocoscudetto.view.impl.BoardPanel;
  */
 public class TestBoardPanel extends JFrame {
 
+    private static final long serialVersionUID = 1L;
     /**
      * Initializes the test frame with a BoardPanel.
-     * @throws IOException
+     * 
+     * @throws IOException if an I/O error occurs during the initialization of the BoardPanel.
      */
     public TestBoardPanel() throws IOException {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(650, 670);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE); //NOPMD
+        this.setSize(650, 670); //NOPMD
 
         final CreateUpdateController controller = new CreateUpdateControllerImpl();
         controller.createClubs(List.of("Inter", "Milan"), List.of(0, 0xFF0000));
@@ -38,9 +40,9 @@ public class TestBoardPanel extends JFrame {
         final BoardPanel boardPanel = new BoardPanel(starter);
         boardPanel.start();
 
-        this.setContentPane(boardPanel);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.setContentPane(boardPanel); //NOPMD
+        this.setLocationRelativeTo(null); //NOPMD
+        this.setVisible(true); //NOPMD
     }
 
     /**
@@ -48,12 +50,12 @@ public class TestBoardPanel extends JFrame {
      * 
      * @param args the command line arguments (not used).
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
                 new TestBoardPanel();
             } catch (final IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(); //NOPMD
             }
         });
     }
