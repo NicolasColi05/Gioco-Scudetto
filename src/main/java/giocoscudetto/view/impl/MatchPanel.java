@@ -1,5 +1,6 @@
 package giocoscudetto.view.impl;
 
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.GameObserver;
 import giocoscudetto.view.api.ViewManager;
@@ -22,6 +23,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private static final Color BACKGROUND_COLOR = new Color(223,189,138);
     private final Starter controller;
     private final ViewManager viewManager;
+    private final MatchController matchController;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
@@ -29,26 +31,27 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private final EventPanel eventPanel;
     private final JCheckBox helpBox;
 
-    public MatchPanel(final Starter controller, final ViewManager viewManager) {
+    public MatchPanel(final Starter controller, final ViewManager viewManager, final MatchController matchController) {
 
-        final BoardPanel boardJPanel = new BoardPanel(controller);
-        this.bottomDice = new DicePanel(controller,boardJPanel);
-        this.netPanel = new NetPanel(controller);
+        final BoardPanel boardJPanel = new BoardPanel(matchController);
+        this.bottomDice = new DicePanel(boardJPanel, matchController);
+        this.netPanel = new NetPanel(matchController);
         this.controller = controller;
         this.viewManager = viewManager;
+        this.matchController = matchController;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
-        this.controller.addObserver(this);
+        this.matchController.addObserver(this);
         this.add(boardJPanel, BorderLayout.CENTER);
         this.helpBox = new JCheckBox("Help for box");
         this.helpBox.setSelected(false);
 
         this.helpBox.addActionListener(e -> { 
-            this.controller.setHelpFlag(this.helpBox.isSelected());
+            this.matchController.setHelpFlag(this.helpBox.isSelected());
                 
         });
 
-        this.eventPanel = new EventPanel(controller);
+        this.eventPanel = new EventPanel(this.matchController);
         eventPanel.setMaximumSize(new Dimension(300,200 ));
 
         JPanel helpPanel = new JPanel();
@@ -62,7 +65,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.setPreferredSize(new Dimension(280, 0));
 
         JPanel turnPanel = new JPanel();
-        turnLabel = new JLabel("Turn of :"+controller.getCurrentPlayer());
+        turnLabel = new JLabel("Turn of :"+ this.matchController.getCurrentPlayer());
         turnPanel.setBackground(BACKGROUND_COLOR);
         turnLabel.setFont(new Font("Turn",Font.BOLD,20));
         turnPanel.add(turnLabel);
@@ -93,13 +96,13 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         
 
         continueButton.addActionListener(e -> { 
-            if(this.controller.isLastMatch()){
-                EndGameView EndGameView = new EndGameView(this.controller);
+            if(this.matchController.isLastMatch()){
+                EndGameView EndGameView = new EndGameView(this.controller, this.matchController);
                 this.viewManager.addView(EndGameView, "end");
-                this.controller.addPoints();
+                this.matchController.addPoints();
                 this.controller.changeView("end");
             }else{
-                this.controller.addPoints();
+                this.matchController.addPoints();
                 this.controller.changeView("pre");
             }
         });
@@ -120,9 +123,9 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     @Override
     public void updateState() {
         SwingUtilities.invokeLater(() -> {
-            turnLabel.setText("Turn of :"+controller.getCurrentPlayer());
+            turnLabel.setText("Turn of :"+ this.matchController.getCurrentPlayer());
 
-            switch (this.controller.getGameMode()) {
+            switch (this.matchController.getGameMode()) {
                 case "PENALTY": 
                     netPanel.setButtonsEnabled(true);
                     break;
@@ -144,10 +147,10 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
             }
 
             // netPanel.setButtonsEnabled(controller.isPenalty());
-            continueButton.setVisible(controller.isLastBox());
-            continueButton.setEnabled(controller.isLastBox());
-            if(controller.isLastBox()){
-                controller.lastBox();
+            continueButton.setVisible(this.matchController.isLastBox());
+            continueButton.setEnabled(this.matchController.isLastBox());
+            if(this.matchController.isLastBox()){
+                this.matchController.lastBox();
             }
             
         });

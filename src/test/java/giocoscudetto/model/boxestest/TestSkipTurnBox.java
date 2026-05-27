@@ -12,7 +12,7 @@ import giocoscudetto.model.impl.boxes.SkipTurnBox;
 public class TestSkipTurnBox {
 
     @Test
-    void TestSkipTurnBox() {
+    void testSkipTurnBox() {
 
         Club home = new ClubImpl("Roma", new PawnImpl(1));
         Club away = new ClubImpl("Inter", new PawnImpl(2));

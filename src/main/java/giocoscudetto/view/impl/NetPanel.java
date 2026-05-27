@@ -13,13 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 
 public class NetPanel extends DefaultPanelImpl {
     
     private static final int ROWS = 2;
     private static final int COLS = 3;
-    private final Starter controller;
+    private final MatchController matchController;
     private final BufferedImage image;
     private final JButton button1 = new JButton("1");
     private final JButton button2 = new JButton("2");
@@ -31,8 +31,8 @@ public class NetPanel extends DefaultPanelImpl {
     private final JLabel label;
     private int count = 0;
 
-    public NetPanel(final Starter controller) {
-        this.controller = controller;
+    public NetPanel(final MatchController matchController) {
+        this.matchController = matchController;
         this.setLayout(new BorderLayout());
         this.label = new JLabel();
         this.label.setBackground(new java.awt.Color(0xC8E6C9));
@@ -48,10 +48,10 @@ public class NetPanel extends DefaultPanelImpl {
         setButtonsEnabled(false);
 
             kickButton.addActionListener(e -> {
-                boolean goal = this.controller.kickPenalty();
+                boolean goal = this.matchController.kickPenalty();
                 setButtonsEnabled(false);
                 this.count = 0;
-                this.controller.gameModeFinished();
+                this.matchController.gameModeFinished();
                 if (goal) {
                     label.setText("GOOOOOOOOOOAL!!!");
                 } else {
@@ -61,11 +61,11 @@ public class NetPanel extends DefaultPanelImpl {
 
             button1.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(1);
+                    this.matchController.setKeeperPosition(1);
                     count++;
                     checkButtons(1);
                 } else if (count == 1)  {
-                    this.controller.setKeeperPosition(1);
+                    this.matchController.setKeeperPosition(1);
                     this.button1.setEnabled(false);
                     count++;
                     kickButton.setEnabled(true);
@@ -73,11 +73,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button2.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(2);
+                    this.matchController.setKeeperPosition(2);
                     count++;
                     checkButtons(2);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(2);
+                    this.matchController.setKeeperPosition(2);
                     count++;
                     this.button2.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -85,11 +85,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button3.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(3);
+                    this.matchController.setKeeperPosition(3);
                     count++;
                     checkButtons(3);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(3);
+                    this.matchController.setKeeperPosition(3);
                     count++;
                     this.button3.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -97,11 +97,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button4.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(4);
+                    this.matchController.setKeeperPosition(4);
                     count++;
                     checkButtons(4);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(4);
+                    this.matchController.setKeeperPosition(4);
                     count++;
                     this.button4.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -109,11 +109,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button5.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(5);
+                    this.matchController.setKeeperPosition(5);
                     count++;
                     checkButtons(5);
                 } else if(count == 1) {
-                    this.controller.setKeeperPosition(5);
+                    this.matchController.setKeeperPosition(5);
                     count++;
                     this.button5.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -121,11 +121,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button6.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(6);
+                    this.matchController.setKeeperPosition(6);
                     count++;
                     checkButtons(6);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(6);
+                    this.matchController.setKeeperPosition(6);
                     count++;
                     this.button6.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -197,7 +197,7 @@ public class NetPanel extends DefaultPanelImpl {
     @Override
     public void paintComponent(java.awt.Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
+        final Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.image, 0, label.getSize().height, getWidth(), getHeight(), null);
     }
 }

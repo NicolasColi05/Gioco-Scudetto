@@ -4,72 +4,71 @@ import javax.swing.*;
 import java.awt.*;
 
 import java.io.File;
-import javax.imageio.ImageIO;
+import java.io.IOException;
 
-import java.awt.Image;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.imageio.ImageIO;
 import javax.swing.border.TitledBorder;
 
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 
 public class EndGameView extends DefaultPanelImpl {
     
-    private Starter controller;
+    private final Starter controller;
+    private final MatchController matchController;
     private final Image image;
-    
-    //intestazione tabella
     
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
     private static final int BUTTON_BORDER = 5;
 
-    public EndGameView(Starter controller) {
+    public EndGameView(final Starter controller, final MatchController matchController) {
         this.controller = controller;
+        this.matchController = matchController;
         this.setLayout(new BorderLayout());
 
         try {
             this.image = ImageIO.read(
                 new File("src/main/resources/images/backgrounds/end-game-background.jpeg")
             );
-        } catch (Exception e) {
+        } catch (final IOException e) {
             throw new RuntimeException("Failed to load image", e);
         }
 
         //vincitore
-        JLabel winnerLabel = new JLabel("WINNER:" + this.controller.getWinner(), SwingConstants.RIGHT);
+        final JLabel winnerLabel = new JLabel("WINNER:" + this.matchController.getWinner(), SwingConstants.RIGHT);
         winnerLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, 30));
         winnerLabel.setForeground(Color.BLACK);
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         //tabella
-        JTable standingsTable = new JTable(this.controller.getLeagueTableModel());
+        final JTable standingsTable = new JTable(this.matchController.getLeagueTableModel());
         standingsTable.setEnabled(false);
         standingsTable.setOpaque(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / 70));
 
         //se necessario
-        JScrollPane tableScroll = new JScrollPane(standingsTable);
+        final JScrollPane tableScroll = new JScrollPane(standingsTable);
         tableScroll.setPreferredSize(new Dimension(1000, 600));
         tableScroll.setMaximumSize(new Dimension(1000, 600));
         tableScroll.setOpaque(false);
         tableScroll.getViewport().setOpaque(false);
 
-        TitledBorder titleS = new TitledBorder("FINAL RANKING");
+        final TitledBorder titleS = new TitledBorder("FINAL RANKING");
         titleS.setTitleJustification(TitledBorder.CENTER);
         titleS.setTitleColor(new Color(195,45,35));
 
         tableScroll.setBorder(titleS);
 
         //pannello inferiore
-        JPanel lowerPanel = new JPanel(new BorderLayout());
+        final JPanel lowerPanel = new JPanel(new BorderLayout());
         lowerPanel.setOpaque(false);
         lowerPanel.setBorder(BorderFactory.createEmptyBorder(0, BUTTON_BORDER, BUTTON_BORDER, BUTTON_BORDER));
 
         //pulsanti
-        JButton menuButton = new JButton("MENU");
-        JButton restartButton = new JButton("RESTART");
+        final JButton menuButton = new JButton("MENU");
+        final JButton restartButton = new JButton("RESTART");
 
         menuButton.setFont(getExitFont());
         restartButton.setFont(getExitFont());
@@ -91,7 +90,7 @@ public class EndGameView extends DefaultPanelImpl {
             this.controller.changeView("pre");
         });
 
-        JPanel centerPanel = new JPanel();
+        final JPanel centerPanel = new JPanel();
         centerPanel.setOpaque(false);
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
@@ -100,7 +99,7 @@ public class EndGameView extends DefaultPanelImpl {
         centerPanel.add(winnerLabel);
         centerPanel.add(Box.createVerticalStrut(120));
 
-        JPanel tablePanel = new JPanel();
+        final JPanel tablePanel = new JPanel();
         tablePanel.setOpaque(false);
 
         tablePanel.add(tableScroll);
@@ -132,7 +131,7 @@ public class EndGameView extends DefaultPanelImpl {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D) g;
+        final Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
     }
 

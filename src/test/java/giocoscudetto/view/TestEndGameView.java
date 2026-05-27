@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
+import giocoscudetto.controller.impl.MatchControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
 
 public class TestEndGameView extends JFrame {
@@ -14,7 +15,8 @@ public TestEndGameView() {
     this.setSize(650, 670);
     var cr=new CreateUpdateControllerImpl();
     cr.createClubs(List.of("Milan","Juve","Roma","Inter"), List.of(255,128,10,255,128,10));
-    var starter=new StarterImpl(null, cr);
+    var matchController = new MatchControllerImpl(cr);
+    var starter=new StarterImpl(null, cr, matchController);
 
     cr.getTable().getClubs().get(0).incrementPoints(10);
     cr.getTable().getClubs().get(0).changeNetDiffs(12, 2);
@@ -31,9 +33,9 @@ public TestEndGameView() {
     cr.getTable().updateClubRank();
 
     
-    starter.setMatch();
+    matchController.setMatch();
     
-    JPanel pa = new giocoscudetto.view.impl.EndGameView(starter);
+    JPanel pa = new giocoscudetto.view.impl.EndGameView(starter, matchController);
     this.setContentPane(pa);
      this.setVisible(true);
     }
