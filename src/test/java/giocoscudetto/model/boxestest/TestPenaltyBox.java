@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.*;
+import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.Match;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.model.impl.boxes.PenaltyBox;
@@ -18,16 +19,17 @@ import giocoscudetto.model.impl.boxes.PenaltyBox;
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.PenaltyBox}.
  */
-public class TestPenaltyBox {
-    private Club clubHome;
-    private Club clubAway;
+class TestPenaltyBox {
+    private Club clubHome = new ClubImpl("home", null);
+    private Club clubAway = new ClubImpl("away", null);
     private Match match;
     private PenaltyBox penaltyBox;
 
+    /**
+     * Sets up the test environment before each test method is executed.
+     */
     @BeforeEach
-    public void setUp() {
-        clubHome = new ClubImpl("home", null);
-        clubAway = new ClubImpl("away", null);
+    void setUp() {
         match = new MatchImpl(clubHome, clubAway);
         penaltyBox = new PenaltyBox(5);
         if(match.getCurrentPlayer() != clubHome) {
@@ -35,25 +37,38 @@ public class TestPenaltyBox {
         }
     }
 
+    /**
+     * Tests that the event method of the PenaltyBox sets the game mode to "PENALTY".
+     */
     @Test
-    public void testEventSetsGameModeToPenalty() {
+    void testEventSetsGameModeToPenalty() {
         assertNotEquals("PENALTY", match.getGameMode());
         penaltyBox.event(match);
         assertEquals("PENALTY", match.getGameMode());
     }
 
+    /**
+     * Tests that the position of the PenaltyBox is correctly set, 
+     * to position given in the constructor.
+     */
     @Test
-    public void testPenaltyBoxPosition() {
+    void testPenaltyBoxPosition() {
         assertEquals(5, penaltyBox.getPosition());
     }
 
+    /**
+     * Tests that the name of the PenaltyBox is correctly set to "Penalty Box".
+     */
     @Test
-    public void testPenaltyBoxName() {
+    void testPenaltyBoxName() {
         assertEquals("Penalty Box", penaltyBox.getName());
     }
 
+    /**
+     * Tests that the image of the PenaltyBox is correctly set to "casella_16.png".
+     */
     @Test
-    public void testPenaltyBoxImage() {
+    void testPenaltyBoxImage() {
         assertEquals("casella_16.png", penaltyBox.getImage());
     }
 }

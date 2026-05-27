@@ -20,16 +20,17 @@ import giocoscudetto.model.impl.boxes.FreeKickBox;
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.FreeKickBox}.
  */
-public class TestFreekickBox {
-    private Club clubHome;
-    private Club clubAway;
+class TestFreekickBox {
+    private Club clubHome = new ClubImpl("home", null);
+    private Club clubAway = new ClubImpl("away", null);
     private Match match;
     private Boxes cornerBox;
 
+    /**
+     * Sets up the test environment before each test method is executed.
+     */
     @BeforeEach
-    public void setUp() {
-        clubHome = new ClubImpl("home", null);
-        clubAway = new ClubImpl("away", null);
+    void setUp() {
         match = new MatchImpl(clubHome, clubAway);
         cornerBox = new FreeKickBox(5);
         if(match.getCurrentPlayer() != clubHome) {
@@ -37,30 +38,48 @@ public class TestFreekickBox {
         }
     }
 
+    /**
+     * Tests that the event method of the FreeKickBox sets the game mode to "FREE_KICK".
+     */
     @Test
-    public void testEventSetsGameModeToFreekick() {
+    void testEventSetsGameModeToFreekick() {
         assertNotEquals("FREE_KICK", match.getGameMode());
         cornerBox.event(match);
         assertEquals("FREE_KICK", match.getGameMode());
     }
 
+    /**
+     * Tests that the position of the FreeKickBox,
+     *  is correctly set to position given in the constructor.
+     */
     @Test
-    public void testFreekickBoxPosition() {
+    void testFreekickBoxPosition() {
         assertEquals(5, cornerBox.getPosition());
     }
 
+    /**
+     * Tests that the name of the FreeKickBox is correctly set to "Freekick Box".
+     */
     @Test
-    public void testFreekickBoxName() {
+    void testFreekickBoxName() {
         assertEquals("Freekick Box", cornerBox.getName());
     }
 
+    /**
+     * Tests that the image of the FreeKickBox is correctly set to "casella_26.png".
+     */
     @Test
-    public void testFreekickBoxImage() {
+    void testFreekickBoxImage() {
         assertEquals("casella_26.png", cornerBox.getImage());
     }
 
+    /**
+     * Tests that the event method of the FreeKickBox correctly updates the score,
+     * based on the dice rolls.
+     */
     @Test
-    public void testFreekickEvent() {
+    void testFreekickEvent() {
+        final Integer diceSum;
         final int dice1;
         final int dice2;
         final int oldHomeScore = this.match.getScore().getHomeScore();
@@ -69,8 +88,8 @@ public class TestFreekickBox {
         cornerBox.event(match);
         dice1 = match.diceEvent();
         dice2 = match.diceEvent();
-
-        if (dice1 + dice2 == 7) {
+        diceSum = dice1 + dice2;
+        if (diceSum.equals(7)) {
             assertEquals(oldHomeScore + 1, this.match.getScore().getHomeScore());
             assertEquals(oldGuestScore, this.match.getScore().getGuestScore());
         } else {

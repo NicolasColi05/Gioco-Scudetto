@@ -1,6 +1,7 @@
 package giocoscudetto.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import giocoscudetto.model.impl.ScoreboardImpl;
@@ -12,57 +13,81 @@ import giocoscudetto.model.impl.ScoreboardImpl;
 /**
  * Test for {@link giocoscudetto.model.impl.ScoreboardImpl}.
  */
-public class TestScoreBoard {
+class TestScoreBoard {
 
     private ScoreboardImpl scoreboard;
 
+    /**
+     * Sets up the test environment before each test method is executed.
+     */
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         scoreboard = new ScoreboardImpl();
     }
 
+    /**
+     * Tests that the getHomeScore method correctly returns the home score.
+     */
     @Test
-    public void testGetHomeScore() {
+    void testGetHomeScore() {
         scoreboard.setHomeScore(3);
         assertEquals(3, scoreboard.getHomeScore());
     }
 
+    /**
+     * Tests that the getGuestScore method correctly returns the guest score.
+     */
     @Test
-    public void testGetGuestScore() {
+    void testGetGuestScore() {
         scoreboard.setGuestScore(2);
         assertEquals(2, scoreboard.getGuestScore());
     }
 
+    /**
+     * Tests that the setHomeScore method correctly sets the home score.
+     */
     @Test
-    public void testSetHomeScore() {
+    void testSetHomeScore() {
         scoreboard.setHomeScore(5);
         assertEquals(5, scoreboard.getHomeScore());
     }
 
+    /**
+     * Tests that the setGuestScore method correctly sets the guest score.
+     */
     @Test
-    public void testSetGuestScore() {
+    void testSetGuestScore() {
         scoreboard.setGuestScore(4);
         assertEquals(4, scoreboard.getGuestScore());
     }
 
+    /**
+     * Tests that the increaseHomeScore method correctly increases the home score by 1.
+     */
     @Test
-    public void testIncreaseHomeScore() {
+    void testIncreaseHomeScore() {
         scoreboard.increaseHomeScore();
         assertEquals(1, scoreboard.getHomeScore());
         scoreboard.increaseHomeScore();
         assertEquals(2, scoreboard.getHomeScore());
     }
 
+    /**
+     * Tests that the increaseGuestScore method correctly increases the guest score by 1.
+     */
     @Test
-    public void testIncreaseGuestScore() {
+    void testIncreaseGuestScore() {
         scoreboard.increaseGuestScore();
         assertEquals(1, scoreboard.getGuestScore());
         scoreboard.increaseGuestScore();
         assertEquals(2, scoreboard.getGuestScore());
     }
 
+    /**
+     * Tests that the decreaseHomeScore method correctly decreases the home score by 1.
+     */
     @Test
-    public void testDecreaseHomeScore() {
+    void testDecreaseHomeScore() {
         scoreboard.setHomeScore(3);
         scoreboard.decreaseHomeScore();
         assertEquals(2, scoreboard.getHomeScore());
@@ -72,9 +97,12 @@ public class TestScoreBoard {
         scoreboard.decreaseHomeScore();
         assertEquals(0, scoreboard.getHomeScore(), "Home score should not go below 0");
     }
-    
+
+    /**
+     * Tests that the decreaseGuestScore method correctly decreases the guest score by 1.
+     */
     @Test
-    public void testDecreaseGuestScore() {
+    void testDecreaseGuestScore() {
         scoreboard.setGuestScore(3);
         scoreboard.decreaseGuestScore();
         assertEquals(2, scoreboard.getGuestScore());
@@ -85,8 +113,11 @@ public class TestScoreBoard {
         assertEquals(0, scoreboard.getGuestScore(), "Guest score should not go below 0");
     }
 
+    /**
+     * Tests that the toString method correctly formats the score.
+     */
     @Test
-    public void testToString() {
+    void testToString() {
         scoreboard.setHomeScore(2);
         scoreboard.setGuestScore(1);
         assertEquals("2 - 1", scoreboard.toString());

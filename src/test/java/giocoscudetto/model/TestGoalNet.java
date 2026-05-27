@@ -1,6 +1,8 @@
 package giocoscudetto.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import giocoscudetto.model.impl.GoalNetImpl;
@@ -12,23 +14,33 @@ import giocoscudetto.model.impl.GoalNetImpl;
 /**
  * Test for {@link giocoscudetto.model.impl.GoalNetImpl}.
  */
-public class TestGoalNet {
+class TestGoalNet {
 
     private GoalNetImpl goalNet;
 
+    /**
+     * Sets up the test environment before each test method is executed.
+     */
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         goalNet = new GoalNetImpl();
     }
 
+    /**
+     * Tests that the setGoalKeeperPosition method correctly sets, 
+     * the position of the goalkeeper.
+     */
     @Test
-    public void testSetGoalKeeperPosition() {
+    void testSetGoalKeeperPosition() {
         goalNet.setGoalKeeperPosition(2);
         goalNet.setGoalKeeperPosition(5);
     }
-    
+
+    /**
+     * Tests that the setGoalKeeperPosition method correctly sets the position of the goalkeeper,
+     */
     @Test
-    public void testSetGoalKeeperPositionMaxPositions() {
+    void testSetGoalKeeperPositionMaxPositions() {
         goalNet.setGoalKeeperPosition(1);
         goalNet.setGoalKeeperPosition(3);
         goalNet.setGoalKeeperPosition(5);
@@ -36,15 +48,21 @@ public class TestGoalNet {
         assertTrue(goalNet.isGoal(5));
     }
 
+    /**
+     * Tests that the isGoal method correctly identifies goals.
+     */
     @Test
-    public void testIsGoal() {
+    void testIsGoal() {
         goalNet.setGoalKeeperPosition(3);
         goalNet.setGoalKeeperPosition(5);
         assertTrue(goalNet.isGoal(1));
     }
 
+    /**
+     * Tests that the isGoal method correctly identifies non-goals.
+     */
     @Test
-    public void testIsNotGoal() {
+    void testIsNotGoal() {
         goalNet.setGoalKeeperPosition(2);
         goalNet.setGoalKeeperPosition(8);
         assertFalse(goalNet.isGoal(8));
@@ -56,8 +74,11 @@ public class TestGoalNet {
         assertFalse(goalNet.isGoal(4));
     }
 
+    /**
+     * Tests that the goal net correctly identifies goals in multiple rounds.
+     */
     @Test
-    public void testMultipleRounds() {
+    void testMultipleRounds() {
         goalNet.setGoalKeeperPosition(1);
         goalNet.setGoalKeeperPosition(5);
         assertTrue(goalNet.isGoal(3));
@@ -68,5 +89,4 @@ public class TestGoalNet {
         goalNet.setGoalKeeperPosition(8);
         assertTrue(goalNet.isGoal(7));
     }
-
 }
