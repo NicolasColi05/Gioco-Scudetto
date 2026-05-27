@@ -118,7 +118,7 @@ public interface Starter {
 
     boolean isLastBox();
 
-    void LastBox();
+    void lastBox();
 
     boolean isLastMatch();
 
