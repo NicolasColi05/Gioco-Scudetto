@@ -75,7 +75,7 @@ public class TestMatch {
     }
 
     @Test
-    void TestDiceLogic(){
+    void testDiceLogic(){
         int count;
         match.getClubHome().getPawn().setPosition(0);
         if (match.getCurrentPlayer() != match.getClubHome()){
