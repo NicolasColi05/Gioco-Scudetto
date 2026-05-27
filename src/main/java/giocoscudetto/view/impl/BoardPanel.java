@@ -40,6 +40,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
     private volatile int boardSizew;
     private volatile int boxW;
     private volatile int boxH;
+    private final Thread animationThread;
 
     /**
      * Constructor of the BoardPanel class.
@@ -60,7 +61,16 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
             }
         });
 
-        new Thread(this::animationLoop).start();
+        this.animationThread = new Thread(this::animationLoop);
+        this.animationThread.setDaemon(true);
+    }
+
+    /**
+     * this method starts the animation thread, 
+     * to animate the movement of the pawns when the dice are rolled.
+     */
+    public void start() {
+        this.animationThread.start();
     }
 
     /**
