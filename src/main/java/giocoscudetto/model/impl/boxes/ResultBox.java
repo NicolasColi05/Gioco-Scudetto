@@ -8,10 +8,10 @@ import giocoscudetto.model.api.Match;
  */
 public class ResultBox implements Boxes {
 
+    private static final String DESCRIPTION = "Box Event: Result. If you land on this box"
+                                     + ", you have to throw 2 dice and the numbers you get makes the new score";
     private final String image;
     private final int position;
-    private final String description = "Box Event: Result. If you land on this box"
-                                     + ", you have to throw 2 dice and the numbers you get makes the new score";
 
     /**
      * Constructor of the ResultBox class.
@@ -60,7 +60,7 @@ public class ResultBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return this.description;
+        return DESCRIPTION;
     }
 
 }

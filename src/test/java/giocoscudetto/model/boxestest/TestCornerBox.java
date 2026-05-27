@@ -20,49 +20,66 @@ import giocoscudetto.model.impl.boxes.CornerBox;
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.CornerBox}.
  */
-public class TestCornerBox {
-    private Club clubHome;
-    private Club clubAway;
+class TestCornerBox {
+    private final Club clubHome = new ClubImpl("home", null);
+    private final Club clubAway = new ClubImpl("away", null);
     private Match match;
     private Boxes cornerBox;
 
+    /**
+     * Sets up the test environment before each test method is executed.
+     */
     @BeforeEach
-    public void setUp() {
-        clubHome = new ClubImpl("home", null);
-        clubAway = new ClubImpl("away", null);
+    void setUp() {
         match = new MatchImpl(clubHome, clubAway);
         cornerBox = new CornerBox(5);
-        if(match.getCurrentPlayer() != clubHome) {
+        if (!match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
 
+    /**
+     * Tests that the event method of the CornerBox sets the game mode to "CORNER".
+     */
     @Test
-    public void testEventSetsGameModeToCorner() {
+    void testEventSetsGameModeToCorner() {
         assertNotEquals("CORNER", match.getGameMode());
         cornerBox.event(match);
         assertEquals("CORNER", match.getGameMode());
     }
 
+    /**
+     * Tests that the position of the CornerBox is correctly set,
+     *  to position given in the constructor.
+     */
     @Test
-    public void testCornerBoxPosition() {
+    void testCornerBoxPosition() {
         assertEquals(5, cornerBox.getPosition());
     }
 
+    /**
+     * Tests that the name of the CornerBox is correctly set to "Corner Box".
+     */
     @Test
-    public void testCornerBoxName() {
+    void testCornerBoxName() {
         assertEquals("Corner Box", cornerBox.getName());
     }
 
+    /**
+     * Tests that the image of the CornerBox is correctly set to "casella_19.png".
+     */
     @Test
-    public void testCornerBoxImage() {
+    void testCornerBoxImage() {
         assertEquals("casella_19.png", cornerBox.getImage());
     }
 
+    /**
+     * Tests that the event method of the CornerBox is correct.
+     */
     @Test
-    public void testCornerEvent() {
-        final int dice1;
-        final int dice2;
+    void testCornerEvent() {
+        final Integer dice1;
+        final Integer dice2;
         final int oldHomeScore = this.match.getScore().getHomeScore();
         final int oldGuestScore = this.match.getScore().getGuestScore();
 
@@ -70,7 +87,7 @@ public class TestCornerBox {
         dice1 = match.diceEvent();
         dice2 = match.diceEvent();
 
-        if (dice1 == 1 || dice2 == 1) {
+        if (dice1.equals(1) || dice2.equals(1)) {
             assertEquals(oldHomeScore + 1, this.match.getScore().getHomeScore());
             assertEquals(oldGuestScore, this.match.getScore().getGuestScore());
         } else {

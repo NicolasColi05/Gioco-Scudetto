@@ -5,6 +5,7 @@ import java.awt.Image;
 /**
  * Loads images for the game board.
  */
+@FunctionalInterface
 public interface ImageBoardLoader {
 
     /**

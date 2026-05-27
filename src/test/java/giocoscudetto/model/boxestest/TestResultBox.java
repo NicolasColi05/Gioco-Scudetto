@@ -3,9 +3,11 @@ package giocoscudetto.model.boxestest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import giocoscudetto.model.api.*;
+import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.Match;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.model.impl.boxes.ResultBox;
@@ -17,47 +19,64 @@ import giocoscudetto.model.impl.boxes.ResultBox;
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.ResultBox}.
  */
-public class TestResultBox {
-    private Club clubHome;
-    private Club clubAway;
+class TestResultBox {
+    private final Club clubHome = new ClubImpl("home", null);
+    private final Club clubAway = new ClubImpl("away", null);
     private Match match;
     private ResultBox resultBox;
 
+    /**
+     * Sets up the test environment before each test method is executed.
+     */
     @BeforeEach
-    public void setUp() {
-        clubHome = new ClubImpl("home", null);
-        clubAway = new ClubImpl("away", null);
+    void setUp() {
         match = new MatchImpl(clubHome, clubAway);
         resultBox = new ResultBox(5);
-        if(match.getCurrentPlayer() != clubHome) {
+        if (!match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
 
+    /**
+     * Tests that the event method of the ResultBox sets the game mode to "RESULT".
+     */
     @Test
-    public void testEventSetsGameModeToResult() {
+    void testEventSetsGameModeToResult() {
         assertNotEquals("RESULT", match.getGameMode());
         resultBox.event(match);
         assertEquals("RESULT", match.getGameMode());
     }
 
+    /**
+     * Tests that the position of the ResultBox is correctly set,
+     *  to position given in the constructor.
+     */
     @Test
-    public void testResultBoxPosition() {
+    void testResultBoxPosition() {
         assertEquals(5, resultBox.getPosition());
     }
 
+    /**
+     * Tests that the name of the ResultBox is correctly set to "result box".
+     */
     @Test
-    public void testResultBoxName() {
+    void testResultBoxName() {
         assertEquals("result box", resultBox.getName());
     }
 
+    /**
+     * Tests that the image of the ResultBox is correctly set to "casella_3.png".
+     */
     @Test
-    public void testResultBoxImage() {
+    void testResultBoxImage() {
         assertEquals("casella_3.png", resultBox.getImage());
     }
 
+    /**
+     * Tests that the event method of the ResultBox correctly updates the score.
+     */
     @Test
-    public void testResultEvent() {
+    void testResultEvent() {
         final int dice1;
         final int dice2;
 

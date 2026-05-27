@@ -77,6 +77,7 @@ public class ScoreboardImpl implements Scoreboard {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void decreaseHomeScore() {
         this.homeScore = this.homeScore - 1;
         if (this.homeScore < 0) {
@@ -87,6 +88,7 @@ public class ScoreboardImpl implements Scoreboard {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void decreaseGuestScore() {
         this.guestScore = this.guestScore - 1;
         if (this.guestScore < 0) {

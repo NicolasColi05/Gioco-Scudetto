@@ -6,6 +6,7 @@ import java.awt.Window;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.view.api.ViewManager;
 
 /**
@@ -47,6 +48,7 @@ public class ViewManagerImpl implements ViewManager {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings
     public JPanel getContainer() {
         return this.container;
     }

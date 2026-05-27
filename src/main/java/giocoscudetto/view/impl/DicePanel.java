@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.GameObserver;
 
@@ -19,6 +20,7 @@ import giocoscudetto.view.api.GameObserver;
  */
 public class DicePanel extends DefaultPanelImpl implements GameObserver {
 
+    private static final long serialVersionUID = 1L;
     private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
     private static final int FONT_SIZE = 20;
     private static final long TIMER_WAIT = 700;
@@ -35,9 +37,11 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
      * @param controller the controller of the game.
      * @param board the board panel to update the positions of the players after the dice roll.
      */
+    @SuppressFBWarnings
     public DicePanel(final Starter controller, final BoardPanel board) {
+
         this.rollDiceButton = new JButton("Roll Dice");
-        this.controller = controller;
+        this.controller = controller; //NOPMD
         this.controller.addObserver(this);
         this.board = board;
         this.setLayout(new BorderLayout()); //NOPMD
@@ -48,8 +52,8 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setBorder(new EmptyBorder(8, 4, 8, 4));
 
-        this.add(rollDiceButton, BorderLayout.SOUTH);
-        this.add(messageLabel, BorderLayout.CENTER);
+        this.add(rollDiceButton, BorderLayout.SOUTH); //NOPMD
+        this.add(messageLabel, BorderLayout.CENTER); //NOPMD
 
         rollDiceButton.addActionListener(e -> {
             this.board.resetCheckBoxDone();

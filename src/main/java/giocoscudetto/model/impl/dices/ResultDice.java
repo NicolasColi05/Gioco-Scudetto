@@ -9,13 +9,13 @@ import java.util.Random;
  */
 public class ResultDice implements Dice {
 
-    private final Random random = new Random();
     private static final int[] PROBABILITIES = {
         3, 3, 3, 3, 3,
         2, 2, 2, 2, 2, 2, 2,
         1, 1, 1, 1, 1, 1, 1, 1, 1,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     };
+    private final Random random = new Random();
 
     /**
      * {@inheritDoc}

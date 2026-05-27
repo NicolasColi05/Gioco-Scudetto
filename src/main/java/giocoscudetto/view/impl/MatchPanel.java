@@ -6,9 +6,9 @@ import giocoscudetto.view.api.ViewManager;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * This class represents the panel where the match is played, 
  * it contains the board, 
@@ -24,10 +26,13 @@ import javax.swing.SwingUtilities;
  */
 public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
-    // CHECKSTYLE: MagicNumber OFF
+    private static final long serialVersionUID = 1L;
     private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
     private static final int DIM_X = 300;
     private static final int DIM_Y = 200;
+    private static final int PANEL_W = 280;
+    private static final int PANEL_H = 120;
+    private static final int TURN_FONT_SIZE = 20;
     private final Starter controller;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
@@ -35,25 +40,28 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private final JButton continueButton;
     private final EventPanel eventPanel;
     private final JCheckBox helpBox;
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     /**
      * Constructor of the MatchPanel class.
      * 
      * @param controller the game controller.
      * @param viewManager the view manager.
+     * @throws IOException if an error occurs while loading the image int the net panel.
      */
-    public MatchPanel(final Starter controller, final ViewManager viewManager) {
+    @SuppressFBWarnings
+    public MatchPanel(final Starter controller, final ViewManager viewManager) throws IOException {
 
         final BoardPanel boardJPanel = new BoardPanel(controller);
+        boardJPanel.start();
         this.bottomDice = new DicePanel(controller, boardJPanel);
         this.netPanel = new NetPanel(controller);
         this.controller = controller;
         this.viewManager = viewManager;
-        this.setLayout(new BorderLayout());
-        this.setBackground(BACKGROUND_COLOR);
+        this.setLayout(new BorderLayout()); //NOPMD
+        this.setBackground(BACKGROUND_COLOR); //NOPMD
         this.controller.addObserver(this);
-        this.add(boardJPanel, BorderLayout.CENTER);
+        this.add(boardJPanel, BorderLayout.CENTER); //NOPMD
         this.helpBox = new JCheckBox("Help for box");
         this.helpBox.setSelected(false);
 
@@ -72,15 +80,15 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         final JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setOpaque(false);
-        rightPanel.setPreferredSize(new Dimension(280, 0));
+        rightPanel.setPreferredSize(new Dimension(PANEL_W, 0));
 
         final JPanel turnPanel = new JPanel();
         turnLabel = new JLabel("Turn of :" + controller.getCurrentPlayer());
         turnPanel.setBackground(BACKGROUND_COLOR);
-        turnLabel.setFont(new Font("Turn", Font.BOLD, 20));
+        turnLabel.setFont(new Font("Turn", Font.BOLD, TURN_FONT_SIZE));
         turnPanel.add(turnLabel);
-        turnPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        turnPanel.setMaximumSize(new Dimension(280, 120));
+        turnPanel.setAlignmentX(CENTER_ALIGNMENT);
+        turnPanel.setMaximumSize(new Dimension(PANEL_W, PANEL_H));
 
         final JPanel netWrapper = new JPanel(new BorderLayout());
         netWrapper.setMaximumSize(new Dimension(DIM_X, DIM_Y));
@@ -90,11 +98,11 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
 
         netWrapper.setOpaque(false);
-        netWrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
+        netWrapper.setAlignmentX(CENTER_ALIGNMENT);
         netWrapper.add(netPanel, BorderLayout.CENTER);
 
-        bottomDice.setAlignmentX(Component.CENTER_ALIGNMENT);
-        bottomDice.setMaximumSize(new Dimension(280, 120));
+        bottomDice.setAlignmentX(CENTER_ALIGNMENT);
+        bottomDice.setMaximumSize(new Dimension(PANEL_W, PANEL_H));
 
         rightPanel.add(helpPanel);
         rightPanel.add(turnPanel);
@@ -114,9 +122,9 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
                 this.controller.changeView("pre");
             }
         });
-        this.add(rightPanel, BorderLayout.EAST);
+        this.add(rightPanel, BorderLayout.EAST); //NOPMD
 
-        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+        this.addComponentListener(new java.awt.event.ComponentAdapter() { //NOPMD
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
                 final int currentWidth = getWidth();
@@ -141,15 +149,15 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
                     netPanel.setButtonsEnabled(true);
                     break;
                 case "FREE_KICK":
-                    this.eventPanel.configure(giocoscudetto.view.impl.EventPanel.EventType.FREE_KICK);
+                    this.eventPanel.configure(EventPanel.EventType.FREE_KICK);
                     this.eventPanel.setVisible(true);
                     break;
                 case "CORNER":
-                    this.eventPanel.configure(giocoscudetto.view.impl.EventPanel.EventType.CORNER);
+                    this.eventPanel.configure(EventPanel.EventType.CORNER);
                     this.eventPanel.setVisible(true);
                     break;
                 case "RESULT":
-                    this.eventPanel.configure(giocoscudetto.view.impl.EventPanel.EventType.RESULT);
+                    this.eventPanel.configure(EventPanel.EventType.RESULT);
                     this.eventPanel.setVisible(true);
                     break;
                 default:

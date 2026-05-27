@@ -8,13 +8,13 @@ import giocoscudetto.model.api.Match;
  */
 public final class PenaltyBox implements Boxes {
 
-    private final int position;
-    private final String name;
-    private final String image;
-    private final String description = "Box Event: Penalty. If you land on this box" 
+    private static final String DESCRIPTION = "Box Event: Penalty. If you land on this box" 
                                         + " The opponent must decide the position of the goalkeeper, \n" 
                                         + " once finished you kick the penalty which consists of throwing a dice" 
                                         + " [1-6] if you roll a number not selected by the opponent you score a goal.";
+    private final int position;
+    private final String name;
+    private final String image;
 
     /**
      * Constructor of the PenaltyBox class.
@@ -64,7 +64,7 @@ public final class PenaltyBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return this.description;
+        return DESCRIPTION;
     }
 
 }

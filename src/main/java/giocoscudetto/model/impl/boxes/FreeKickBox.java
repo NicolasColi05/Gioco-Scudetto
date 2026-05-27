@@ -8,10 +8,10 @@ import giocoscudetto.model.api.Match;
  */
 public class FreeKickBox implements Boxes {
 
+    private static final String DESCRIPTION = "Box Event: Free Kick. If you land on this box,"
+                                       + "you throw two dice(0-6) and if the sum is exactly 7 you score a goal";
     private final String image;
     private final int position;
-    private final String description = "Box Event: Free Kick. If you land on this box,"
-                                       + "you throw two dice(0-6) and if the sum is exactly 7 you score a goal";
 
     /**
      * Constructor of the FreeKickBox class.
@@ -60,6 +60,6 @@ public class FreeKickBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return this.description;
+        return DESCRIPTION;
     }
 }

@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.Starter;
 
 /**
@@ -23,11 +24,19 @@ import giocoscudetto.controller.api.Starter;
 public class NetPanel extends DefaultPanelImpl {
 
     // CHECKSTYLE: MagicNumber OFF
+    private static final long serialVersionUID = 1L;
     private static final Color BACKGROUND_COLOR = new Color(0xC8E6C9);
     private static final int ROWS = 2;
     private static final int COLS = 3;
     private static final int H_GAP = 6;
     private static final int BORDER_SIZE = 8;
+    private static final int BOTTON1_POS = 1;
+    private static final int BOTTON2_POS = 2;
+    private static final int BOTTON3_POS = 3;
+    private static final int BOTTON4_POS = 4;
+    private static final int BOTTON5_POS = 5;
+    private static final int BOTTON6_POS = 6;
+
     private final Starter controller;
     private final BufferedImage image;
     private final JButton button1 = new JButton("1");
@@ -44,22 +53,24 @@ public class NetPanel extends DefaultPanelImpl {
      * Constructor of the NetPanel class.
      * 
      * @param controller the game controller.
+     * @throws IOException if an error occurs while loading the image.
      */
-    public NetPanel(final Starter controller) {
+    @SuppressFBWarnings
+    public NetPanel(final Starter controller) throws IOException {
         this.controller = controller;
-        this.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout()); //NOPMD
         this.label = new JLabel();
-        this.label.setBackground(new java.awt.Color(BACKGROUND_COLOR.getRGB()));
+        this.label.setBackground(new Color(BACKGROUND_COLOR.getRGB()));
         label.setHorizontalAlignment(JLabel.CENTER);
-        this.add(label, BorderLayout.NORTH);
+        this.add(label, BorderLayout.NORTH); //NOPMD
         kickButton.setEnabled(false);
         final JPanel net = new JPanel();
         net.setOpaque(false);
         net.setLayout(new GridLayout(ROWS, COLS, H_GAP, H_GAP));
         net.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
-        this.add(net, BorderLayout.CENTER);
-        this.add(kickButton, BorderLayout.SOUTH);
-        setButtonsEnabled(false);
+        this.add(net, BorderLayout.CENTER); //NOPMD
+        this.add(kickButton, BorderLayout.SOUTH); //NOPMD
+        setButtonsEnabled(false); //NOPMD
 
             kickButton.addActionListener(e -> {
                 final boolean goal = this.controller.kickPenalty();
@@ -75,11 +86,11 @@ public class NetPanel extends DefaultPanelImpl {
 
             button1.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(1);
+                    this.controller.setKeeperPosition(BOTTON1_POS);
                     count++;
-                    checkButtons(1);
+                    checkButtons(BOTTON1_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(1);
+                    this.controller.setKeeperPosition(BOTTON1_POS);
                     this.button1.setEnabled(false);
                     count++;
                     kickButton.setEnabled(true);
@@ -87,11 +98,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button2.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(2);
+                    this.controller.setKeeperPosition(BOTTON2_POS);
                     count++;
-                    checkButtons(2);
+                    checkButtons(BOTTON2_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(2);
+                    this.controller.setKeeperPosition(BOTTON2_POS);
                     count++;
                     this.button2.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -99,11 +110,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button3.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(3);
+                    this.controller.setKeeperPosition(BOTTON3_POS);
                     count++;
-                    checkButtons(3);
+                    checkButtons(BOTTON3_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(3);
+                    this.controller.setKeeperPosition(BOTTON3_POS);
                     count++;
                     this.button3.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -111,11 +122,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button4.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(4);
+                    this.controller.setKeeperPosition(BOTTON4_POS);
                     count++;
-                    checkButtons(4);
+                    checkButtons(BOTTON4_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(4);
+                    this.controller.setKeeperPosition(BOTTON4_POS);
                     count++;
                     this.button4.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -123,11 +134,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button5.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(5);
+                    this.controller.setKeeperPosition(BOTTON5_POS);
                     count++;
-                    checkButtons(5);
+                    checkButtons(BOTTON5_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(5);
+                    this.controller.setKeeperPosition(BOTTON5_POS);
                     count++;
                     this.button5.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -135,11 +146,11 @@ public class NetPanel extends DefaultPanelImpl {
             });
             button6.addActionListener(e -> {
                 if (count == 0) {
-                    this.controller.setKeeperPosition(6);
+                    this.controller.setKeeperPosition(BOTTON6_POS);
                     count++;
-                    checkButtons(6);
+                    checkButtons(BOTTON6_POS);
                 } else if (count == 1) {
-                    this.controller.setKeeperPosition(6);
+                    this.controller.setKeeperPosition(BOTTON6_POS);
                     count++;
                     this.button6.setEnabled(false);
                     kickButton.setEnabled(true);
@@ -156,8 +167,8 @@ public class NetPanel extends DefaultPanelImpl {
         try {
         this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/net.png"));
         } catch (final IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to load image", e);
+            e.printStackTrace(); //NOPMD
+            throw new IOException("Failed to load image", e);
         }
 
     }
@@ -208,6 +219,8 @@ public class NetPanel extends DefaultPanelImpl {
                 button1.setEnabled(false);
                 button4.setEnabled(false);
                 break;
+            default:
+                break;
         }
     }
 
@@ -215,6 +228,7 @@ public class NetPanel extends DefaultPanelImpl {
      *  {@inheritDoc}.
      */
     @Override
+    @SuppressFBWarnings 
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
