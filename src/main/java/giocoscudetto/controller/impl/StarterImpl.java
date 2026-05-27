@@ -10,8 +10,6 @@ import giocoscudetto.controller.api.Starter;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
-import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.Table;
 
 
 /**
@@ -23,8 +21,6 @@ public class StarterImpl implements Starter {
     private final CreateUpdateController controller;
     private final MatchController matchController;
     private Fixtures fixture;
-    private Match match;
-    private Table table;
 
     /**
      * Constructor for StarterImpl.
@@ -87,15 +83,6 @@ public class StarterImpl implements Starter {
         System.out.println("OK");
         this.controller.reset();/* */
         controller.reset();
-    }
-
-    
-    public int diceEvent() {
-       return this.match.diceEvent();
-    }
-
-    public String getWinner() {
-        return this.table.getClubs().get(0).getName();
     }
 
     @Override
