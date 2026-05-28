@@ -40,7 +40,7 @@ public class EndGameView extends DefaultPanelImpl {
         }
 
         //vincitore
-        final JLabel winnerLabel = new JLabel("WINNER:" + this.matchController.getWinner(), SwingConstants.RIGHT);
+        final JLabel winnerLabel = new JLabel("WINNER:" + this.matchController.getLeagueWinner(), SwingConstants.RIGHT);
         winnerLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, 30));
         winnerLabel.setForeground(Color.BLACK);
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);

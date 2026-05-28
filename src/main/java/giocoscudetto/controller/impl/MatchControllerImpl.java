@@ -30,37 +30,58 @@ public class MatchControllerImpl implements MatchController {
         this.controller = controller;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void checkBox() {
         this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).event(this.match);
         notifyViews();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBoxImage(int i) {
         return this.board.getBoxImage(i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getScore() {
         return this.match.getScore().toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getHomePosition() {
         return this.match.getClubHome().getPawn().getPosition();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setKeeperPosition(int i) {
         this.match.setKeeperPosition(i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getGuestPosition() {
         return this.match.getClubAway().getPawn().getPosition();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean kickPenalty() {
         final int oldGuestScore = this.match.getScore().getGuestScore();
@@ -69,11 +90,17 @@ public class MatchControllerImpl implements MatchController {
         return (this.match.getScore().getGuestScore() != oldGuestScore || this.match.getScore().getHomeScore() != oldHomeScore);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCurrentPlayer() {
         return this.match.getCurrentPlayer().getName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int move() {
         int resultDice = this.match.rollDice();
@@ -86,16 +113,25 @@ public class MatchControllerImpl implements MatchController {
         return resultDice;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Table getTable(){
         return this.table;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
         return this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).getDescription();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setMatch(){
         this.fixture = controller.getFixture();
@@ -104,12 +140,17 @@ public class MatchControllerImpl implements MatchController {
         notifyViews();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getGameMode() {
         return this.match.getGameMode();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void gameModeFinished() {
         this.match.setGameMode(Match.GameMode.NONE);
@@ -117,16 +158,25 @@ public class MatchControllerImpl implements MatchController {
         notifyViews();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addObserver(final GameObserver ob) {
         this.observers.add(ob);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void removeObserver(final GameObserver ob) {
         this.observers.remove(ob);
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void notifyViews() {
         for (GameObserver ob : observers) {
@@ -134,32 +184,50 @@ public class MatchControllerImpl implements MatchController {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getHomePawnRGB() {
         return this.match.getClubHome().getPawn().getPawnRGB();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getGuestPawnRGB() {
         return this.match.getClubAway().getPawn().getPawnRGB();
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isLastBox(){
         return this.match.getCurrentPlayer().getPawn().getPosition() == 32;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void lastBox(){
         this.fixture.setScore(match, this.match.getScore());
         System.out.println (this.fixture.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isLastMatch(){
         return this.fixture.seeNextMatch(this.match)==null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override 
     public void setPositionsZero(){
         for (Club club : this.controller.getClubs()) {
@@ -168,6 +236,9 @@ public class MatchControllerImpl implements MatchController {
         notifyViews();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addPoints(){
         if(this.match.getScore().getHomeScore()==this.match.getScore().getGuestScore()){
@@ -183,42 +254,67 @@ public class MatchControllerImpl implements MatchController {
         
     }
 
-    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int diceEvent() {
        return this.match.diceEvent();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getHomeName() {
         return this.match.getClubHome().getName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getGuestName() {
         return this.match.getClubAway().getName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setHelpFlag(final boolean selected) {
         this.helpFlag = selected;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isHelpFlag() {
         return this.helpFlag;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBoxName() {
         return this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).getName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBoxDescript() {
         return this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).getDescription();
     }
 
-    public String getWinner() {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getLeagueWinner() {
         return this.table.getClubs().get(0).getName();
     }
 

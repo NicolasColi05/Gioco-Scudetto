@@ -3,8 +3,6 @@ package giocoscudetto.controller.api;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.view.api.GameObserver;
 
-import javax.swing.table.TableModel;
-
 public interface MatchController {
 
     /**
@@ -69,21 +67,19 @@ public interface MatchController {
     int move();
 
     /**
-     * when called this method returns the fixture
-     * 
      * @return the table
      */
     Table getTable();
 
     /**
-     * this method is for get the description of the current box.
+     * This method is for get the description of the current box.
       *
      * @return a string that contains the description of the current box.
      */
     String getDescription();
 
     /**
-     * this method sets the match with the next fixture match
+     * This method sets the match with the next fixture match
      * 
      */
 	void setMatch();
@@ -96,38 +92,87 @@ public interface MatchController {
 
     void removeObserver(GameObserver ob);
 
+    /**
+     * 
+     * @return the RGB of the home team pawn.
+     */
     int getHomePawnRGB();
 
+    /**
+     * 
+     * @return the RGB of the guest team pawn.
+     */
     int getGuestPawnRGB();
 
+    /**
+     * @return true if the current box is the last one, false otherwise.
+     */
     boolean isLastBox();
 
+    /**
+     * This method is called when the last box is reached and sets the score of the current match in the fixture.
+     */
     void lastBox();
 
+    /**
+     * @return true if the current match is the last one of the fixture, false otherwise.
+     */
     boolean isLastMatch();
 
+    /**
+     * This method sets the positions of all pawns to zero.
+     */
     void setPositionsZero();
 
+    /**
+     * This method adds the points to the clubs at the end of the match.
+     */
     void addPoints();
-
-    TableModel getLeagueTableModel();
-
-    String getWinner();
     
+    /**
+     * @return the match dice event.
+     */
     int diceEvent();
 
+    /**
+     * @return the name of the home team.
+     */
     String getHomeName();
 
+    /**
+     * @return the name of the guest team.
+     */
     String getGuestName();
 
+    /**
+     * Set the help flag to the value of selected.
+     * @param selected the value to set the help flag to.
+     */
     void setHelpFlag(boolean selected);
 
+    /**
+     * @return true if the help flag is set, false otherwise.
+     */
     boolean isHelpFlag();
 
+    /**
+     * Notify all observers of a state change.
+     */
     void notifyViews();
 
+    /**
+     * @return the name of the current box.
+     */
     String getBoxName();
 
+    /**
+     * @return the description of the current box.
+     */
     String getBoxDescript();
+
+    /**
+     * @return the name of the league winner.
+     */
+    String getLeagueWinner();
 
 }
