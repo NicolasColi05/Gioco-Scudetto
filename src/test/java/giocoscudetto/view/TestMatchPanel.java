@@ -35,12 +35,11 @@ public class TestMatchPanel extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); //NOPMD
         this.setSize(900, 700); //NOPMD
 
-        final CreateUpdateController controller = new CreateUpdateControllerImpl();
-        controller.createClubs(List.of("Inter", "Milan"), List.of(0, 0xFF0000));
+        final CreateUpdateController createUpdateController = new CreateUpdateControllerImpl();
+        createUpdateController.createClubs(List.of("Inter", "Milan"), List.of(0, 0xFF0000));
 
         final ViewManager viewManager = new ViewManagerImpl();
-        final MatchController matchController = new MatchControllerImpl(controller);
-        final CreateUpdateController createUpdateController = new CreateUpdateControllerImpl();
+        final MatchController matchController = new MatchControllerImpl(createUpdateController);
         final Starter starter = new StarterImpl(viewManager);
         matchController.setMatch();
 
