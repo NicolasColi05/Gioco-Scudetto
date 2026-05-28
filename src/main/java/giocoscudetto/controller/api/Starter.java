@@ -23,12 +23,6 @@ public interface Starter {
 
     //void removeObserver(GameObserver ob);
 
-    void resetFixture();
-
-    void resetTable();
-
     //void notifyViews();
-
-    void restartLeague();
 
 }

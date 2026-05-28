@@ -1,14 +1,8 @@
 package giocoscudetto.controller.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.SwingUtilities;
 
-import giocoscudetto.controller.api.CreateUpdateController;
-import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.view.api.ViewManager;
 
 
@@ -18,19 +12,14 @@ import giocoscudetto.view.api.ViewManager;
 public class StarterImpl implements Starter {
 
     private final ViewManager viewManager;
-    private final CreateUpdateController controller;
-    private final MatchController matchController;
-    private Fixtures fixture;
 
     /**
      * Constructor for StarterImpl.
      * 
      * @param manager the view manager to use for the controller.
      */
-    public StarterImpl(final ViewManager manager, final CreateUpdateController controller, final MatchController matchController) {
+    public StarterImpl(final ViewManager manager) {
         this.viewManager = manager;
-        this.controller = controller;
-        this.matchController = matchController;
     }
 
     @Override
@@ -65,39 +54,5 @@ public class StarterImpl implements Starter {
             ob.updateState();
         }
     }*/
-
-    @Override
-    public void resetFixture(){
-        this.fixture = this.controller.getFixture();
-        this.fixture.resetFixture();
-        System.out.println(this.fixture.toString());
-        System.out.println("OK");
-        this.controller.reset();
-        
-    }
-
-    @Override
-    public void resetTable(){
-        /*this.table.reset();
-        System.out.println(this.table.toString());
-        System.out.println("OK");
-        this.controller.reset();/* */
-        controller.reset();
-    }
-
-    @Override
-    public void restartLeague(){
-        List<Club> clubs = controller.getClubs();
-        List<Integer> pawns = new ArrayList<>();
-        List<String> clubsname = new ArrayList<>();
-        for (Club club : clubs) {
-            pawns.add(club.getPawn().getPawnRGB());
-            clubsname.add(club.getName());
-        }
-        this.matchController.setPositionsZero();
-        this.resetFixture();
-        this.resetTable();
-        controller.createClubs(clubsname,pawns);
-    }
 
 }
