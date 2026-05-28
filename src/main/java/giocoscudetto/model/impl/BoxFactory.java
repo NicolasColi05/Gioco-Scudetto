@@ -22,7 +22,7 @@ import giocoscudetto.model.impl.boxes.SuspendMatchBox;
  * it is used to create the boxes for each position of the board.
  */
 public class BoxFactory {
-    
+
     /**
      * This method creates a box for the given position of the board.
      * 
