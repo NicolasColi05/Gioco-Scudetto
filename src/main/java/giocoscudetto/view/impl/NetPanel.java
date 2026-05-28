@@ -192,28 +192,28 @@ public class NetPanel extends DefaultPanelImpl {
 
     private void checkButtons(final int position) {
         switch (position) {
-            case 1:
+            case BOTTON1_POS:
                 button1.setEnabled(false);
                 button6.setEnabled(false);
                 button3.setEnabled(false);
                 break;
-            case 2:
+            case BOTTON2_POS:
                 button2.setEnabled(false);
                 break;
-            case 3:
+            case BOTTON3_POS:
                 button3.setEnabled(false);
                 button1.setEnabled(false);
                 button4.setEnabled(false);
                 break;
-            case 4:
+            case BOTTON4_POS:
                 button4.setEnabled(false);
                 button6.setEnabled(false);
                 button3.setEnabled(false);
                 break;
-            case 5:
+            case BOTTON5_POS:
                 button5.setEnabled(false);
                 break;
-            case 6:
+            case BOTTON6_POS:
                 button6.setEnabled(false);
                 button1.setEnabled(false);
                 button4.setEnabled(false);

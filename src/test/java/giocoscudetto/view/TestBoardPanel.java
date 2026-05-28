@@ -22,6 +22,7 @@ import giocoscudetto.controller.impl.MatchControllerImpl;
 public class TestBoardPanel extends JFrame {
 
     private static final long serialVersionUID = 1L;
+
     /**
      * Initializes the test frame with a BoardPanel.
      * 

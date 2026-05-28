@@ -25,6 +25,7 @@ import giocoscudetto.view.impl.ViewManagerImpl;
 public class TestMatchPanel extends JFrame {
 
     private static final long serialVersionUID = 1L;
+
     /**
      * Initializes the test frame with a MatchPanel.
      *

@@ -59,14 +59,14 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
 
     private final ImageBoardLoader imageLoaded;
     private final MatchController matchController;
-    private volatile boolean checkBoxDone = false;
-    private int animatedHomePos = 0;
-    private int animatedGuestPos = 0;
-    private int boardSizeh;
-    private int boardSizew;
-    private int boxW;
-    private int boxH;
     private final Thread animationThread;
+    private volatile boolean checkBoxDone;
+    private volatile int boardSizeh;
+    private volatile int boardSizew;
+    private volatile int boxW;
+    private volatile int boxH;
+    private int animatedHomePos;
+    private int animatedGuestPos;
 
     /**
      * Constructor of the BoardPanel class.
@@ -121,8 +121,8 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         boolean wasAnimating = false;
         while (true) {
             try {
-                int targetHome = matchController.getHomePosition();
-                int targetGuest = matchController.getGuestPosition();
+                final int targetHome = matchController.getHomePosition();
+                final int targetGuest = matchController.getGuestPosition();
 
                 final boolean homeMoving = animatedHomePos != targetHome;
                 final boolean guestMoving = animatedGuestPos != targetGuest;
@@ -143,8 +143,10 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
                         wasAnimating = false;
 
                         if (!this.checkBoxDone) {
-                            if(this.matchController.isHelpFlag()) {
-                            JOptionPane.showMessageDialog(this,this.matchController.getBoxDescript(),"Event of " + this.matchController.getBoxName(),JOptionPane.INFORMATION_MESSAGE); 
+                            if (this.matchController.isHelpFlag()) {
+                            JOptionPane.showMessageDialog(this, this.matchController.getBoxDescript(),
+                                                            "Event of " + this.matchController.getBoxName(), 
+                                                            JOptionPane.INFORMATION_MESSAGE); 
                             }
                             this.checkBoxDone = true;
                             this.matchController.checkBox();
@@ -168,7 +170,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         this.checkBoxDone = false;
     }
 
-    private void drawAllPawns(Graphics2D g2d) {
+    private void drawAllPawns(final Graphics2D g2d) {
         this.drawPawn(g2d, new Color(this.matchController.getHomePawnRGB()), this.animatedHomePos, OFFSET_HOME_PAWN);
         this.drawPawn(g2d, new Color(this.matchController.getGuestPawnRGB()), this.animatedGuestPos, OFFSET_GUEST_PAWN);
 
@@ -243,7 +245,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         g2d.drawString("GIOCO DELLO SCUDETTO", x + x / TITLE_X_DIVISOR, y * 2);
 
         g2d.setColor(Color.black);
-        g2d.setFont(new Font("Boh", Font.BOLD, x/3));
+        g2d.setFont(new Font("Boh", Font.BOLD, x / 3));
         g2d.drawString("SCORE", center - g2d.getFontMetrics().stringWidth("SCORE") / 2, scoreY);
         g2d.drawString(this.matchController.getScore(), scoreTextX, scoreTextY);
 

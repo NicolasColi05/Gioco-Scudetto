@@ -22,11 +22,15 @@ public interface Scoreboard {
 
   /**
    * this method sets the score of the home team.
+   * 
+   * @param goals the score of the home team.
    */
   void setHomeScore(int goals);
 
   /**
    * this method sets the score of the guest team.
+   * 
+   * @param goals the score of the guest team.
    */
   void setGuestScore(int goals);
 

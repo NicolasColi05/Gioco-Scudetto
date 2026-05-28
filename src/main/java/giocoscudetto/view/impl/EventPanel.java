@@ -30,6 +30,8 @@ public class EventPanel extends DefaultPanelImpl {
     private static final int DICE_GAP = 10;
     private static final int BOUND = 7;
     private static final int DELAY = 80;
+    private static final int FREE_KICK_GOAL = 7;
+    private static final int CORNER_GOAL = 1;
 
     /**
      * Enum representing the type of event.
@@ -131,13 +133,13 @@ public class EventPanel extends DefaultPanelImpl {
         dice2Label.setText(String.valueOf(this.controller.diceEvent()));
 
         if (EventType.FREE_KICK == currentType) {
-            if (Integer.parseInt(dice1Label.getText()) + Integer.parseInt(dice2Label.getText()) == 7) {
+            if (Integer.parseInt(dice1Label.getText()) + Integer.parseInt(dice2Label.getText()) == FREE_KICK_GOAL) {
                 outcomeLabel.setText("GOAL");
             } else {
                 outcomeLabel.setText("NO GOAL");
             }
         } else if (EventType.CORNER == currentType) {
-            if (Integer.parseInt(dice1Label.getText()) == 1 || Integer.parseInt(dice2Label.getText()) == 1) {
+            if (Integer.parseInt(dice1Label.getText()) == CORNER_GOAL || Integer.parseInt(dice2Label.getText()) == CORNER_GOAL) {
                 outcomeLabel.setText("GOAL");
             } else {
                 outcomeLabel.setText("NO GOAL");

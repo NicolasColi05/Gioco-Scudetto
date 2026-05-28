@@ -53,7 +53,8 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
      * @throws IOException if loading an image fails.
      */
     @SuppressFBWarnings
-    public MatchPanel(final Starter controller, final ViewManager viewManager, final MatchController matchController) throws IOException {
+    public MatchPanel(final Starter controller, final ViewManager viewManager,
+                     final MatchController matchController) throws IOException {
 
         final BoardPanel boardJPanel = new BoardPanel(matchController);
         boardJPanel.start();
@@ -70,11 +71,11 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.helpBox.setSelected(false);
 
         this.helpBox.addActionListener(e -> { 
-            this.matchController.setHelpFlag(this.helpBox.isSelected());   
+            this.matchController.setHelpFlag(this.helpBox.isSelected());
         });
 
         this.eventPanel = new EventPanel(this.matchController);
-        eventPanel.setMaximumSize(new Dimension(DIM_X, DIM_Y ));
+        eventPanel.setMaximumSize(new Dimension(DIM_X, DIM_Y));
 
         final JPanel helpPanel = new JPanel();
         helpPanel.setBackground(BACKGROUND_COLOR);
@@ -87,7 +88,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.setPreferredSize(new Dimension(PANEL_W, 0));
 
         final JPanel turnPanel = new JPanel();
-        turnLabel = new JLabel("Turn of :"+ this.matchController.getCurrentPlayer());
+        turnLabel = new JLabel("Turn of :" + this.matchController.getCurrentPlayer());
         turnPanel.setBackground(BACKGROUND_COLOR);
         turnLabel.setFont(new Font("Turn", Font.BOLD, TURN_FONT_SIZE));
         turnPanel.add(turnLabel);
@@ -116,8 +117,8 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
         continueButton.addActionListener(e -> { 
             if (this.matchController.isLastMatch()) {
-                EndGameView EndGameView = new EndGameView(this.controller, this.matchController);
-                this.viewManager.addView(EndGameView, "end");
+                final EndGameView endGameView = new EndGameView(this.controller, this.matchController);
+                this.viewManager.addView(endGameView, "end");
                 this.matchController.addPoints();
                 this.controller.changeView("end");
             } else {
@@ -145,7 +146,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     @Override
     public void updateState() {
         SwingUtilities.invokeLater(() -> {
-            turnLabel.setText("Turn of :"+ this.matchController.getCurrentPlayer());
+            turnLabel.setText("Turn of :" + this.matchController.getCurrentPlayer());
 
             switch (this.matchController.getGameMode()) {
                 case "PENALTY": 
@@ -170,7 +171,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
             continueButton.setVisible(this.matchController.isLastBox());
             continueButton.setEnabled(this.matchController.isLastBox());
-            if(this.matchController.isLastBox()){
+            if (this.matchController.isLastBox()) {
                 this.matchController.lastBox();
             }
         });
