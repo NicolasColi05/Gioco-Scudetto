@@ -58,7 +58,7 @@ public final class GameStarter {
         //viewManager.addView(MatchPanel, "match");
 
         //Creating the MainFrame
-        final MainFrame mainFrame = new MainFrame(viewManager);
+        new MainFrame(viewManager);
 
         //Starting game
         viewChangerController.startGame();
