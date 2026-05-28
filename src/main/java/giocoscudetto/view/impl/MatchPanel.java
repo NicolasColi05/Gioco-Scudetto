@@ -56,6 +56,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     public MatchPanel(final Starter controller, final ViewManager viewManager, final MatchController matchController) throws IOException {
 
         final BoardPanel boardJPanel = new BoardPanel(matchController);
+        boardJPanel.start();
         this.bottomDice = new DicePanel(matchController, boardJPanel);
         this.netPanel = new NetPanel(matchController);
         this.controller = controller;
