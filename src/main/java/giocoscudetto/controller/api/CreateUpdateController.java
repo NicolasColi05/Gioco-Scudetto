@@ -64,10 +64,23 @@ public interface CreateUpdateController {
      */
     Fixtures getFixture();
 
+    /**
+     * Method to reset everything and start a new league with new clubs.
+     */
     void reset();
 
+    /**
+     * @return the fixture table model.
+     */
     FixtureModel getFixtureTableModel();
 
+    /**
+     * @return the league table model.
+     */
     TableModel getLeagueTableModel();
 
+    /**
+     * Method to restart the league with the same clubs and colors.
+     */
+    void restartLeague();
 }

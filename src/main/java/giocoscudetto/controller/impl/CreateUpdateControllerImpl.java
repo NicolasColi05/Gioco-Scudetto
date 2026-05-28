@@ -1,5 +1,6 @@
 package giocoscudetto.controller.impl;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -109,6 +110,9 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
         return this.fixture;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void reset(){
         this.clubs.clear();
@@ -116,16 +120,37 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
         this.table.reset();
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FixtureModel getFixtureTableModel(){
         FixtureModel model = new FixtureModel(this.getFixture());
         return model;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TableModel getLeagueTableModel(){
         this.table.updateClubRank();
-        TableModel model = new TableModel(this.getTable());
-        return model;
+        return new TableModel(this.getTable());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void restartLeague(){
+        List<Club> clubs = this.getClubs();
+        List<Integer> pawns = new ArrayList<>();
+        List<String> clubsname = new ArrayList<>();
+        for (Club club : clubs) {
+            pawns.add(club.getPawn().getPawnRGB());
+            clubsname.add(club.getName());
+        }
+        this.reset();
+        this.createClubs(clubsname,pawns);
     }
 }
