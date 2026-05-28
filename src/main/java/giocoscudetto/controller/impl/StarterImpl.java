@@ -27,7 +27,7 @@ public class StarterImpl implements Starter {
      * 
      * @param manager the view manager to use for the controller.
      */
-    public StarterImpl(final ViewManager manager, CreateUpdateController controller, MatchController matchController) {
+    public StarterImpl(final ViewManager manager, final CreateUpdateController controller, final MatchController matchController) {
         this.viewManager = manager;
         this.controller = controller;
         this.matchController = matchController;
