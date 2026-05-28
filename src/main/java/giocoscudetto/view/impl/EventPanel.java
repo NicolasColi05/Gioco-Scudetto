@@ -20,6 +20,7 @@ import giocoscudetto.controller.api.MatchController;
  */
 public class EventPanel extends DefaultPanelImpl {
 
+    private static final long serialVersionUID = 1L;
     private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
     private static final String FONT_NAME = "Arial";
     private static final String QUESTION_MARK = "?";
@@ -56,12 +57,12 @@ public class EventPanel extends DefaultPanelImpl {
     @SuppressFBWarnings
     public EventPanel(final MatchController controller) {
         this.controller = controller;
-        buildUI();
+        buildUI(); //NOPMD
         this.setBackground(BACKGROUND_COLOR); //NOPMD
     }
 
     private void buildUI() {
-        setLayout(new BorderLayout()); //NOPMD
+        setLayout(new BorderLayout());
 
         titleLabel.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
         titleLabel.setText(getTitleType(currentType));

@@ -23,7 +23,6 @@ import giocoscudetto.controller.api.MatchController;
  */
 public class NetPanel extends DefaultPanelImpl {
 
-    // CHECKSTYLE: MagicNumber OFF
     private static final long serialVersionUID = 1L;
     private static final Color BACKGROUND_COLOR = new Color(0xC8E6C9);
     private static final int ROWS = 2;

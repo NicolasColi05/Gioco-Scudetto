@@ -32,7 +32,7 @@ class TestPenaltyBox {
     void setUp() {
         match = new MatchImpl(clubHome, clubAway);
         penaltyBox = new PenaltyBox(5);
-        if (!match.getCurrentPlayer().equals(clubHome)){
+        if (!match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }

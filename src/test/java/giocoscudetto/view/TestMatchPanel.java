@@ -24,14 +24,15 @@ import giocoscudetto.view.impl.ViewManagerImpl;
  */
 public class TestMatchPanel extends JFrame {
 
+    private static final long serialVersionUID = 1L;
     /**
      * Initializes the test frame with a MatchPanel.
      *
      * @throws IOException if loading an image fails.
      */
     public TestMatchPanel() throws IOException {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(900, 700);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE); //NOPMD
+        this.setSize(900, 700); //NOPMD
 
         final CreateUpdateController controller = new CreateUpdateControllerImpl();
         controller.createClubs(List.of("Inter", "Milan"), List.of(0, 0xFF0000));
@@ -42,9 +43,9 @@ public class TestMatchPanel extends JFrame {
         matchController.setMatch();
 
         final MatchPanel matchPanel = new MatchPanel(starter, viewManager, matchController);
-        this.setContentPane(matchPanel);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.setContentPane(matchPanel); //NOPMD
+        this.setLocationRelativeTo(null); //NOPMD
+        this.setVisible(true); //NOPMD
     }
 
     /**
@@ -57,7 +58,7 @@ public class TestMatchPanel extends JFrame {
             try {
                 new TestMatchPanel();
             } catch (final IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(); //NOPMD
             }
         });
     }

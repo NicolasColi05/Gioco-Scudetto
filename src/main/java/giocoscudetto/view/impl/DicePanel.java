@@ -41,7 +41,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
     public DicePanel(final MatchController controller, final BoardPanel board) {
 
         this.rollDiceButton = new JButton("Roll Dice");
-        this.controller = controller; //NOPMD
+        this.controller = controller;
         this.controller.addObserver(this);
         this.board = board;
         this.setLayout(new BorderLayout()); //NOPMD
