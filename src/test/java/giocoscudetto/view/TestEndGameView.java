@@ -16,7 +16,7 @@ public TestEndGameView() {
     var cr=new CreateUpdateControllerImpl();
     cr.createClubs(List.of("Milan","Juve","Roma","Inter"), List.of(255,128,10,255,128,10));
     var matchController = new MatchControllerImpl(cr);
-    var starter=new StarterImpl(null, cr, matchController);
+    var starter=new StarterImpl(null);
 
     cr.getTable().getClubs().get(0).incrementPoints(10);
     cr.getTable().getClubs().get(0).changeNetDiffs(12, 2);
@@ -35,7 +35,7 @@ public TestEndGameView() {
     
     matchController.setMatch();
     
-    JPanel pa = new giocoscudetto.view.impl.EndGameView(starter, matchController);
+    JPanel pa = new giocoscudetto.view.impl.EndGameView(starter, cr, matchController);
     this.setContentPane(pa);
      this.setVisible(true);
     }

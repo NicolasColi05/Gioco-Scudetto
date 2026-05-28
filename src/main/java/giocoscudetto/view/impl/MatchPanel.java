@@ -1,5 +1,6 @@
 package giocoscudetto.view.impl;
 
+import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.GameObserver;
@@ -36,6 +37,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private static final int TURN_FONT_SIZE = 20;
     private final Starter controller;
     private final ViewManager viewManager;
+    private final CreateUpdateController createUpdateController;
     private final MatchController matchController;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
@@ -53,7 +55,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
      * @throws IOException if loading an image fails.
      */
     @SuppressFBWarnings
-    public MatchPanel(final Starter controller, final ViewManager viewManager,
+    public MatchPanel(final Starter controller, final ViewManager viewManager, final CreateUpdateController createUpdateController,
                      final MatchController matchController) throws IOException {
 
         final BoardPanel boardJPanel = new BoardPanel(matchController);
@@ -62,6 +64,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.netPanel = new NetPanel(matchController);
         this.controller = controller;
         this.viewManager = viewManager;
+        this.createUpdateController = createUpdateController;
         this.matchController = matchController;
         this.setLayout(new BorderLayout()); //NOPMD
         this.setBackground(BACKGROUND_COLOR); //NOPMD
@@ -117,7 +120,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
         continueButton.addActionListener(e -> { 
             if (this.matchController.isLastMatch()) {
-                final EndGameView endGameView = new EndGameView(this.controller, this.matchController);
+                final EndGameView endGameView = new EndGameView(this.controller, this.createUpdateController, this.matchController);
                 this.viewManager.addView(endGameView, "end");
                 this.matchController.addPoints();
                 this.controller.changeView("end");

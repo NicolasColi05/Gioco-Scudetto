@@ -41,7 +41,7 @@ public final class GameStarter {
         final MatchController matchController = new MatchControllerImpl(controller);
 
         //Creating the controller to change the panel
-        final Starter viewChangerController = new StarterImpl(viewManager, controller, matchController);
+        final Starter viewChangerController = new StarterImpl(viewManager);
 
         //Creating the Views that we will use during the game
         final HomePanel homeView = new HomePanel(viewChangerController);

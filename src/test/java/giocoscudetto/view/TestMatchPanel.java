@@ -40,10 +40,11 @@ public class TestMatchPanel extends JFrame {
 
         final ViewManager viewManager = new ViewManagerImpl();
         final MatchController matchController = new MatchControllerImpl(controller);
-        final Starter starter = new StarterImpl(viewManager, controller, matchController);
+        final CreateUpdateController createUpdateController = new CreateUpdateControllerImpl();
+        final Starter starter = new StarterImpl(viewManager);
         matchController.setMatch();
 
-        final MatchPanel matchPanel = new MatchPanel(starter, viewManager, matchController);
+        final MatchPanel matchPanel = new MatchPanel(starter, viewManager, createUpdateController, matchController);
         this.setContentPane(matchPanel); //NOPMD
         this.setLocationRelativeTo(null); //NOPMD
         this.setVisible(true); //NOPMD

@@ -115,7 +115,7 @@ public class PreMatchView extends DefaultPanelImpl {
             if (count == ZERO) {
             MatchPanel matchPanel = null;
             try {
-                matchPanel = new MatchPanel(this.starter, this.viewManager, this.matchController);
+                matchPanel = new MatchPanel(this.starter, this.viewManager, this.controller, this.matchController);
             } catch (final IOException e1) {
                 e1.printStackTrace(); //NOPMD
             }

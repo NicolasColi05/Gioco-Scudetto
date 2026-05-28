@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.border.TitledBorder;
 
+import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 
@@ -16,6 +17,7 @@ public class EndGameView extends DefaultPanelImpl {
     
     private final Starter controller;
     private final MatchController matchController;
+    private final CreateUpdateController createUpdateController;
     private final Image image;
     
 
@@ -23,8 +25,9 @@ public class EndGameView extends DefaultPanelImpl {
     private final int minimumWidht = screenSize.width / 2;
     private static final int BUTTON_BORDER = 5;
 
-    public EndGameView(final Starter controller, final MatchController matchController) {
+    public EndGameView(final Starter controller,final CreateUpdateController createUpdateController, final MatchController matchController) {
         this.controller = controller;
+        this.createUpdateController = createUpdateController;
         this.matchController = matchController;
         this.setLayout(new BorderLayout());
 
@@ -43,7 +46,7 @@ public class EndGameView extends DefaultPanelImpl {
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         //tabella
-        final JTable standingsTable = new JTable(this.matchController.getLeagueTableModel());
+        final JTable standingsTable = new JTable(this.createUpdateController.getLeagueTableModel());
         standingsTable.setEnabled(false);
         standingsTable.setOpaque(false);
         standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / 70));
@@ -79,14 +82,13 @@ public class EndGameView extends DefaultPanelImpl {
 
         //torna al menu
         menuButton.addActionListener(e -> {
-            this.controller.resetFixture();
-            this.controller.resetTable();
+            this.createUpdateController.reset();
             this.controller.changeView("club");
         });
 
         //ricomincia
         restartButton.addActionListener(e -> {
-            this.controller.restartLeague();
+            this.createUpdateController.restartLeague();
             this.controller.changeView("pre");
         });
 
