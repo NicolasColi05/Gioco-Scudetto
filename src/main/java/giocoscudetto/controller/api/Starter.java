@@ -1,9 +1,5 @@
 package giocoscudetto.controller.api;
 
-import giocoscudetto.model.api.Table;
-import giocoscudetto.view.api.GameObserver;
-import javax.swing.table.TableModel;
-
 public interface Starter {
     
     /**
@@ -23,134 +19,16 @@ public interface Starter {
      */
     void closeGame();
 
-    /**
-     * this is a method to check the box and execute the event of the box.
-     */
-    void checkBox();
+    //void addObserver(GameObserver ob);
 
-    /**
-     * this method is for get the image of a box.
-     * 
-     * @param i the index of the box.
-     * @return the image of the box.
-     */
-    String getBoxImage(int i);
-
-    /**
-     *  this method is for get the score of the game.
-     * 
-     * @return a string that contains the score of the game.
-     */
-    String getScore();
- 
-    /**
-     * this method is for get the position of the home team pawn.
-     * 
-     * @return the position of the pawn of the home team.
-     */
-    int getHomePosition();
-
-    /**
-     * this method set the goalkeeper postion in the goalnetimpl.
-     * 
-     * @param i the position occupied by the keeper.
-     */
-    void setKeeperPosition(int i);
-
-    /**
-     * this method is for get the position of the guest team pawn.
-     * 
-     * @return the position of the pawn of the guest team.
-     */
-    int getGuestPosition();
-
-    /**
-     * this method is for kick the penalty and check if it's a goal or not.
-     * 
-     * @return true if it's a goal, false otherwise.
-     */
-    boolean kickPenalty();
-
-    /**
-     * this method is for get the current player,who has to move.
-     * 
-     * @return a string that contains the name of the current player.
-     */
-    String getCurrentPlayer();
-
-    /**
-     * this method is for move the pawn of the current player.
-     * @return 
-     */
-    int move();
-
-    /**
-     * when called this method returns the fixture
-     * 
-     * @return the table
-     */
-    Table getTable();
-
-    /**
-     * this method is for get the description of the current box.
-      *
-     * @return a string that contains the description of the current box.
-     */
-    String getDescription();
-
-    /**
-     * this method sets the match with the next fixture match
-     * 
-     */
-	void setMatch();
-
-    String getGameMode();
-
-    void gameModeFinished();
-
-    void addObserver(GameObserver ob);
-
-    void removeObserver(GameObserver ob);
-
-    int getHomePawnRGB();
-
-    int getGuestPawnRGB();
-
-    boolean isLastBox();
-
-    void lastBox();
-
-    boolean isLastMatch();
-
-    void setPositionsZero();
+    //void removeObserver(GameObserver ob);
 
     void resetFixture();
 
     void resetTable();
 
-    void addPoints();
-
-    TableModel getLeagueTableModel();
-
-    String getWinner();
-    
-    int diceEvent();
-
-    String getHomeName();
-
-    String getGuestName();
-
-    void setHelpFlag(boolean selected);
-
-    boolean isHelpFlag();
-
-    void notifyViews();
-
-    String getBoxName();
-
-    String getBoxDescript();
+    //void notifyViews();
 
     void restartLeague();
 
-    
 }

@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.view.api.GameObserver;
 import giocoscudetto.view.api.ImageBoardLoader;
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 
 /**
  * This class represents the panel where the board is drawn,
@@ -57,27 +57,27 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
     private static final int SLEEP_TIME2 = 50;
 
     private final ImageBoardLoader imageLoaded;
-    private final Starter controller;
-    private volatile boolean checkBoxDone;
-    private int animatedHomePos;
-    private int animatedGuestPos;
-    private volatile int boardSizeh;
-    private volatile int boardSizew;
-    private volatile int boxW;
-    private volatile int boxH;
+    private final MatchController matchController;
+    private volatile boolean checkBoxDone = false;
+    private int animatedHomePos = 0;
+    private int animatedGuestPos = 0;
+    private int boardSizeh;
+    private int boardSizew;
+    private int boxW;
+    private int boxH;
     private final Thread animationThread;
 
     /**
      * Constructor of the BoardPanel class.
      * 
-     * @param controller the controller of the game.
-     * @throws IOException if an error occurs while loading the image in ImageBoardLoaderImpl.
+     * @param matchController the match controller.
+     * @throws IOException if loading an image fails.
      */
-    @SuppressFBWarnings 
-    public BoardPanel(final Starter controller) throws IOException {
-        this.controller = controller; //NOPMD
-        this.controller.addObserver(this);
-        this.imageLoaded = new ImageBoardLoaderImpl(controller);
+    @SuppressFBWarnings
+    public BoardPanel(final MatchController matchController) throws IOException {
+        this.matchController = matchController;
+        this.matchController.addObserver(this); //NOPMD
+        this.imageLoaded = new ImageBoardLoaderImpl(matchController);
         setBackground(BACKGROUND_COLOR); //NOPMD
         this.addComponentListener(new java.awt.event.ComponentAdapter() { //NOPMD
             @Override
@@ -120,8 +120,8 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         boolean wasAnimating = false;
         while (true) {
             try {
-                final int targetHome = controller.getHomePosition();
-                final int targetGuest = controller.getGuestPosition();
+                int targetHome = matchController.getHomePosition();
+                int targetGuest = matchController.getGuestPosition();
 
                 final boolean homeMoving = animatedHomePos != targetHome;
                 final boolean guestMoving = animatedGuestPos != targetGuest;
@@ -142,14 +142,13 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
                         wasAnimating = false;
 
                         if (!this.checkBoxDone) {
-                            if (this.controller.isHelpFlag()) {
-                            JOptionPane.showMessageDialog(this, this.controller.getBoxDescript(), "Event of " 
-                            + this.controller.getBoxName(), JOptionPane.INFORMATION_MESSAGE); 
+                            if(this.matchController.isHelpFlag()) {
+                            JOptionPane.showMessageDialog(this,this.matchController.getBoxDescript(),"Event of " + this.matchController.getBoxName(),JOptionPane.INFORMATION_MESSAGE); 
                             }
                             this.checkBoxDone = true;
-                            this.controller.checkBox();
+                            this.matchController.checkBox();
                         }
-                        this.controller.notifyViews();
+                        this.matchController.notifyViews();
                     }
                     Thread.sleep(SLEEP_TIME2);
                 }
@@ -168,14 +167,9 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         this.checkBoxDone = false;
     }
 
-    /**
-     * This method draws all the pawns of the players.
-     * 
-     * @param g2d the graphics context.
-     */
-    private void drawAllPawns(final Graphics2D g2d) {
-        this.drawPawn(g2d, new Color(this.controller.getHomePawnRGB()), this.animatedHomePos, OFFSET_HOME_PAWN);
-        this.drawPawn(g2d, new Color(this.controller.getGuestPawnRGB()), this.animatedGuestPos, OFFSET_GUEST_PAWN);
+    private void drawAllPawns(Graphics2D g2d) {
+        this.drawPawn(g2d, new Color(this.matchController.getHomePawnRGB()), this.animatedHomePos, OFFSET_HOME_PAWN);
+        this.drawPawn(g2d, new Color(this.matchController.getGuestPawnRGB()), this.animatedGuestPos, OFFSET_GUEST_PAWN);
 
     }
 
@@ -230,10 +224,10 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         final int scoreY = boxH * SCORE_Y_MULTIPLIER;
         final int center = boardSizew / 2;
         final int scoreTextY = y * SCORE_TEXT_Y_MULTIPLIER;
-        final int scoreTextX = center - g2d.getFontMetrics().stringWidth(this.controller.getScore()) / 2;
-        final String homeName = this.controller.getHomeName();
+        final int scoreTextX = center - g2d.getFontMetrics().stringWidth(this.matchController.getScore()) / 2;
+        final String homeName = this.matchController.getHomeName();
         final int homeNameW = g2d.getFontMetrics().stringWidth(homeName);
-        final String guestName = this.controller.getGuestName();
+        final String guestName = this.matchController.getGuestName();
 
         g2d.setColor(BACKGROUND_COLOR);
         g2d.fillRect(x, y, w, h);
@@ -248,17 +242,17 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         g2d.drawString("GIOCO DELLO SCUDETTO", x + x / TITLE_X_DIVISOR, y * 2);
 
         g2d.setColor(Color.black);
-        g2d.setFont(new Font("Boh", Font.BOLD, x / LABEL_FONT_DIVISOR));
+        g2d.setFont(new Font("Boh", Font.BOLD, x/3));
         g2d.drawString("SCORE", center - g2d.getFontMetrics().stringWidth("SCORE") / 2, scoreY);
-        g2d.drawString(this.controller.getScore(), scoreTextX, scoreTextY);
+        g2d.drawString(this.matchController.getScore(), scoreTextX, scoreTextY);
 
         g2d.setColor(Color.BLACK);
         g2d.setFont(new Font("Arial", Font.BOLD, x / LABEL_FONT_DIVISOR));
         g2d.drawString(homeName, scoreTextX - homeNameW - x, scoreTextY);
 
         g2d.setColor(Color.BLACK);
-        g2d.setFont(new Font("Arial", Font.BOLD, x / LABEL_FONT_DIVISOR));
-        g2d.drawString(guestName, center + g2d.getFontMetrics().stringWidth(this.controller.getScore()) + x / NAME_X_MARGIN_DIVISOR, scoreTextY);
+        g2d.setFont(new Font("Arial", Font.BOLD, x / 3));
+        g2d.drawString(guestName, center + g2d.getFontMetrics().stringWidth(this.matchController.getScore()) + x / NAME_X_MARGIN_DIVISOR, scoreTextY);
     }
 
     /**

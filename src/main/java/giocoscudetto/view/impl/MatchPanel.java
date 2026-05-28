@@ -1,5 +1,6 @@
 package giocoscudetto.view.impl;
 
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.GameObserver;
 import giocoscudetto.view.api.ViewManager;
@@ -34,43 +35,45 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     private static final int PANEL_H = 120;
     private static final int TURN_FONT_SIZE = 20;
     private final Starter controller;
+    private final ViewManager viewManager;
+    private final MatchController matchController;
     private final JLabel turnLabel;
     private final NetPanel netPanel;
     private final DicePanel bottomDice;
     private final JButton continueButton;
     private final EventPanel eventPanel;
     private final JCheckBox helpBox;
-    private final ViewManager viewManager;
 
     /**
      * Constructor of the MatchPanel class.
      * 
-     * @param controller the game controller.
-     * @param viewManager the view manager.
-     * @throws IOException if an error occurs while loading the image int the net panel.
+     * @param controller the starter controller to manage the views.
+     * @param viewManager the view manager to switch between views.
+     * @param matchController the match controller to manage the game logic.
+     * @throws IOException if loading an image fails.
      */
     @SuppressFBWarnings
-    public MatchPanel(final Starter controller, final ViewManager viewManager) throws IOException {
+    public MatchPanel(final Starter controller, final ViewManager viewManager, final MatchController matchController) throws IOException {
 
-        final BoardPanel boardJPanel = new BoardPanel(controller);
-        boardJPanel.start();
-        this.bottomDice = new DicePanel(controller, boardJPanel);
-        this.netPanel = new NetPanel(controller);
+        final BoardPanel boardJPanel = new BoardPanel(matchController);
+        this.bottomDice = new DicePanel(matchController, boardJPanel);
+        this.netPanel = new NetPanel(matchController);
         this.controller = controller;
         this.viewManager = viewManager;
+        this.matchController = matchController;
         this.setLayout(new BorderLayout()); //NOPMD
         this.setBackground(BACKGROUND_COLOR); //NOPMD
-        this.controller.addObserver(this);
+        this.matchController.addObserver(this);
         this.add(boardJPanel, BorderLayout.CENTER); //NOPMD
         this.helpBox = new JCheckBox("Help for box");
         this.helpBox.setSelected(false);
 
         this.helpBox.addActionListener(e -> { 
-            this.controller.setHelpFlag(this.helpBox.isSelected());
+            this.matchController.setHelpFlag(this.helpBox.isSelected());   
         });
 
-        this.eventPanel = new EventPanel(controller);
-        eventPanel.setMaximumSize(new Dimension(DIM_X, DIM_Y));
+        this.eventPanel = new EventPanel(this.matchController);
+        eventPanel.setMaximumSize(new Dimension(DIM_X, DIM_Y ));
 
         final JPanel helpPanel = new JPanel();
         helpPanel.setBackground(BACKGROUND_COLOR);
@@ -83,7 +86,7 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.setPreferredSize(new Dimension(PANEL_W, 0));
 
         final JPanel turnPanel = new JPanel();
-        turnLabel = new JLabel("Turn of :" + controller.getCurrentPlayer());
+        turnLabel = new JLabel("Turn of :"+ this.matchController.getCurrentPlayer());
         turnPanel.setBackground(BACKGROUND_COLOR);
         turnLabel.setFont(new Font("Turn", Font.BOLD, TURN_FONT_SIZE));
         turnPanel.add(turnLabel);
@@ -95,7 +98,6 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         this.continueButton = (JButton) createComponent(new JButton("CONTINUE"), getExitFont(), Color.BLACK, null);
         continueButton.setEnabled(false);
         continueButton.setVisible(false);
-
 
         netWrapper.setOpaque(false);
         netWrapper.setAlignmentX(CENTER_ALIGNMENT);
@@ -111,14 +113,14 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
         rightPanel.add(eventPanel);
         rightPanel.add(continueButton);
 
-        continueButton.addActionListener(e -> {
-            if (this.controller.isLastMatch()) {
-                final EndGameView endGameView = new EndGameView(this.controller);
-                this.viewManager.addView(endGameView, "end");
-                this.controller.addPoints();
+        continueButton.addActionListener(e -> { 
+            if (this.matchController.isLastMatch()) {
+                EndGameView EndGameView = new EndGameView(this.controller, this.matchController);
+                this.viewManager.addView(EndGameView, "end");
+                this.matchController.addPoints();
                 this.controller.changeView("end");
             } else {
-                this.controller.addPoints();
+                this.matchController.addPoints();
                 this.controller.changeView("pre");
             }
         });
@@ -142,9 +144,9 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
     @Override
     public void updateState() {
         SwingUtilities.invokeLater(() -> {
-            turnLabel.setText("Turn of :" + controller.getCurrentPlayer());
+            turnLabel.setText("Turn of :"+ this.matchController.getCurrentPlayer());
 
-            switch (this.controller.getGameMode()) {
+            switch (this.matchController.getGameMode()) {
                 case "PENALTY": 
                     netPanel.setButtonsEnabled(true);
                     break;
@@ -165,16 +167,16 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
                     break;
             }
 
-            continueButton.setVisible(controller.isLastBox());
-            continueButton.setEnabled(controller.isLastBox());
-            if (controller.isLastBox()) {
-                this.lastBox();
+            continueButton.setVisible(this.matchController.isLastBox());
+            continueButton.setEnabled(this.matchController.isLastBox());
+            if(this.matchController.isLastBox()){
+                this.matchController.lastBox();
             }
         });
     }
 
     private void lastBox() {
-        controller.lastBox();
+        this.matchController.lastBox();
     }
 
 }

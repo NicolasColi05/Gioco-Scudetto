@@ -7,10 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import giocoscudetto.controller.api.CreateUpdateController;
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
-import giocoscudetto.controller.impl.StarterImpl;
 import giocoscudetto.view.impl.BoardPanel;
+import giocoscudetto.controller.impl.MatchControllerImpl;
 
 /*
  * CHECKSTYLE: MagicNumber OFF
@@ -23,7 +23,8 @@ public class TestBoardPanel extends JFrame {
 
     /**
      * Initializes the test frame with a BoardPanel.
-     * @throws IOException
+     * 
+     * @throws IOException if loading an image fails.
      */
     public TestBoardPanel() throws IOException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +33,7 @@ public class TestBoardPanel extends JFrame {
         final CreateUpdateController controller = new CreateUpdateControllerImpl();
         controller.createClubs(List.of("Inter", "Milan"), List.of(0, 0xFF0000));
 
-        final Starter starter = new StarterImpl(null, controller);
+        final MatchController starter = new MatchControllerImpl(controller);
         starter.setMatch();
 
         final BoardPanel boardPanel = new BoardPanel(starter);

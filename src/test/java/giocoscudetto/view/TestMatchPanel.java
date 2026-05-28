@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import giocoscudetto.controller.api.CreateUpdateController;
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
 import giocoscudetto.view.api.ViewManager;
+import giocoscudetto.controller.impl.MatchControllerImpl;
 import giocoscudetto.view.impl.MatchPanel;
 import giocoscudetto.view.impl.ViewManagerImpl;
 
@@ -35,10 +37,11 @@ public class TestMatchPanel extends JFrame {
         controller.createClubs(List.of("Inter", "Milan"), List.of(0, 0xFF0000));
 
         final ViewManager viewManager = new ViewManagerImpl();
-        final Starter starter = new StarterImpl(viewManager, controller);
-        starter.setMatch();
+        final MatchController matchController = new MatchControllerImpl(controller);
+        final Starter starter = new StarterImpl(viewManager, controller, matchController);
+        matchController.setMatch();
 
-        final MatchPanel matchPanel = new MatchPanel(starter, viewManager);
+        final MatchPanel matchPanel = new MatchPanel(starter, viewManager, matchController);
         this.setContentPane(matchPanel);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

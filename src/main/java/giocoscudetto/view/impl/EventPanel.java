@@ -13,14 +13,13 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 
 /**
  * This class represents the panel where the events of the game are resolved.
  */
 public class EventPanel extends DefaultPanelImpl {
 
-    // CHECKSTYLE: MagicNumber OFF
     private static final Color BACKGROUND_COLOR = new Color(223, 189, 138);
     private static final String FONT_NAME = "Arial";
     private static final String QUESTION_MARK = "?";
@@ -38,7 +37,7 @@ public class EventPanel extends DefaultPanelImpl {
         FREE_KICK, CORNER, RESULT
     }
 
-    private final Starter controller;
+    private final MatchController controller;
     private final JLabel dice1Label = new JLabel(QUESTION_MARK, SwingConstants.CENTER);
     private final JLabel dice2Label = new JLabel(QUESTION_MARK, SwingConstants.CENTER);
     private final JLabel outcomeLabel = new JLabel("", SwingConstants.CENTER);
@@ -55,7 +54,7 @@ public class EventPanel extends DefaultPanelImpl {
      * @param controller the game controller.
      */
     @SuppressFBWarnings
-    public EventPanel(final Starter controller) {
+    public EventPanel(final MatchController controller) {
         this.controller = controller;
         buildUI();
         this.setBackground(BACKGROUND_COLOR); //NOPMD

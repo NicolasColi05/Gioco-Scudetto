@@ -12,7 +12,7 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.view.api.GameObserver;
 
 /**
@@ -26,7 +26,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
     private static final long TIMER_WAIT = 700;
     private static final int TIMER_DELAY = 80;
     private static final int BOUND = 13;
-    private final Starter controller;
+    private final MatchController controller;
     private final JLabel messageLabel;
     private final BoardPanel board;
     private final JButton rollDiceButton;
@@ -38,7 +38,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
      * @param board the board panel to update the positions of the players after the dice roll.
      */
     @SuppressFBWarnings
-    public DicePanel(final Starter controller, final BoardPanel board) {
+    public DicePanel(final MatchController controller, final BoardPanel board) {
 
         this.rollDiceButton = new JButton("Roll Dice");
         this.controller = controller; //NOPMD
@@ -57,7 +57,7 @@ public class DicePanel extends DefaultPanelImpl implements GameObserver {
 
         rollDiceButton.addActionListener(e -> {
             this.board.resetCheckBoxDone();
-            this.rollDiceButton.setEnabled(false);
+            //this.rollDiceButton.setEnabled(false);
             this.animateAndResolve();
         });
     }

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -41,7 +40,7 @@ public class BotView extends DefaultPanelImpl {
         this.setLayout(new BorderLayout());
 
         try {
-            this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/bot-background.jpeg"));
+            this.image = ImageIO.read(getClass().getResource("/images/backgrounds/bot-background.jpeg"));
         } catch (final IOException e) {
             throw new IllegalStateException("Failed to load image", e);
         }

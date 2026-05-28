@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 
 /**
  * This class represents the panel where the penalty is resolved.
@@ -37,7 +37,7 @@ public class NetPanel extends DefaultPanelImpl {
     private static final int BOTTON5_POS = 5;
     private static final int BOTTON6_POS = 6;
 
-    private final Starter controller;
+    private final MatchController controller;
     private final BufferedImage image;
     private final JButton button1 = new JButton("1");
     private final JButton button2 = new JButton("2");
@@ -56,7 +56,7 @@ public class NetPanel extends DefaultPanelImpl {
      * @throws IOException if an error occurs while loading the image.
      */
     @SuppressFBWarnings
-    public NetPanel(final Starter controller) throws IOException {
+    public NetPanel(final MatchController controller) throws IOException {
         this.controller = controller;
         this.setLayout(new BorderLayout()); //NOPMD
         this.label = new JLabel();

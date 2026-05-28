@@ -25,6 +25,7 @@ import java.awt.Graphics2D;
 
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.controller.api.CreateUpdateController;
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 
 /**
@@ -48,6 +49,7 @@ public class PreMatchView extends DefaultPanelImpl {
     private final Starter starter;
     private final CreateUpdateController controller;
     private final ViewManager viewManager;
+    private final MatchController matchController;
     private int count;
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -61,10 +63,12 @@ public class PreMatchView extends DefaultPanelImpl {
      * @param controller the controller responsible for providing data to the view
      * @param viewManager the manager responsible for managing the views
      */
-    public PreMatchView(final Starter starter, final CreateUpdateController controller, final ViewManager viewManager) {
+    public PreMatchView(final Starter starter, final CreateUpdateController controller, final ViewManager viewManager,
+                             final MatchController matchController) {
         this.starter = starter;
         this.controller = controller;
         this.viewManager = viewManager;
+        this.matchController = matchController;
         this.fixtureTable = (JTable) createComponent(new JTable(), getTitleFont(), Color.BLACK, null);
         this.leagueTable = (JTable) createComponent(new JTable(), getTitleFont(), Color.BLACK, null);
 
@@ -107,18 +111,18 @@ public class PreMatchView extends DefaultPanelImpl {
         });
 
         continueButton.addActionListener(e -> {
-            this.starter.setMatch();
+            this.matchController.setMatch();
             if (count == ZERO) {
             MatchPanel matchPanel = null;
             try {
-                matchPanel = new MatchPanel(this.starter, this.viewManager);
+                matchPanel = new MatchPanel(this.starter, this.viewManager, this.matchController);
             } catch (final IOException e1) {
-                e1.printStackTrace();
+                e1.printStackTrace(); //NOPMD
             }
-            viewManager.addView(matchPanel, "match");
+            this.viewManager.addView(matchPanel, "match");
             count++;
             }
-            this.starter.setPositionsZero();
+            this.matchController.setPositionsZero();
             this.starter.changeView("match");
         });
 

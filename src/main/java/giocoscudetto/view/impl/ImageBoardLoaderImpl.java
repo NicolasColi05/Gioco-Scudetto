@@ -10,7 +10,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import giocoscudetto.controller.api.Starter;
+import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.view.api.ImageBoardLoader;
 
 /**
@@ -21,27 +21,32 @@ import giocoscudetto.view.api.ImageBoardLoader;
 public class ImageBoardLoaderImpl implements ImageBoardLoader {
 
     private static final int NUMBER_OF_IMAGES = 32;
-    private final Starter controller;
+    private final MatchController matchController;
     private final List<Image> images = new ArrayList<>();
 
     /**
      * Constructor of the ImageBoardLoaderImpl class.
      * 
-     * @param controller the game controller, used to get the image names for the boxes.
-     * @throws IOException if an error occurs while loading the images. 
+     * @param matchController the match controller to get the image paths from.
+     * @throws IOException if loading an image fails.
      */
     @SuppressFBWarnings
-    public ImageBoardLoaderImpl(final Starter controller) throws IOException {
-        this.controller = controller;
+    public ImageBoardLoaderImpl(final MatchController matchController) throws IOException {
+        this.matchController = matchController;
         loadImages();
     }
 
+    /**
+     * Loads the images for the board from the paths provided by the match controller.
+     * 
+     * @throws IOException if loading an image fails.
+     */
     private void loadImages() throws IOException {
         for (int i = 0; i < NUMBER_OF_IMAGES; i++) {
 
             try {
                 final BufferedImage img = ImageIO.read(new File("src/main/resources/images/backgrounds/boxes_image/"
-                                 + this.controller.getBoxImage(i)));
+                                 + this.matchController.getBoxImage(i)));
                 this.images.add(img);
             } catch (final IOException e) {
                 throw new IOException("Failed to load image", e);
