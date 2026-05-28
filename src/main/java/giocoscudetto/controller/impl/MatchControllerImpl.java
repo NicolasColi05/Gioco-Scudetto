@@ -7,10 +7,8 @@ import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.BoardImpl;
-import giocoscudetto.model.impl.LeagueTableModel;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.view.api.GameObserver;
-import javax.swing.table.TableModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -222,11 +220,6 @@ public class MatchControllerImpl implements MatchController {
 
     public String getWinner() {
         return this.table.getClubs().get(0).getName();
-    }
-
-    @Override
-    public TableModel getLeagueTableModel() {
-        return new LeagueTableModel(this.table);
     }
 
 }
