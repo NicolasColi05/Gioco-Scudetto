@@ -179,9 +179,7 @@ public class MatchControllerImpl implements MatchController {
      */
     @Override
     public void notifyViews() {
-        for (GameObserver ob : observers) {
-            ob.updateState();
-        }
+        observers.forEach(GameObserver::updateState);
     }
 
     /**
