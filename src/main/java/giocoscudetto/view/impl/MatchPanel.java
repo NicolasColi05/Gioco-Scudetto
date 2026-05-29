@@ -51,12 +51,14 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
      * 
      * @param controller the starter controller to manage the views.
      * @param viewManager the view manager to switch between views.
+     * @param createUpdateController the controller to manage the clubs and the matches.
      * @param matchController the match controller to manage the game logic.
      * @throws IOException if loading an image fails.
      */
     @SuppressFBWarnings
-    public MatchPanel(final Starter controller, final ViewManager viewManager, final CreateUpdateController createUpdateController,
-                     final MatchController matchController) throws IOException {
+    public MatchPanel(final Starter controller, final ViewManager viewManager, 
+                        final CreateUpdateController createUpdateController,
+                        final MatchController matchController) throws IOException {
 
         final BoardPanel boardJPanel = new BoardPanel(matchController);
         boardJPanel.start();
@@ -120,7 +122,8 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
         continueButton.addActionListener(e -> { 
             if (this.matchController.isLastMatch()) {
-                final EndGameView endGameView = new EndGameView(this.controller, this.createUpdateController, this.matchController);
+                final EndGameView endGameView = new EndGameView(this.controller, this.createUpdateController, 
+                                                                    this.matchController);
                 this.viewManager.addView(endGameView, "end");
                 this.matchController.addPoints();
                 this.controller.changeView("end");

@@ -27,10 +27,11 @@ public class BotView extends DefaultPanelImpl {
 
     private final Starter controller;
 
-    private transient final Image image;
+    private final transient Image image;
 
     /**
      * Constructor for the BotView.
+     * 
      * @param controller the controller responsible for changing views
      */
     public BotView(final Starter controller) {

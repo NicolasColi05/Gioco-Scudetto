@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -21,17 +22,26 @@ import javax.swing.JPanel;
 
 import giocoscudetto.controller.api.Starter;
 
+/**
+ * This class represents the home panel of the game, where the user can choose to play with bots or friends, or exit the game.
+ */
 public class HomePanel extends DefaultPanelImpl {
 
     private static final int BUTTONS_HORIZONTAL_GAP = 80;
     private static final int BUTTON_FONT_RESIZING = 25;
-    private static final Color BUTTONS_BACKGORUND =  new Color(139, 90, 43); 
-    private static final Color BUTTONS_TEXT_COLOR =  new Color(240, 220, 180); 
+    private static final Color BUTTONS_BACKGORUND = new Color(139, 90, 43);
+    private static final Color BUTTONS_TEXT_COLOR = new Color(240, 220, 180);
+    private static final Color MOUSE_ENTER_COLOR = new Color(198, 156, 58);
+    private static final Color EXIT_TEXT_COLOR = new Color(224, 201, 166);
+    private static final Color EXIT_BACKGROUND_COLOR = new Color(62, 91, 66);
 
     private final Starter controller;
     private final BufferedImage image;
 
-    public HomePanel(Starter controller) {
+    /**
+     * @param controller the controller responsible for changing views
+     */
+    public HomePanel(final Starter controller) {
         this.controller = controller;
 
         this.setLayout(new BorderLayout());
@@ -40,11 +50,12 @@ public class HomePanel extends DefaultPanelImpl {
         final JPanel selectButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS_HORIZONTAL_GAP, 0));
         selectButtonPanel.setOpaque(false);
 
-
-        final JButton btnBot = (JButton) createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), getButtonFont(), BUTTONS_TEXT_COLOR, BUTTONS_BACKGORUND);
-        final JButton btnFriend = (JButton) createComponent(new JButton( "<html>PLAY WITH<br>FRIENDS</html>"), getButtonFont(), BUTTONS_TEXT_COLOR, BUTTONS_BACKGORUND); 
-        selectButtonPanel.add(btnBot); 
-        selectButtonPanel.add(btnFriend);   
+        final JButton btnBot = (JButton) createComponent(new JButton("<html>PLAY WITH<br>BOTS</html>"), 
+                                                            getButtonFont(), BUTTONS_TEXT_COLOR, BUTTONS_BACKGORUND);
+        final JButton btnFriend = (JButton) createComponent(new JButton("<html>PLAY WITH<br>FRIENDS</html>"), 
+                                                            getButtonFont(), BUTTONS_TEXT_COLOR, BUTTONS_BACKGORUND); 
+        selectButtonPanel.add(btnBot);
+        selectButtonPanel.add(btnFriend); 
 
         //Centralizing button vertically and responsively to the resolution changes
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
@@ -52,19 +63,20 @@ public class HomePanel extends DefaultPanelImpl {
 
         //Creating button to exit from the game
         final JPanel switchingButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final JButton btnExit = (JButton) createComponent(new JButton("EXIT"), getExitFont(), new Color(224, 201, 166),new Color(62, 91, 66));
+        final JButton btnExit = (JButton) createComponent(new JButton("EXIT"), getExitFont(), 
+                                                            EXIT_TEXT_COLOR, EXIT_BACKGROUND_COLOR);
         switchingButtonPanel.add(btnExit);
 
         //Creating the listener to change the button hover background color
         final MouseAdapter hoverListener = new MouseAdapter() {
-            
+
             @Override
-            public void mouseEntered(MouseEvent e) {
-                e.getComponent().setBackground(new Color(198, 156, 58));
+            public void mouseEntered(final MouseEvent e) {
+                e.getComponent().setBackground(MOUSE_ENTER_COLOR);
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(final MouseEvent e) {
                 e.getComponent().setBackground(BUTTONS_BACKGORUND);
             }
         };
@@ -75,7 +87,7 @@ public class HomePanel extends DefaultPanelImpl {
         //Adding the action listener to the buttons
         final ActionListener nextPanel = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
 
                 controller.changeView("club");
             }
@@ -83,7 +95,7 @@ public class HomePanel extends DefaultPanelImpl {
 
         final ActionListener botPanel = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
 
                 controller.changeView("bot");
             }
@@ -91,9 +103,9 @@ public class HomePanel extends DefaultPanelImpl {
 
         btnBot.addActionListener(botPanel);
         btnFriend.addActionListener(nextPanel);
-        
+
         btnExit.addActionListener(e -> {
-            int confirm = JOptionPane.showConfirmDialog(this,
+            final int confirm = JOptionPane.showConfirmDialog(this,
                         "Do you really want to quit?",
                         "QUITTING...",
                         JOptionPane.YES_NO_OPTION,
@@ -104,7 +116,7 @@ public class HomePanel extends DefaultPanelImpl {
                 }
 
         });
-        
+
         //Istruction to make the panel components responsive to resolution changes
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
@@ -117,7 +129,7 @@ public class HomePanel extends DefaultPanelImpl {
                 btnExit.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
 
                 revalidate();
-            
+
             }
         });
 
@@ -128,22 +140,20 @@ public class HomePanel extends DefaultPanelImpl {
         //Placing correctly the specific panels in the main one 
         this.add(centerWrapper, BorderLayout.CENTER);
         this.add(switchingButtonPanel, BorderLayout.SOUTH);
-       
 
         try {
             this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/home-background.jpeg"));
-        } catch (Exception e) {
+        } catch (final IOException e) {
             throw new RuntimeException("Failed to load image", e);
         }
     }
 
-
     @Override
-    public void paintComponent(final Graphics g) {
+    public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
+        final Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
     }
 
 }

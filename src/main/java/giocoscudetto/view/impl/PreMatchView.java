@@ -62,6 +62,7 @@ public class PreMatchView extends DefaultPanelImpl {
      * @param starter the controller responsible for changing views
      * @param controller the controller responsible for providing data to the view
      * @param viewManager the manager responsible for managing the views
+     * @param matchController the controller responsible for managing the match logic
      */
     public PreMatchView(final Starter starter, final CreateUpdateController controller, final ViewManager viewManager,
                              final MatchController matchController) {
@@ -76,8 +77,8 @@ public class PreMatchView extends DefaultPanelImpl {
 
         try {
             this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/pre-match-background.jpeg"));
-        } catch (final IOException e) {
-            throw new RuntimeException("Failed to load image", e);
+        } catch (final IOException firstE) {
+            throw new RuntimeException("Failed to load image", firstE);
         }
 
         //pannello centrale
@@ -116,8 +117,8 @@ public class PreMatchView extends DefaultPanelImpl {
             MatchPanel matchPanel = null;
             try {
                 matchPanel = new MatchPanel(this.starter, this.viewManager, this.controller, this.matchController);
-            } catch (final IOException e1) {
-                e1.printStackTrace(); //NOPMD
+            } catch (final IOException secondE) {
+                secondE.printStackTrace(); //NOPMD
             }
             this.viewManager.addView(matchPanel, "match");
             count++;
