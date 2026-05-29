@@ -6,8 +6,8 @@ import giocoscudetto.model.api.Match;
 public class BackToStartBox implements Boxes {
 
     private final int position;
-    private static final String image = "casella_34.png";
-    private static final String description = "Box Event: Back to Start. If you land on this box, you must return to the starting point of the board.";
+    private static final String IMAGE = "casella_34.png";
+    private static final String DESCRIPTION = "Box Event: Back to Start. If you land on this box, you must return to the starting point of the board.";
 
     public BackToStartBox(final int position) {
         this.position = position;
@@ -33,11 +33,11 @@ public class BackToStartBox implements Boxes {
 
     @Override
     public String getImage() {
-        return BackToStartBox.image;
+        return BackToStartBox.IMAGE;
     }
 
     @Override
     public String getDescription() {
-        return BackToStartBox.description;
+        return BackToStartBox.DESCRIPTION;
     }
 }

@@ -10,7 +10,7 @@ public class ResultBox implements Boxes {
 
     private static final String DESCRIPTION = "Box Event: Result. If you land on this box"
                                      + ", you have to throw 2 dice and the numbers you get makes the new score";
-    private final String image;
+    private static final String IMAGE = "casella_3.png";
     private final int position;
 
     /**
@@ -20,7 +20,6 @@ public class ResultBox implements Boxes {
      */
     public ResultBox(final int position) {
         this.position = position;
-        this.image = "casella_3.png";
     }
 
     /**
@@ -52,7 +51,7 @@ public class ResultBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return this.image;
+        return ResultBox.IMAGE;
     }
 
     /**
@@ -60,7 +59,7 @@ public class ResultBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return DESCRIPTION;
+        return ResultBox.DESCRIPTION;
     }
 
 }

@@ -6,9 +6,9 @@ import giocoscudetto.model.api.Match;
 
 public class SkipTurnBox implements Boxes {
 
-    private static final String image = "casella_7.png";
+    private static final String IMAGE = "casella_7.png";
     private final int position;
-    private static final String description = "Box Event: Skip Turn. If you land on this box, you lose your next turn.";
+    private static final String DESCRIPTION = "Box Event: Skip Turn. If you land on this box, you lose your next turn.";
 
     public SkipTurnBox(final int position) {
         this.position = position;
@@ -47,7 +47,7 @@ public class SkipTurnBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return SkipTurnBox.image;
+        return SkipTurnBox.IMAGE;
     }
 
     /**
@@ -55,6 +55,6 @@ public class SkipTurnBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return SkipTurnBox.description;
+        return SkipTurnBox.DESCRIPTION;
     }
 }

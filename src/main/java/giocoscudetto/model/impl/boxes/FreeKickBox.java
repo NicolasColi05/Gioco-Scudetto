@@ -10,7 +10,7 @@ public class FreeKickBox implements Boxes {
 
     private static final String DESCRIPTION = "Box Event: Free Kick. If you land on this box,"
                                        + "you throw two dice(0-6) and if the sum is exactly 7 you score a goal";
-    private final String image;
+    private static final String IMAGE = "casella_26.png";
     private final int position;
 
     /**
@@ -20,7 +20,6 @@ public class FreeKickBox implements Boxes {
      */
     public FreeKickBox(final int position) {
         this.position = position;
-        this.image = "casella_26.png";
     }
 
     /**
@@ -52,7 +51,7 @@ public class FreeKickBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return this.image;
+        return FreeKickBox.IMAGE;
     }
 
     /**
@@ -60,6 +59,6 @@ public class FreeKickBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return DESCRIPTION;
+        return FreeKickBox.DESCRIPTION;
     }
 }

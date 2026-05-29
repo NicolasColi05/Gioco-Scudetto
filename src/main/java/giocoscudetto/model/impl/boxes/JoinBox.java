@@ -8,8 +8,8 @@ import giocoscudetto.model.api.Match;
 public class JoinBox implements Boxes {
 
     private final int position;
-    private static final String image = "casella_2.png";
-    private static final String description = "Box Event: Join. If you land on this box, the opponent has to reach your box.";
+    private static final String IMAGE = "casella_2.png";
+    private static final String DESCRIPTION = "Box Event: Join. If you land on this box, the opponent has to reach your box.";
 
     public JoinBox(int position) {
         this.position = position;
@@ -60,7 +60,7 @@ public class JoinBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return JoinBox.image;
+        return JoinBox.IMAGE;
     }
 
     /**
@@ -68,6 +68,6 @@ public class JoinBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return JoinBox.description;
+        return JoinBox.DESCRIPTION;
     }
 }

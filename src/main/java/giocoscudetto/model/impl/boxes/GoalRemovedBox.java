@@ -7,9 +7,9 @@ public class GoalRemovedBox implements Boxes {
 
     private static final String BOX_NAME = "Goal Removed";
 
-    private static final String image = "casella_33.png";
+    private static final String IMAGE = "casella_33.png";
     private final int position;
-    private static final String description = "Box Event: Remove Goal. If you land on this box, the ref removes a goal from your score.";
+    private static final String DESCRIPTION = "Box Event: Remove Goal. If you land on this box, the ref removes a goal from your score.";
 
     public GoalRemovedBox(final int position) {
         this.position = position;
@@ -49,7 +49,7 @@ public class GoalRemovedBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return GoalRemovedBox.image;
+        return GoalRemovedBox.IMAGE;
     }
 
     /**
@@ -57,7 +57,7 @@ public class GoalRemovedBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return GoalRemovedBox.description;
+        return GoalRemovedBox.DESCRIPTION;
     }
 
 }
