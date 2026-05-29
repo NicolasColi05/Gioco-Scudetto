@@ -122,6 +122,7 @@ public class EndGameView extends DefaultPanelImpl {
                 winnerLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, width / 30));
                 standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, width / 100));
                 standingsTable.setRowHeight(height / 20);
+                standingsTable.setRowMargin(3);
 
                 revalidate();
             }
