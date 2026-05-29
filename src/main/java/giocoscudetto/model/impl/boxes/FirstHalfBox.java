@@ -3,42 +3,51 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
+/**
+ * Class that represents the first half box on the board.
+ */
 public class FirstHalfBox implements Boxes {
 
-    private final int position;
-    private static final String image = "casella_1.png";
-    private static final String description = "Box Event: First Half. If you land on this box,"
-                                        +" you are in the second half of the game the dice"
+    private static final String IMAGE = "casella_1.png";
+    private static final String DESCRIPTION = "Box Event: First Half. If you land on this box,"
+                                        + " you are in the second half of the game the dice"
                                         + " that you throw is a 0-6 dice";
 
+    private final int position;
+
+    /**
+     * Constructor for the FirstHalfBox class.
+     * 
+     * @param position the position of the box on the board
+     */
     public FirstHalfBox(final int position) {
         this.position = position;
     }
 
     @Override
-    public int getPosition() {
+    public final int getPosition() {
         return this.position;
     }
 
     @Override
-    public void event(Match match) {
+    public final void event(final Match match) {
         System.out.println("Fine primo tempo");
         match.turn();
     }
 
     @Override
-    public String getName() {
+    public final String getName() {
         return "First Half";
     }
 
     @Override
-    public String getImage() {
-        return FirstHalfBox.image;
+    public final String getImage() {
+        return FirstHalfBox.IMAGE;
     }
 
     @Override
-    public String getDescription() {
-        return FirstHalfBox.description;
+    public final String getDescription() {
+        return FirstHalfBox.DESCRIPTION;
     }
 
 }

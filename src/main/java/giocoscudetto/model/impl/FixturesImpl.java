@@ -13,13 +13,16 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Scoreboard;
 
-
+/**
+ * This class implements the Fixtures interface, it is responsible for generating the matches of the championship 
+ * and for providing the next match to be played.
+ */
 public class FixturesImpl implements Fixtures {
 
     private final List<Club> listOfClubs = new LinkedList<>();
     private final List<Match> listOfMatches = new ArrayList<>();
     private Iterator<Match> listOfMatchesIterator;
-    private final Map<Match,Scoreboard> fixture = new LinkedHashMap<>();
+    private final Map<Match, Scoreboard> fixture = new LinkedHashMap<>();
     private Match currentMatch;
 
     /**
@@ -38,7 +41,7 @@ public class FixturesImpl implements Fixtures {
             }
         }
         java.util.Collections.shuffle(listOfMatches);
-        for (Match match : listOfMatches) {
+        for (final Match match : listOfMatches) {
             fixture.put(match, null);
         }
         this.listOfMatchesIterator = listOfMatches.iterator();
@@ -49,10 +52,10 @@ public class FixturesImpl implements Fixtures {
      */
     @Override
     public Match setNextMatch() {
-        if(this.listOfMatchesIterator == null){
+        if (this.listOfMatchesIterator == null) {
             this.listOfMatchesIterator = listOfMatches.iterator();
         }
-        if(this.listOfMatchesIterator.hasNext()){
+        if (this.listOfMatchesIterator.hasNext()) {
             this.currentMatch = this.listOfMatchesIterator.next();
             return this.currentMatch;
         }
@@ -63,11 +66,11 @@ public class FixturesImpl implements Fixtures {
      * {@inheritDoc}
      */
     @Override 
-    public Match seeNextMatch(Match match){
+    public Match seeNextMatch(final Match match) {
         int i = listOfMatches.indexOf(match);
-        if (i+1 >= listOfMatches.size()){
+        if (i >= listOfMatches.size() - 1) {
             return null;
-        }else{
+        } else {
             return listOfMatches.get(++i);
         }
     }
@@ -84,15 +87,15 @@ public class FixturesImpl implements Fixtures {
      * {@inheritDoc}
      */
     @Override
-    public void setScore(Match match, Scoreboard score){
-        this.fixture.replace(match,null,score);
+    public void setScore(final Match match, final Scoreboard score) {
+        this.fixture.replace(match, null, score);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void resetFixture(){
+    public void resetFixture() {
         this.fixture.clear();
         this.listOfMatches.clear();
         this.listOfClubs.clear();
@@ -102,7 +105,7 @@ public class FixturesImpl implements Fixtures {
      * {@inheritDoc}
      */
     @Override
-    public Scoreboard getScoreboard(Match match){
+    public Scoreboard getScoreboard(final Match match) {
         return this.fixture.get(match);
     }
 
@@ -118,19 +121,19 @@ public class FixturesImpl implements Fixtures {
      * {@inheritDoc}
      */
     @Override
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.fixture.isEmpty();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-    StringBuilder sb = new StringBuilder();
-    
+    final StringBuilder sb = new StringBuilder();
+
     sb.append("--- CALENDARIO E RISULTATI ---\n");
-    
+
     if (fixture.isEmpty()) {
         sb.append("Nessuna partita in programma.");
         return sb.toString();
@@ -138,8 +141,8 @@ public class FixturesImpl implements Fixtures {
 
     // Iteriamo sull'entry set per avere accesso a chiave e valore
     for (Map.Entry<Match, Scoreboard> entry : fixture.entrySet()) {
-        Match match = entry.getKey();
-        Scoreboard result = entry.getValue();
+       final Match match = entry.getKey();
+        final Scoreboard result = entry.getValue();
 
         // Costruzione della riga
         sb.append(String.format("%-15s vs %15s", 
@@ -147,7 +150,7 @@ public class FixturesImpl implements Fixtures {
                   match.getClubAway().getName()));
 
         sb.append("  |  Risultato: ");
-        
+
         // Gestione del valore nullo o del risultato non ancora presente
         if (result == null) {
             sb.append("DA GIOCARE");
@@ -156,10 +159,10 @@ public class FixturesImpl implements Fixtures {
               .append(" - ")
               .append(result.getGuestScore());
         }
-        
+
         sb.append("\n");
     }
-    
+
     sb.append("-------------------------------");
     return sb.toString();
 

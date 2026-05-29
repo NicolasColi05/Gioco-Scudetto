@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Dice;
 import giocoscudetto.model.api.GoalNet;
@@ -15,6 +16,8 @@ import giocoscudetto.model.impl.dices.ResultDice;
 public class MatchImpl implements Match {
 
     private static final int HALF_BOARD = 16;
+    private static final int BOUND = 6;
+    private static final int FREE_KICK_GOAL = 7;
     private static final Random RANDOM = new Random();
     private Club clubHome;
     private Club clubAway;
@@ -26,7 +29,7 @@ public class MatchImpl implements Match {
     private GameMode mode = GameMode.NONE;
     private List<Integer> eventDices = new ArrayList<>();
 
-    public MatchImpl(Club clubHome, Club clubAway) {
+    public MatchImpl(final Club clubHome, final Club clubAway) {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
         this.dice6 = new MainDice();
@@ -65,7 +68,7 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public final void setGoalHome(int goal){
+    public final void setGoalHome(final int goal) {
         this.score.setHomeScore(goal);
     }
 
@@ -73,7 +76,7 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public void removeGoalHome() {
+    public final void removeGoalHome() {
         this.score.decreaseHomeScore();
     }
 
@@ -89,7 +92,7 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public final void setGoalAway(int goal){
+    public final void setGoalAway(final int goal) {
         this.score.setGuestScore(goal);
     }
 
@@ -112,6 +115,7 @@ public class MatchImpl implements Match {
     /**
      * {@inheritDoc}
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Score è gestito intenzionalmente così")
     @Override
     public final Scoreboard getScore() {
         return score;
@@ -136,16 +140,16 @@ public class MatchImpl implements Match {
             return 0;
         }
         int dice6;
-        if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD){
+        if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD) {
             dice6 = this.dice6.rollDice() + this.dice6.rollDice();
-            System.out.println("due dadi" +dice6);
+            System.out.println("due dadi" + dice6);
             return dice6;
         }
         dice6 = this.dice6.rollDice();
         System.out.println("un dado" + dice6);
         return dice6;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -159,7 +163,7 @@ public class MatchImpl implements Match {
      */
     @Override
     public void setGameMode(final GameMode mode) {
-        this.mode  = mode;
+        this.mode = mode;
     }
 
     /**
@@ -174,7 +178,7 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public void setSkipTurn(Club club) {
+    public void setSkipTurn(final Club club) {
         turn.setSkipTurn(club);
     }
 
@@ -182,7 +186,7 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public String toString(){
+    public String toString() {
         return this.clubHome.getName() + " - " + this.clubAway.getName();
     }
 
@@ -190,12 +194,12 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public Club getWinnerClub(){
-        if(this.score.getHomeScore() > this.score.getGuestScore()){
+    public Club getWinnerClub() {
+        if (this.score.getHomeScore() > this.score.getGuestScore()) {
             return this.clubHome;
-        }else if (this.score.getHomeScore() < this.score.getGuestScore()){
+        } else if (this.score.getHomeScore() < this.score.getGuestScore()) {
             return this.clubAway;
-        }else{
+        } else {
             return null;
         }
     }
@@ -204,12 +208,12 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public Club getLoserClub(){
-        if(this.score.getHomeScore() < this.score.getGuestScore()){
+    public Club getLoserClub() {
+        if (this.score.getHomeScore() < this.score.getGuestScore()) {
             return this.clubHome;
-        }else if (this.score.getHomeScore() > this.score.getGuestScore()){
+        } else if (this.score.getHomeScore() > this.score.getGuestScore()) {
             return this.clubAway;
-        }else{
+        } else {
             return null;
         }
     }
@@ -219,7 +223,7 @@ public class MatchImpl implements Match {
      */
     @Override
     public int diceEvent() {
-        int result;
+        final int result;
         if (eventDices.size() < 1) {
             if (this.mode == GameMode.RESULT) {
                 result = this.dice3.rollDice();
@@ -252,24 +256,24 @@ public class MatchImpl implements Match {
             this.setGoalAway(this.eventDices.get(1));
         } else if (this.mode == GameMode.FREE_KICK) {
 
-            if (this.eventDices.get(0) + this.eventDices.get(1) == 7) {
+            if (this.eventDices.get(0) + this.eventDices.get(1) == FREE_KICK_GOAL) {
 
-                if (this.getCurrentPlayer() == this.getClubAway()) {
+                if (this.getCurrentPlayer().equals(this.getClubAway())) {
                     this.goalAway();
                 } else {
                     this.goalHome();
                 }
             }
         } else if (this.mode == GameMode.CORNER) {
-            if (this.eventDices.get(0) == 1|| this.eventDices.get(1) == 1) {
-                if (this.getCurrentPlayer() == this.getClubAway()) {
+            if (this.eventDices.get(0) == 1 || this.eventDices.get(1) == 1) {
+                if (this.getCurrentPlayer().equals(this.getClubAway())) {
                     this.goalAway();
                 } else {
                     this.goalHome();
                 }
             }
         } else if (this.mode == GameMode.PENALTY) {
-            if (this.net.isGoal(RANDOM.nextInt(6) + 1)) {
+            if (this.net.isGoal(RANDOM.nextInt(BOUND) + 1)) {
                 if (this.getCurrentPlayer().equals(this.getClubHome())) {
                     this.goalHome();
                 } else {
@@ -281,7 +285,7 @@ public class MatchImpl implements Match {
     }
 
     @Override
-    public void setKeeperPosition(int i) {
+    public final void setKeeperPosition(final int i) {
         this.net.setGoalKeeperPosition(i);
     }
 
