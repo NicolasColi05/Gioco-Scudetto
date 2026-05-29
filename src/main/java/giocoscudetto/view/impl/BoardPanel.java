@@ -51,7 +51,6 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
     private static final int LABEL_FONT_DIVISOR = 3;
     private static final int SCORE_Y_MULTIPLIER = 5;
     private static final int SCORE_TEXT_Y_MULTIPLIER = 6;
-    private static final int NAME_X_MARGIN_DIVISOR = 2;
     private static final Color BACKGROUND_COLOR = Color.BLACK;
     private static final int SLEEP_TIME = 300;
     private static final int SLEEP_TIME2 = 50;
@@ -225,12 +224,10 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         final int w = boardSizew - 2 * x;
         final int h = boardSizeh - 2 * y;
         final int scoreY = boxH * SCORE_Y_MULTIPLIER;
-        final int center = boardSizew / 2;
-        final int scoreTextY = y * SCORE_TEXT_Y_MULTIPLIER;
-        final int scoreTextX = center - g2d.getFontMetrics().stringWidth(this.matchController.getScore()) / 2;
+        final int center = x + (w / 2);
         final String homeName = this.matchController.getHomeName();
-        final int homeNameW = g2d.getFontMetrics().stringWidth(homeName);
         final String guestName = this.matchController.getGuestName();
+        final int scoreTextY = y * SCORE_TEXT_Y_MULTIPLIER;
 
         g2d.setColor(BACKGROUND_COLOR);
         g2d.fillRect(x, y, w, h);
@@ -247,16 +244,18 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
         g2d.setColor(Color.black);
         g2d.setFont(new Font("Boh", Font.BOLD, x / 3));
         g2d.drawString("SCORE", center - g2d.getFontMetrics().stringWidth("SCORE") / 2, scoreY);
-        g2d.drawString(this.matchController.getScore(), scoreTextX, scoreTextY);
+        g2d.drawString(this.matchController.getScore(),
+                        center - g2d.getFontMetrics().stringWidth(this.matchController.getScore()) / 2, scoreTextY);
 
         g2d.setColor(Color.BLACK);
         g2d.setFont(new Font("Arial", Font.BOLD, x / LABEL_FONT_DIVISOR));
-        g2d.drawString(homeName, scoreTextX - homeNameW - x, scoreTextY);
+        g2d.drawString(homeName, center - g2d.getFontMetrics().stringWidth(this.matchController.getScore()) / 2 
+                        - g2d.getFontMetrics().stringWidth(homeName) / 2 - x, scoreTextY);
 
         g2d.setColor(Color.BLACK);
         g2d.setFont(new Font("Arial", Font.BOLD, x / 3));
-        g2d.drawString(guestName, center + g2d.getFontMetrics().stringWidth(this.matchController.getScore())
-                        + x / NAME_X_MARGIN_DIVISOR, scoreTextY);
+        g2d.drawString(guestName, center + g2d.getFontMetrics().stringWidth(this.matchController.getScore()) / 2
+                         + x / 2, scoreTextY);
     }
 
     /**

@@ -33,7 +33,7 @@ public class TestBoardPanel extends JFrame {
         this.setSize(650, 670); //NOPMD
 
         final CreateUpdateController controller = new CreateUpdateControllerImpl();
-        controller.createClubs(List.of("Inter", "Milan"), List.of(0, 0xFF0000));
+        controller.createClubs(List.of("Ac Milan", "JUventus"), List.of(0, 0xFF0000));
 
         final MatchController starter = new MatchControllerImpl(controller);
         starter.setMatch();
