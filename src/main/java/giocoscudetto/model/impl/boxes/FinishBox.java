@@ -6,8 +6,8 @@ import giocoscudetto.model.api.Match;
 public class FinishBox implements Boxes{
 
     private final int position;
-    private static final String image = "casella_32.png";
-    private static final String description = "Box event: Last Box. If you land on this box the game will end";
+    private static final String IMAGE = "casella_32.png";
+    private static final String DESCRIPTION = "Box event: Last Box. If you land on this box the game will end";
 
     public FinishBox(final int position) {
         this.position = position;
@@ -43,7 +43,7 @@ public class FinishBox implements Boxes{
      */
     @Override
     public String getImage() {
-        return FinishBox.image;
+        return FinishBox.IMAGE;
     }
 
     /**
@@ -51,7 +51,7 @@ public class FinishBox implements Boxes{
      */
     @Override
     public String getDescription() {
-        return FinishBox.description;
+        return FinishBox.DESCRIPTION;
     }
     
 }

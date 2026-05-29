@@ -11,7 +11,7 @@ public class CornerBox implements Boxes {
     private static final String DESCRIPTION = "Box Event: Corner. If you land on this box,"
                                     + " you throw two dice and if you get a 1 you score a goal";
     private final int position;
-    private final String image;
+    private static final String IMAGE = "casella_19.png";
 
     /**
      * Constructor of the CornerBox class.
@@ -20,7 +20,6 @@ public class CornerBox implements Boxes {
      */
     public CornerBox(final int position) {
         this.position = position;
-        this.image = "casella_19.png";
     }
 
     /**
@@ -52,7 +51,7 @@ public class CornerBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return this.image;
+        return CornerBox.IMAGE;
     }
 
     /**
@@ -60,6 +59,6 @@ public class CornerBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return DESCRIPTION;
+        return CornerBox.DESCRIPTION;
     }
 }

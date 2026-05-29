@@ -8,8 +8,8 @@ public class CesariniBox implements Boxes {
     private static final String BOX_NAME = "Cesarini Zone";
 
     private final int position;
-    private static final String image = "casella_30.png";
-    private static final String description = "Box Event: Cesarini zone. If you land on this box, you automatically score a goal.";
+    private static final String IMAGE = "casella_30.png";
+    private static final String DESCRIPTION = "Box Event: Cesarini zone. If you land on this box, you automatically score a goal.";
 
     public CesariniBox(final int position) {
         this.position = position;
@@ -37,11 +37,11 @@ public class CesariniBox implements Boxes {
 
     @Override
     public String getImage() {
-        return CesariniBox.image;
+        return CesariniBox.IMAGE;
     }
 
     @Override
     public String getDescription() {
-        return CesariniBox.description;
+        return CesariniBox.DESCRIPTION;
     }
 }

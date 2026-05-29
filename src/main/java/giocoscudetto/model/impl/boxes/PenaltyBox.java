@@ -12,9 +12,9 @@ public final class PenaltyBox implements Boxes {
                                         + " The opponent must decide the position of the goalkeeper, \n" 
                                         + " once finished you kick the penalty which consists of throwing a dice" 
                                         + " [1-6] if you roll a number not selected by the opponent you score a goal.";
+    private static final String IMAGE = "casella_16.png";
     private final int position;
     private final String name;
-    private final String image;
 
     /**
      * Constructor of the PenaltyBox class.
@@ -24,7 +24,6 @@ public final class PenaltyBox implements Boxes {
     public PenaltyBox(final int position) {
         this.position = position;
         this.name = "Penalty Box";
-        this.image = "casella_16.png";
     }
 
     /**
@@ -56,7 +55,7 @@ public final class PenaltyBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return this.image;
+        return PenaltyBox.IMAGE;
     }
 
     /**
@@ -64,7 +63,7 @@ public final class PenaltyBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return DESCRIPTION;
+        return PenaltyBox.DESCRIPTION;
     }
 
 }
