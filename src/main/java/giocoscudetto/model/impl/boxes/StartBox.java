@@ -13,26 +13,41 @@ public class StartBox implements Boxes{
         this.position = position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPosition() {
         return this.position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void event(Match match) {
         System.out.println("Il gioco è iniziato");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
         return "Start box";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getImage() {
         return StartBox.image;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
         return StartBox.description;

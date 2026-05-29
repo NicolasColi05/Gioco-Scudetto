@@ -14,12 +14,18 @@ public class GoalConceidedBox implements Boxes {
     public GoalConceidedBox(final int position) {
         this.position = position;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPosition() {
        return this.position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void event(Match match) {
         if(match.getCurrentPlayer() == match.getClubHome()) {
@@ -30,16 +36,25 @@ public class GoalConceidedBox implements Boxes {
         match.turn();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
         return BOX_NAME;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getImage() {
        return GoalConceidedBox.image;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
         return GoalConceidedBox.description;

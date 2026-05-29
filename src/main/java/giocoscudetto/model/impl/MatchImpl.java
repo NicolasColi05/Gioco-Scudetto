@@ -13,6 +13,10 @@ import giocoscudetto.model.api.Scoreboard;
 import giocoscudetto.model.impl.dices.MainDice;
 import giocoscudetto.model.impl.dices.ResultDice;
 
+/**
+ * This class implements the Match interface, it represents a match between two clubs,
+ * it keeps track of the score and of the clubs that are playing.
+ */
 public class MatchImpl implements Match {
 
     private static final int HALF_BOARD = 16;
@@ -29,6 +33,13 @@ public class MatchImpl implements Match {
     private GameMode mode = GameMode.NONE;
     private List<Integer> eventDices = new ArrayList<>();
 
+    /**
+     * Constructor for the MatchImpl class, it initializes the score, the turn and the dices,
+     * it also choose randomly which club will start the match.
+     * 
+     * @param clubHome the home club
+     * @param clubAway the away club
+     */
     public MatchImpl(final Club clubHome, final Club clubAway) {
         this.score = new ScoreboardImpl();
         this.turn = new TurnImpl(clubHome, clubAway);
@@ -139,15 +150,15 @@ public class MatchImpl implements Match {
             turn.consumeSkip(turn.getCurrentPlayer());
             return 0;
         }
-        int dice6;
+        int dice;
         if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD) {
-            dice6 = this.dice6.rollDice() + this.dice6.rollDice();
+            dice = this.dice6.rollDice() + this.dice6.rollDice();
             System.out.println("due dadi" + dice6);
-            return dice6;
+            return dice;
         }
-        dice6 = this.dice6.rollDice();
+        dice = this.dice6.rollDice();
         System.out.println("un dado" + dice6);
-        return dice6;
+        return dice;
     }
 
     /**
@@ -162,8 +173,8 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public void setGameMode(final GameMode mode) {
-        this.mode = mode;
+    public void setGameMode(final GameMode newMode) {
+        this.mode = newMode;
     }
 
     /**

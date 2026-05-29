@@ -14,16 +14,25 @@ public class SkipTurnBox implements Boxes {
         this.position = position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPosition() {
         return position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override 
     public String getName() {
         return "Skip Turn";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void event(Match match) {
         
@@ -33,11 +42,17 @@ public class SkipTurnBox implements Boxes {
         System.out.println(current.getName() + "skip the next turn");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getImage() {
         return SkipTurnBox.image;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
         return SkipTurnBox.description;

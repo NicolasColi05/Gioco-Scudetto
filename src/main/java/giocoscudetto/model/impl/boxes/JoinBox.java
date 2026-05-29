@@ -15,16 +15,25 @@ public class JoinBox implements Boxes {
         this.position = position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPosition() {
         return position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
         return "Join Box";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void event (Match match) {
         Club current= match.getCurrentPlayer();
@@ -46,11 +55,17 @@ public class JoinBox implements Boxes {
         match.turn();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getImage() {
         return JoinBox.image;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
         return JoinBox.description;

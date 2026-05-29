@@ -57,27 +57,42 @@ public class EmptyBox implements Boxes {
                 break;
         } 
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPosition() {
         return this.position;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void event(Match match) {  
         match.turn();
-      }
+    }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
         return "empty box";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getImage() {
         return this.image;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
         return EmptyBox.description;
