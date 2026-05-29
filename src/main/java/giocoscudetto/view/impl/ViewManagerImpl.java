@@ -39,7 +39,6 @@ public class ViewManagerImpl implements ViewManager {
     @Override
     public void showView(final String name) {
         this.cardLayout.show(container, name);
-        System.out.println("funziona");
         container.revalidate();
         container.repaint();
     }

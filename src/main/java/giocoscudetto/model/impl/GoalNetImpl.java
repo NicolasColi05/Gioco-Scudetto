@@ -26,7 +26,7 @@ public class GoalNetImpl implements GoalNet {
     public void setGoalKeeperPosition(final int position) {
         if (goalKeeperPositions.size() < 2) {
             this.goalKeeperPositions.add(position);
-            System.out.println("Posizione del portiere: " + position);
+            System.out.println("Posizione del portiere impostata: " + position); //NOPMD
         }
 
     }
@@ -38,11 +38,11 @@ public class GoalNetImpl implements GoalNet {
     public boolean isGoal(final int ballPosition) {
         if (goalKeeperPositions.contains(ballPosition)) {
             this.goalKeeperPositions.clear();
-            System.out.println("Parata del portiere in posizione: " + ballPosition);
+            System.out.println("Parata del portiere in posizione: " + ballPosition); //NOPMD
             return false;
         }
         this.goalKeeperPositions.clear();
-        System.out.println("Goal! Il pallone è passato oltre il portiere." + ballPosition);
+        System.out.println("Goal! Il pallone è passato oltre il portiere." + ballPosition); //NOPMD
         return true;
     }
 
