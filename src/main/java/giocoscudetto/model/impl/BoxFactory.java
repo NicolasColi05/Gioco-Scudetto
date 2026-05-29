@@ -21,7 +21,12 @@ import giocoscudetto.model.impl.boxes.SuspendMatchBox;
  * This class is a factory for the boxes of the board, 
  * it is used to create the boxes for each position of the board.
  */
-public class BoxFactory {
+public final class BoxFactory {
+
+    /**
+     * Private constructor to prevent instantiation of the factory class.
+     */
+    private BoxFactory() {}
 
     /**
      * This method creates a box for the given position of the board.

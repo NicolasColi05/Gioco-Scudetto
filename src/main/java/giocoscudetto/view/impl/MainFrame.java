@@ -4,12 +4,20 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.view.api.ViewManager;
 
 public class MainFrame extends JFrame {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2", "SE_BAD_FIELD"},
+        justification = "ViewManager is shared by design and serialization is not used in this application"
+    )
     private final ViewManager viewManager;
 
+    @SuppressWarnings("PMD.ConstructorCallsOverridableMethod")
     public MainFrame(final ViewManager manager) {
         
         this.viewManager = manager;
@@ -17,18 +25,16 @@ public class MainFrame extends JFrame {
 
         //Setting screen responsive resolution and placing it in the center
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        final int minimumWidht = screenSize.width / 2;
+        final int minimumWidth = screenSize.width / 2;
         final int minimumHeight = screenSize.height / 2;
 
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(true);
-        this.setMinimumSize(new Dimension(minimumWidht, minimumHeight));
+        this.setMinimumSize(new Dimension(minimumWidth, minimumHeight));
 
         //Setting frame main panel
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        this.revalidate();
-        this.repaint();
         this.setVisible(true);
     }
 

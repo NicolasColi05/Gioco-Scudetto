@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -35,17 +37,14 @@ public class NetPanel extends DefaultPanelImpl {
     private static final int BOTTON4_POS = 4;
     private static final int BOTTON5_POS = 5;
     private static final int BOTTON6_POS = 6;
+    private static final int BOTTONS_COUNT = 6;
 
     private final MatchController controller;
     private final BufferedImage image;
-    private final JButton button1 = new JButton("1");
-    private final JButton button2 = new JButton("2");
-    private final JButton button3 = new JButton("3");
-    private final JButton button4 = new JButton("4");
-    private final JButton button5 = new JButton("5");
-    private final JButton button6 = new JButton("6");
+    private final List<JButton> bottons = new ArrayList<>();
     private final JButton kickButton = new JButton("KICK THE PENALTY");
     private final JLabel label;
+    private final JPanel net;
     private int count;
 
     /**
@@ -63,13 +62,12 @@ public class NetPanel extends DefaultPanelImpl {
         label.setHorizontalAlignment(JLabel.CENTER);
         this.add(label, BorderLayout.NORTH); //NOPMD
         kickButton.setEnabled(false);
-        final JPanel net = new JPanel();
+        this.net = new JPanel();
         net.setOpaque(false);
         net.setLayout(new GridLayout(ROWS, COLS, H_GAP, H_GAP));
         net.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
         this.add(net, BorderLayout.CENTER); //NOPMD
         this.add(kickButton, BorderLayout.SOUTH); //NOPMD
-        setButtonsEnabled(false); //NOPMD
 
             kickButton.addActionListener(e -> {
                 final boolean goal = this.controller.kickPenalty();
@@ -83,92 +81,39 @@ public class NetPanel extends DefaultPanelImpl {
                 }
             });
 
-            button1.addActionListener(e -> {
-                if (count == 0) {
-                    this.controller.setKeeperPosition(BOTTON1_POS);
-                    count++;
-                    checkButtons(BOTTON1_POS);
-                } else if (count == 1) {
-                    this.controller.setKeeperPosition(BOTTON1_POS);
-                    this.button1.setEnabled(false);
-                    count++;
-                    kickButton.setEnabled(true);
-                }
-            });
-            button2.addActionListener(e -> {
-                if (count == 0) {
-                    this.controller.setKeeperPosition(BOTTON2_POS);
-                    count++;
-                    checkButtons(BOTTON2_POS);
-                } else if (count == 1) {
-                    this.controller.setKeeperPosition(BOTTON2_POS);
-                    count++;
-                    this.button2.setEnabled(false);
-                    kickButton.setEnabled(true);
-                }
-            });
-            button3.addActionListener(e -> {
-                if (count == 0) {
-                    this.controller.setKeeperPosition(BOTTON3_POS);
-                    count++;
-                    checkButtons(BOTTON3_POS);
-                } else if (count == 1) {
-                    this.controller.setKeeperPosition(BOTTON3_POS);
-                    count++;
-                    this.button3.setEnabled(false);
-                    kickButton.setEnabled(true);
-                }
-            });
-            button4.addActionListener(e -> {
-                if (count == 0) {
-                    this.controller.setKeeperPosition(BOTTON4_POS);
-                    count++;
-                    checkButtons(BOTTON4_POS);
-                } else if (count == 1) {
-                    this.controller.setKeeperPosition(BOTTON4_POS);
-                    count++;
-                    this.button4.setEnabled(false);
-                    kickButton.setEnabled(true);
-                }
-            });
-            button5.addActionListener(e -> {
-                if (count == 0) {
-                    this.controller.setKeeperPosition(BOTTON5_POS);
-                    count++;
-                    checkButtons(BOTTON5_POS);
-                } else if (count == 1) {
-                    this.controller.setKeeperPosition(BOTTON5_POS);
-                    count++;
-                    this.button5.setEnabled(false);
-                    kickButton.setEnabled(true);
-                }
-            });
-            button6.addActionListener(e -> {
-                if (count == 0) {
-                    this.controller.setKeeperPosition(BOTTON6_POS);
-                    count++;
-                    checkButtons(BOTTON6_POS);
-                } else if (count == 1) {
-                    this.controller.setKeeperPosition(BOTTON6_POS);
-                    count++;
-                    this.button6.setEnabled(false);
-                    kickButton.setEnabled(true);
-                }
-            });
-
-        net.add(button1);
-        net.add(button2);
-        net.add(button3);
-        net.add(button4);
-        net.add(button5);
-        net.add(button6);
-
         try {
         this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/net.png"));
         } catch (final IOException e) {
             e.printStackTrace(); //NOPMD
             throw new IOException("Failed to load image", e);
         }
+
+        this.createBottons();
+        this.setButtonsEnabled(false); //NOPMD
+    }
+
+    /**
+     * This method creates the buttons of the net panel and adds the action listeners to them.
+     */
+    private void createBottons() {
+        for (int i = 0; i < BOTTONS_COUNT; i++) {
+            final int index = i + 1;
+            bottons.add(new JButton());
+            bottons.get(i).setText(String.valueOf(index));
+            bottons.get(i).addActionListener(e -> {
+                if (count == 0) {
+                    this.controller.setKeeperPosition(index);
+                    count++;
+                    checkButtons(index);
+                } else if (count == 1) {
+                    this.controller.setKeeperPosition(index);
+                    bottons.get(index - 1).setEnabled(false);
+                    count++;
+                    kickButton.setEnabled(true);
+                }
+            });
+        }
+        bottons.forEach(net::add);
 
     }
 
@@ -178,45 +123,46 @@ public class NetPanel extends DefaultPanelImpl {
      * @param b true to enable the buttons, false to disable them.
      */
     public void setButtonsEnabled(final boolean b) {
-        this.button1.setEnabled(b);
-        this.button2.setEnabled(b);
-        this.button3.setEnabled(b);
-        this.button4.setEnabled(b);
-        this.button5.setEnabled(b);
-        this.button6.setEnabled(b);
+        bottons.forEach(x -> x.setEnabled(b));
+        this.count = 0;
         if (b) {
             label.setText("Choose the position of the keeper");
         }
         this.kickButton.setEnabled(b);
     }
 
+    /**
+     * This method checks the buttons that are enabled or disabled based on the position of the keeper.
+     * 
+     * @param position the position of the keeper.
+     */
     private void checkButtons(final int position) {
         switch (position) {
             case BOTTON1_POS:
-                button1.setEnabled(false);
-                button6.setEnabled(false);
-                button3.setEnabled(false);
+                bottons.get(0).setEnabled(false);
+                bottons.get(5).setEnabled(false);
+                bottons.get(2).setEnabled(false);
                 break;
             case BOTTON2_POS:
-                button2.setEnabled(false);
+                bottons.get(1).setEnabled(false);
                 break;
             case BOTTON3_POS:
-                button3.setEnabled(false);
-                button1.setEnabled(false);
-                button4.setEnabled(false);
+                bottons.get(2).setEnabled(false);
+                bottons.get(0).setEnabled(false);
+                bottons.get(3).setEnabled(false);
                 break;
             case BOTTON4_POS:
-                button4.setEnabled(false);
-                button6.setEnabled(false);
-                button3.setEnabled(false);
+                bottons.get(3).setEnabled(false);
+                bottons.get(5).setEnabled(false);
+                bottons.get(2).setEnabled(false);
                 break;
             case BOTTON5_POS:
-                button5.setEnabled(false);
+                bottons.get(4).setEnabled(false);
                 break;
             case BOTTON6_POS:
-                button6.setEnabled(false);
-                button1.setEnabled(false);
-                button4.setEnabled(false);
+                bottons.get(5).setEnabled(false);
+                bottons.get(0).setEnabled(false);
+                bottons.get(3).setEnabled(false);
                 break;
             default:
                 break;
