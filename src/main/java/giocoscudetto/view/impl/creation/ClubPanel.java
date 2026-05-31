@@ -170,7 +170,7 @@ public class ClubPanel extends DefaultPanelImpl{
 
         //Centralizing clubInfoPanel vertically and responsively to the resolution changes
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        final GridBagConstraints gbc = new GridBagConstraints();
 
         //Top Spacer to push everything to the bottom
         gbc.gridx = 0;
@@ -222,7 +222,7 @@ public class ClubPanel extends DefaultPanelImpl{
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D) g;
+        final Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.image, 0,0, getWidth(), getHeight(),null);
     }
 
@@ -242,7 +242,7 @@ public class ClubPanel extends DefaultPanelImpl{
         this.clubsName.clear();
         this.clubsPawn.clear();
 
-        int i = 0;
+        int i;
         for (i = 0; i < rows; i++) {
 
             //Creating textFields to choose the name for each team
@@ -299,21 +299,21 @@ public class ClubPanel extends DefaultPanelImpl{
      */
     private void refreshColorTaken(final List<PawnColorPickerPanel> pickers) {
         final Set<Color> allTaken = new HashSet<>();
-        for (PawnColorPickerPanel p : pickers) {
+        for (final PawnColorPickerPanel p : pickers) {
             if (p.getSelectedColor() != null) {
                 allTaken.add(p.getSelectedColor());
             }
         }
 
         //and then i disable them
-        for (PawnColorPickerPanel p : pickers) {
+        for (final PawnColorPickerPanel p : pickers) {
             final Set<Color> takenByOthers = new HashSet<>(allTaken);
             if (p.getSelectedColor() != null) {
                 takenByOthers.remove(p.getSelectedColor());
             }
             
             p.setTakenColors(takenByOthers);
-                        this.updateButtonVisibility();
+            this.updateButtonVisibility();
         }
     }
 
