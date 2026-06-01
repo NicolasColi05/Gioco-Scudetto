@@ -42,6 +42,7 @@ public class NetPanel extends DefaultPanelImpl {
     private static final int BOTTONS_COUNT = 6;
     private static final int DELAY = 70;
     private static final long TIME_WAIT = 1000;
+    private static final int BOUND = 6;
 
     private final MatchController controller;
     private final BufferedImage image;
@@ -185,7 +186,7 @@ public class NetPanel extends DefaultPanelImpl {
         final Timer animTimer = new Timer(DELAY, null);
 
         animTimer.addActionListener(e -> {
-            label.setText("Kicking the penalty..." + (rnd.nextInt(6) + 1));
+            label.setText("Kicking the penalty..." + (rnd.nextInt(BOUND) + 1));
             if (System.currentTimeMillis() - startTime > TIME_WAIT) {
                 final boolean goal = this.controller.kickPenalty();
                 setButtonsEnabled(false);
