@@ -1,7 +1,24 @@
 package giocoscudetto.view.impl;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +30,11 @@ import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 
-public class EndGameView extends DefaultPanelImpl {
+/**
+ * View displayed at the end of the League showing
+ * the winner and the final ranking.
+ */
+public final class EndGameView extends DefaultPanelImpl {
     
     private final Starter controller;
     private final MatchController matchController;
@@ -25,7 +46,9 @@ public class EndGameView extends DefaultPanelImpl {
     private final int minimumWidht = screenSize.width / 2;
     private static final int BUTTON_BORDER = 5;
 
-    public EndGameView(final Starter controller,final CreateUpdateController createUpdateController, final MatchController matchController) {
+    public EndGameView(final Starter controller,
+        final CreateUpdateController createUpdateController,
+         final MatchController matchController) {
         this.controller = controller;
         this.createUpdateController = createUpdateController;
         this.matchController = matchController;
@@ -41,7 +64,9 @@ public class EndGameView extends DefaultPanelImpl {
 
         //vincitore
         final JLabel winnerLabel = new JLabel("WINNER:" + this.matchController.getLeagueWinner(), SwingConstants.RIGHT);
-        winnerLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, 30));
+        winnerLabel.setFont(
+            new Font(FONT_SELECTED, Font.BOLD, 30)
+        );
         winnerLabel.setForeground(Color.BLACK);
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
@@ -49,12 +74,18 @@ public class EndGameView extends DefaultPanelImpl {
         final JTable standingsTable = new JTable(this.createUpdateController.getLeagueTableModel());
         standingsTable.setEnabled(false);
         standingsTable.setOpaque(false);
-        standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, minimumWidht / 70));
+        standingsTable.setFont(
+            new Font(FONT_SELECTED, Font.BOLD, minimumWidht / 70)
+        );
 
         //se necessario
         final JScrollPane tableScroll = new JScrollPane(standingsTable);
-        tableScroll.setPreferredSize(new Dimension(1000, 600));
-        tableScroll.setMaximumSize(new Dimension(1000, 600));
+        tableScroll.setPreferredSize(new Dimension
+            (1000, 600)
+        );
+        tableScroll.setMaximumSize(
+            new Dimension(1000, 600)
+        );
         tableScroll.setOpaque(false);
         tableScroll.getViewport().setOpaque(false);
 
@@ -116,18 +147,29 @@ public class EndGameView extends DefaultPanelImpl {
         this.addComponentListener(new java.awt.event.ComponentAdapter() {   
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
-                int width = getWidth();
-                int height = getHeight();
+                final int width = getWidth();
+                final int height = getHeight();
 
-                winnerLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, width / 30));
-                standingsTable.setFont(new Font(FONT_SELECTED, Font.BOLD, width / 100));
+                winnerLabel.setFont(
+                    new Font(
+                        FONT_SELECTED,
+                         Font.BOLD,
+                          width / 30
+                        )
+                    );
+                standingsTable.setFont(
+                    new Font(
+                        FONT_SELECTED,
+                         Font.BOLD,
+                          width / 100
+                        )
+                    );
                 standingsTable.setRowHeight(height / 20);
                 standingsTable.setRowMargin(3);
 
                 revalidate();
             }
         });
-
     }
 
     @Override
@@ -137,6 +179,4 @@ public class EndGameView extends DefaultPanelImpl {
         final Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
     }
-
-
 }
