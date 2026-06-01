@@ -2,24 +2,31 @@ package giocoscudetto.model.impl;
 
 import giocoscudetto.model.api.Pawn;
 
-public class PawnImpl implements Pawn {
+/**
+ * Implementation of a pawn used by the player.
+ */
+public final class PawnImpl implements Pawn {
 
     private static final int MAX_POSITION = 32;
 
     private final int pawnRGB;
     private int position;
 
+    /**
+     * Creates a pawn.
+     * 
+     * @param pawnRGB pawn color
+     */
     public PawnImpl(final int pawnRGB) {
         this.position = 0;
         this.pawnRGB = pawnRGB;
     }
 
     @Override
-    public void changePosition(int steps) {
+    public void changePosition(final int steps) {
 
-        int newPosition = this.position + steps;
-
-        if (newPosition > MAX_POSITION) {
+        final int newPosition;
+        if ( > MAX_POSITION) {
             newPosition = MAX_POSITION;
         }
 
@@ -40,7 +47,7 @@ public class PawnImpl implements Pawn {
     }
 
     @Override
-    public void setPosition(int position){
+    public void setPosition(final int position) {
        this.position = position;
     }
 

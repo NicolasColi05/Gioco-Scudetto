@@ -4,13 +4,22 @@ import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
 
+/**
+ * Box that moves the opponent to the current player's position.
+ */
 
 public class JoinBox implements Boxes {
 
     private final int position;
     private static final String IMAGE = "casella_2.png";
-    private static final String DESCRIPTION = "Box Event: Join. If you land on this box, the opponent has to reach your box.";
+    private static final String DESCRIPTION = "Box Event: Join. If you land on this box, "
+    + "the opponent has to reach your box.";
 
+    /**
+     * Creates a JoinBox.
+     * 
+     * @param position box position
+     */
     public JoinBox(int position) {
         this.position = position;
     }
@@ -35,11 +44,11 @@ public class JoinBox implements Boxes {
      * {@inheritDoc}
      */
     @Override
-    public void event (Match match) {
-        Club current= match.getCurrentPlayer();
-        Club opponent;
+    public void event (final Match match) {
+        final Club current= match.getCurrentPlayer();
+        final Club opponent;
     
-        if (current == match.getClubHome()){
+        if (current == match.getClubHome()) {
         opponent = match.getClubAway();
         } else {
             opponent = match.getClubHome();
@@ -48,10 +57,12 @@ public class JoinBox implements Boxes {
 
         System.out.println(current + "entered Join Box");
 
-        int currentPosition = current.getPawn().getPosition();
+        final int currentPosition = current.getPawn().getPosition();
         opponent.getPawn().setPosition(currentPosition);
 
-        System.out.println(opponent + "joined current player at position" + currentPosition);
+        System.out.println(
+            opponent + "joined current player at position" + currentPosition
+        );
         match.turn();
     }
 
