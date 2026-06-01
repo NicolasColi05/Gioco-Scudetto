@@ -37,7 +37,7 @@ class TestGoalNet {
     }
 
     /**
-     * Tests that the setGoalKeeperPosition method correctly sets the position of the goalkeeper,
+     * Tests that the setGoalKeeperPosition method correctly sets the position of the goalkeeper.
      */
     @Test
     void testSetGoalKeeperPositionMaxPositions() {
