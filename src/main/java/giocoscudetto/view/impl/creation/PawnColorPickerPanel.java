@@ -19,7 +19,7 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
         new Color(241, 196, 15)    //Yellow Color
     };
 
-    private static final int BTN_SIZE = 38;
+    private static final int BTN_SIZE = 32;
 
     private Color selectedColor = null;
     private final List<JButton> buttons = new ArrayList<>();
