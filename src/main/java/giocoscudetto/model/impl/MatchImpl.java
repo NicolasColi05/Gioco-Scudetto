@@ -154,7 +154,7 @@ public class MatchImpl implements Match {
         if (this.turn.getCurrentPlayer().getPawn().getPosition() < HALF_BOARD) {
             dice = this.dice6.rollDice() + this.dice6.rollDice();
             System.out.println("due dadi" + dice6);
-            return dice;
+            return 19;
         }
         dice = this.dice6.rollDice();
         System.out.println("un dado" + dice6);
@@ -295,9 +295,20 @@ public class MatchImpl implements Match {
         this.eventDices.clear();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void setKeeperPosition(final int i) {
         this.net.setGoalKeeperPosition(i);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getLastShootPosition() {
+        return this.net.getLastShootPosition();
     }
 
 }

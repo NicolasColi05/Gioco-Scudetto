@@ -10,12 +10,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.MatchController;
@@ -38,6 +40,8 @@ public class NetPanel extends DefaultPanelImpl {
     private static final int BOTTON5_POS = 5;
     private static final int BOTTON6_POS = 6;
     private static final int BOTTONS_COUNT = 6;
+    private static final int DELAY = 70;
+    private static final long TIME_WAIT = 1000;
 
     private final MatchController controller;
     private final BufferedImage image;
@@ -70,15 +74,7 @@ public class NetPanel extends DefaultPanelImpl {
         this.add(kickButton, BorderLayout.SOUTH); //NOPMD
 
             kickButton.addActionListener(e -> {
-                final boolean goal = this.controller.kickPenalty();
-                setButtonsEnabled(false);
-                this.count = 0;
-                this.controller.gameModeFinished();
-                if (goal) {
-                    label.setText("GOOOOOOOOOOAL!!!");
-                } else {
-                    label.setText("WHAT A SAVE BY THE KEEPER!!!");
-                }
+                this.animateAndResolve();
             });
 
         try {
@@ -178,5 +174,30 @@ public class NetPanel extends DefaultPanelImpl {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.image, 0, label.getSize().height, getWidth(), getHeight(), null);
+    }
+
+    /**
+     * animetes the dice and resolves the event after a certain time, updating the UI accordingly.
+     */
+    private void animateAndResolve() {
+        final Random rnd = new Random();
+        final long startTime = System.currentTimeMillis();
+        final Timer animTimer = new Timer(DELAY, null);
+
+        animTimer.addActionListener(e -> {
+            label.setText("Kicking the penalty..." + (rnd.nextInt(6) + 1));
+            if (System.currentTimeMillis() - startTime > TIME_WAIT) {
+                final boolean goal = this.controller.kickPenalty();
+                setButtonsEnabled(false);
+                this.controller.gameModeFinished();
+                if (goal) {
+                    label.setText("Shoot the penalty in position " + this.controller.getLastShootPosition() + " GOAL!!!");
+                } else {
+                    label.setText("Shoot the penalty in position " + this.controller.getLastShootPosition() + " NO GOAL");
+                }
+                animTimer.stop();
+            }
+        });
+        animTimer.start();
     }
 }

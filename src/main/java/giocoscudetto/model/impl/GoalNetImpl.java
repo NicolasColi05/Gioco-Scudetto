@@ -11,6 +11,7 @@ import giocoscudetto.model.api.GoalNet;
 public class GoalNetImpl implements GoalNet {
 
     private final List<Integer> goalKeeperPositions;
+    private int lastShootPosition;
 
     /**
      * Constructor for GoalNetImpl, it initializes the list of goalkeeper positions.
@@ -36,6 +37,7 @@ public class GoalNetImpl implements GoalNet {
      */
     @Override
     public boolean isGoal(final int ballPosition) {
+        this.lastShootPosition = ballPosition;
         if (goalKeeperPositions.contains(ballPosition)) {
             this.goalKeeperPositions.clear();
             System.out.println("Parata del portiere in posizione: " + ballPosition); //NOPMD
@@ -46,4 +48,11 @@ public class GoalNetImpl implements GoalNet {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getLastShootPosition() {
+        return this.lastShootPosition;
+    }
 }

@@ -199,4 +199,9 @@ public interface MatchController {
      */
     String getLeagueWinner();
 
+    /**
+     * @return the last position of the ball that was shot.
+     */
+    int getLastShootPosition();
+
 }

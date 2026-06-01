@@ -19,4 +19,11 @@ public interface GoalNet {
      * @return a boolean that is true if the ball is in the goal and false otherwise.
      */
     boolean isGoal(int guessPosition);
+
+    /**
+     * This method returns the last position of the ball that was shot.
+     * 
+     * @return an integer that represents the last position of the ball that was shot.
+     */
+    int getLastShootPosition();
 }

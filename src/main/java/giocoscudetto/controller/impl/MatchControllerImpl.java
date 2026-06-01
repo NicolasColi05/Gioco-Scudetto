@@ -317,4 +317,12 @@ public class MatchControllerImpl implements MatchController {
         return this.table.getClubs().get(0).getName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getLastShootPosition() {
+        return this.match.getLastShootPosition();
+    }
+
 }

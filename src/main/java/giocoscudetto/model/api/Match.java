@@ -140,4 +140,11 @@ public interface Match {
      */
     void eventMode();
 
+    /**
+     * This method returns the last position of the ball that was shot.
+     * 
+     * @return the last position of the ball that was shot.
+     */
+    int getLastShootPosition();
+
 }
