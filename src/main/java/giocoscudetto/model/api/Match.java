@@ -71,6 +71,16 @@ public interface Match {
     Scoreboard getScore();
 
     /**
+     * @return the club that has won the match, if there is a draw it returns null.
+     */
+    Club getWinnerClub();
+
+    /**
+     * @return the club that has lost the match, if there is a draw it returns null.
+     */
+    Club getLoserClub();
+    
+    /**
      * @return the club that is currently playing.
      */
     Club getCurrentPlayer();
@@ -110,21 +120,6 @@ public interface Match {
      */
     void setSkipTurn(Club club);
 
-    /**
-     * @return a string representation of the match, it contains the name of the home and away club and the score.
-     */
-    String toString();
-
-    /**
-     * @return the club that has won the match, if there is a draw it returns null.
-     */
-    Club getWinnerClub();
-
-    /**
-     * @return the club that has lost the match, if there is a draw it returns null.
-     */
-    Club getLoserClub();
-
     int diceEvent();
 
     /**
@@ -140,4 +135,8 @@ public interface Match {
      */
     void eventMode();
 
+    /**
+     * @return a string representation of the match, it contains the name of the home and away club and the score.
+     */
+    String toString();
 }
