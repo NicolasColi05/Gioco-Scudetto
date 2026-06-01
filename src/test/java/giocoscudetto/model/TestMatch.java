@@ -10,6 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/*
+ * CHECKSTYLE: MagicNumber OFF
+ * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
+ */
+/**
+ * Simple test for {@link MatchImpl}.
+ */
 public class TestMatch {
     private Club clubHome;
     private Club clubAway;
@@ -88,5 +95,22 @@ public class TestMatch {
         for (count = 0; count < 1000; count++){
             assertTrue(match.rollDice()<=6);
         }
+    }
+
+    @Test
+    void testEvent(){
+        if(this.match.getCurrentPlayer() != this.match.getClubHome()){
+            this.match.turn();
+        }
+        assertEquals(0, this.match.getScore().getHomeScore());
+        this.match.setGameMode(Match.GameMode.CORNER);
+        assertEquals(Match.GameMode.CORNER.toString(), this.match.getGameMode());
+        //for(int i = 0; i < 100; i++){
+            //this.match.diceEvent();
+            //this.match.diceEvent();
+            //this.match.eventMode();
+        //}
+        //assertTrue(this.match.getScore().getHomeScore() > 0);
+
     }
 }

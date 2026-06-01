@@ -9,6 +9,7 @@ import giocoscudetto.model.impl.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -16,7 +17,7 @@ import java.util.List;
  * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
  */
 /**
- * Simple test for {@link giocoscudetto.model.impl.FixturesImpl}.
+ * Simple test for {@link FixturesImpl}.
  */
 public class TestFixtures {
 
@@ -38,16 +39,38 @@ public class TestFixtures {
         inter = new ClubImpl(INTER, new PawnImpl(1));
         napoli = new ClubImpl(NAPOLI, new PawnImpl(1));
         juventus = new ClubImpl(JUVENTUS, new PawnImpl(1));
-        listOfClubs = List.of(roma, inter, napoli, juventus);
+        listOfClubs = new ArrayList<>();
+        listOfClubs.add(roma);
+        listOfClubs.add(inter);
+        listOfClubs.add(napoli);
+        listOfClubs.add(juventus);
         fixture = new FixturesImpl();
     }
 
+    /** 
+     * Tests that the fixture has n*(n-1) matches with n clubs so that each pair of teams plays twice.
+     */
     @Test
     void testFixtureGenerationMatchCount(){
         fixture.fixtureGeneration(listOfClubs);
-        assertEquals(12 , fixture.getListOfMatches().size());
+        assertEquals(listOfClubs.size()*(listOfClubs.size() - 1) , fixture.getListOfMatches().size());
+        listOfClubs = new ArrayList<>();
+        listOfClubs.add(roma);
+        listOfClubs.add(inter);
+        listOfClubs.add(napoli);
+        fixture = new FixturesImpl();
+        fixture.fixtureGeneration(listOfClubs);
+        assertEquals(listOfClubs.size()*(listOfClubs.size() - 1) , fixture.getListOfMatches().size());
+        listOfClubs.clear();
+        listOfClubs = List.of(roma, inter);
+        fixture = new FixturesImpl();
+        fixture.fixtureGeneration(listOfClubs);
+        assertEquals(listOfClubs.size()*(listOfClubs.size() - 1) , fixture.getListOfMatches().size());
     }
 
+    /**
+     * Tests that in the fixture each club appears the number of time needed to play two matches against each club.
+     */
     @Test
     void testFixturesGenerationClubCount() {
         int intercount = 0;
@@ -78,6 +101,19 @@ public class TestFixtures {
         System.out.println(fixture);
     }
 
+    /**
+     * Tests that is possible to make the fixture empty.
+     */
+    @Test
+    void testResetFixture() {
+        fixture.fixtureGeneration(listOfClubs);
+        fixture.resetFixture();
+        assertTrue(fixture.isEmpty());
+    }
+
+    /**
+     * Tests the function IsEmpty to see if the fixture is empty.
+     */
     @Test
     void testIsEmpty(){
         assertTrue(fixture.isEmpty());
@@ -87,13 +123,9 @@ public class TestFixtures {
         fixture.isEmpty();
     }
 
-    @Test
-    void testResetFixture() {
-        fixture.fixtureGeneration(listOfClubs);
-        fixture.resetFixture();
-        assertTrue(fixture.isEmpty());
-    }
-
+    /**
+     * Tests the possibility of look at the next match without going through the iterator.
+     */
     @Test
     void testNextMatch(){
         fixture.fixtureGeneration(listOfClubs);

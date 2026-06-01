@@ -136,6 +136,34 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
+    public Club getWinnerClub() {
+        if (this.score.getHomeScore() > this.score.getGuestScore()) {
+            return this.clubHome;
+        } else if (this.score.getHomeScore() < this.score.getGuestScore()) {
+            return this.clubAway;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Club getLoserClub() {
+        if (this.score.getHomeScore() < this.score.getGuestScore()) {
+            return this.clubHome;
+        } else if (this.score.getHomeScore() > this.score.getGuestScore()) {
+            return this.clubAway;
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Club getCurrentPlayer() {
         return turn.getCurrentPlayer();
     }
@@ -191,42 +219,6 @@ public class MatchImpl implements Match {
     @Override
     public void setSkipTurn(final Club club) {
         turn.setSkipTurn(club);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return this.clubHome.getName() + " - " + this.clubAway.getName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Club getWinnerClub() {
-        if (this.score.getHomeScore() > this.score.getGuestScore()) {
-            return this.clubHome;
-        } else if (this.score.getHomeScore() < this.score.getGuestScore()) {
-            return this.clubAway;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Club getLoserClub() {
-        if (this.score.getHomeScore() < this.score.getGuestScore()) {
-            return this.clubHome;
-        } else if (this.score.getHomeScore() > this.score.getGuestScore()) {
-            return this.clubAway;
-        } else {
-            return null;
-        }
     }
 
     /**
