@@ -51,7 +51,7 @@ public class ResultBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return ResultBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -59,7 +59,7 @@ public class ResultBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return ResultBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 
 }

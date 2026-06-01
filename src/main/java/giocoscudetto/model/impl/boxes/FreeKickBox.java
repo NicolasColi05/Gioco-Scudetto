@@ -51,7 +51,7 @@ public class FreeKickBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return FreeKickBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -59,6 +59,6 @@ public class FreeKickBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return FreeKickBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }

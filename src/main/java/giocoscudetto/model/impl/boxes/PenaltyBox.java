@@ -55,7 +55,7 @@ public final class PenaltyBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return PenaltyBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -63,7 +63,7 @@ public final class PenaltyBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return PenaltyBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 
 }
