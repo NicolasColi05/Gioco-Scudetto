@@ -139,30 +139,30 @@ public class NetPanel extends DefaultPanelImpl {
     private void checkButtons(final int position) {
         switch (position) {
             case BOTTON1_POS:
-                bottons.get(0).setEnabled(false);
-                bottons.get(5).setEnabled(false);
-                bottons.get(2).setEnabled(false);
+                bottons.get(BOTTON1_POS - 1).setEnabled(false);
+                bottons.get(BOTTON5_POS).setEnabled(false);
+                bottons.get(BOTTON2_POS).setEnabled(false);
                 break;
             case BOTTON2_POS:
-                bottons.get(1).setEnabled(false);
+                bottons.get(BOTTON1_POS).setEnabled(false);
                 break;
             case BOTTON3_POS:
-                bottons.get(2).setEnabled(false);
-                bottons.get(0).setEnabled(false);
-                bottons.get(3).setEnabled(false);
+                bottons.get(BOTTON2_POS).setEnabled(false);
+                bottons.get(BOTTON1_POS - 1).setEnabled(false);
+                bottons.get(BOTTON3_POS).setEnabled(false);
                 break;
             case BOTTON4_POS:
-                bottons.get(3).setEnabled(false);
-                bottons.get(5).setEnabled(false);
-                bottons.get(2).setEnabled(false);
+                bottons.get(BOTTON3_POS).setEnabled(false);
+                bottons.get(BOTTON5_POS).setEnabled(false);
+                bottons.get(BOTTON2_POS).setEnabled(false);
                 break;
             case BOTTON5_POS:
-                bottons.get(4).setEnabled(false);
+                bottons.get(BOTTON4_POS).setEnabled(false);
                 break;
             case BOTTON6_POS:
-                bottons.get(5).setEnabled(false);
-                bottons.get(0).setEnabled(false);
-                bottons.get(3).setEnabled(false);
+                bottons.get(BOTTON5_POS).setEnabled(false);
+                bottons.get(BOTTON1_POS - 1).setEnabled(false);
+                bottons.get(BOTTON3_POS).setEnabled(false);
                 break;
             default:
                 break;

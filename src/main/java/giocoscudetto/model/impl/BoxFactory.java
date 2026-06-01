@@ -17,6 +17,7 @@ import giocoscudetto.model.impl.boxes.SkipTurnBox;
 import giocoscudetto.model.impl.boxes.StartBox;
 import giocoscudetto.model.impl.boxes.SuspendMatchBox;
 
+//CHECKSTYLE: MagicNumber OFF
 /**
  * This class is a factory for the boxes of the board, 
  * it is used to create the boxes for each position of the board.
@@ -26,7 +27,7 @@ public final class BoxFactory {
     /**
      * Private constructor to prevent instantiation of the factory class.
      */
-    private BoxFactory() {}
+    private BoxFactory() { }
 
     /**
      * This method creates a box for the given position of the board.

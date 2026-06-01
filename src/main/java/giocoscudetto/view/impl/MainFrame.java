@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.view.api.ViewManager;
 
+/**
+ * This class represents the main frame of the game.
+ */
 public class MainFrame extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -17,9 +20,13 @@ public class MainFrame extends JFrame {
     )
     private final ViewManager viewManager;
 
+    /**
+     * Constructor of the MainFrame class, it initializes the view manager and sets the main panel of the frame.
+     * 
+     * @param manager the view manager to set for the frame.
+     */
     @SuppressWarnings("PMD.ConstructorCallsOverridableMethod")
     public MainFrame(final ViewManager manager) {
-        
         this.viewManager = manager;
         this.setContentPane(viewManager.getContainer());
 
@@ -37,7 +44,4 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-
-
-
 }

@@ -12,21 +12,24 @@ import giocoscudetto.view.api.GameObserver;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the MatchController interface.
+ */
 public class MatchControllerImpl implements MatchController {
     private final CreateUpdateController controller;
     private final Board board = new BoardImpl();
+    private final List<GameObserver> observers = new ArrayList<>();
     private Fixtures fixture;
     private Match match;
     private Table table;
-    private List<GameObserver> observers = new ArrayList<>();
-    private boolean helpFlag = false;
+    private boolean helpFlag;
 
     /**
      * Constructor for MatchControllerImpl.
      * 
-     * @param manager the view manager to use for the controller.
+     * @param controller the create/update controller to use for the match controller.
      */
-    public MatchControllerImpl(CreateUpdateController controller) {
+    public MatchControllerImpl(final CreateUpdateController controller) {
         this.controller = controller;
     }
 
@@ -43,7 +46,7 @@ public class MatchControllerImpl implements MatchController {
      * {@inheritDoc}
      */
     @Override
-    public String getBoxImage(int i) {
+    public String getBoxImage(final int i) {
         return this.board.getBoxImage(i);
     }
 
@@ -67,7 +70,7 @@ public class MatchControllerImpl implements MatchController {
      * {@inheritDoc}
      */
     @Override
-    public void setKeeperPosition(int i) {
+    public void setKeeperPosition(final int i) {
         this.match.setKeeperPosition(i);
     }
 
@@ -87,7 +90,7 @@ public class MatchControllerImpl implements MatchController {
         final int oldGuestScore = this.match.getScore().getGuestScore();
         final int oldHomeScore = this.match.getScore().getHomeScore();
         this.match.eventMode();
-        return (this.match.getScore().getGuestScore() != oldGuestScore || this.match.getScore().getHomeScore() != oldHomeScore);
+        return this.match.getScore().getGuestScore() != oldGuestScore || this.match.getScore().getHomeScore() != oldHomeScore;
     }
 
     /**
@@ -103,7 +106,7 @@ public class MatchControllerImpl implements MatchController {
      */
     @Override
     public int move() {
-        int resultDice = this.match.rollDice();
+        final int resultDice = this.match.rollDice();
         if (resultDice == 0) {
             this.match.turn();
         } else {
@@ -117,7 +120,7 @@ public class MatchControllerImpl implements MatchController {
      * {@inheritDoc}
      */
     @Override
-    public Table getTable(){
+    public Table getTable() {
         return this.table;
     }
 
@@ -133,7 +136,7 @@ public class MatchControllerImpl implements MatchController {
      * {@inheritDoc}
      */
     @Override
-    public void setMatch(){
+    public void setMatch() {
         this.fixture = controller.getFixture();
         this.match = this.fixture.setNextMatch();
         this.table = controller.getTable();
@@ -202,7 +205,7 @@ public class MatchControllerImpl implements MatchController {
      * {@inheritDoc}
      */
     @Override
-    public boolean isLastBox(){
+    public boolean isLastBox() {
         return this.match.getCurrentPlayer().getPawn().getPosition() == 32;
     }
 
@@ -210,25 +213,24 @@ public class MatchControllerImpl implements MatchController {
      * {@inheritDoc}
      */
     @Override
-    public void lastBox(){
+    public void lastBox() {
         this.fixture.setScore(match, this.match.getScore());
-        System.out.println (this.fixture.toString());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean isLastMatch(){
-        return this.fixture.seeNextMatch(this.match)==null;
+    public boolean isLastMatch() {
+        return this.fixture.seeNextMatch(this.match) == null;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override 
-    public void setPositionsZero(){
-        for (Club club : this.controller.getClubs()) {
+    public void setPositionsZero() {
+        for (final Club club : this.controller.getClubs()) {
             club.getPawn().setPosition(0);
         }
         notifyViews();
@@ -238,18 +240,17 @@ public class MatchControllerImpl implements MatchController {
      * {@inheritDoc}
      */
     @Override
-    public void addPoints(){
-        if(this.match.getScore().getHomeScore()==this.match.getScore().getGuestScore()){
+    public void addPoints() {
+        if (this.match.getScore().getHomeScore() == this.match.getScore().getGuestScore()) {
             this.match.getClubHome().incrementPoints(1);
             this.match.getClubAway().incrementPoints(1);
-        }else{
+        } else {
             this.match.getWinnerClub().incrementPoints(3);
         }
         this.match.getClubHome().changeNetDiffs(this.match.getScore().getHomeScore(), this.match.getScore().getGuestScore());
         this.match.getClubAway().changeNetDiffs(this.match.getScore().getGuestScore(), this.match.getScore().getHomeScore());
 
         this.table.updateClubRank();
-        
     }
 
     /**

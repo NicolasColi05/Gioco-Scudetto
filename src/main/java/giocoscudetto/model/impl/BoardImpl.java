@@ -6,7 +6,6 @@ import java.util.List;
 import giocoscudetto.model.api.Board;
 import giocoscudetto.model.api.Boxes;
 
-
 /**
  * This class represents the board of the game,
  *  it contains a list of boxes that represent the different events that can happen,

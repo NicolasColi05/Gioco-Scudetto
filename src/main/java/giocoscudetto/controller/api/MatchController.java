@@ -3,6 +3,9 @@ package giocoscudetto.controller.api;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.view.api.GameObserver;
 
+/**
+ * This interface represents the controller of the match.
+ */
 public interface MatchController {
 
     /**
@@ -62,43 +65,63 @@ public interface MatchController {
 
     /**
      * this method is for move the pawn of the current player.
-     * @return 
+     * 
+     * @return the number of the box where the pawn has to move.
      */
     int move();
 
     /**
-     * @return the table
+     * @return the table.
      */
     Table getTable();
 
     /**
      * This method is for get the description of the current box.
-      *
+     *
      * @return a string that contains the description of the current box.
      */
     String getDescription();
 
     /**
-     * This method sets the match with the next fixture match
-     * 
+     * This method sets the match with the next fixture match.
      */
-	void setMatch();
+    void setMatch();
 
+    /**
+     * This method is for get the name of the current game mode.
+     * 
+     * @return the name of the current game mode.
+     */
     String getGameMode();
 
+    /**
+     * This method is called when the game mode is finished and sets the game mode to the default one.
+     */
     void gameModeFinished();
 
+    /**
+     * This method is for add an observer to the match controller.
+     * 
+     * @param ob the observer to add.
+     */
     void addObserver(GameObserver ob);
 
+    /**
+     * This method is for remove an observer from the match controller.
+     * 
+     * @param ob the observer to remove.
+     */
     void removeObserver(GameObserver ob);
 
     /**
+     * This method is for get the RGB of the home team pawn.
      * 
      * @return the RGB of the home team pawn.
      */
     int getHomePawnRGB();
 
     /**
+     * This method is for get the RGB of the guest team pawn.
      * 
      * @return the RGB of the guest team pawn.
      */
@@ -128,7 +151,7 @@ public interface MatchController {
      * This method adds the points to the clubs at the end of the match.
      */
     void addPoints();
-    
+
     /**
      * @return the match dice event.
      */
@@ -146,6 +169,7 @@ public interface MatchController {
 
     /**
      * Set the help flag to the value of selected.
+     * 
      * @param selected the value to set the help flag to.
      */
     void setHelpFlag(boolean selected);

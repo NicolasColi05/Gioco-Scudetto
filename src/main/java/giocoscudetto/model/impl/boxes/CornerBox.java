@@ -8,10 +8,10 @@ import giocoscudetto.model.api.Match;
  */
 public class CornerBox implements Boxes {
 
+    private static final String IMAGE = "casella_19.png";
     private static final String DESCRIPTION = "Box Event: Corner. If you land on this box,"
                                     + " you throw two dice and if you get a 1 you score a goal";
     private final int position;
-    private static final String IMAGE = "casella_19.png";
 
     /**
      * Constructor of the CornerBox class.
@@ -51,7 +51,7 @@ public class CornerBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return CornerBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -59,6 +59,6 @@ public class CornerBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return CornerBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }
