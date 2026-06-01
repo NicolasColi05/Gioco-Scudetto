@@ -25,8 +25,8 @@ public final class PawnImpl implements Pawn {
     @Override
     public void changePosition(final int steps) {
 
-        int newPosition = this.position + steps;;
-        if (newPosition > MAX_POSITION) {
+        int newPosition = this.position + steps; //DA CONTROLLARE *****
+        if (newPosition > MAX_POSITION) { // ************************
             newPosition = MAX_POSITION;
         }
 
