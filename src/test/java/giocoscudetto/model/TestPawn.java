@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import giocoscudetto.model.impl.PawnImpl;
 
+/**
+ * Tests for PawnImpl.
+ */
 public class TestPawn {
 
     @Test
     void testInitialPosition() {
 
-        PawnImpl pawn = new PawnImpl(255);
+        final PawnImpl pawn = new PawnImpl(255);
 
         assertEquals(0, pawn.getPosition());
     }
