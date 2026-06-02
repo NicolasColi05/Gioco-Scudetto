@@ -1,6 +1,6 @@
 package giocoscudetto.model.api;
 
-/** 
+/**
  * interfaces that manages player turns during a match.
  */
 public interface Turn {

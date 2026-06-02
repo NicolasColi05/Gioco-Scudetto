@@ -15,11 +15,17 @@ import giocoscudetto.model.impl.TurnImpl;
  */
 public class TestTurn {
 
+    private static final String ROMA = "Roma";
+    private static final String INTER = "Inter";
+
+    private static final int PAWN_ROMA = 1;
+    private static final int PAWN_INTER = 2;
+
     @Test
     void testChooseStartingPlayer() {
 
-        final Club club1 = new ClubImpl("Roma", new PawnImpl(1));
-        final Club club2 = new ClubImpl("Inter", new PawnImpl(2));
+        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
+        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
 
         final TurnImpl turn = new TurnImpl(club1, club2);
 
@@ -32,8 +38,8 @@ public class TestTurn {
     @Test
     void testSwitchTurn() {
 
-        final Club club1 = new ClubImpl("Roma", new PawnImpl(1));
-        final Club club2 = new ClubImpl("Inter", new PawnImpl(2));
+        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
+        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
 
         final TurnImpl turn = new TurnImpl(club1, club2);
 
@@ -49,8 +55,8 @@ public class TestTurn {
     @Test
     void testSkipTurn() {
 
-        final Club club1 = new ClubImpl("Roma", new PawnImpl(1));
-        final Club club2 = new ClubImpl("Inter", new PawnImpl(2));
+        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
+        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
 
         final TurnImpl turn = new TurnImpl(club1, club2);
 
