@@ -1,7 +1,7 @@
 package giocoscudetto.model.api;
 
-/** 
- * interfaces that manages player turns during a match.
+/**
+ * Interface that manages player turns during a match.
  */
 public interface Turn {
 
@@ -18,7 +18,7 @@ public interface Turn {
     Club getCurrentPlayer();
 
     /**
-     * Switches the turn to the oter player.
+     * Switches the turn to the other player.
      */
     void switchTurn();
 }

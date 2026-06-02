@@ -35,17 +35,40 @@ import giocoscudetto.controller.api.Starter;
  * the winner and the final ranking.
  */
 public final class EndGameView extends DefaultPanelImpl {
+
+    private static final int BUTTON_BORDER = 5;
+    private static final int WINNER_FONT_SIZE = 30;
+    private static final int TABLE_FONT_DIVISOR = 70;
+
+    private static final int TABLE_WIDTH = 1000;
+    private static final int TABLE_HEIGHT = 600;
+
+    private static final int TITLE_RED = 195;
+    private static final int TITLE_GREEN = 45;
+    private static final int TITLE_BLUE = 35;
     
+    private static final int WINNER_SPACING = 80;
+    private static final int TABLE_SPACING = 120;
+
+    private static final int RESIZE_FONT_DIVISOR = 30;
+    private static final int RESIZE_TABLE_FONT_DIVISOR = 100;
+    private static final int RESIZE_ROW_HEIGHT_DIVISOR = 20;
+    private static final int ROW_MARGIN = 3;
+
     private final Starter controller;
     private final MatchController matchController;
     private final CreateUpdateController createUpdateController;
     private final Image image;
-    
-
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
-    private static final int BUTTON_BORDER = 5;
 
+    /**
+     * Creates the end game view.
+     * 
+     * @param controller application controller
+     * @param createUpdateController League controller
+     * @param matchController match controller
+     */
     public EndGameView(final Starter controller,
         final CreateUpdateController createUpdateController,
          final MatchController matchController) {
@@ -65,7 +88,7 @@ public final class EndGameView extends DefaultPanelImpl {
         //vincitore
         final JLabel winnerLabel = new JLabel("WINNER:" + this.matchController.getLeagueWinner(), SwingConstants.RIGHT);
         winnerLabel.setFont(
-            new Font(FONT_SELECTED, Font.BOLD, 30)
+            new Font(FONT_SELECTED, Font.BOLD, WINNER_FONT_SIZE)
         );
         winnerLabel.setForeground(Color.BLACK);
         winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -75,23 +98,23 @@ public final class EndGameView extends DefaultPanelImpl {
         standingsTable.setEnabled(false);
         standingsTable.setOpaque(false);
         standingsTable.setFont(
-            new Font(FONT_SELECTED, Font.BOLD, minimumWidht / 70)
+            new Font(FONT_SELECTED, Font.BOLD, minimumWidht / TABLE_FONT_DIVISOR)
         );
 
         //se necessario
         final JScrollPane tableScroll = new JScrollPane(standingsTable);
         tableScroll.setPreferredSize(new Dimension
-            (1000, 600)
+            (TABLE_WIDTH, TABLE_HEIGHT)
         );
         tableScroll.setMaximumSize(
-            new Dimension(1000, 600)
+            new Dimension(TABLE_WIDTH, TABLE_HEIGHT)
         );
         tableScroll.setOpaque(false);
         tableScroll.getViewport().setOpaque(false);
 
         final TitledBorder titleS = new TitledBorder("FINAL RANKING");
         titleS.setTitleJustification(TitledBorder.CENTER);
-        titleS.setTitleColor(new Color(195,45,35));
+        titleS.setTitleColor(new Color(TITLE_RED, TITLE_GREEN, TITLE_BLUE));
 
         tableScroll.setBorder(titleS);
 
@@ -128,9 +151,9 @@ public final class EndGameView extends DefaultPanelImpl {
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
         //aggiunte al panel centrale
-        centerPanel.add(Box.createVerticalStrut(80));
+        centerPanel.add(Box.createVerticalStrut(WINNER_SPACING));
         centerPanel.add(winnerLabel);
-        centerPanel.add(Box.createVerticalStrut(120));
+        centerPanel.add(Box.createVerticalStrut(TABLE_SPACING));
 
         final JPanel tablePanel = new JPanel();
         tablePanel.setOpaque(false);
@@ -144,7 +167,7 @@ public final class EndGameView extends DefaultPanelImpl {
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(lowerPanel, BorderLayout.SOUTH);
 
-        this.addComponentListener(new java.awt.event.ComponentAdapter() {   
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
                 final int width = getWidth();
@@ -154,18 +177,18 @@ public final class EndGameView extends DefaultPanelImpl {
                     new Font(
                         FONT_SELECTED,
                          Font.BOLD,
-                          width / 30
+                          width / RESIZE_FONT_DIVISOR
                         )
                     );
                 standingsTable.setFont(
                     new Font(
                         FONT_SELECTED,
                          Font.BOLD,
-                          width / 100
+                          width / RESIZE_TABLE_FONT_DIVISOR
                         )
                     );
-                standingsTable.setRowHeight(height / 20);
-                standingsTable.setRowMargin(3);
+                standingsTable.setRowHeight(height / RESIZE_ROW_HEIGHT_DIVISOR);
+                standingsTable.setRowMargin(ROW_MARGIN);
 
                 revalidate();
             }

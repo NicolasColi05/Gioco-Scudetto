@@ -28,10 +28,12 @@ public final class PawnImpl implements Pawn {
         int newPosition = this.position + steps; //DA CONTROLLARE *****
         if (newPosition > MAX_POSITION) { // ************************
             newPosition = MAX_POSITION;
+        } else {
+            newPosition = this.position + steps;
         }
 
-
-        System.out.println("Pawn moves from" + this.position + "to" + newPosition);
+        System.out.println("Pawn moves from " + this.position + " to " + newPosition
+        );
 
         this.position = newPosition;
     }
@@ -50,5 +52,4 @@ public final class PawnImpl implements Pawn {
     public void setPosition(final int position) {
        this.position = position;
     }
-
 }
