@@ -303,4 +303,11 @@ public class MatchImpl implements Match {
         return this.net.getLastShootPosition();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString(){
+        return this.clubHome.getName() + " - " + this.clubAway.getName();
+    }
 }

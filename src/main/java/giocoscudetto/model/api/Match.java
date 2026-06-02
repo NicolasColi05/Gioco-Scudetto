@@ -142,4 +142,9 @@ public interface Match {
      */
     int getLastShootPosition();
 
+    /**
+     * Method that return a string representation of the match, it contains the name of the home and away club and the score.
+     * @return a string representation of the match, it contains the name of the home and away club and the score.
+     */
+    String toString();
 }
