@@ -8,10 +8,10 @@ import giocoscudetto.controller.impl.MatchControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.view.impl.MainFrame;
-import giocoscudetto.view.impl.PreMatchView;
 import giocoscudetto.view.impl.ViewManagerImpl;
 import giocoscudetto.view.impl.initialize.ClubPanel;
 import giocoscudetto.view.impl.initialize.HomePanel;
+import giocoscudetto.view.impl.result.PreMatchView;
 
 /**
  * This is the main class of the game, it is used to start the game and create the main frame.
