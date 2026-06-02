@@ -1,4 +1,5 @@
 package giocoscudetto.model.impl;
+
 import javax.swing.table.AbstractTableModel;
 
 import giocoscudetto.model.api.Club;
@@ -6,7 +7,10 @@ import giocoscudetto.model.api.Table;
 
 import java.util.List;
 
-public class LeagueTableModel extends AbstractTableModel {
+/**
+ * Table model used to display the League standings.
+ */
+public final class LeagueTableModel extends AbstractTableModel {
 
     private final List<Club> clubs;
 
@@ -16,9 +20,14 @@ public class LeagueTableModel extends AbstractTableModel {
         "Net Diff",
     };
 
-    public LeagueTableModel(Table table) {
+    /**
+     * Creates a League table model.
+     * 
+     * @param table League table
+     */
+    public LeagueTableModel(final Table table) {
 
-        this.clubs = table.getClubs();   
+        this.clubs = table.getClubs(); 
     }
 
     @Override
@@ -32,14 +41,14 @@ public class LeagueTableModel extends AbstractTableModel {
     }
 
     @Override
-    public String getColumnName(int col) {
+    public String getColumnName(final int col) {
         return columns[col];
     }
 
     @Override
-    public Object getValueAt(int row, int col) {
+    public Object getValueAt(final int row, final int col) {
 
-        Club club = clubs.get(row);
+        final Club club = clubs.get(row);
 
         return switch (col) {
 
@@ -53,6 +62,4 @@ public class LeagueTableModel extends AbstractTableModel {
 
         };
     }
-
-
 }
