@@ -104,8 +104,8 @@ public final class EndGameView extends DefaultPanelImpl {
 
         //se necessario
         final JScrollPane tableScroll = new JScrollPane(standingsTable);
-        tableScroll.setPreferredSize(new Dimension
-            (TABLE_WIDTH, TABLE_HEIGHT)
+        tableScroll.setPreferredSize(
+            new Dimension(TABLE_WIDTH, TABLE_HEIGHT)
         );
         tableScroll.setMaximumSize(
             new Dimension(TABLE_WIDTH, TABLE_HEIGHT)
@@ -162,7 +162,6 @@ public final class EndGameView extends DefaultPanelImpl {
         tablePanel.add(tableScroll);
 
         centerPanel.add(tablePanel);
-
 
         //aggiunte al panel principale
         this.add(centerPanel, BorderLayout.CENTER);
