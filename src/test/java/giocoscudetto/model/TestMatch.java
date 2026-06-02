@@ -98,19 +98,61 @@ public class TestMatch {
     }
 
     @Test
-    void testEvent(){
+    void testCornerEvent(){
+        int count = 0, first, second;
         if(this.match.getCurrentPlayer() != this.match.getClubHome()){
             this.match.turn();
         }
         assertEquals(0, this.match.getScore().getHomeScore());
         this.match.setGameMode(Match.GameMode.CORNER);
         assertEquals(Match.GameMode.CORNER.toString(), this.match.getGameMode());
-        //for(int i = 0; i < 100; i++){
-            //this.match.diceEvent();
-            //this.match.diceEvent();
-            //this.match.eventMode();
-        //}
-        //assertTrue(this.match.getScore().getHomeScore() > 0);
+        for (int i = 0; i < 10000; i++){
+            first = this.match.diceEvent();
+            second = this.match.diceEvent();
+            if(first == 1 || second == 1){
+                count = count + 1;
+            }
+        }
+        assertEquals(count, this.match.getScore().getHomeScore());
+    }
 
+    @Test
+    void testFreeKickEvent(){
+        int count = 0, first, second;
+        if(this.match.getCurrentPlayer() != this.match.getClubHome()){
+            this.match.turn();
+        }
+        assertEquals(0, this.match.getScore().getHomeScore());
+        this.match.setGameMode(Match.GameMode.FREE_KICK);
+        assertEquals(Match.GameMode.FREE_KICK.toString(), this.match.getGameMode());
+        for (int i = 0; i < 10000; i++){
+            first = this.match.diceEvent();
+            second = this.match.diceEvent();
+            if(first + second == 7){
+                count = count + 1;
+            }
+        }
+        assertEquals(count, this.match.getScore().getHomeScore());
+    }
+
+    @Test
+    void testPenaltyEvent(){
+        int count = 0, shoot;
+        if(this.match.getCurrentPlayer() != this.match.getClubHome()){
+            this.match.turn();
+        }
+        assertEquals(0, this.match.getScore().getHomeScore());
+        this.match.setGameMode(Match.GameMode.PENALTY);
+        assertEquals(Match.GameMode.PENALTY.toString(), this.match.getGameMode());
+        this.match.setKeeperPosition(1);
+        this.match.setKeeperPosition(5);
+        for (int i = 0; i < 100; i++){
+            this.match.diceEvent();
+            shoot = this.match.getLastShootPosition();
+            if(shoot != 2 && shoot != 5){
+                count++;
+            }
+        }
+        assertEquals(count, this.match.getScore().getHomeScore());
     }
 }
