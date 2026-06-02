@@ -17,7 +17,7 @@ public final class TurnImpl implements Turn {
     private boolean skipClub2;
 
     /**
-     * Creates a turn manager
+     * Creates a turn manager.
      * 
      * @param club1 first club
      * @param club2 second club
@@ -98,7 +98,7 @@ public final class TurnImpl implements Turn {
     }
 
     /**
-     * Consume the skip-turn effect
+     * Consume the skip-turn effect.
      * 
      * @param club club whose skip is removed
      */

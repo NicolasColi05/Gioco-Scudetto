@@ -7,20 +7,20 @@ import giocoscudetto.model.api.Match;
 /**
  * Box that moves the opponent to the current player's position.
  */
+public final class JoinBox implements Boxes {
 
-public class JoinBox implements Boxes {
-
-    private final int position;
     private static final String IMAGE = "casella_2.png";
-    private static final String DESCRIPTION = "Box Event: Join. If you land on this box, "
-    + "the opponent has to reach your box.";
+    private static final String DESCRIPTION = 
+        "Box Event: Join. If you land on this box, "
+        + "the opponent has to reach your box.";
+    private final int position;
 
     /**
      * Creates a JoinBox.
-     * 
+     *
      * @param position box position
      */
-    public JoinBox(int position) {
+    public JoinBox(final int position) {
         this.position = position;
     }
 
@@ -44,24 +44,23 @@ public class JoinBox implements Boxes {
      * {@inheritDoc}
      */
     @Override
-    public void event (final Match match) {
-        final Club current= match.getCurrentPlayer();
+    public void event(final Match match) {
+        final Club current = match.getCurrentPlayer();
         final Club opponent;
-    
+
         if (current == match.getClubHome()) {
-        opponent = match.getClubAway();
+            opponent = match.getClubAway();
         } else {
             opponent = match.getClubHome();
         }
-            
 
-        System.out.println(current + "entered Join Box");
+         System.out.println(current + " entered Join Box");
 
         final int currentPosition = current.getPawn().getPosition();
         opponent.getPawn().setPosition(currentPosition);
 
         System.out.println(
-            opponent + "joined current player at position" + currentPosition
+            opponent + " joined current player at position " + currentPosition
         );
         match.turn();
     }

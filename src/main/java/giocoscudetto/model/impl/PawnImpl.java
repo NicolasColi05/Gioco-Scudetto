@@ -32,7 +32,6 @@ public final class PawnImpl implements Pawn {
             newPosition = this.position + steps;
         }
 
-
         System.out.println("Pawn moves from " + this.position + " to " + newPosition
         );
 
