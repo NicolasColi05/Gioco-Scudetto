@@ -46,7 +46,7 @@ public final class EndGameView extends DefaultPanelImpl {
     private static final int TITLE_RED = 195;
     private static final int TITLE_GREEN = 45;
     private static final int TITLE_BLUE = 35;
-    
+
     private static final int WINNER_SPACING = 80;
     private static final int TABLE_SPACING = 120;
 
