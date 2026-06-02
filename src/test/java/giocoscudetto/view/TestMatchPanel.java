@@ -13,14 +13,14 @@ import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.controller.impl.StarterImpl;
 import giocoscudetto.view.api.ViewManager;
 import giocoscudetto.controller.impl.MatchControllerImpl;
-import giocoscudetto.view.impl.MatchPanel;
 import giocoscudetto.view.impl.ViewManagerImpl;
+import giocoscudetto.view.impl.match.MatchPanel;
 
 /*
  * CHECKSTYLE: MagicNumber OFF
  */
 /**
- * Test for {@link giocoscudetto.view.impl.MatchPanel}.
+ * Test for {@link giocoscudetto.view.impl.match.MatchPanel}.
  */
 public class TestMatchPanel extends JFrame {
 

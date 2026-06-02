@@ -35,7 +35,7 @@ public TestEndGameView() {
     
     matchController.setMatch();
     
-    JPanel pa = new giocoscudetto.view.impl.EndGameView(starter, cr, matchController);
+    JPanel pa = new giocoscudetto.view.impl.result.EndGameView(starter, cr, matchController);
     this.setContentPane(pa);
      this.setVisible(true);
     }

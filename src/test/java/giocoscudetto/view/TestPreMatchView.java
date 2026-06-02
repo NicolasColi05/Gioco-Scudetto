@@ -18,7 +18,7 @@ public class TestPreMatchView extends JFrame{
         this.setSize(650, 670);
         CreateUpdateController controller = new CreateUpdateControllerImpl();
         MatchController matchController = new MatchControllerImpl(controller);
-        JPanel pa = new giocoscudetto.view.impl.BoardPanel(matchController);
+        JPanel pa = new giocoscudetto.view.impl.match.BoardPanel(matchController);
         this.setContentPane(pa);
         pa.paint(this.getGraphics());
         this.setVisible(true);
