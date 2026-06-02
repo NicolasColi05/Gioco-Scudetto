@@ -140,5 +140,4 @@ public class TestFixtures {
         assertEquals(12, count);
     }
 
-
 }
