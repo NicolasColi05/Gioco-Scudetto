@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.view.impl.DefaultPanelImpl;
 
 /**
  * This class represents the home panel of the game, where the user can choose to play with bots or friends, or exit the game.

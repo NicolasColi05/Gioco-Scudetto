@@ -32,7 +32,6 @@ import javax.swing.event.DocumentListener;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.view.impl.DefaultPanelImpl;
 
 public class ClubPanel extends DefaultPanelImpl{
     
@@ -323,11 +322,11 @@ public class ClubPanel extends DefaultPanelImpl{
      * - each club selected a name, which should be not the same as one of other clubs
      */
     private void updateButtonVisibility() {
-        System.out.print("controlling button visibility...");
+        //System.out.print("controlling button visibility...");
         btnCont.setVisible(this.clubsPawn.stream().allMatch(i -> i.getSelectedColor() != null) &&
                            this.controller.isClubNameComplete(this.clubsName.stream()
                                         .map(JTextField::getText)
                                         .toList()));
-        System.out.println(btnCont.isVisible());
+        //System.out.println(btnCont.isVisible());
     }
 }
