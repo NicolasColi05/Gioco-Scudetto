@@ -1,4 +1,4 @@
-package giocoscudetto.view.impl.creation;
+package giocoscudetto.view.impl.initialize;
 
 import javax.swing.*;
 

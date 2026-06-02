@@ -1,4 +1,4 @@
-package giocoscudetto.view.impl.creation;
+package giocoscudetto.view.impl.initialize;
 
 import java.awt.Font;
 import java.awt.Graphics;
