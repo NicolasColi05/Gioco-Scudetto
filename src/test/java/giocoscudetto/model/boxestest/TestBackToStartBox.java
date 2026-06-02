@@ -8,7 +8,6 @@ import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.boxes.BackToStartBox;
 
-
 /**
  * Tests for BackToStartBox.
  */
@@ -28,7 +27,7 @@ public class TestBackToStartBox {
 
         final Club current = match.getCurrentPlayer();
         current.getPawn().setPosition(PLAYER_POSITION);
-        BackToStartBox box = new BackToStartBox(BOX_POSITION);
+        final BackToStartBox box = new BackToStartBox(BOX_POSITION);
         box.event(match);
         assertEquals(START_POSITION, current.getPawn().getPosition());
     }
