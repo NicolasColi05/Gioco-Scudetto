@@ -18,7 +18,7 @@ public final class TurnImpl implements Turn {
 
     /**
      * Creates a turn manager.
-     * 
+     *
      * @param club1 first club
      * @param club2 second club
      */
@@ -32,7 +32,7 @@ public final class TurnImpl implements Turn {
 
     /**
      * Marks a club to skip its next turn.
-     * 
+     *
      * @param club club that must skip
      */
     public void setSkipTurn(final Club club) {
@@ -67,7 +67,7 @@ public final class TurnImpl implements Turn {
         } else {
             currentPlayer = club1;
         }
-    
+
         if (currentPlayer == club1 && skipClub1) {
             skipClub1 = false;
 
@@ -84,7 +84,7 @@ public final class TurnImpl implements Turn {
 
     /**
      * Checks whether a club must skip its turn.
-     * 
+     *
      * @param club club to check
      * @return true if the club must skip
      */
@@ -99,7 +99,7 @@ public final class TurnImpl implements Turn {
 
     /**
      * Consume the skip-turn effect.
-     * 
+     *
      * @param club club whose skip is removed
      */
     public void consumeSkip(final Club club) {
