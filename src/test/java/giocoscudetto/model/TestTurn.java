@@ -10,15 +10,24 @@ import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TurnImpl;
 
+/**
+ * Test for TestTurn.
+ */
 public class TestTurn {
+
+    private static final String ROMA = "Roma";
+    private static final String INTER = "Inter";
+
+    private static final int PAWN_ROMA = 1;
+    private static final int PAWN_INTER = 2;
 
     @Test
     void testChooseStartingPlayer() {
 
-        Club club1 = new ClubImpl("Roma", new PawnImpl(1));
-        Club club2 = new ClubImpl("Inter", new PawnImpl(2));
+        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
+        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
 
-        TurnImpl turn = new TurnImpl(club1, club2);
+        final TurnImpl turn = new TurnImpl(club1, club2);
 
         assertTrue(
             turn.getCurrentPlayer() == club1
@@ -29,16 +38,16 @@ public class TestTurn {
     @Test
     void testSwitchTurn() {
 
-        Club club1 = new ClubImpl("Roma", new PawnImpl(1));
-        Club club2 = new ClubImpl("Inter", new PawnImpl(2));
+        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
+        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
 
-        TurnImpl turn = new TurnImpl(club1, club2);
+        final TurnImpl turn = new TurnImpl(club1, club2);
 
-        Club first = turn.getCurrentPlayer();
+        final Club first = turn.getCurrentPlayer();
 
         turn.switchTurn();
 
-        Club second = turn.getCurrentPlayer();
+        final Club second = turn.getCurrentPlayer();
 
         assertTrue(first != second);
     }
@@ -46,12 +55,12 @@ public class TestTurn {
     @Test
     void testSkipTurn() {
 
-        Club club1 = new ClubImpl("Roma", new PawnImpl(1));
-        Club club2 = new ClubImpl("Inter", new PawnImpl(2));
+        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
+        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
 
-        TurnImpl turn = new TurnImpl(club1, club2);
+        final TurnImpl turn = new TurnImpl(club1, club2);
 
-        Club current = turn.getCurrentPlayer();
+        final Club current = turn.getCurrentPlayer();
 
         turn.setSkipTurn(current);
 

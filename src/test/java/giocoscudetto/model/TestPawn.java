@@ -9,10 +9,15 @@ import giocoscudetto.model.impl.PawnImpl;
  */
 public class TestPawn {
 
+    private static final int DEFAULT_COLOR = 255;
+    private static final int STEP = 5;
+    private static final int POSITION_VALUE = 12;
+    private static final int COLOR_CUSTOM = 123;
+
     @Test
     void testInitialPosition() {
 
-        final PawnImpl pawn = new PawnImpl(255);
+        final PawnImpl pawn = new PawnImpl(DEFAULT_COLOR);
 
         assertEquals(0, pawn.getPosition());
     }
@@ -20,9 +25,9 @@ public class TestPawn {
     @Test
     void testChangePosition() {
 
-        PawnImpl pawn = new PawnImpl(255);
+        PawnImpl pawn = new PawnImpl(DEFAULT_COLOR);
 
-        pawn.changePosition(5);
+        pawn.changePosition(STEP);
 
         assertEquals(5, pawn.getPosition());
     }
@@ -30,18 +35,18 @@ public class TestPawn {
     @Test
     void testSetPosition() {
 
-        PawnImpl pawn = new PawnImpl(255);
+        PawnImpl pawn = new PawnImpl(DEFAULT_COLOR);
 
-        pawn.setPosition(12);
+        pawn.setPosition(POSITION_VALUE);
 
-        assertEquals(12, pawn.getPosition());
+        assertEquals(POSITION_VALUE, pawn.getPosition());
     }
 
     @Test
     void testPawnRGB() {
 
-        PawnImpl pawn = new PawnImpl(123);
+        PawnImpl pawn = new PawnImpl(COLOR_CUSTOM);
 
-        assertEquals(123, pawn.getPawnRGB());
+        assertEquals(COLOR_CUSTOM, pawn.getPawnRGB());
     }
 }

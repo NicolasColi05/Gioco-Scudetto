@@ -13,6 +13,10 @@ import giocoscudetto.model.impl.boxes.JoinBox;
  */
 public class TestJoinBox {
 
+    private static final int HOME_POSITION = 5;
+    private static final int AWAY_POSITION = 12;
+    private static final int BOX_POSITION = 17;
+
     @Test
     void testJoinBox() {
 
@@ -20,13 +24,13 @@ public class TestJoinBox {
         final Club away = new ClubImpl("Inter", new PawnImpl(2));
 
         final MatchImpl match = new MatchImpl(home, away);
-        home.getPawn().setPosition(5);
-        away.getPawn().setPosition(12);
+        home.getPawn().setPosition(HOME_POSITION);
+        away.getPawn().setPosition(AWAY_POSITION);
 
-        final JoinBox box = new JoinBox(17);
+        final JoinBox box = new JoinBox(BOX_POSITION);
 
         box.event(match);
         match.turn();
         assertEquals(away.getPawn().getPosition(), home.getPawn().getPosition());
-    }   
+    }
 }

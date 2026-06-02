@@ -4,27 +4,38 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Turn;
 import giocoscudetto.model.impl.dices.MainDice;
 
+/**
+ * Implementations of turn management.
+ */
+public final class TurnImpl implements Turn {
 
-public class TurnImpl implements Turn {
-
-    //Class Fields
-    private Club club1;
-    private Club club2;
+    private final Club club1;
+    private final Club club2;
+    private final MainDice dice;
     private Club currentPlayer;
-    private MainDice dice;
     private boolean skipClub1;
     private boolean skipClub2;
 
-    //Class Constructor
-    public TurnImpl(Club club1, Club club2) {
+    /**
+     * Creates a turn manager.
+     * 
+     * @param club1 first club
+     * @param club2 second club
+     */
+    public TurnImpl(final Club club1, final Club club2) {
 
         this.club1 = club1;
         this.club2 = club2;
         this.dice = new MainDice();
-        chooseStartingPlayer(); 
+        chooseStartingPlayer();
     }
 
-    public void setSkipTurn(Club club) {
+    /**
+     * Marks a club to skip its next turn.
+     * 
+     * @param club club that must skip
+     */
+    public void setSkipTurn(final Club club) {
         if (club == club1) {
             skipClub1 = true;
         } else {
@@ -34,15 +45,16 @@ public class TurnImpl implements Turn {
 
     @Override
     public void chooseStartingPlayer() {
-        int roll1 = dice.rollDice() + dice.rollDice();
-        int roll2 = dice.rollDice() + dice.rollDice();
+        final int roll1 = dice.rollDice() + dice.rollDice();
+        final int roll2 = dice.rollDice() + dice.rollDice();
 
         if (roll1 >= roll2) {
-            currentPlayer= club1;
+            currentPlayer = club1;
         } else {
             currentPlayer = club2;
         }
     }
+
     @Override
     public Club getCurrentPlayer() {
         return currentPlayer;
@@ -70,8 +82,13 @@ public class TurnImpl implements Turn {
         }
     }
 
-
-    public boolean hasToSkip(Club club) {
+    /**
+     * Checks whether a club must skip its turn.
+     * 
+     * @param club club to check
+     * @return true if the club must skip
+     */
+    public boolean hasToSkip(final Club club) {
 
         if (club == club1) {
             return skipClub1;
@@ -80,7 +97,12 @@ public class TurnImpl implements Turn {
         return skipClub2;
     }
 
-    public void consumeSkip(Club club) {
+    /**
+     * Consume the skip-turn effect.
+     * 
+     * @param club club whose skip is removed
+     */
+    public void consumeSkip(final Club club) {
 
         if (club == club1) {
             skipClub1 = false;
