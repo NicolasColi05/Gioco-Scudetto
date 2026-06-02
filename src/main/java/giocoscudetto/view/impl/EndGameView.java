@@ -64,7 +64,7 @@ public final class EndGameView extends DefaultPanelImpl {
 
     /**
      * Creates the end game view.
-     * 
+     *
      * @param controller application controller
      * @param createUpdateController League controller
      * @param matchController match controller
