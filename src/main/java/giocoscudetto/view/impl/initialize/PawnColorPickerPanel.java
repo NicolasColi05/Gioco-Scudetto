@@ -112,6 +112,14 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
     /**
      *{@inheritDoc}
      */
+    @Override    
+    public boolean isColorSelected() {
+        return this.getSelectedColor() != null;
+    }
+
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public void reset() {
         selectedColor = null;

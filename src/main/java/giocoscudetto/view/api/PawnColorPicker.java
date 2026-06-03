@@ -23,6 +23,11 @@ public interface PawnColorPicker {
     Color getSelectedColor();
 
     /**
+     * @return if the color of that color picker is selected.
+     */
+    boolean isColorSelected();
+
+    /**
      * Reset used when clubs number changed in the ClubPanel.
      */
     void reset();
