@@ -3,9 +3,14 @@ package giocoscudetto.model;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Pawn;
-import giocoscudetto.model.impl.*;
+import giocoscudetto.model.impl.ClubImpl;
+import giocoscudetto.model.impl.MatchImpl;
+import giocoscudetto.model.impl.PawnImpl;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +22,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Simple test for {@link MatchImpl}.
  */
-public class TestMatch {
+class TestMatch {
     private Club clubHome;
     private Club clubAway;
     private Pawn pawnHome;
@@ -28,8 +33,8 @@ public class TestMatch {
     void setUp() {
         pawnHome = new PawnImpl(0);
         pawnAway = new PawnImpl(0);
-        clubHome= new ClubImpl("clubHome", pawnHome);
-        clubAway= new ClubImpl("clubAway", pawnAway);
+        clubHome = new ClubImpl("clubHome", pawnHome);
+        clubAway = new ClubImpl("clubAway", pawnAway);
         match = new MatchImpl(clubHome, clubAway);
     }
 
@@ -37,20 +42,20 @@ public class TestMatch {
      * Tests that the creation of the match was correct.
      */
     @Test
-    void TestInitial(){
+    void testInitial() {
         assertNotNull(match.getClubHome());
         assertNotNull(match.getClubAway());
         assertEquals(clubHome, match.getClubHome());
         assertEquals(clubAway, match.getClubAway());
-        assertEquals(0,match.getScore().getGuestScore());
-        assertEquals(0,match.getScore().getHomeScore());
+        assertEquals(0, match.getScore().getGuestScore());
+        assertEquals(0, match.getScore().getHomeScore());
     }
 
     /**
      * Tests adding goals, removing goals and setting the goals to certain value.
      */
     @Test
-    void TestGoals() {
+    void testGoals() {
         match.goalHome();
         match.goalHome();
         match.goalAway();
@@ -70,6 +75,16 @@ public class TestMatch {
         assertEquals(0, match.getScore().getGuestScore());
     }
 
+    @Test
+    void testTurn() {
+        final Club first = this.match.getCurrentPlayer();
+        this.match.turn();
+        final Club second = this.match.getCurrentPlayer();
+        this.match.turn();
+        assertEquals(first, this.match.getCurrentPlayer());
+        this.match.turn();
+        assertEquals(second, this.match.getCurrentPlayer());
+    }
     /**
      * Tests that the winner and the loser of the match are assigned correctly.
      */
@@ -96,15 +111,15 @@ public class TestMatch {
     void testDiceLogic() {
         int count;
         match.getClubHome().getPawn().setPosition(0);
-        if (match.getCurrentPlayer() != match.getClubHome()){
+        if (!this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
             match.turn();
         }
-        for (count = 0; count < 1000; count++){
-            assertTrue(match.rollDice()<=12);
+        for (count = 0; count < 10_000; count++) {
+            assertTrue(match.rollDice() <= 12);
         }
         match.getClubHome().getPawn().setPosition(24);
-        for (count = 0; count < 1000; count++){
-            assertTrue(match.rollDice()<=6);
+        for (count = 0; count < 10_000; count++) {
+            assertTrue(match.rollDice() <= 6);
         }
     }
 
@@ -113,17 +128,19 @@ public class TestMatch {
      */
     @Test
     void testCornerEvent() {
-        int count = 0, first, second;
-        if(this.match.getCurrentPlayer() != this.match.getClubHome()){
+        int count = 0;
+        int first; 
+        int second;
+        if (!this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
             this.match.turn();
         }
         assertEquals(0, this.match.getScore().getHomeScore());
         this.match.setGameMode(Match.GameMode.CORNER);
         assertEquals(Match.GameMode.CORNER.toString(), this.match.getGameMode());
-        for (int i = 0; i < 10000; i++){
+        for (int i = 0; i < 10_000; i++) {
             first = this.match.diceEvent();
             second = this.match.diceEvent();
-            if(first == 1 || second == 1){
+            if (first == 1 || second == 1) {
                 count = count + 1;
             }
         }
@@ -135,18 +152,20 @@ public class TestMatch {
      * Tests the free kick event.
      */
     @Test
-    void testFreeKickEvent() {
-        int count = 0, first, second;
-        if(this.match.getCurrentPlayer() != this.match.getClubHome()){
+    void testFreekickEvent() {
+        int count = 0;
+        int first; 
+        int second;
+        if (!this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
             this.match.turn();
         }
         assertEquals(0, this.match.getScore().getHomeScore());
         this.match.setGameMode(Match.GameMode.FREE_KICK);
         assertEquals(Match.GameMode.FREE_KICK.toString(), this.match.getGameMode());
-        for (int i = 0; i < 10000; i++){
+        for (int i = 0; i < 10_000; i++) {
             first = this.match.diceEvent();
             second = this.match.diceEvent();
-            if(first + second == 7){
+            if (first + second == 7) {
                 count = count + 1;
             }
         }
@@ -155,22 +174,22 @@ public class TestMatch {
     }
 
     /**
-     * Tests the penalty event.
+     * Tests the penalty event, the sets of the keeper position and the last shoot position.
      */
     @Test
     void testPenaltyEvent() {
         int count = 0;
-        if(this.match.getCurrentPlayer() != this.match.getClubHome()){
+        if (!this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
             this.match.turn();
         }
         assertEquals(0, this.match.getScore().getHomeScore());
         this.match.setGameMode(Match.GameMode.PENALTY);
         assertEquals(Match.GameMode.PENALTY.toString(), this.match.getGameMode());
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10_000; i++) {
             this.match.setKeeperPosition(1);
             this.match.setKeeperPosition(2);
             this.match.eventMode();
-            if(this.match.getLastShootPosition() != 1 && this.match.getLastShootPosition() != 2){
+            if (this.match.getLastShootPosition() != 1 && this.match.getLastShootPosition() != 2) {
                 count++;
             }
         }
@@ -183,15 +202,15 @@ public class TestMatch {
      */
     @Test
     void testResultEvent() {
-        if(this.match.getCurrentPlayer() != this.match.getClubHome()){
+        if (!this.match.getCurrentPlayer().equals(this.match.getClubHome())) {
             this.match.turn();
         }
         assertEquals(0, this.match.getScore().getHomeScore());
         assertEquals(0, this.match.getScore().getGuestScore());
         this.match.setGameMode(Match.GameMode.RESULT);
-        for (int i = 0; i < 10000; i++) {
-            int goalHome = this.match.diceEvent();
-            int goalAway = this.match.diceEvent();
+        for (int i = 0; i < 10_000; i++) {
+            final int goalHome = this.match.diceEvent();
+            final int goalAway = this.match.diceEvent();
             assertEquals(goalHome, this.match.getScore().getHomeScore());
             assertEquals(goalAway, this.match.getScore().getGuestScore());
         }

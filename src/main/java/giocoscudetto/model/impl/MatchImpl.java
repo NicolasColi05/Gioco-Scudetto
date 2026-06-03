@@ -192,10 +192,10 @@ public class MatchImpl implements Match {
     /**
      * {@inheritDoc}
      */
-    @Override
+    /**@Override
     public int freeKickDice() {
         return this.dice6.rollDice() + this.dice6.rollDice();
-    }
+    }*/
 
     /**
      * {@inheritDoc}

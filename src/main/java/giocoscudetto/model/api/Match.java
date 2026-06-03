@@ -97,7 +97,7 @@ public interface Match {
      * 
      * @return the value of the two dice throw.
      */
-    int freeKickDice();
+    //int freeKickDice();
 
     /**
      * This method set the penalty mode.
