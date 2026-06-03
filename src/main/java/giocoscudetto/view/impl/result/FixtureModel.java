@@ -1,4 +1,4 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.view.impl.result;
 
 import javax.swing.table.AbstractTableModel;
 

@@ -9,11 +9,11 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.FixtureModel;
 import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
-import giocoscudetto.model.impl.TableModel;
+import giocoscudetto.view.impl.result.FixtureModel;
+import giocoscudetto.view.impl.result.TableModel;
 
 
 /**
