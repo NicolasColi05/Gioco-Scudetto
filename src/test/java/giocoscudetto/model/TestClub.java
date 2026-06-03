@@ -26,7 +26,7 @@ public class TestClub {
      * Testing the initial values of the new club's object.
      */
     @Test
-    void testInitialValues() {
+    public void testInitialValues() {
         assertEquals(club1.getName(), "inter");
         assertNotNull(club1.getPawn());
         assertEquals(club1.getPoints(), 0);
@@ -37,7 +37,7 @@ public class TestClub {
      * Testing adding points throught fictitious matches.
      */
     @Test
-    void testAddPoints() {
+    public void testAddPoints() {
         club1.incrementPoints(2);
         assertEquals(club1.getPoints(), 2);
         club1.incrementPoints(0);
@@ -53,7 +53,7 @@ public class TestClub {
      * Testing the net difference throught fictitious matches.
      */
     @Test
-    void testNetDiff() {
+    public void testNetDiff() {
         club1.changeNetDiffs(5, 4);
         assertEquals(club1.getNetDiff(), 1);
         
