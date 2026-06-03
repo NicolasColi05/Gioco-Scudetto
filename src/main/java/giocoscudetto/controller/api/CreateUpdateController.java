@@ -6,8 +6,8 @@ import java.util.Set;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
-import giocoscudetto.model.impl.FixtureModel;
-import giocoscudetto.model.impl.TableModel;
+import giocoscudetto.view.impl.result.FixtureModel;
+import giocoscudetto.view.impl.result.TableModel;
 
 
 /**
