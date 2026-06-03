@@ -1,7 +1,7 @@
 package giocoscudetto.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
-import giocoscudetto.model.api.Club;
-import giocoscudetto.model.impl.ClubImpl;
 
 /*
  * CHECKSTYLE: MagicNumber OFF
@@ -24,36 +22,55 @@ public class TestCreateUpdateController {
     
     private final CreateUpdateController controller = new CreateUpdateControllerImpl();
     
+
+    /**
+     * Testing some basic condition that sould be avoid before allowing users to create clubs.
+     */
     @Test
-    void testClubCreation() {
-        initialConfiguration();
+    public void testClubsCorrectness() {
+        
+        //Spaces are not allowed in the name, so "s" and " s" are the same name
+        assertFalse(controller.isClubInfoComplete(List.of("bologna", " bolo gna "), List.of(true, true)));
+        
+        //Each Club's name can not be empty
+        assertFalse(controller.isClubInfoComplete(List.of("bologna", ""), List.of(true, true)));
 
-        assertNotNull(controller.getClubs());
-        assertNotNull(controller.getTable());
-        assertNotNull(controller.getFixture());
+        //Each Club's pawn color has to be selected
+        assertFalse(controller.isClubInfoComplete(List.of("bologna", "inter"), List.of(false, false)));
+        assertFalse(controller.isClubInfoComplete(List.of("bologna", "inter"), List.of(true, false)));
 
-        //Testing clubs 
+        //If all the info have been correctly choosen, you can proceed creating the clubs
+        assertTrue(controller.isClubInfoComplete(List.of("bologna", "inter"), List.of(true, true)));
+    } 
+
+    /**
+     * Testing club creation goes well, not letting anything null.
+     */
+    @Test
+    public void testClubCreation() {
+        controller.createClubs(List.of("Inter", "Bologna", "Imolese"),
+                               List.of(32, 48, 53));
+
+        //Testing that clubs have been correctly added to the controller list
         assertEquals(3, this.controller.getClubs().size());
         assertTrue(this.controller.getClubs().stream().anyMatch(p -> "Inter".equals(p.getName())));
-        assertTrue(this.controller.getClubs().stream().anyMatch(p -> "Milan".equals(p.getName())));
-        assertTrue(this.controller.getClubs().stream().anyMatch(p -> "Juve".equals(p.getName())));        
+        assertTrue(this.controller.getClubs().stream().anyMatch(p -> "Bologna".equals(p.getName())));
+        assertTrue(this.controller.getClubs().stream().anyMatch(p -> "Imolese".equals(p.getName())));        
 
-        //Testing table
+        //Testing that clubs have been correctly added to the controller table
         assertEquals(3, this.controller.getTable().showPosition().size());
-        assertTrue(this.controller.getTable().showPosition().stream().anyMatch(p -> "Inter".equals(p.getName())));
-        assertTrue(this.controller.getTable().showPosition().stream().anyMatch(p -> "Milan".equals(p.getName())));
-        assertTrue(this.controller.getTable().showPosition().stream().anyMatch(p -> "Juve".equals(p.getName())));        
-
-    }
-
-    private void initialConfiguration() {
-
-        final Club club1 = new ClubImpl("Inter", null);
-        final Club club2 = new ClubImpl("Milan", null);
-        final Club club3 = new ClubImpl("Juve", null);
-
-        //this.controller.createClubs(List.of(club1.getName(), club2.getName(), club3.getName()));
-
+        assertTrue(this.controller.getClubActualRank().stream().anyMatch(p -> "Inter".equals(p.getName())));
+        assertTrue(this.controller.getClubActualRank().stream().anyMatch(p -> "Bologna".equals(p.getName())));
+        assertTrue(this.controller.getClubActualRank().stream().anyMatch(p -> "Imolese".equals(p.getName()))); 
+        
+        //Testing that clubs have been correctly added to the controller fixture
+        assertEquals(6, this.controller.getFixture().getListOfMatches().size());
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubHome().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubHome().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubHome().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubAway().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubAway().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubAway().getName()))); 
     }
 
 }
