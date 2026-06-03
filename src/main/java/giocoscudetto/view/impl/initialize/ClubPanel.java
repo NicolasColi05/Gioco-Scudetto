@@ -3,11 +3,14 @@ package giocoscudetto.view.impl.initialize;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,7 +38,7 @@ import giocoscudetto.controller.api.Starter;
 
 public class ClubPanel extends DefaultPanelImpl{
     
-    private static final int CLUB_SELECTION = 35;
+    private static final int CLUB_SELECTION = 75;
     private static final int BUTTON_BORDER = 5;
     private static final int TEXT_FIELDS_WIDTH = 300;
     private static final int TEXT_FIELDS_HEIGHT = 30;
@@ -153,11 +156,17 @@ public class ClubPanel extends DefaultPanelImpl{
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(final java.awt.event.ComponentEvent e) {
+                 GraphicsConfiguration gc = 
+                    GraphicsEnvironment.getLocalGraphicsEnvironment()
+                    .getDefaultScreenDevice()
+                    .getDefaultConfiguration();
 
+                AffineTransform tx = gc.getDefaultTransform();
+                int scaleX = (int)tx.getScaleX();
                 final int currentWidth = getWidth();
 
-                clubNumberSelectionLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / CLUB_SELECTION));
-                selectNumberOfClub.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / CLUB_SELECTION));
+                clubNumberSelectionLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, (currentWidth / CLUB_SELECTION)*scaleX));
+                selectNumberOfClub.setFont(new Font(FONT_SELECTED, Font.BOLD, (currentWidth / CLUB_SELECTION)*scaleX));
 
                 btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
