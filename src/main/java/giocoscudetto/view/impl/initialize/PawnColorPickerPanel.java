@@ -2,7 +2,7 @@ package giocoscudetto.view.impl.initialize;
 
 import javax.swing.*;
 
-import giocoscudetto.view.api.PawnColorPicker;
+import giocoscudetto.view.api.initialize.PawnColorPicker;
 
 import java.awt.*;
 import java.util.ArrayList;

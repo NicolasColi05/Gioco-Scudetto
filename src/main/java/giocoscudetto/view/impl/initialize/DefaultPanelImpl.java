@@ -7,9 +7,10 @@ import java.awt.Toolkit;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JButton;
 
-import giocoscudetto.view.api.DefaultPanel;
+import giocoscudetto.view.api.initialize.DefaultPanel;
+
+import javax.swing.JButton;
 
 /**
  * This class represents the default panel of the game, 

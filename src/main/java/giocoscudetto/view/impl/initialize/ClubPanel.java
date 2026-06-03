@@ -31,7 +31,7 @@ import javax.swing.event.DocumentListener;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
-import giocoscudetto.view.api.PawnColorPicker;
+import giocoscudetto.view.api.initialize.PawnColorPicker;
 
 import java.util.ArrayList;
 import java.util.List;

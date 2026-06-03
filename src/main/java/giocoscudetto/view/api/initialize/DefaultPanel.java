@@ -1,4 +1,4 @@
-package giocoscudetto.view.api;
+package giocoscudetto.view.api.initialize;
 
 import java.awt.Font;
 
