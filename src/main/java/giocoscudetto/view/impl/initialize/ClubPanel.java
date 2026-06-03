@@ -35,10 +35,12 @@ import javax.swing.event.DocumentListener;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
+import giocoscudetto.view.api.PawnColorPicker;
 
 public class ClubPanel extends DefaultPanelImpl{
     
-    private static final int CLUB_SELECTION = 75;
+    private static final int CLUB_SELECTION = 130;
+    private static final int CLUB_SELECTION_LABEL = 75; 
     private static final int BUTTON_BORDER = 5;
     private static final int TEXT_FIELDS_WIDTH = 300;
     private static final int TEXT_FIELDS_HEIGHT = 30;
@@ -165,7 +167,7 @@ public class ClubPanel extends DefaultPanelImpl{
                 int scaleX = (int)tx.getScaleX();
                 final int currentWidth = getWidth();
 
-                clubNumberSelectionLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, (currentWidth / CLUB_SELECTION)*scaleX));
+                clubNumberSelectionLabel.setFont(new Font(FONT_SELECTED, Font.BOLD, (currentWidth / CLUB_SELECTION_LABEL)*scaleX));
                 selectNumberOfClub.setFont(new Font(FONT_SELECTED, Font.BOLD, (currentWidth / CLUB_SELECTION)*scaleX));
 
                 btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
@@ -332,10 +334,14 @@ public class ClubPanel extends DefaultPanelImpl{
      */
     private void updateButtonVisibility() {
         //System.out.print("controlling button visibility...");
-        btnCont.setVisible(this.clubsPawn.stream().allMatch(i -> i.getSelectedColor() != null) &&
-                           this.controller.isClubNameComplete(this.clubsName.stream()
-                                        .map(JTextField::getText)
-                                        .toList()));
+        Set<Boolean> selectedColor = new HashSet<>();
+        for (PawnColorPicker  picker: clubsPawn) {
+            selectedColor.add(picker.isColorSelected());
+        }
+
+        btnCont.setVisible(this.controller.isClubNameComplete(this.clubsName.stream()
+                                .map(JTextField::getText).toList(),
+                                selectedColor));
         //System.out.println(btnCont.isVisible());
     }
 }
