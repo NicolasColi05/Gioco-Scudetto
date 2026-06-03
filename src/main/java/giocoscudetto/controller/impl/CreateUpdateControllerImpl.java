@@ -3,6 +3,7 @@ package giocoscudetto.controller.impl;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.model.api.Club;
@@ -29,7 +30,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public boolean isClubNameComplete(final List<String> clubsName) {
+    public boolean isClubNameComplete(final List<String> clubsName, final Set<Boolean> colors) {
         //Removing spaces from names, to avoid equal names that jst differs for some spaces
         final List<String> namesWithoutSpaces = clubsName.stream()
                         .map(n -> n.replaceAll("\\s+", ""))
@@ -37,7 +38,8 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
         //namesWithoutSpaces.stream().forEach(n -> System.out.println(n));
 
         return !namesWithoutSpaces.stream().anyMatch(name -> "".equals(name)) &&
-            namesWithoutSpaces.stream().distinct().toList().size() == namesWithoutSpaces.size();
+            namesWithoutSpaces.stream().distinct().toList().size() == namesWithoutSpaces.size() &&
+            colors.stream().allMatch(i -> i == true);
 
     }
 

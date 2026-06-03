@@ -1,6 +1,7 @@
 package giocoscudetto.controller.api;
 
 import java.util.List;
+import java.util.Set;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
@@ -21,7 +22,7 @@ public interface CreateUpdateController {
      * @return false if there are duplicate/empty name and missing club color,
      *         true if all information are present.
      */
-    boolean isClubNameComplete(List<String> clubsName);
+    boolean isClubNameComplete(List<String> clubsName, Set<Boolean> colors);
 
     /**
      * Method to create the clubs that will play the incoming match, the table
