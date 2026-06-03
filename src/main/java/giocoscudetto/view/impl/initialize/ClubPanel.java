@@ -12,10 +12,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.geom.AffineTransform;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,6 +32,11 @@ import javax.swing.event.DocumentListener;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.PawnColorPicker;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ClubPanel extends DefaultPanelImpl{
     
@@ -334,12 +335,12 @@ public class ClubPanel extends DefaultPanelImpl{
      */
     private void updateButtonVisibility() {
         //System.out.print("controlling button visibility...");
-        Set<Boolean> selectedColor = new HashSet<>();
+        List<Boolean> selectedColor = new ArrayList<>();
         for (PawnColorPicker  picker: clubsPawn) {
             selectedColor.add(picker.isColorSelected());
         }
 
-        btnCont.setVisible(this.controller.isClubNameComplete(this.clubsName.stream()
+        btnCont.setVisible(this.controller.isClubInfoComplete(this.clubsName.stream()
                                 .map(JTextField::getText).toList(),
                                 selectedColor));
         //System.out.println(btnCont.isVisible());
