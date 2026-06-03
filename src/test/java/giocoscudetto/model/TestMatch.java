@@ -93,7 +93,7 @@ public class TestMatch {
      * Tests that before the half it throws 2 dices and after the half it throws 1 dice.
      */
     @Test
-    void testDiceLogic(){
+    void testDiceLogic() {
         int count;
         match.getClubHome().getPawn().setPosition(0);
         if (match.getCurrentPlayer() != match.getClubHome()){
@@ -112,7 +112,7 @@ public class TestMatch {
      * Tests the corner event.
      */
     @Test
-    void testCornerEvent(){
+    void testCornerEvent() {
         int count = 0, first, second;
         if(this.match.getCurrentPlayer() != this.match.getClubHome()){
             this.match.turn();
@@ -128,13 +128,14 @@ public class TestMatch {
             }
         }
         assertEquals(count, this.match.getScore().getHomeScore());
+        assertEquals(0, match.getScore().getGuestScore());
     }
 
     /**
      * Tests the free kick event.
      */
     @Test
-    void testFreeKickEvent(){
+    void testFreeKickEvent() {
         int count = 0, first, second;
         if(this.match.getCurrentPlayer() != this.match.getClubHome()){
             this.match.turn();
@@ -150,13 +151,14 @@ public class TestMatch {
             }
         }
         assertEquals(count, this.match.getScore().getHomeScore());
+        assertEquals(0, match.getScore().getGuestScore());
     }
 
     /**
      * Tests the penalty event.
      */
     @Test
-    void testPenaltyEvent(){
+    void testPenaltyEvent() {
         int count = 0;
         if(this.match.getCurrentPlayer() != this.match.getClubHome()){
             this.match.turn();
@@ -164,7 +166,7 @@ public class TestMatch {
         assertEquals(0, this.match.getScore().getHomeScore());
         this.match.setGameMode(Match.GameMode.PENALTY);
         assertEquals(Match.GameMode.PENALTY.toString(), this.match.getGameMode());
-        for (int i = 0; i < 10000; i++){
+        for (int i = 0; i < 10000; i++) {
             this.match.setKeeperPosition(1);
             this.match.setKeeperPosition(2);
             this.match.eventMode();
@@ -173,5 +175,25 @@ public class TestMatch {
             }
         }
         assertEquals(count, this.match.getScore().getHomeScore());
+        assertEquals(0, match.getScore().getGuestScore());
+    }
+
+    /**
+     * Tests the result event.
+     */
+    @Test
+    void testResultEvent() {
+        if(this.match.getCurrentPlayer() != this.match.getClubHome()){
+            this.match.turn();
+        }
+        assertEquals(0, this.match.getScore().getHomeScore());
+        assertEquals(0, this.match.getScore().getGuestScore());
+        this.match.setGameMode(Match.GameMode.RESULT);
+        for (int i = 0; i < 10000; i++) {
+            int goalHome = this.match.diceEvent();
+            int goalAway = this.match.diceEvent();
+            assertEquals(goalHome, this.match.getScore().getHomeScore());
+            assertEquals(goalAway, this.match.getScore().getGuestScore());
+        }
     }
 }
