@@ -32,8 +32,8 @@ public interface Fixtures {
 
     /**
      * @return a string that represents the fixture
-     */
-    String toString();
+     *
+    String toString();*/
 
     /**
      * Method that updates the score of the related match.

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
@@ -51,6 +52,7 @@ public class FixturesImpl implements Fixtures {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings
     public Match setNextMatch() {
         if (this.listOfMatchesIterator == null) {
             this.listOfMatchesIterator = listOfMatches.iterator();
@@ -67,11 +69,11 @@ public class FixturesImpl implements Fixtures {
      */
     @Override 
     public Match seeNextMatch(final Match match) {
-        int i = listOfMatches.indexOf(match);
-        if (i >= listOfMatches.size() - 1) {
+        //int i = listOfMatches.indexOf(match);
+        if (listOfMatches.indexOf(match) >= listOfMatches.size() - 1) {
             return null;
         } else {
-            return listOfMatches.get(++i);
+            return listOfMatches.get(listOfMatches.indexOf(match) + 1);
         }
     }
 
@@ -79,6 +81,7 @@ public class FixturesImpl implements Fixtures {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings
     public Match getCurrentMatch() {
         return this.currentMatch;
     }
@@ -125,9 +128,7 @@ public class FixturesImpl implements Fixtures {
         return this.fixture.isEmpty();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /*
     @Override
     public String toString() {
     final StringBuilder sb = new StringBuilder();
@@ -139,7 +140,6 @@ public class FixturesImpl implements Fixtures {
         return sb.toString();
     }
 
-    // Iteriamo sull'entry set per avere accesso a chiave e valore
     for (Map.Entry<Match, Scoreboard> entry : fixture.entrySet()) {
        final Match match = entry.getKey();
         final Scoreboard result = entry.getValue();
@@ -151,7 +151,7 @@ public class FixturesImpl implements Fixtures {
 
         sb.append("  |  Risultato: ");
 
-        // Gestione del valore nullo o del risultato non ancora presente
+
         if (result == null) {
             sb.append("DA GIOCARE");
         } else {
@@ -159,13 +159,11 @@ public class FixturesImpl implements Fixtures {
               .append(" - ")
               .append(result.getGuestScore());
         }
-
         sb.append("\n");
     }
-
     sb.append("-------------------------------");
     return sb.toString();
-
     }
+    */
 
 }
