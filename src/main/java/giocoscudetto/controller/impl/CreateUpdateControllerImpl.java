@@ -126,8 +126,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public FixtureModel getFixtureTableModel(){
-        final FixtureModel model = new FixtureModel(this.getFixture());
-        return model;
+        return new FixtureModel(this.getFixture());
     }
 
     /**

@@ -5,9 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.impl.*;
+import giocoscudetto.model.impl.ClubImpl;
+import giocoscudetto.model.impl.FixturesImpl;
+import giocoscudetto.model.impl.PawnImpl;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +24,16 @@ import java.util.List;
 /**
  * Simple test for {@link FixturesImpl}.
  */
-public class TestFixtures {
+class TestFixtures {
 
-    private final static String ROMA = "roma";
-    private final static String INTER = "inter";
-    private final static String NAPOLI = "napoli";
-    private final static String JUVENTUS = "juventus";
+    private static final String ROMA = "roma";
+    private static final String INTER = "inter";
+    private static final String NAPOLI = "napoli";
+    private static final String JUVENTUS = "juventus";
 
     private Club roma;
     private Club inter;
     private Club napoli;
-    private Club juventus;
     private List<Club> listOfClubs;
     private FixturesImpl fixture;
 
@@ -38,12 +42,11 @@ public class TestFixtures {
         roma = new ClubImpl(ROMA, new PawnImpl(1));
         inter = new ClubImpl(INTER, new PawnImpl(1));
         napoli = new ClubImpl(NAPOLI, new PawnImpl(1));
-        juventus = new ClubImpl(JUVENTUS, new PawnImpl(1));
         listOfClubs = new ArrayList<>();
         listOfClubs.add(roma);
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
-        listOfClubs.add(juventus);
+        listOfClubs.add(new ClubImpl(JUVENTUS, new PawnImpl(1)));
         fixture = new FixturesImpl();
     }
 
@@ -51,21 +54,21 @@ public class TestFixtures {
      * Tests that the fixture has n*(n-1) matches with n clubs so that each pair of teams plays twice.
      */
     @Test
-    void testFixtureGenerationMatchCount(){
+    void testFixtureGenerationMatchCount() {
         fixture.fixtureGeneration(listOfClubs);
-        assertEquals(listOfClubs.size()*(listOfClubs.size() - 1) , fixture.getListOfMatches().size());
+        assertEquals(listOfClubs.size() * (listOfClubs.size() - 1), fixture.getListOfMatches().size());
         listOfClubs = new ArrayList<>();
         listOfClubs.add(roma);
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
         fixture = new FixturesImpl();
         fixture.fixtureGeneration(listOfClubs);
-        assertEquals(listOfClubs.size()*(listOfClubs.size() - 1) , fixture.getListOfMatches().size());
+        assertEquals(listOfClubs.size() * (listOfClubs.size() - 1), fixture.getListOfMatches().size());
         listOfClubs.clear();
         listOfClubs = List.of(roma, inter);
         fixture = new FixturesImpl();
         fixture.fixtureGeneration(listOfClubs);
-        assertEquals(listOfClubs.size()*(listOfClubs.size() - 1) , fixture.getListOfMatches().size());
+        assertEquals(listOfClubs.size() * (listOfClubs.size() - 1), fixture.getListOfMatches().size());
     }
 
     /**
@@ -80,17 +83,21 @@ public class TestFixtures {
         fixture.fixtureGeneration(listOfClubs);
         assertNotNull(fixture);
         assertEquals(4, listOfClubs.size());
-        while (fixture.setNextMatch()!= null){
-            if (fixture.getCurrentMatch().getClubHome().getName() == INTER || fixture.getCurrentMatch().getClubAway().getName() == INTER){
+        while (fixture.setNextMatch() != null) {
+            if (INTER.equals(fixture.getCurrentMatch().getClubHome().getName()) 
+                || INTER.equals(fixture.getCurrentMatch().getClubAway().getName())) {
                 intercount++;
             }
-            if (fixture.getCurrentMatch().getClubHome().getName() == ROMA || fixture.getCurrentMatch().getClubAway().getName() == ROMA){
+            if (ROMA.equals(fixture.getCurrentMatch().getClubHome().getName()) 
+                || ROMA.equals(fixture.getCurrentMatch().getClubAway().getName())) {
                 romacount++;
             }
-            if (fixture.getCurrentMatch().getClubHome().getName() == NAPOLI || fixture.getCurrentMatch().getClubAway().getName() == NAPOLI){
+            if (NAPOLI.equals(fixture.getCurrentMatch().getClubHome().getName()) 
+                || NAPOLI.equals(fixture.getCurrentMatch().getClubAway().getName())) {
                 napolicount++;
             }
-            if (fixture.getCurrentMatch().getClubHome().getName() == JUVENTUS || fixture.getCurrentMatch().getClubAway().getName() == JUVENTUS){
+            if (JUVENTUS.equals(fixture.getCurrentMatch().getClubHome().getName()) 
+                || JUVENTUS.equals(fixture.getCurrentMatch().getClubAway().getName())) {
                 juventuscount++;
             }
         }
@@ -98,7 +105,18 @@ public class TestFixtures {
         assertEquals(6, napolicount);
         assertEquals(6, romacount);
         assertEquals(6, juventuscount);
-        System.out.println(fixture);
+    }
+
+    /**
+     * Tests the function IsEmpty to see if the fixture is empty.
+     */
+    @Test
+    void testIsEmpty() {
+        assertTrue(fixture.isEmpty());
+        fixture.fixtureGeneration(listOfClubs);
+        assertFalse(fixture.isEmpty());
+        fixture.resetFixture();
+        assertTrue(fixture.isEmpty());
     }
 
     /**
@@ -112,24 +130,12 @@ public class TestFixtures {
     }
 
     /**
-     * Tests the function IsEmpty to see if the fixture is empty.
-     */
-    @Test
-    void testIsEmpty(){
-        assertTrue(fixture.isEmpty());
-        fixture.fixtureGeneration(listOfClubs);
-        assertFalse(fixture.isEmpty());
-        fixture.resetFixture();
-        fixture.isEmpty();
-    }
-
-    /**
      * Tests the possibility of look at the next match without going through the iterator.
      */
     @Test
-    void testNextMatch(){
+    void testNextMatch() {
         fixture.fixtureGeneration(listOfClubs);
-        Match match = fixture.getCurrentMatch();
+        final Match match = fixture.getCurrentMatch();
         assertEquals(fixture.seeNextMatch(match), fixture.setNextMatch());
         fixture.resetFixture();
         fixture.fixtureGeneration(listOfClubs);
