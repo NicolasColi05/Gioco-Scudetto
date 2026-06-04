@@ -75,16 +75,15 @@ public class HomePanel extends DefaultPanelImpl {
                 e.getComponent().setBackground(BUTTONS_BACKGORUND);
             }
         };
-        
+
         btnPlay.addMouseListener(hoverListener);
 
         //Adding the action listener to the buttons
         btnPlay.addActionListener(e -> {
-            
+
             controller.changeView("club");
 
         });
-
 
         btnExit.addActionListener(e -> {
             final int confirm = JOptionPane.showConfirmDialog(this,
