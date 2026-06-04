@@ -36,9 +36,9 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
                         .toList();
         //namesWithoutSpaces.stream().forEach(n -> System.out.println(n));
 
-        return !namesWithoutSpaces.stream().anyMatch(name -> "".equals(name)) &&
+        return !namesWithoutSpaces.stream().anyMatch(String::isEmpty) &&
             namesWithoutSpaces.stream().distinct().toList().size() == namesWithoutSpaces.size() &&
-            colors.stream().allMatch(i -> i == true);
+            colors.stream().allMatch(i -> i);
 
     }
 
@@ -107,7 +107,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public Fixtures getFixture() {
-        System.out.println("fixture" + this.fixture.toString());
+        //System.out.println("fixture" + this.fixture.toString());
         return this.fixture;
     }
 
@@ -126,7 +126,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public FixtureModel getFixtureTableModel(){
-        FixtureModel model = new FixtureModel(this.getFixture());
+        final FixtureModel model = new FixtureModel(this.getFixture());
         return model;
     }
 
@@ -144,9 +144,9 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public void restartLeague() {
-        List<Integer> pawns = new ArrayList<>();
-        List<String> clubsname = new ArrayList<>();
-        for (Club club : this.getClubs()) {
+        final List<Integer> pawns = new ArrayList<>();
+        final List<String> clubsname = new ArrayList<>();
+        for (final Club club : this.getClubs()) {
             pawns.add(club.getPawn().getPawnRGB());
             clubsname.add(club.getName());
         }

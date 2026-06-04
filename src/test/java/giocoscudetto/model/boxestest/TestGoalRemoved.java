@@ -20,7 +20,7 @@ import org.junit.jupiter.api.BeforeEach;
  */
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.GoalRemovedBox}.
- */
+*/
 class TestGoalRemoved {
     private final Club clubHome = new ClubImpl("home", null);
     private final Club clubAway = new ClubImpl("away", null);

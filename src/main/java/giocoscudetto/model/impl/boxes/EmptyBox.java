@@ -16,40 +16,40 @@ public class EmptyBox implements Boxes {
         this.position = position;
        
         switch (position) {
-            case(1): 
+            case 1: 
                 this.image = "casella_12.png";
                 break;
-            case(3):
+            case 3:
                 this.image = "casella_13.png";
                 break;
-            case(5):
+            case 5:
                 this.image = "casella_23.png";
                 break;
-            case(7):
+            case 7:
                 this.image = "casella_24.png";
                 break;
-            case(9):
+            case 9:
                 this.image = "casella_25.png";
                 break;
-            case(11):
+            case 11:
                 this.image = "casella_27.png";
                 break;
-            case(13):
+            case 13:
                 this.image = "casella_29.png";
                 break;
-            case(18):
+            case 18:
                 this.image = "casella_4.png";
                 break;
-            case(20):
+            case 20:
                 this.image = "casella_6.png";
                 break;
-            case(22):
+            case 22:
                 this.image = "casella_8.png";
                 break;
-            case(25):
+            case 25:
                 this.image = "casella_17.png";
                 break;
-            case(27):
+            case 27:
                 this.image = "casella_20.png";
                 break;
             default: 
@@ -70,7 +70,7 @@ public class EmptyBox implements Boxes {
      * {@inheritDoc}
      */
     @Override
-    public void event(Match match) {  
+    public void event(final Match match) {  
         match.turn();
     }
 

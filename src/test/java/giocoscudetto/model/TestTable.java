@@ -20,7 +20,7 @@ import giocoscudetto.model.impl.TableImpl;
  * Test for {@link giocoscudetto.model.impl.TableImpl}.
  */
 class TestTable {
-    
+
     private final Club inter = new ClubImpl("Inter", new PawnImpl(1));
     private final Club juve = new ClubImpl("Juve", new PawnImpl(1));
     private final Club bologna = new ClubImpl("Bologna", new PawnImpl(1));
@@ -28,8 +28,8 @@ class TestTable {
 
     private void setUp(final int juveP, final int interP, final int bolognaP,
                        final int juveS, final int interS, final int bolognaS,
-                       final int juveC, final int interC, final int bolognaC ) {
-        
+                       final int juveC, final int interC, final int bolognaC) {
+
         rank.addAllClubs(List.of(bologna, inter, juve));
 
         //Setting inter's point and net diff
@@ -45,6 +45,9 @@ class TestTable {
         bologna.changeNetDiffs(bolognaS, bolognaC);
     }
 
+    /**
+     * Testing initial clubs position, after the first table configuaration.
+     */
     @Test
     void testInitialClubsPosition() {
 
@@ -61,9 +64,12 @@ class TestTable {
         bologna.incrementPoints(3);
         rank.updateClubRank();
 
-        assertEquals( List.of(bologna, inter, juve), rank.showPosition());
+        assertEquals(List.of(bologna, inter, juve), rank.showPosition());
     }
 
+    /**
+     * Testing that negative net diff work correctky.
+     */
     @Test
     void testNegativeNetDiff() {
 
@@ -77,6 +83,9 @@ class TestTable {
 
     }
 
+    /**
+     * Testing that if points and net diff are the same, clubs name matter.
+     */
     @Test
     void testEqualPointsAndNetDiff() {
 

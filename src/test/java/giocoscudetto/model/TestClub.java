@@ -54,18 +54,18 @@ class TestClub {
     void testNetDiff() {
         club1.changeNetDiffs(5, 4);
         assertEquals(1, club1.getNetDiff());
-        
+
         club1.changeNetDiffs(3, 3);
         assertEquals(1, club1.getNetDiff());
-        
+
         club1.changeNetDiffs(0, 2);
         assertEquals(-1, club1.getNetDiff());
-        
+
         //Testing an incoerent case where nothing should be done
         final int actualNetDiff = club1.getNetDiff();
         club1.changeNetDiffs(-4, 6);
         assertEquals(actualNetDiff, club1.getNetDiff());
-        
+
         club1.changeNetDiffs(0, -1);
         assertEquals(actualNetDiff, club1.getNetDiff());
     }
