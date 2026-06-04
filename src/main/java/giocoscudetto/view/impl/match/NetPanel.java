@@ -126,7 +126,6 @@ public class NetPanel extends DefaultPanelImpl {
         if (b) {
             label.setText("Choose the position of the keeper");
         }
-        this.kickButton.setEnabled(b);
     }
 
     /**
@@ -186,6 +185,7 @@ public class NetPanel extends DefaultPanelImpl {
         final long startTime = System.currentTimeMillis();
         final Timer animTimer = new Timer(DELAY, null);
 
+        this.kickButton.setEnabled(false);
         animTimer.addActionListener(e -> {
             label.setText("Kicking the penalty..." + (rnd.nextInt(BOUND) + 1));
             if (System.currentTimeMillis() - startTime > TIME_WAIT) {
