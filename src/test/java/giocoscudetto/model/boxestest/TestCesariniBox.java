@@ -21,7 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.CesariniBox}.
  */
-public class TestCesariniBox {
+class TestCesariniBox {
     
     private final Club clubHome = new ClubImpl("home", null);
     private final Club clubAway = new ClubImpl("away", null);
@@ -31,10 +31,10 @@ public class TestCesariniBox {
 
     
     @BeforeEach
-    public void setUpCurrentPlayer() {
+    void setUpCurrentPlayer() {
 
         //Setting homeClub as the match current club
-        if(match.getCurrentPlayer() != clubHome) {
+        if(match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
@@ -48,7 +48,7 @@ public class TestCesariniBox {
     }
 
     @Test
-    public void testBoxEvent() {
+    void testBoxEvent() {
 
         scoreboard.setHomeScore(3);
         scoreboard.setGuestScore(1);
@@ -67,17 +67,17 @@ public class TestCesariniBox {
     }
 
     @Test
-    public void testBoxPosition() {
+    void testBoxPosition() {
         assertEquals(31, cesariniBox.getPosition());
     }
 
     @Test
-    public  void testBoxName() {
+    void testBoxName() {
         assertEquals("Cesarini Zone", cesariniBox.getName());
     }        
         
     @Test
-    public void testBoxImage() {
+    void testBoxImage() {
         assertEquals("casella_30.png", cesariniBox.getImage());
     }
 

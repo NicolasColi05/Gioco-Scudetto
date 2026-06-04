@@ -21,8 +21,8 @@ import org.junit.jupiter.api.BeforeEach;
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.GoalRemovedBox}.
  */
-public class TestGoalRemoved {
-        private final Club clubHome = new ClubImpl("home", null);
+class TestGoalRemoved {
+    private final Club clubHome = new ClubImpl("home", null);
     private final Club clubAway = new ClubImpl("away", null);
     private final Match match = new MatchImpl(clubHome, clubAway);
     private final Scoreboard scoreboard = match.getScore();
@@ -30,10 +30,10 @@ public class TestGoalRemoved {
 
     
     @BeforeEach
-    public void setUpCurrentPlayer() {
+    void setUpCurrentPlayer() {
 
         //Setting homeClub as the match current club
-        if(match.getCurrentPlayer() != clubHome) {
+        if(match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
@@ -47,7 +47,7 @@ public class TestGoalRemoved {
     }
 
     @Test
-    public void testUnderZero() {
+    void testUnderZero() {
 
         verifyResult(0, 0, match.getClubHome());
         
@@ -61,7 +61,7 @@ public class TestGoalRemoved {
     }
 
     @Test
-    public void testBoxEvent() {
+    void testBoxEvent() {
 
         scoreboard.setHomeScore(2);
         scoreboard.setGuestScore(1);
@@ -80,17 +80,17 @@ public class TestGoalRemoved {
     }
 
     @Test
-    public void testBoxPosition() {
+    void testBoxPosition() {
         assertEquals(30, goalRemovedBox.getPosition());
     }
 
     @Test
-    public  void testBoxName() {
+    void testBoxName() {
         assertEquals("Goal Removed", goalRemovedBox.getName());
     }        
         
     @Test
-    public void testBoxImage() {
+    void testBoxImage() {
         assertEquals("casella_33.png", goalRemovedBox.getImage());
     }
 }

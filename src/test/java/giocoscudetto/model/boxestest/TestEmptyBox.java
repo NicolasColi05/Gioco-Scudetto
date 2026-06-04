@@ -21,7 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.EmptyBox}.
  */
-public class TestEmptyBox {
+class TestEmptyBox {
     
     private final Club clubHome = new ClubImpl("home", null);
     private final Club clubAway = new ClubImpl("away", null);
@@ -31,10 +31,10 @@ public class TestEmptyBox {
 
     
     @BeforeEach
-    public void setUpCurrentPlayer() {
+    void setUpCurrentPlayer() {
 
         //Setting homeClub as the match current club
-        if(match.getCurrentPlayer() != clubHome) {
+        if(match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
@@ -48,7 +48,7 @@ public class TestEmptyBox {
     }
 
     @Test
-    public void testBoxEvent() {
+    void testBoxEvent() {
 
         scoreboard.setHomeScore(2);
         scoreboard.setGuestScore(2);
@@ -67,7 +67,7 @@ public class TestEmptyBox {
     }
 
     @Test
-    public  void testBoxName() {
+    void testBoxName() {
         assertEquals("empty box", emptyBox.getName());
     }        
 

@@ -19,12 +19,12 @@ import giocoscudetto.model.impl.TableImpl;
 /**
  * Test for {@link giocoscudetto.model.impl.TableImpl}.
  */
-public class TestTable {
+class TestTable {
     
     private final Club inter = new ClubImpl("Inter", new PawnImpl(1));
     private final Club juve = new ClubImpl("Juve", new PawnImpl(1));
     private final Club bologna = new ClubImpl("Bologna", new PawnImpl(1));
-    private final Table rank = new TableImpl();;
+    private final Table rank = new TableImpl();
 
     private void setUp(final int juveP, final int interP, final int bolognaP,
                        final int juveS, final int interS, final int bolognaS,
@@ -46,7 +46,7 @@ public class TestTable {
     }
 
     @Test
-    public void testInitialClubsPosition() {
+    void testInitialClubsPosition() {
 
         setUp(5, 6, 3,
               2, 3, 2,
@@ -65,7 +65,7 @@ public class TestTable {
     }
 
     @Test
-    public void testNegativeNetDiff() {
+    void testNegativeNetDiff() {
 
         setUp(3, 3, 1,
               0, 1, 2,
@@ -78,7 +78,7 @@ public class TestTable {
     }
 
     @Test
-    public void testEqualPointsAndNetDiff() {
+    void testEqualPointsAndNetDiff() {
 
         setUp(2, 2, 3,
               1, 1, 2,

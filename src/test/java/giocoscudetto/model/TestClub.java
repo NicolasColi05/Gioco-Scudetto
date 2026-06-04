@@ -3,7 +3,6 @@ package giocoscudetto.model;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Pawn;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.PawnImpl;
 
@@ -17,16 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 /**
  * Test for {@link giocoscudetto.model.impl.ClubImpl}.
  */
-public class TestClub {
+class TestClub {
 
-    private final Pawn pawn = new PawnImpl(1); 
-    private final Club club1 = new ClubImpl("inter", pawn);
+    private final Club club1 = new ClubImpl("inter", new PawnImpl(1));
 
     /**
      * Testing the initial values of the new club's object.
      */
     @Test
-    public void testInitialValues() {
+    void testInitialValues() {
         assertEquals(club1.getName(), "inter");
         assertNotNull(club1.getPawn());
         assertEquals(club1.getPoints(), 0);
@@ -37,38 +35,38 @@ public class TestClub {
      * Testing adding points throught fictitious matches.
      */
     @Test
-    public void testAddPoints() {
+    void testAddPoints() {
         club1.incrementPoints(2);
-        assertEquals(club1.getPoints(), 2);
+        assertEquals(2, club1.getPoints());
         club1.incrementPoints(0);
-        assertEquals(club1.getPoints(), 2);
+        assertEquals(2, club1.getPoints());
 
         //Testing an incoerent case where nothing should be done
-        int actualPoints = club1.getPoints();
+        final int actualPoints = club1.getPoints();
         club1.incrementPoints(-5);
-        assertEquals(club1.getPoints(), actualPoints);
+        assertEquals(actualPoints, club1.getPoints());
     }
 
     /**
      * Testing the net difference throught fictitious matches.
      */
     @Test
-    public void testNetDiff() {
+    void testNetDiff() {
         club1.changeNetDiffs(5, 4);
-        assertEquals(club1.getNetDiff(), 1);
+        assertEquals(1, club1.getNetDiff());
         
         club1.changeNetDiffs(3, 3);
-        assertEquals(club1.getNetDiff(), 1);
+        assertEquals(1, club1.getNetDiff());
         
         club1.changeNetDiffs(0, 2);
-        assertEquals(club1.getNetDiff(), -1);
+        assertEquals(-1, club1.getNetDiff());
         
         //Testing an incoerent case where nothing should be done
-        int actualNetDiff = club1.getNetDiff();
+        final int actualNetDiff = club1.getNetDiff();
         club1.changeNetDiffs(-4, 6);
-        assertEquals(club1.getNetDiff(), actualNetDiff);
+        assertEquals(actualNetDiff, club1.getNetDiff());
         
         club1.changeNetDiffs(0, -1);
-        assertEquals(club1.getNetDiff(), actualNetDiff);
+        assertEquals(actualNetDiff, club1.getNetDiff());
     }
 }
