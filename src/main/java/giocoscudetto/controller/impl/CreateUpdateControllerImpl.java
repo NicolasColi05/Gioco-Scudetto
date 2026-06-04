@@ -126,8 +126,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public FixtureModel getFixtureTableModel(){
-        FixtureModel model = new FixtureModel(this.getFixture());
-        return model;
+        return new FixtureModel(this.getFixture());
     }
 
     /**
@@ -144,9 +143,9 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public void restartLeague() {
-        List<Integer> pawns = new ArrayList<>();
-        List<String> clubsname = new ArrayList<>();
-        for (Club club : this.getClubs()) {
+        final List<Integer> pawns = new ArrayList<>();
+        final List<String> clubsname = new ArrayList<>();
+        for (final Club club : this.getClubs()) {
             pawns.add(club.getPawn().getPawnRGB());
             clubsname.add(club.getName());
         }
