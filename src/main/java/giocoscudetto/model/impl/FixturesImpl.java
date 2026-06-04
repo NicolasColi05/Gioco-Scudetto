@@ -69,7 +69,6 @@ public class FixturesImpl implements Fixtures {
      */
     @Override 
     public Match seeNextMatch(final Match match) {
-        //int i = listOfMatches.indexOf(match);
         if (listOfMatches.indexOf(match) >= listOfMatches.size() - 1) {
             return null;
         } else {
