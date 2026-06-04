@@ -146,7 +146,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
     public void restartLeague() {
         List<Integer> pawns = new ArrayList<>();
         List<String> clubsname = new ArrayList<>();
-        for (Club club : getClubs()) {
+        for (Club club : this.getClubs()) {
             pawns.add(club.getPawn().getPawnRGB());
             clubsname.add(club.getName());
         }

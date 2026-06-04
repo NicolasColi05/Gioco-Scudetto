@@ -2,8 +2,10 @@ package giocoscudetto.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -73,4 +75,32 @@ public class TestCreateUpdateController {
         assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Imolese".equals(m.getClubAway().getName()))); 
     }
 
+    /**
+     * Tests that it restart the league correctly with the same teams.
+     */
+    @Test
+    public void testRestartLeague() {
+        controller.createClubs(List.of("Inter", "Roma", "Juventus"),
+                               List.of(25, 3, 14));
+        controller.getClubs().get(0).getPawn().setPosition(20);
+        controller.getClubs().get(1).getPawn().setPosition(18);
+        controller.getClubs().get(2).getPawn().setPosition(36);
+        controller.getClubs().get(0).changeNetDiffs(5, 0);
+        controller.getClubs().get(1).changeNetDiffs(2, 4);
+        controller.getClubs().get(2).changeNetDiffs(1, 4);
+        controller.updateClubActualRank();
+        final String firstFixture = controller.getFixture().getListOfMatches().toString();
+        final String firstTable = controller.getTable().showPosition().toString();
+        controller.restartLeague();
+        assertNotEquals(firstFixture, controller.getFixture().getListOfMatches().toString());
+        assertNotEquals(firstTable, controller.getTable().showPosition().toString());
+        assertTrue(controller.getFixture().toString().contains("Inter"));
+        assertTrue(controller.getFixture().toString().contains("Roma"));
+        assertTrue(controller.getFixture().toString().contains("Juventus"));
+        final ArrayList<String> clubsName = new ArrayList<>();
+        controller.getTable().showPosition().forEach(club -> clubsName.add(club.getName()));
+        assertTrue(clubsName.contains("Inter"));
+        assertTrue(clubsName.contains("Roma"));
+        assertTrue(clubsName.contains("Juventus"));
+    }
 }
