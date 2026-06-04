@@ -1,41 +1,58 @@
 package giocoscudetto.view.impl.initialize;
 
-import javax.swing.*;
-
 import giocoscudetto.view.api.initialize.PawnColorPicker;
 
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+/**
+ * Implementation of PawnColorPicker interface, to make possible the pawn's color selection.
+ */
 public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
 
     public static final Color[] AVAILABLE_COLORS = {
-        new Color(231, 76,  60),   //Red Color
-        new Color(52,  152, 219),  //Blue Color
-        new Color(46,  204, 113),  //Green Color
-        new Color(241, 196, 15)    //Yellow Color
+        new Color(231, 76, 60),   //Red Color
+        new Color(52, 152, 219),  //Blue Color
+        new Color(46, 204, 113),  //Green Color
+        new Color(241, 196, 15),  //Yellow Color
     };
 
     private static final int BTN_SIZE = 32;
 
-    private Color selectedColor = null;
+    private Color selectedColor;
     private final List<JButton> buttons = new ArrayList<>();
     private Consumer<Color> onColorChanged;
 
+    /**
+     * Implementing the logic to make work great the club's pawn color selection.
+     */
     public PawnColorPickerPanel() {
+        // CHECKSTYLE: <MagicNumber> OFF
+        // Turning off magic number checkstyle as it is useless to create dedicated fields
+        // for each magic number in this situation 
         setLayout(new FlowLayout(FlowLayout.CENTER, 6, 0));
         setOpaque(false);
 
         for (int i = 0; i < AVAILABLE_COLORS.length; i++) {
             final Color c = AVAILABLE_COLORS[i];
 
-            JButton btn = new JButton() {
+            final JButton btn = new JButton() {
                 @Override
-                protected void paintComponent(Graphics g) {
-                    Graphics2D g2 = (Graphics2D) g.create();
+                protected void paintComponent(final Graphics g) {
+                    final Graphics2D g2 = (Graphics2D) g.create();
                     g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                                         RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -57,7 +74,7 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
                     if (!isEnabled()) {
                         g2.setColor(new Color(255, 255, 255, 180));
                         g2.setStroke(new BasicStroke(2.5f));
-                        int p = 10;
+                        final int p = 10;
                         g2.drawLine(p, p, getWidth() - p, getHeight() - p);
                         g2.drawLine(getWidth() - p, p, p, getHeight() - p);
                     }
@@ -65,6 +82,7 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
                     g2.dispose();
                 }
             };
+            // CHECKSTYLE: <MagicNumber> ON
 
             //Changing button size and properties when going on it
             btn.setPreferredSize(new Dimension(BTN_SIZE, BTN_SIZE));
@@ -90,19 +108,19 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void setTakenColors(final Set<Color> takenByOthers) {
         for (int i = 0; i < AVAILABLE_COLORS.length; i++) {
-            boolean isMine = AVAILABLE_COLORS[i].equals(selectedColor);
+            final boolean isMine = AVAILABLE_COLORS[i].equals(selectedColor);
             buttons.get(i).setEnabled(!takenByOthers.contains(AVAILABLE_COLORS[i]) || isMine);
         }
         repaint();
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public Color getSelectedColor() {
@@ -110,15 +128,15 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
-    @Override    
+    @Override  
     public boolean isColorSelected() {
         return this.getSelectedColor() != null;
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void reset() {
@@ -128,11 +146,10 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void setOnColorChanged(final Consumer<Color> callback) {
         this.onColorChanged = callback;
     }
-
 }
