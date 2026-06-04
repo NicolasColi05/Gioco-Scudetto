@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 /**
  * Implementation of PawnColorPicker interface, to make possible the pawn's color selection.
  */
-public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
+public final class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
 
     public static final Color[] AVAILABLE_COLORS = {
         new Color(231, 76, 60),   //Red Color
@@ -30,6 +30,7 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
         new Color(241, 196, 15),  //Yellow Color
     };
 
+    private static final long serialVersionUID = 1L;
     private static final int BTN_SIZE = 32;
 
     private Color selectedColor;
@@ -43,11 +44,10 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
         // CHECKSTYLE: <MagicNumber> OFF
         // Turning off magic number checkstyle as it is useless to create dedicated fields
         // for each magic number in this situation 
-        setLayout(new FlowLayout(FlowLayout.CENTER, 6, 0));
-        setOpaque(false);
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 6, 0));
+        this.setOpaque(false);
 
-        for (int i = 0; i < AVAILABLE_COLORS.length; i++) {
-            final Color c = AVAILABLE_COLORS[i];
+        for (final Color c: AVAILABLE_COLORS) {
 
             final JButton btn = new JButton() {
                 @Override
@@ -103,7 +103,7 @@ public class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
             });
 
             buttons.add(btn);
-            add(btn);
+            this.add(btn);
         }
     }
 

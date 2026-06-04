@@ -42,7 +42,7 @@ import java.util.Set;
 /**
  * Panel implementation to let users selected number of clubs, clubs name and pawn color.
  */
-public class ClubPanel extends DefaultPanelImpl {
+public final class ClubPanel extends DefaultPanelImpl {
 
     private static final int CLUB_SELECTION = 130;
     private static final int CLUB_SELECTION_LABEL = 75;
@@ -55,6 +55,7 @@ public class ClubPanel extends DefaultPanelImpl {
     private static final int PAWN_VERTICAL_SPACE = 5;
     private static final int TEXT_VERTICAL_SPACE = 10;
 
+    private static final long serialVersionUID = 1L;
     private final Starter viewChanger;
     private final CreateUpdateController controller;
     private final Image image;
@@ -178,12 +179,12 @@ public class ClubPanel extends DefaultPanelImpl {
                     .getDefaultConfiguration();
 
                 final AffineTransform tx = gc.getDefaultTransform();
-                int scaleX = (int) tx.getScaleX();
+                final int scaleX = (int) tx.getScaleX();
                 final int currentWidth = getWidth();
 
                 clubNumberSelectionLabel.setFont(new Font(FONT_SELECTED, Font.BOLD,
-                                                (currentWidth / CLUB_SELECTION_LABEL) * scaleX));
-                selectNumberOfClub.setFont(new Font(FONT_SELECTED, Font.BOLD, (currentWidth / CLUB_SELECTION) * scaleX));
+                                                currentWidth / CLUB_SELECTION_LABEL * scaleX));
+                selectNumberOfClub.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / CLUB_SELECTION * scaleX));
 
                 btnCont.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
                 btnBack.setFont(new Font(FONT_SELECTED, Font.BOLD, currentWidth / SWITCHER_BUTTON_FONT_RESIZING));
@@ -241,7 +242,7 @@ public class ClubPanel extends DefaultPanelImpl {
         try {
             this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/club-background.jpeg"));
         } catch (final IOException e) {
-            throw new RuntimeException("Failed to load image", e);
+            throw new IllegalStateException("Failed to load image", e);
         }
     }
 

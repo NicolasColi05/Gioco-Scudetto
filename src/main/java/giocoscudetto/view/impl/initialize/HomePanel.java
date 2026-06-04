@@ -23,7 +23,7 @@ import giocoscudetto.controller.api.Starter;
 /**
  * This class represents the home panel of the game, where the user can choose to play with bots or friends, or exit the game.
  */
-public class HomePanel extends DefaultPanelImpl {
+public final class HomePanel extends DefaultPanelImpl {
 
     private static final int BUTTONS_HORIZONTAL_GAP = 80;
     private static final int BUTTON_FONT_RESIZING = 25;
@@ -33,6 +33,7 @@ public class HomePanel extends DefaultPanelImpl {
     private static final Color EXIT_TEXT_COLOR = new Color(224, 201, 166);
     private static final Color EXIT_BACKGROUND_COLOR = new Color(62, 91, 66);
 
+    private static final long serialVersionUID = 1L;
     private final Starter controller;
     private final BufferedImage image;
 
@@ -124,7 +125,7 @@ public class HomePanel extends DefaultPanelImpl {
         try {
             this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/home-background.jpeg"));
         } catch (final IOException e) {
-            throw new RuntimeException("Failed to load image", e);
+            throw new IllegalStateException("Failed to load image", e);
         }
     }
 
