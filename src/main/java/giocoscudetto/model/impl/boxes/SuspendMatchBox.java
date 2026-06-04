@@ -7,7 +7,8 @@ public class SuspendMatchBox implements Boxes {
 
     private static final String IMAGE = "casella_10.png";
     private final int position;
-    private static final String DESCRIPTION = "Box Event: Suspend Match. If you land on this box, you and your opponent have to restart the game with a score of 0-0.";
+    private static final String DESCRIPTION = "Box Event: Suspend Match. If you land on this box, "
+                                                + "you and your opponent have to restart the game with a score of 0-0.";
 
     /**
      * Constructor of the SuspendMatchBox class.

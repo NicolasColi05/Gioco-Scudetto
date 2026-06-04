@@ -1,43 +1,65 @@
 package giocoscudetto.view.impl.result;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Scoreboard;
 
-import java.util.*;
-
+/**
+ * A model for displaying the fixture in a JTable.
+ */
+@SuppressFBWarnings
 public class FixtureModel extends AbstractTableModel {
+
+    private static final long serialVersionUID = 1L;
 
     private final List<Match> matches;
     private final List<Scoreboard> scores;
     private final String[] columns = {"Match", "Score"};
 
-    public FixtureModel(Fixtures fixture) {
-        System.out.println(fixture.toString());
-        // Congela l'ordine della mappa in due liste parallele
+    /**
+     * Constructor for the fixture model.
+     * 
+     * @param fixture the fixture to be displayed
+     */
+    public FixtureModel(final Fixtures fixture) {
         this.matches = new ArrayList<>(fixture.getListOfMatches());
-        this.scores  = matches.stream()
-                              .map(match -> fixture.getScoreboard(match))
+        this.scores = matches.stream()
+                              .map(fixture::getScoreboard)
                               .toList();
     }
 
-    @Override public int getRowCount() { return matches.size(); }
-    @Override public int getColumnCount() { return columns.length; }
-    @Override public String getColumnName(int col) { return columns[col]; }
+    @Override 
+    public final int getRowCount() {
+        return matches.size();
+    }
+
+    @Override 
+    public final int getColumnCount() {
+        return columns.length;
+    }
+
+    @Override 
+    public final String getColumnName(final int col) {
+        return columns[col];
+    }
 
     @Override
-    public Object getValueAt(int row, int col) {
+    public final Object getValueAt(final int row, final int col) {
         return switch (col) {
             case 0 -> matches.get(row).toString();
-            case 1 -> (scores.get(row)!= null ? scores.get(row).toString() : " vs");
+            case 1 -> scores.get(row) != null ? scores.get(row).toString() : " vs";
             default -> null;
         };
     }
 
     @Override
-    public Class<?> getColumnClass(int col) {
+    public final Class<?> getColumnClass(final int col) {
         return col == 0 ? Match.class : Scoreboard.class;
     }
 }
