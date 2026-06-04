@@ -2,6 +2,8 @@ package giocoscudetto.view.impl.result;
 
 import javax.swing.border.TitledBorder;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.awt.Font;
 import java.awt.GridBagLayout;
 
@@ -33,8 +35,9 @@ import giocoscudetto.controller.api.Starter;
 /**
  * View component for displaying the table and the fixture.
  */
-public class PreMatchView extends DefaultPanelImpl {
+public final class PreMatchView extends DefaultPanelImpl {
 
+    private static final long serialVersionUID = 1L;
     private static final int TITLE_FONT_REDUCTION = 70;
     private static final int FONT_REDUCTION = 100;
     private static final int BORDER = 5;
@@ -56,7 +59,7 @@ public class PreMatchView extends DefaultPanelImpl {
 
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
-    private final Image image;
+    private final transient Image image;
 
     /**
      * Constructor for the PreMatchView.
@@ -66,6 +69,7 @@ public class PreMatchView extends DefaultPanelImpl {
      * @param viewManager the manager responsible for managing the views
      * @param matchController the controller responsible for managing the match logic
      */
+    @SuppressFBWarnings
     public PreMatchView(final Starter starter, final CreateUpdateController controller, final ViewManager viewManager,
                              final MatchController matchController) {
         this.starter = starter;
@@ -80,7 +84,7 @@ public class PreMatchView extends DefaultPanelImpl {
         try {
             this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/pre-match-background.jpeg"));
         } catch (final IOException firstE) {
-            throw new RuntimeException("Failed to load image", firstE);
+            throw new IllegalStateException("Failed to load image", firstE);
         }
 
         //pannello centrale
@@ -190,11 +194,13 @@ public class PreMatchView extends DefaultPanelImpl {
     }
 
     @Override
-    public final void paintComponent(final Graphics g) {
+    public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        final Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(this.image, ZERO, ZERO, getWidth(), getHeight(), null);
+        if (g instanceof Graphics2D) {
+            final Graphics2D g2d = (Graphics2D) g;
+            g2d.drawImage(this.image, ZERO, ZERO, getWidth(), getHeight(), null);
+        }
     }
 
     /**
