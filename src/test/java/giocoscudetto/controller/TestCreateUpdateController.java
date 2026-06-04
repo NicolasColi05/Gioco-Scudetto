@@ -66,11 +66,11 @@ public class TestCreateUpdateController {
         //Testing that clubs have been correctly added to the controller fixture
         assertEquals(6, this.controller.getFixture().getListOfMatches().size());
         assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubHome().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubHome().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubHome().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Bologna".equals(m.getClubHome().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Imolese".equals(m.getClubHome().getName())));
         assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubAway().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubAway().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Inter".equals(m.getClubAway().getName()))); 
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Bologna".equals(m.getClubAway().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> "Imolese".equals(m.getClubAway().getName()))); 
     }
 
 }
