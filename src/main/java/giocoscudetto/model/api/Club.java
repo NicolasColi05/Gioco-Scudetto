@@ -25,9 +25,9 @@ public interface Club {
     /**
      * Increments the points of the club.
      * 
-     * @param points to be summed to the actual total.
+     * @param pointsReceived to be summed to the actual total.
      */
-    void incrementPoints(int points);
+    void incrementPoints(int pointsReceived);
 
     /**
      * Subtracting goalScored and goalConceded and then setting the new netDiff value.

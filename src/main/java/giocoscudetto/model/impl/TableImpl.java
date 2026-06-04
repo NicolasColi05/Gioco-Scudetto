@@ -7,14 +7,13 @@ import java.util.List;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Table;
 
-
 /**
  * Implementation of Table interface.
  */
-public class TableImpl implements Table{
+public class TableImpl implements Table {
 
     private final List<Club> clubRank = new LinkedList<>();
-    
+
     /**
      * {@inheritDoc}
      */
@@ -42,18 +41,19 @@ public class TableImpl implements Table{
     public List<Club> showPosition() {
         return this.clubRank;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
+    public void reset() {
         this.clubRank.clear();
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isEmpty() {
         return this.clubRank.isEmpty();
     }
@@ -65,7 +65,4 @@ public class TableImpl implements Table{
     public List<Club> getClubs() {
         return this.clubRank;
     }
-
-
-
 }

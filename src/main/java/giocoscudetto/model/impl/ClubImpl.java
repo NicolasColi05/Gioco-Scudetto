@@ -4,9 +4,9 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Pawn;
 
 /**
- * Implementing Club interface
+ * Implementing Club interface.
  */
-public class ClubImpl implements Club{
+public class ClubImpl implements Club {
 
     private final String name;
     private final Pawn pawn;
@@ -14,12 +14,11 @@ public class ClubImpl implements Club{
     private int netDiff;
 
     /**
-     * 
-     * @param name, the name selected for the club
-     * @param pawnSelected, the pawn assigned to the club
-     */
-    public ClubImpl(final String name,final Pawn pawnSelected) {
-         //Setting a standard name and pawn selected
+     * @param name the name selected for the club.
+     * @param pawnSelected the pawn assigned to the club.
+    */
+    public ClubImpl(final String name, final Pawn pawnSelected) {
+        //Setting a standard name and pawn selected
         this.pawn = pawnSelected;
         this.name = name;
     }
@@ -60,9 +59,9 @@ public class ClubImpl implements Club{
      * {@inheritDoc}
      */
     @Override
-    public void incrementPoints(final int points) {
-        if (points >= 0) {
-            this.points += points;
+    public void incrementPoints(final int pointsReceived) {
+        if (pointsReceived >= 0) {
+            this.points += pointsReceived;
         }
     }
 
@@ -72,7 +71,7 @@ public class ClubImpl implements Club{
     @Override
     public void changeNetDiffs(final int goalScored, final int goalConceded) {
         if (goalScored >= 0 && goalConceded >= 0) {
-            this.netDiff += (goalScored - goalConceded);
+            this.netDiff += goalScored - goalConceded;
         }
     }
 
