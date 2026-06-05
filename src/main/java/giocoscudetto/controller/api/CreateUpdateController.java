@@ -6,7 +6,7 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.view.impl.result.FixtureModel;
-import giocoscudetto.view.impl.result.TableModel;
+import giocoscudetto.view.impl.result.LeagueTableModel;
 
 
 /**
@@ -78,7 +78,7 @@ public interface CreateUpdateController {
     /**
      * @return the league table model.
      */
-    TableModel getLeagueTableModel();
+    LeagueTableModel getLeagueTableModel();
 
     /**
      * Method to restart the league with the same clubs and colors.

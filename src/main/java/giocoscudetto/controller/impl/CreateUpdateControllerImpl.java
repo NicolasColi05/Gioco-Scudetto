@@ -13,7 +13,7 @@ import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
 import giocoscudetto.view.impl.result.FixtureModel;
-import giocoscudetto.view.impl.result.TableModel;
+import giocoscudetto.view.impl.result.LeagueTableModel;
 
 
 /**
@@ -133,9 +133,9 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public TableModel getLeagueTableModel(){
+    public LeagueTableModel getLeagueTableModel(){
         this.table.updateClubRank();
-        return new TableModel(this.getTable());
+        return new LeagueTableModel(this.getTable());
     }
 
     /**

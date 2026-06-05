@@ -13,7 +13,7 @@ import giocoscudetto.model.api.Table;
  * A model for displaying the table information in a JTable.
  */
 @SuppressFBWarnings
-public class TableModel extends AbstractTableModel {
+public class LeagueTableModel extends AbstractTableModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class TableModel extends AbstractTableModel {
      * 
      * @param table the table to be displayed
      */
-    public TableModel(final Table table) {
+    public LeagueTableModel(final Table table) {
         this.table = new ArrayList<>(table.showPosition());
     }
 
