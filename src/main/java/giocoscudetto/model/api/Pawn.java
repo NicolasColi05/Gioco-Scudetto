@@ -1,23 +1,20 @@
 package giocoscudetto.model.api;
 
-
 /**
- * Represents a pawn used by a club on the game board.
+ * Represents a pawn used on the game board. 
  */
 public interface Pawn {
 
-
     /**
-     * Moves the pawn by the number of steps.
-     * 
-     * @param steps number of position to move 
+     * Moves the pawn by the numbwer of steps.
+     * @param steps number of steps to move
      */
     void changePosition(int steps);
 
     /**
      * Returns the current position of the pawn on the board.
      * 
-     * @return the current position of the pawn.
+     * @return the current position of the pawn like a int.
      */
     int getPosition();
 
