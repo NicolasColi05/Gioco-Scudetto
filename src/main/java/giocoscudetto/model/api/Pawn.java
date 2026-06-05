@@ -7,7 +7,8 @@ public interface Pawn {
 
     /**
      * Moves the pawn by the numbwer of steps.
-     * @param steps number of steps to move
+     * 
+     * @param steps number of steps to move.
      */
     void changePosition(int steps);
 
