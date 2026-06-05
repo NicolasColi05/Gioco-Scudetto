@@ -25,17 +25,17 @@ public class TestPawn {
     @Test
     void testChangePosition() {
 
-        PawnImpl pawn = new PawnImpl(DEFAULT_COLOR);
+        final PawnImpl pawn = new PawnImpl(DEFAULT_COLOR);
 
         pawn.changePosition(STEP);
 
-        assertEquals(5, pawn.getPosition());
+        assertEquals(STEP, pawn.getPosition());
     }
 
     @Test
     void testSetPosition() {
 
-        PawnImpl pawn = new PawnImpl(DEFAULT_COLOR);
+        final PawnImpl pawn = new PawnImpl(DEFAULT_COLOR);
 
         pawn.setPosition(POSITION_VALUE);
 
@@ -45,7 +45,7 @@ public class TestPawn {
     @Test
     void testPawnRGB() {
 
-        PawnImpl pawn = new PawnImpl(COLOR_CUSTOM);
+        final PawnImpl pawn = new PawnImpl(COLOR_CUSTOM);
 
         assertEquals(COLOR_CUSTOM, pawn.getPawnRGB());
     }
