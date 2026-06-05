@@ -12,6 +12,8 @@ import giocoscudetto.view.api.GameObserver;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Implementation of the MatchController interface.
  */
@@ -120,6 +122,7 @@ public class MatchControllerImpl implements MatchController {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings
     public Table getTable() {
         return this.table;
     }

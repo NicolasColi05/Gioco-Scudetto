@@ -3,12 +3,15 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
+/**
+ *  This class represents the Suspend Match Box.
+ */
 public class SuspendMatchBox implements Boxes {
 
     private static final String IMAGE = "casella_10.png";
-    private final int position;
     private static final String DESCRIPTION = "Box Event: Suspend Match. If you land on this box, "
                                                 + "you and your opponent have to restart the game with a score of 0-0.";
+    private final int position;
 
     /**
      * Constructor of the SuspendMatchBox class.
@@ -52,7 +55,7 @@ public class SuspendMatchBox implements Boxes {
      */
     @Override
     public String getImage() {
-       return SuspendMatchBox.IMAGE;
+       return IMAGE;
     }
 
     /**
@@ -60,6 +63,6 @@ public class SuspendMatchBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return SuspendMatchBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }

@@ -2,14 +2,14 @@ package giocoscudetto.controller.impl;
 
 import javax.swing.SwingUtilities;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.ViewManager;
-
 
 /**
  * Starter implementation.
  */
-public class StarterImpl implements Starter {
+public final class StarterImpl implements Starter {
 
     private final ViewManager viewManager;
 
@@ -18,6 +18,7 @@ public class StarterImpl implements Starter {
      * 
      * @param manager the view manager to use for the controller.
      */
+    @SuppressFBWarnings
     public StarterImpl(final ViewManager manager) {
         this.viewManager = manager;
     }
