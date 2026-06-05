@@ -17,6 +17,9 @@ import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.view.impl.result.FixtureModel;
 
+/**
+ * Simple test for {@link FixtureModel}.
+ */
 class TestFixtureModel {
 
     private static final String ROMA = "roma";
