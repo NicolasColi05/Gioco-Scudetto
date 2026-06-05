@@ -79,7 +79,7 @@ public interface Match {
      * @return the club that has lost the match, if there is a draw it returns null.
      */
     Club getLoserClub();
-    
+
     /**
      * @return the club that is currently playing.
      */
@@ -91,13 +91,6 @@ public interface Match {
      * @return the value of the dice throw.
      */
     int rollDice();
-
-    /**
-     * Method that simulates the throw of two dice, the value of the dice is used for the free kick event.
-     * 
-     * @return the value of the two dice throw.
-     */
-    //int freeKickDice();
 
     /**
      * This method set the penalty mode.
@@ -120,6 +113,11 @@ public interface Match {
      */
     void setSkipTurn(Club club);
 
+    /**
+     * Method responsible for the throws of dice during the match events.
+     * 
+     * @return the value of the dice
+     */
     int diceEvent();
 
     /**
@@ -142,9 +140,4 @@ public interface Match {
      */
     int getLastShootPosition();
 
-    /**
-     * Method that return a string representation of the match, it contains the name of the home and away club and the score.
-     * @return a string representation of the match, it contains the name of the home and away club and the score.
-     */
-    String toString();
 }

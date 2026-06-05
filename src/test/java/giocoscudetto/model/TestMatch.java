@@ -25,14 +25,12 @@ import org.junit.jupiter.api.Test;
 class TestMatch {
     private Club clubHome;
     private Club clubAway;
-    private Pawn pawnHome;
-    private Pawn pawnAway;
     private Match match;
 
     @BeforeEach
     void setUp() {
-        pawnHome = new PawnImpl(0);
-        pawnAway = new PawnImpl(0);
+        final Pawn pawnHome = new PawnImpl(0);
+        final Pawn pawnAway = new PawnImpl(0);
         clubHome = new ClubImpl("clubHome", pawnHome);
         clubAway = new ClubImpl("clubAway", pawnAway);
         match = new MatchImpl(clubHome, clubAway);
@@ -85,6 +83,7 @@ class TestMatch {
         this.match.turn();
         assertEquals(second, this.match.getCurrentPlayer());
     }
+
     /**
      * Tests that the winner and the loser of the match are assigned correctly.
      */

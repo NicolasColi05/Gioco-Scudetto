@@ -126,7 +126,7 @@ public class MatchImpl implements Match {
     /**
      * {@inheritDoc}
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Score è gestito intenzionalmente così")
+    @SuppressFBWarnings
     @Override
     public final Scoreboard getScore() {
         return score;
@@ -188,14 +188,6 @@ public class MatchImpl implements Match {
         System.out.println("un dado" + dice6);
         return dice;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    /**@Override
-    public int freeKickDice() {
-        return this.dice6.rollDice() + this.dice6.rollDice();
-    }*/
 
     /**
      * {@inheritDoc}
