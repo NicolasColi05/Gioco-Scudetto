@@ -37,11 +37,11 @@ public class CesariniBox implements Boxes {
 
     @Override
     public String getImage() {
-        return CesariniBox.IMAGE;
+        return IMAGE;
     }
 
     @Override
     public String getDescription() {
-        return CesariniBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }

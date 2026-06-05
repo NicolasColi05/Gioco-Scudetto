@@ -54,7 +54,7 @@ public class FirstHalfBox implements Boxes {
      */
     @Override
     public final String getImage() {
-        return FirstHalfBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -62,7 +62,7 @@ public class FirstHalfBox implements Boxes {
      */
     @Override
     public final String getDescription() {
-        return FirstHalfBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 
 }

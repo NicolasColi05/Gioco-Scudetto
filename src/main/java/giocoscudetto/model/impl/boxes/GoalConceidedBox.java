@@ -49,7 +49,7 @@ public class GoalConceidedBox implements Boxes {
      */
     @Override
     public String getImage() {
-       return GoalConceidedBox.IMAGE;
+       return IMAGE;
     }
 
     /**
@@ -57,6 +57,6 @@ public class GoalConceidedBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return GoalConceidedBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }

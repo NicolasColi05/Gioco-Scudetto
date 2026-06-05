@@ -49,7 +49,7 @@ public class GoalRemovedBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return GoalRemovedBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -57,7 +57,7 @@ public class GoalRemovedBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return GoalRemovedBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 
 }

@@ -55,7 +55,7 @@ public final class SkipTurnBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return SkipTurnBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -63,6 +63,6 @@ public final class SkipTurnBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return SkipTurnBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }

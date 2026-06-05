@@ -42,7 +42,7 @@ public class StartBox implements Boxes{
      */
     @Override
     public String getImage() {
-        return StartBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -50,6 +50,6 @@ public class StartBox implements Boxes{
      */
     @Override
     public String getDescription() {
-        return StartBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }

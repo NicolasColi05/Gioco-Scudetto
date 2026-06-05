@@ -95,6 +95,6 @@ public class EmptyBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return EmptyBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }

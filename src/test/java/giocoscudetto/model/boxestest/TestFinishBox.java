@@ -14,20 +14,25 @@ import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.boxes.FinishBox;
 
-public class TestFinishBox {
+/*
+ * CHECKSTYLE: MagicNumber OFF
+ * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
+ */
+/**
+ * Simple test for {@link FinishBox}.
+ */
+class TestFinishBox {
     private static final int BOX_POSITION = 32;
 
     private Club clubHome;
     private Club clubAway;
-    private Pawn pawnHome;
-    private Pawn pawnAway;
     private Match match;
     private Boxes finishBox;
 
     @BeforeEach
-    public void setUp() {
-        pawnHome = new PawnImpl(0);
-        pawnAway = new PawnImpl(0);
+    void setUp() {
+        final Pawn pawnHome = new PawnImpl(0);
+        final Pawn pawnAway = new PawnImpl(0);
         pawnAway.setPosition(26);
         pawnHome.setPosition(32);
         clubHome = new ClubImpl("home", pawnHome);
@@ -36,28 +41,40 @@ public class TestFinishBox {
         finishBox = new FinishBox(BOX_POSITION);
         match.setGoalHome(3);
         match.setGoalAway(2);
-        if(match.getCurrentPlayer() != clubHome) {
+        if (!match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
 
+    /**
+     * Tests the get name.
+     */
     @Test
-    public void testGetName(){
+    void testGetName() {
         assertEquals("Finish Box", finishBox.getName());
     }
 
+    /**
+     * Tests the get position.
+     */
     @Test
-    public void testGetPosition(){
+    void testGetPosition() {
         assertEquals(BOX_POSITION, finishBox.getPosition());
     }
 
+    /**
+     * Tests the get image.
+     */
     @Test
-    public void testGetImage(){
+    void testGetImage() {
         assertEquals("casella_32.png", finishBox.getImage());
     }
 
+    /**
+     * Tests the box event.
+     */
     @Test
-    public void testEventGameMode() {
+    void testEventGameMode() {
         finishBox.event(match);
         assertEquals(32, clubHome.getPawn().getPosition());
         assertEquals(32, clubAway.getPawn().getPosition());

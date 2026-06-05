@@ -3,12 +3,20 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class FinishBox implements Boxes{
+/**
+ * This class represents the Finish Box.
+ */
+public class FinishBox implements Boxes {
 
-    private final int position;
     private static final String IMAGE = "casella_32.png";
     private static final String DESCRIPTION = "Box event: Last Box. If you land on this box the game will end";
+    private final int position;
 
+    /**
+     * Constructor of the FinishBox class.
+     * 
+     * @param position the position of the box on the board.
+     */
     public FinishBox(final int position) {
         this.position = position;
     }
@@ -43,7 +51,7 @@ public class FinishBox implements Boxes{
      */
     @Override
     public String getImage() {
-        return FinishBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -51,7 +59,7 @@ public class FinishBox implements Boxes{
      */
     @Override
     public String getDescription() {
-        return FinishBox.DESCRIPTION;
+        return DESCRIPTION;
     }
-    
+
 }

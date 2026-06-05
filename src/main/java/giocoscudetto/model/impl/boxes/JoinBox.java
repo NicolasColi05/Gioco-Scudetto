@@ -70,7 +70,7 @@ public final class JoinBox implements Boxes {
      */
     @Override
     public String getImage() {
-        return JoinBox.IMAGE;
+        return IMAGE;
     }
 
     /**
@@ -78,6 +78,6 @@ public final class JoinBox implements Boxes {
      */
     @Override
     public String getDescription() {
-        return JoinBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }

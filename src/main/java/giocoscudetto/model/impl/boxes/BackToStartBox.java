@@ -43,11 +43,11 @@ public final class BackToStartBox implements Boxes {
 
     @Override
     public String getImage() {
-        return BackToStartBox.IMAGE;
+        return IMAGE;
     }
 
     @Override
     public String getDescription() {
-        return BackToStartBox.DESCRIPTION;
+        return DESCRIPTION;
     }
 }
