@@ -140,9 +140,9 @@ public class MatchControllerImpl implements MatchController {
      */
     @Override
     public void setMatch() {
-        this.fixture = controller.getFixture();
+        this.fixture = this.controller.getFixture();
         this.match = this.fixture.setNextMatch();
-        this.table = controller.getTable();
+        this.table = this.controller.getTable();
         notifyViews();
     }
 
