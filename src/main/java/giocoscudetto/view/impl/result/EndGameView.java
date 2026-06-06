@@ -56,6 +56,7 @@ public final class EndGameView extends DefaultPanelImpl {
     private static final int RESIZE_ROW_HEIGHT_DIVISOR = 20;
     private static final int ROW_MARGIN = 3;
 
+    private static final long serialVersionUID = 1L;
     private final Starter controller;
     private final MatchController matchController;
     private final CreateUpdateController createUpdateController;
@@ -83,7 +84,7 @@ public final class EndGameView extends DefaultPanelImpl {
                 new File("src/main/resources/images/backgrounds/end-game-background.jpeg")
             );
         } catch (final IOException e) {
-            throw new RuntimeException("Failed to load image", e);
+            throw new IllegalStateException("Failed to load image", e);
         }
 
         //vincitore
@@ -92,7 +93,7 @@ public final class EndGameView extends DefaultPanelImpl {
             new Font(FONT_SELECTED, Font.BOLD, WINNER_FONT_SIZE)
         );
         winnerLabel.setForeground(Color.BLACK);
-        winnerLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        winnerLabel.setAlignmentX(RIGHT_ALIGNMENT);
 
         //tabella
         final JTable standingsTable = new JTable(this.createUpdateController.getLeagueTableModel());

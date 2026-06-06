@@ -130,7 +130,7 @@ public final class HomePanel extends DefaultPanelImpl {
     }
 
     @Override
-    public final void paintComponent(final Graphics g) {
+    public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
         final Graphics2D g2d = (Graphics2D) g;
