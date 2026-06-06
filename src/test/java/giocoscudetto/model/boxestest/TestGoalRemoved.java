@@ -33,7 +33,7 @@ class TestGoalRemoved {
     void setUpCurrentPlayer() {
 
         //Setting homeClub as the match current club
-        if(match.getCurrentPlayer().equals(clubHome)) {
+        if(!match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
