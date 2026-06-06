@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
@@ -106,6 +107,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings
     public Fixtures getFixture() {
         //System.out.println("fixture" + this.fixture.toString());
         return this.fixture;
