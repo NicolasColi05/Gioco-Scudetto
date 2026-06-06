@@ -7,7 +7,7 @@ import giocoscudetto.model.impl.PawnImpl;
 /**
  * Tests for PawnImpl.
  */
-public class TestPawn {
+class TestPawn {
 
     private static final int DEFAULT_COLOR = 255;
     private static final int STEP = 5;
