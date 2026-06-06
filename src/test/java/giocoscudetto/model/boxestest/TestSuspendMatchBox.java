@@ -37,15 +37,15 @@ class TestSuspendMatchBox {
         pawnAway.setPosition(22);
         pawnHome.setPosition(16);
 
-        clubHome = new ClubImpl("home", pawnHome);
-        clubAway = new ClubImpl("away", pawnAway);
+        this.clubHome = new ClubImpl("home", pawnHome);
+        this.clubAway = new ClubImpl("away", pawnAway);
 
-        match = new MatchImpl(clubHome, clubAway);
-        suspendMatchBox = new SuspendMatchBox(BOX_POSITION);
-        match.setGoalHome(3);
-        match.setGoalAway(2);
-        if (!match.getCurrentPlayer().equals(clubHome)) {
-            match.turn();
+        this.match = new MatchImpl(clubHome, clubAway);
+        this.suspendMatchBox = new SuspendMatchBox(BOX_POSITION);
+        this.match.setGoalHome(3);
+        this.match.setGoalAway(2);
+        if (!this.match.getCurrentPlayer().equals(clubHome)) {
+            this.match.turn();
         }
     }
 
@@ -54,7 +54,7 @@ class TestSuspendMatchBox {
      */
     @Test
     void testGetName() {
-        assertEquals("Suspend Match", suspendMatchBox.getName());
+        assertEquals("Suspend Match", this.suspendMatchBox.getName());
     }
 
     /**
@@ -62,7 +62,7 @@ class TestSuspendMatchBox {
      */
     @Test
     void testGetPosition() {
-        assertEquals(BOX_POSITION, suspendMatchBox.getPosition());
+        assertEquals(BOX_POSITION, this.suspendMatchBox.getPosition());
     }
 
     /**
@@ -70,7 +70,7 @@ class TestSuspendMatchBox {
      */
     @Test
     void testGetImage() {
-        assertEquals("casella_10.png", suspendMatchBox.getImage());
+        assertEquals("casella_10.png", this.suspendMatchBox.getImage());
     }
 
     /**
@@ -79,9 +79,9 @@ class TestSuspendMatchBox {
     @Test
     void testEventGameMode() {
         suspendMatchBox.event(match);
-        assertEquals(0, clubHome.getPawn().getPosition());
-        assertEquals(0, clubAway.getPawn().getPosition());
-        assertEquals(0, match.getScore().getHomeScore());
-        assertEquals(0, match.getScore().getGuestScore());
+        assertEquals(0, this.clubHome.getPawn().getPosition());
+        assertEquals(0, this.clubAway.getPawn().getPosition());
+        assertEquals(0, this.match.getScore().getHomeScore());
+        assertEquals(0, this.match.getScore().getGuestScore());
     }
 }
