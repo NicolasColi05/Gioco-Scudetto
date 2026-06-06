@@ -3,18 +3,23 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
+/**
+ * Implementing EmptyBox.
+ * Nothing happen if u land on this box.
+ */
 public class EmptyBox implements Boxes {
 
     private final int position;
     private final String image;
-    private static final String DESCRIPTION = "Box Event: Empty. If you land on this box, you do nothing.";
+    private final static String DESCRIPTION = "Box Event: Empty. If you land on this box, you do nothing.";
 
     /**
      * @param position the position of the box in the board.
      */
     public EmptyBox(final int position) {
         this.position = position;
-       
+
+        // CHECKSTYLE: <MagicNumber> OFF
         switch (position) {
             case 1: 
                 this.image = "casella_12.png";
@@ -55,7 +60,8 @@ public class EmptyBox implements Boxes {
             default: 
                 this.image = "casella_12.png";
                 break;
-        } 
+        }
+        // CHECKSTYLE: <MagicNumber> ON
     }
 
     /**
@@ -70,7 +76,7 @@ public class EmptyBox implements Boxes {
      * {@inheritDoc}
      */
     @Override
-    public void event(final Match match) {  
+    public void event(final Match match) {
         match.turn();
     }
 
