@@ -166,9 +166,13 @@ public class NetPanel extends DefaultPanelImpl {
         }
     }
 
+    /**
+     * This method sets the text of the label over the net.
+     */
     public void resetLabel() {
         this.label.setText("");
     }
+
     /**
      *  {@inheritDoc}.
      */
