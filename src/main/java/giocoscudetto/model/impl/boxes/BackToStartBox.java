@@ -36,9 +36,9 @@ public final class BackToStartBox implements Boxes {
     @Override
     public void event(final Match match) {
         match.getCurrentPlayer().getPawn().setPosition(0);
-        System.out.println(match.getCurrentPlayer() + " go back to start");
+        //System.out.println(match.getCurrentPlayer() + " go back to start");
         match.turn();
-        System.out.println("turno di " + match.getCurrentPlayer());
+        //System.out.println("turno di " + match.getCurrentPlayer());
     }
 
     @Override

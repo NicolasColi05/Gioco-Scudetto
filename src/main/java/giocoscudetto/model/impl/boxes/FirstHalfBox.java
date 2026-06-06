@@ -37,7 +37,7 @@ public class FirstHalfBox implements Boxes {
      */
     @Override
     public final void event(final Match match) {
-        System.out.println("Fine primo tempo");
+        //System.out.println("Fine primo tempo");
         match.turn();
     }
 

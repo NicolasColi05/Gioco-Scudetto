@@ -21,8 +21,8 @@ public class CesariniBox implements Boxes {
     }
 
     @Override
-    public void event(Match match) {
-        if(match.getCurrentPlayer() == match.getClubHome()) {
+    public void event(final Match match) {
+        if(match.getCurrentPlayer().equals(match.getClubHome())) {
             match.goalHome();
         } else {
             match.goalAway();

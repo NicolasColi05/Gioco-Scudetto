@@ -26,7 +26,7 @@ public class StartBox implements Boxes{
      */
     @Override
     public void event(Match match) {
-        System.out.println("Il gioco è iniziato");
+        //System.out.println("Il gioco è iniziato");
     }
 
     /**
