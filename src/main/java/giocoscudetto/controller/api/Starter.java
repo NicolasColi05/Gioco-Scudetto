@@ -1,7 +1,10 @@
 package giocoscudetto.controller.api;
 
+/**
+ * Interface to set the starter view and change it depending by the user's action.
+ */
 public interface Starter {
-    
+
     /**
      * this method is for starting the game and show the home view.
      */

@@ -8,15 +8,13 @@ import giocoscudetto.model.api.Table;
 import giocoscudetto.view.impl.result.FixtureModel;
 import giocoscudetto.view.impl.result.LeagueTableModel;
 
-
 /**
  * Controller Interface to cominicate between model and view in pre match
  * configuation, table and fixture creation and update.
  */
 public interface CreateUpdateController {
-    
+
     /**
-     * 
      * @param clubsName is the list of name to be verify.
      * @param colors is the set of boolean to verify if all clubs have a color selected.
      * @return false if there are duplicate/empty name and missing club color,
@@ -28,14 +26,18 @@ public interface CreateUpdateController {
      * Method to create the clubs that will play the incoming match, the table
      * to memorize their position and the fixture.
      * 
-     * @param clubs, the clubs that will play the match.
+     * @param clubsName contians the clubs name that will play the match.
+     * @param pawnName contains the club's pawn color.
      */
     void createClubs(List<String> clubsName, List<Integer> pawnName);
 
     /**
      * Method to update a specific team point and net diff.
      * 
-     * @param pawnId
+     * @param pawnId that correspond to a club.
+     * @param points contains the point of that club.
+     * @param goalScored contains the goal scored  of that club.
+     * @param goalConceded contains the goal conceided of that club.
      */
     void updateClubScores(int pawnId, int points, int goalScored, int goalConceded);
 
@@ -45,11 +47,11 @@ public interface CreateUpdateController {
     void updateClubActualRank();
 
     /**
-     * @return the list containg the club in the right position
+     * @return the list containg the club in the right position.
      */
     List<Club> getClubActualRank();
 
-        /**
+    /**
      * @return the list of clubs.
      */
     List<Club> getClubs();
@@ -58,7 +60,6 @@ public interface CreateUpdateController {
      * @return the table.
      */
     Table getTable();
-
 
     /**
      * @return the fixture.
