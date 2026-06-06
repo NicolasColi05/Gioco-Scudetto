@@ -53,7 +53,7 @@ public class FixturesImpl implements Fixtures {
      */
     @Override
     @SuppressFBWarnings
-    public Match setNextMatch() {
+    public Match nextMatch() {
         if (this.listOfMatchesIterator == null) {
             this.listOfMatchesIterator = listOfMatches.iterator();
         }
@@ -62,6 +62,15 @@ public class FixturesImpl implements Fixtures {
             return this.currentMatch;
         }
         return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @SuppressFBWarnings
+    public Match getCurrentMatch() {
+        return this.currentMatch;
     }
 
     /**
@@ -80,27 +89,8 @@ public class FixturesImpl implements Fixtures {
      * {@inheritDoc}
      */
     @Override
-    @SuppressFBWarnings
-    public Match getCurrentMatch() {
-        return this.currentMatch;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void setScore(final Match match, final Scoreboard score) {
         this.fixture.replace(match, null, score);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void resetFixture() {
-        this.fixture.clear();
-        this.listOfMatches.clear();
-        this.listOfClubs.clear();
     }
 
     /**
@@ -125,6 +115,16 @@ public class FixturesImpl implements Fixtures {
     @Override
     public boolean isEmpty() {
         return this.fixture.isEmpty();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void resetFixture() {
+        this.fixture.clear();
+        this.listOfMatches.clear();
+        this.listOfClubs.clear();
     }
 
     /*

@@ -67,11 +67,11 @@ class TestFixtureModel {
     @Test
     void testGetValueAt() {
         int count = 0;
-        fixture.setNextMatch();
+        fixture.nextMatch();
         Match match = fixture.getCurrentMatch();
         while (fixture.seeNextMatch(match) != null) {
             assertEquals(match.toString(), fixtureModel.getValueAt(count, 0).toString());
-            fixture.setNextMatch();
+            fixture.nextMatch();
             match = fixture.getCurrentMatch();
             count++;
         }

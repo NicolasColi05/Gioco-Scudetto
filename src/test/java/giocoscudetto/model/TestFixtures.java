@@ -83,7 +83,7 @@ class TestFixtures {
         fixture.fixtureGeneration(listOfClubs);
         assertNotNull(fixture);
         assertEquals(4, listOfClubs.size());
-        while (fixture.setNextMatch() != null) {
+        while (fixture.nextMatch() != null) {
             if (INTER.equals(fixture.getCurrentMatch().getClubHome().getName()) 
                 || INTER.equals(fixture.getCurrentMatch().getClubAway().getName())) {
                 intercount++;
@@ -136,11 +136,11 @@ class TestFixtures {
     void testNextMatch() {
         fixture.fixtureGeneration(listOfClubs);
         final Match match = fixture.getCurrentMatch();
-        assertEquals(fixture.seeNextMatch(match), fixture.setNextMatch());
+        assertEquals(fixture.seeNextMatch(match), fixture.nextMatch());
         fixture.resetFixture();
         fixture.fixtureGeneration(listOfClubs);
         int count = 0;
-        while (fixture.setNextMatch() != null) {
+        while (fixture.nextMatch() != null) {
             count++;
         }
         assertEquals(12, count);

@@ -23,25 +23,12 @@ public interface Fixtures {
      * 
      * @return the next match to be played
      */
-    Match setNextMatch();
+    Match nextMatch();
 
     /**
      * @return the current match being played
      */
     Match getCurrentMatch();
-
-    /**
-     * @return a string that represents the fixture
-     *
-    String toString();*/
-
-    /**
-     * Method that updates the score of the related match.
-     * 
-     * @param match refers to the match where we need to update the score
-     * @param score is the updated score for the match
-     */
-    void setScore(Match match, Scoreboard score);
 
     /**
      * Method that when given a match returns the next match to be played, without changing the value of the iterator.
@@ -52,9 +39,12 @@ public interface Fixtures {
     Match seeNextMatch(Match match);
 
     /**
-     * Method that resets the fixture, clearing all matches and scores.
+     * Method that updates the score of the related match.
+     * 
+     * @param match refers to the match where we need to update the score
+     * @param score is the updated score for the match
      */
-    void resetFixture();
+    void setScore(Match match, Scoreboard score);
 
     /**
      * @param match the match for which you want to see the scoreboard
@@ -72,4 +62,9 @@ public interface Fixtures {
      * @return true if the fixture is empty, false otherwise
      */
     boolean isEmpty();
+
+    /**
+     * Method that resets the fixture, clearing all matches and scores.
+     */
+    void resetFixture();
 }
