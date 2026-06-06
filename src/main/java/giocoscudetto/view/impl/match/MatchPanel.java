@@ -124,13 +124,15 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
 
         continueButton.addActionListener(e -> { 
             if (this.matchController.isLastMatch()) {
+                this.netPanel.resetLabel();
+                this.matchController.addPoints();
                 final EndGameView endGameView = new EndGameView(this.controller, this.createUpdateController, 
                                                                     this.matchController);
                 this.viewManager.addView(endGameView, "end");
-                this.matchController.addPoints();
                 this.controller.changeView("end");
             } else {
                 this.matchController.addPoints();
+                this.netPanel.resetLabel();
                 this.controller.changeView("pre");
             }
         });
@@ -161,14 +163,17 @@ public class MatchPanel extends DefaultPanelImpl implements GameObserver {
                     netPanel.setButtonsEnabled(true);
                     break;
                 case "FREE_KICK":
+                    this.netPanel.resetLabel();
                     this.eventPanel.configure(EventPanel.EventType.FREE_KICK);
                     this.eventPanel.setVisible(true);
                     break;
                 case "CORNER":
+                    this.netPanel.resetLabel();
                     this.eventPanel.configure(EventPanel.EventType.CORNER);
                     this.eventPanel.setVisible(true);
                     break;
                 case "RESULT":
+                    this.netPanel.resetLabel();
                     this.eventPanel.configure(EventPanel.EventType.RESULT);
                     this.eventPanel.setVisible(true);
                     break;

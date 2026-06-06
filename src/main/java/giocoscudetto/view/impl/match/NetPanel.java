@@ -166,6 +166,9 @@ public class NetPanel extends DefaultPanelImpl {
         }
     }
 
+    public void resetLabel() {
+        this.label.setText("");
+    }
     /**
      *  {@inheritDoc}.
      */
