@@ -20,7 +20,7 @@ import org.junit.jupiter.api.BeforeEach;
  */
 /**
  * Test for {@link giocoscudetto.model.impl.boxes.GoalRemovedBox}.
-*/
+ */
 class TestGoalRemoved {
     private final Club clubHome = new ClubImpl("home", null);
     private final Club clubAway = new ClubImpl("away", null);
@@ -28,12 +28,11 @@ class TestGoalRemoved {
     private final Scoreboard scoreboard = match.getScore();
     private final Boxes goalRemovedBox = new GoalRemovedBox(30);
 
-    
     @BeforeEach
     void setUpCurrentPlayer() {
 
         //Setting homeClub as the match current club
-        if(!match.getCurrentPlayer().equals(clubHome)) {
+        if (!match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
@@ -50,7 +49,7 @@ class TestGoalRemoved {
     void testUnderZero() {
 
         verifyResult(0, 0, match.getClubHome());
-        
+
         //Scores must not go below zero
         goalRemovedBox.event(match);
         verifyResult(0, 0, match.getClubAway());
@@ -68,7 +67,7 @@ class TestGoalRemoved {
 
         //Testing initial values
         verifyResult(2, 1, match.getClubHome());
-        
+
         //Testing GoalRemovedBox for each team, assuming they use it
         //consecutevely on it in the match
         goalRemovedBox.event(match);
@@ -87,8 +86,8 @@ class TestGoalRemoved {
     @Test
     void testBoxName() {
         assertEquals("Goal Removed", goalRemovedBox.getName());
-    }        
-        
+    }
+
     @Test
     void testBoxImage() {
         assertEquals("casella_33.png", goalRemovedBox.getImage());

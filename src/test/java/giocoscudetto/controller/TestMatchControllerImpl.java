@@ -1,7 +1,6 @@
 package giocoscudetto.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import giocoscudetto.model.api.Match;
 /**
  * Test for {@link giocoscudetto.controller.impl.MatchControllerImpl}.
  */
-public class TestMatchControllerImpl {
+class TestMatchControllerImpl {
 
     private static final String ROMA = "roma";
     private static final String INTER = "inter";
@@ -32,7 +31,7 @@ public class TestMatchControllerImpl {
     private String currentClub;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         listOfClubs = new ArrayList<>();
         listOfClubs.add(ROMA);
         listOfClubs.add(INTER);
@@ -50,22 +49,24 @@ public class TestMatchControllerImpl {
     }
 
     @Test
-    void test(){
+    void test() {
         matchController.setMatch();
-        assertEquals(updateController.getFixture().getCurrentMatch().getClubHome().getName(), this.matchController.getHomeName());
-        assertEquals(updateController.getFixture().getCurrentMatch().getClubAway().getName(), this.matchController.getGuestName());
+        assertEquals(updateController.getFixture().getCurrentMatch().getClubHome().getName(),
+                    this.matchController.getHomeName());
+        assertEquals(updateController.getFixture().getCurrentMatch().getClubAway().getName(), 
+                    this.matchController.getGuestName());
         this.matchController.setHelpFlag(true);
         assertTrue(this.matchController.isHelpFlag());
         assertEquals(Match.GameMode.NONE.name(), this.matchController.getGameMode());
-        for (String club : listOfClubs) {
-            if(club.equals(this.matchController.getCurrentPlayer())) {
-                currentClub = club;
+        for (final String club : listOfClubs) {
+            if (club.equals(this.matchController.getCurrentPlayer())) {
+                this.currentClub = club;
             }
         }
-        int dice = this.matchController.move();
+        final int dice = this.matchController.move();
         assertEquals(this.updateController.getFixture().getCurrentMatch().getCurrentPlayer().getPawn().getPosition(), dice);
 
         this.matchController.checkBox();
-        
+
     }
 }

@@ -22,19 +22,18 @@ import org.junit.jupiter.api.BeforeEach;
  * Test for {@link giocoscudetto.model.impl.boxes.GoalConceidedBox}.
  */
 class TestGoalConceided {
- 
+
     private final Club clubHome = new ClubImpl("home", null);
     private final Club clubAway = new ClubImpl("away", null);
     private final Match match = new MatchImpl(clubHome, clubAway);
     private final Scoreboard scoreboard = match.getScore();
     private final Boxes goalConceidedBox = new GoalConceidedBox(24);
 
-    
     @BeforeEach
     void setUpCurrentPlayer() {
 
         //Setting homeClub as the match current club
-        if(!match.getCurrentPlayer().equals(clubHome)) {
+        if (!match.getCurrentPlayer().equals(clubHome)) {
             match.turn();
         }
     }
@@ -74,8 +73,8 @@ class TestGoalConceided {
     @Test
     void testBoxName() {
         assertEquals("Goal Conceded", goalConceidedBox.getName());
-    }        
-        
+    }
+
     @Test
     void testBoxImage() {
         assertEquals("casella_9.png", goalConceidedBox.getImage());

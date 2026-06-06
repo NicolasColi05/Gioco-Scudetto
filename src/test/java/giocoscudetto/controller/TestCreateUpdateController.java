@@ -25,18 +25,20 @@ class TestCreateUpdateController {
     private static final String INTER = "Inter";
     private static final String BOLOGNA = "Bologna";
     private static final String IMOLESE = "Imolese";
+    private static final String ROMA = "Roma";
+    private static final String JUVENTUS = "Juventus";
 
     private final CreateUpdateController controller = new CreateUpdateControllerImpl();
-    
+
     /**
      * Testing some basic condition that sould be avoid before allowing users to create clubs.
      */
     @Test
     void testClubsCorrectness() {
-        
+
         //Spaces are not allowed in the name, so "Bologna" and " Bolo gna " are the same name
         assertFalse(controller.isClubInfoComplete(List.of(BOLOGNA, " Bolo gna "), List.of(true, true)));
-        
+
         //Each Club's name can not be empty
         assertFalse(controller.isClubInfoComplete(List.of(BOLOGNA, ""), List.of(true, true)));
 
@@ -60,22 +62,28 @@ class TestCreateUpdateController {
         assertEquals(3, this.controller.getClubs().size());
         assertTrue(this.controller.getClubs().stream().anyMatch(p -> INTER.equals(p.getName())));
         assertTrue(this.controller.getClubs().stream().anyMatch(p -> BOLOGNA.equals(p.getName())));
-        assertTrue(this.controller.getClubs().stream().anyMatch(p -> IMOLESE.equals(p.getName())));        
+        assertTrue(this.controller.getClubs().stream().anyMatch(p -> IMOLESE.equals(p.getName())));
 
         //Testing that clubs have been correctly added to the controller table
         assertEquals(3, this.controller.getTable().showPosition().size());
         assertTrue(this.controller.getClubActualRank().stream().anyMatch(p -> INTER.equals(p.getName())));
         assertTrue(this.controller.getClubActualRank().stream().anyMatch(p -> BOLOGNA.equals(p.getName())));
         assertTrue(this.controller.getClubActualRank().stream().anyMatch(p -> IMOLESE.equals(p.getName()))); 
-        
+
         //Testing that clubs have been correctly added to the controller fixture
         assertEquals(6, this.controller.getFixture().getListOfMatches().size());
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> INTER.equals(m.getClubHome().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> BOLOGNA.equals(m.getClubHome().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> IMOLESE.equals(m.getClubHome().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> INTER.equals(m.getClubAway().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> BOLOGNA.equals(m.getClubAway().getName())));
-        assertTrue(this.controller.getFixture().getListOfMatches().stream().anyMatch(m -> IMOLESE.equals(m.getClubAway().getName()))); 
+        assertTrue(this.controller.getFixture().getListOfMatches().stream()
+            .anyMatch(m -> INTER.equals(m.getClubHome().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream()
+            .anyMatch(m -> BOLOGNA.equals(m.getClubHome().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream()
+            .anyMatch(m -> IMOLESE.equals(m.getClubHome().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream()
+            .anyMatch(m -> INTER.equals(m.getClubAway().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream()
+            .anyMatch(m -> BOLOGNA.equals(m.getClubAway().getName())));
+        assertTrue(this.controller.getFixture().getListOfMatches().stream()
+            .anyMatch(m -> IMOLESE.equals(m.getClubAway().getName()))); 
     }
 
     /**
@@ -83,7 +91,7 @@ class TestCreateUpdateController {
      */
     @Test
     void testRestartLeague() {
-        controller.createClubs(List.of("Inter", "Roma", "Juventus"),
+        controller.createClubs(List.of(INTER, ROMA, JUVENTUS),
                                List.of(25, 3, 14));
         controller.getClubs().get(0).getPawn().setPosition(20);
         controller.getClubs().get(1).getPawn().setPosition(18);
@@ -97,13 +105,13 @@ class TestCreateUpdateController {
         controller.restartLeague();
         assertNotEquals(firstFixture, controller.getFixture().getListOfMatches().toString());
         assertNotEquals(firstTable, controller.getTable().showPosition().toString());
-        assertTrue(controller.getFixture().toString().contains("Inter"));
-        assertTrue(controller.getFixture().toString().contains("Roma"));
-        assertTrue(controller.getFixture().toString().contains("Juventus"));
+        assertTrue(controller.getFixture().toString().contains(INTER));
+        assertTrue(controller.getFixture().toString().contains(ROMA));
+        assertTrue(controller.getFixture().toString().contains(JUVENTUS));
         final List<String> clubsName = new ArrayList<>();
         controller.getTable().showPosition().forEach(club -> clubsName.add(club.getName()));
-        assertTrue(clubsName.contains("Inter"));
-        assertTrue(clubsName.contains("Roma"));
-        assertTrue(clubsName.contains("Juventus"));
+        assertTrue(clubsName.contains(INTER));
+        assertTrue(clubsName.contains(ROMA));
+        assertTrue(clubsName.contains(JUVENTUS));
     }
 }
