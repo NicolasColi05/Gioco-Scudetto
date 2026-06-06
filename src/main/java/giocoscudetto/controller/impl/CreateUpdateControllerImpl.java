@@ -16,16 +16,15 @@ import giocoscudetto.model.impl.TableImpl;
 import giocoscudetto.view.impl.result.FixtureModel;
 import giocoscudetto.view.impl.result.LeagueTableModel;
 
-
 /**
- * Implementation of CreateController interface
+ * Implementation of CreateController interface.
  */
 public class CreateUpdateControllerImpl implements CreateUpdateController {
 
     private final List<Club> clubs = new LinkedList<>();
     private final Table table = new TableImpl();
     private final Fixtures fixture = new FixturesImpl();
-    
+
     /**
      * {@inheritDoc}
      */
@@ -37,9 +36,9 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
                         .toList();
         //namesWithoutSpaces.stream().forEach(n -> System.out.println(n));
 
-        return !namesWithoutSpaces.stream().anyMatch(String::isEmpty) &&
-            namesWithoutSpaces.stream().distinct().toList().size() == namesWithoutSpaces.size() &&
-            colors.stream().allMatch(i -> i);
+        return !namesWithoutSpaces.stream().anyMatch(String::isEmpty) 
+            && namesWithoutSpaces.stream().distinct().toList().size() == namesWithoutSpaces.size() 
+            && colors.stream().allMatch(i -> i);
 
     }
 
@@ -48,15 +47,15 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public void createClubs(final List<String> clubsName, final List<Integer> pawnRGB) {
-        
+
         int i = 0;
-        for(; i < clubsName.size(); i++) {
+        for (; i < clubsName.size(); i++) {
             clubs.add(new ClubImpl(clubsName.get(i), new PawnImpl(pawnRGB.get(i))));
         }
 
         this.table.addAllClubs(this.clubs);
 
-        this.fixture.fixtureGeneration(this.clubs);        
+        this.fixture.fixtureGeneration(this.clubs);
     }
 
     /**
@@ -117,17 +116,17 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
+    public void reset() {
         this.clubs.clear();
         this.fixture.resetFixture();
         this.table.reset();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public FixtureModel getFixtureTableModel(){
+    public FixtureModel getFixtureTableModel() {
         return new FixtureModel(this.getFixture());
     }
 
@@ -135,7 +134,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public LeagueTableModel getLeagueTableModel(){
+    public LeagueTableModel getLeagueTableModel() {
         this.table.updateClubRank();
         return new LeagueTableModel(this.getTable());
     }
@@ -152,6 +151,6 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
             clubsname.add(club.getName());
         }
         this.reset();
-        this.createClubs(clubsname,pawns);
+        this.createClubs(clubsname, pawns);
     }
 }

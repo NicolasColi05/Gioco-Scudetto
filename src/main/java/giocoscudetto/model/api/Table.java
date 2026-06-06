@@ -6,10 +6,10 @@ import java.util.List;
  * Interface that defines the correct position of each club in the table.
  */
 public interface Table {
-   
+
     /**
      * @param clubs are all the clubs that partecipate to matches
-     * so will be added to the table.
+     *              so will be added to the table.
      */
     void addAllClubs(List<Club> clubs);
 

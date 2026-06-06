@@ -1,7 +1,10 @@
 package giocoscudetto.model.api;
 
+/**
+ * Inteface to create and manage clubs information.
+ */
 public interface Club {
-    
+
     /**
      * @return the name of the club.
      */
@@ -21,7 +24,7 @@ public interface Club {
      * @return the pawn selected by the club.
      */
     Pawn getPawn();
-    
+
     /**
      * Increments the points of the club.
      * 
@@ -38,4 +41,3 @@ public interface Club {
     void changeNetDiffs(int goalScored, int goalConceded);
 
 }
-  
