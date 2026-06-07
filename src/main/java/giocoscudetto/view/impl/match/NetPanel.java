@@ -195,6 +195,7 @@ public class NetPanel extends DefaultPanelImpl {
         this.count = 0;
         this.setContinueButton(false);
         this.kickButton.setEnabled(false);
+        label.setText("");
     }
 
     /**
