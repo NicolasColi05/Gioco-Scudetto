@@ -44,11 +44,13 @@ public class NetPanel extends DefaultPanelImpl {
     private static final int DELAY = 70;
     private static final long TIME_WAIT = 1000;
     private static final int BOUND = 6;
+    private static final Color SELECTION_COLOR = Color.green;
 
     private final MatchController controller;
     private final BufferedImage image;
-    private final List<JButton> bottons = new ArrayList<>();
+    private final List<JButton> buttons = new ArrayList<>();
     private final JButton kickButton = new JButton("KICK THE PENALTY");
+    private final JButton continueButton = new JButton("CONTINUE");
     private final JLabel label;
     private final JPanel net;
     private int count;
@@ -75,9 +77,14 @@ public class NetPanel extends DefaultPanelImpl {
         this.add(net, BorderLayout.CENTER); //NOPMD
         this.add(kickButton, BorderLayout.SOUTH); //NOPMD
 
-            kickButton.addActionListener(e -> {
+        kickButton.addActionListener(e -> {
                 this.animateAndResolve();
-            });
+        });
+
+        continueButton.addActionListener(e -> {
+            this.reset();
+            this.controller.gameModeFinished();
+        });
 
         try {
         this.image = ImageIO.read(new File("src/main/resources/images/backgrounds/net.png"));
@@ -96,23 +103,33 @@ public class NetPanel extends DefaultPanelImpl {
     private void createBottons() {
         for (int i = 0; i < BOTTONS_COUNT; i++) {
             final int index = i + 1;
-            bottons.add(new JButton());
-            bottons.get(i).setText(String.valueOf(index));
-            bottons.get(i).addActionListener(e -> {
+            final JButton btn = new JButton(String.valueOf(index));
+            buttons.add(btn);
+            btn.addActionListener(e -> {
+                markSelected(btn);
                 if (count == 0) {
                     this.controller.setKeeperPosition(index);
                     count++;
                     checkButtons(index);
                 } else if (count == 1) {
                     this.controller.setKeeperPosition(index);
-                    bottons.get(index - 1).setEnabled(false);
+                    this.setButtonsEnabled(false);
                     count++;
                     kickButton.setEnabled(true);
                 }
             });
         }
-        bottons.forEach(net::add);
+        buttons.forEach(net::add);
+    }
 
+    /**
+     * This method marks the selected button with a different color.
+     * 
+     * @param btn the button to mark.
+     */
+    private void markSelected(final JButton btn) {
+        btn.setBackground(SELECTION_COLOR);
+        btn.setOpaque(true);
     }
 
     /**
@@ -121,10 +138,10 @@ public class NetPanel extends DefaultPanelImpl {
      * @param b true to enable the buttons, false to disable them.
      */
     public void setButtonsEnabled(final boolean b) {
-        bottons.forEach(x -> x.setEnabled(b));
-        this.count = 0;
+        buttons.forEach(x -> x.setEnabled(b));
         if (b) {
             label.setText("Choose the position of the keeper");
+            this.kickButton.setEnabled(true);
         }
     }
 
@@ -136,30 +153,30 @@ public class NetPanel extends DefaultPanelImpl {
     private void checkButtons(final int position) {
         switch (position) {
             case BOTTON1_POS:
-                bottons.get(BOTTON1_POS - 1).setEnabled(false);
-                bottons.get(BOTTON5_POS).setEnabled(false);
-                bottons.get(BOTTON2_POS).setEnabled(false);
+                buttons.get(BOTTON1_POS - 1).setEnabled(false);
+                buttons.get(BOTTON5_POS).setEnabled(false);
+                buttons.get(BOTTON2_POS).setEnabled(false);
                 break;
             case BOTTON2_POS:
-                bottons.get(BOTTON1_POS).setEnabled(false);
+                buttons.get(BOTTON1_POS).setEnabled(false);
                 break;
             case BOTTON3_POS:
-                bottons.get(BOTTON2_POS).setEnabled(false);
-                bottons.get(BOTTON1_POS - 1).setEnabled(false);
-                bottons.get(BOTTON3_POS).setEnabled(false);
+                buttons.get(BOTTON2_POS).setEnabled(false);
+                buttons.get(BOTTON1_POS - 1).setEnabled(false);
+                buttons.get(BOTTON3_POS).setEnabled(false);
                 break;
             case BOTTON4_POS:
-                bottons.get(BOTTON3_POS).setEnabled(false);
-                bottons.get(BOTTON5_POS).setEnabled(false);
-                bottons.get(BOTTON2_POS).setEnabled(false);
+                buttons.get(BOTTON3_POS).setEnabled(false);
+                buttons.get(BOTTON5_POS).setEnabled(false);
+                buttons.get(BOTTON2_POS).setEnabled(false);
                 break;
             case BOTTON5_POS:
-                bottons.get(BOTTON4_POS).setEnabled(false);
+                buttons.get(BOTTON4_POS).setEnabled(false);
                 break;
             case BOTTON6_POS:
-                bottons.get(BOTTON5_POS).setEnabled(false);
-                bottons.get(BOTTON1_POS - 1).setEnabled(false);
-                bottons.get(BOTTON3_POS).setEnabled(false);
+                buttons.get(BOTTON5_POS).setEnabled(false);
+                buttons.get(BOTTON1_POS - 1).setEnabled(false);
+                buttons.get(BOTTON3_POS).setEnabled(false);
                 break;
             default:
                 break;
@@ -169,8 +186,15 @@ public class NetPanel extends DefaultPanelImpl {
     /**
      * This method sets the text of the label over the net.
      */
-    public void resetLabel() {
-        this.label.setText("");
+    public void reset() {
+        buttons.forEach(x -> {
+            x.setBackground(null);
+            x.setOpaque(false);
+            x.setEnabled(false);
+        });
+        this.count = 0;
+        this.setContinueButton(false);
+        this.kickButton.setEnabled(false);
     }
 
     /**
@@ -185,7 +209,7 @@ public class NetPanel extends DefaultPanelImpl {
     }
 
     /**
-     * animetes the dice and resolves the event after a certain time, updating the UI accordingly.
+     * animetes the dice and resolves the event after a certain time, also updating the UI.
      */
     private void animateAndResolve() {
         final Random rnd = new Random();
@@ -197,16 +221,27 @@ public class NetPanel extends DefaultPanelImpl {
             label.setText("Kicking the penalty..." + (rnd.nextInt(BOUND) + 1));
             if (System.currentTimeMillis() - startTime > TIME_WAIT) {
                 final boolean goal = this.controller.kickPenalty();
-                setButtonsEnabled(false);
-                this.controller.gameModeFinished();
                 if (goal) {
                     label.setText("Shoot the penalty in position " + this.controller.getLastShootPosition() + " GOAL!!!");
                 } else {
                     label.setText("Shoot the penalty in position " + this.controller.getLastShootPosition() + " NO GOAL");
                 }
+                this.setContinueButton(true);
                 animTimer.stop();
             }
         });
         animTimer.start();
+    }
+
+    private void setContinueButton(final boolean b) {
+        if (b) {
+            this.remove(kickButton); //NOPMD
+            this.add(continueButton, BorderLayout.SOUTH); //NOPMD
+        } else {
+            this.remove(continueButton); //NOPMD
+            this.add(kickButton, BorderLayout.SOUTH); //NOPMD
+        }
+        this.revalidate();
+        this.repaint();
     }
 }
