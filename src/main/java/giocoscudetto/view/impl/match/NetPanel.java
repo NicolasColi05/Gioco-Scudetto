@@ -233,13 +233,18 @@ public class NetPanel extends DefaultPanelImpl {
         animTimer.start();
     }
 
+    /**
+     * This method sets the continue button in the south of the panel and removes the kick button, or vice versa.
+     * 
+     * @param b true to set the continue button, false to set the kick button.
+     */
     private void setContinueButton(final boolean b) {
         if (b) {
-            this.remove(kickButton); //NOPMD
-            this.add(continueButton, BorderLayout.SOUTH); //NOPMD
+            this.remove(kickButton);
+            this.add(continueButton, BorderLayout.SOUTH);
         } else {
-            this.remove(continueButton); //NOPMD
-            this.add(kickButton, BorderLayout.SOUTH); //NOPMD
+            this.remove(continueButton);
+            this.add(kickButton, BorderLayout.SOUTH);
         }
         this.revalidate();
         this.repaint();
