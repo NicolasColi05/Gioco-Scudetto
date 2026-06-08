@@ -85,4 +85,29 @@ public interface CreateUpdateController {
      * Method to restart the league with the same clubs and colors.
      */
     void restartLeague();
+
+    /**
+     * @return a list with the clubs names in the order of the table.
+     */
+    List<String> getTableNames();
+
+    /**
+     * @return a list with the clubs points in the order of the table.
+     */
+    List<Integer> getTablePoints();
+
+    /**
+     * @return a list with the clubs net differences in the order of the table.
+     */
+    List<Integer> getTableNetDiff();
+
+    /**
+     * @return a list with a string representation of the matches in the order of the fixture.
+     */
+    List<String> getFixtureMatchesString();
+
+    /**
+     * @return a list with the scores of the matchsa in the order of the fixture.
+     */
+    List<String> getFixtureScoresString();
 }

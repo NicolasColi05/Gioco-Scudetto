@@ -6,9 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import giocoscudetto.model.api.Fixtures;
-import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.match.Scoreboard;
+import giocoscudetto.controller.api.CreateUpdateController;
 
 /**
  * A model for displaying the fixture in a JTable.
@@ -18,20 +16,20 @@ public class FixtureModel extends AbstractTableModel {
 
     private static final long serialVersionUID = 1L;
 
-    private final List<Match> matches;
-    private final List<Scoreboard> scores;
+    private final List<String> matches;
+    private final List<String> scores;
+    private final CreateUpdateController updateController;
     private final String[] columns = {"Match", "Score"};
 
     /**
      * Constructor for the fixture model.
      * 
-     * @param fixture the fixture to be displayed
+     * @param updateController to get the fixture information
      */
-    public FixtureModel(final Fixtures fixture) {
-        this.matches = new ArrayList<>(fixture.getListOfMatches());
-        this.scores = matches.stream()
-                              .map(fixture::getScoreboard)
-                              .toList();
+    public FixtureModel(final CreateUpdateController updateController) {
+        this.updateController = updateController;
+        this.matches = new ArrayList<>(this.updateController.getFixtureMatchesString());
+        this.scores = new ArrayList<>(this.updateController.getFixtureScoresString());
     }
 
     @Override 
@@ -52,8 +50,8 @@ public class FixtureModel extends AbstractTableModel {
     @Override
     public final Object getValueAt(final int row, final int col) {
         return switch (col) {
-            case 0 -> matches.get(row).toString();
-            case 1 -> scores.get(row) != null ? scores.get(row).toString() : " vs";
+            case 0 -> matches.get(row);
+            case 1 -> scores.get(row);
             default -> null;
         };
     }
