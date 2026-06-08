@@ -41,7 +41,7 @@ public final class PawnColorPickerPanel extends JPanel implements PawnColorPicke
      * Implementing the logic to make work great the club's pawn color selection.
      */
     public PawnColorPickerPanel() {
-        // CHECKSTYLE: <MagicNumber> OFF
+        // CHECKSTYLE: [MagicNumber] OFF
         // Turning off magic number checkstyle as it is useless to create dedicated fields
         // for each magic number in this situation 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 6, 0));
@@ -82,7 +82,7 @@ public final class PawnColorPickerPanel extends JPanel implements PawnColorPicke
                     g2.dispose();
                 }
             };
-            // CHECKSTYLE: <MagicNumber> ON
+            // CHECKSTYLE: [MagicNumber] ON
 
             //Changing button size and properties when going on it
             btn.setPreferredSize(new Dimension(BTN_SIZE, BTN_SIZE));
@@ -130,7 +130,7 @@ public final class PawnColorPickerPanel extends JPanel implements PawnColorPicke
     /**
      * {@inheritDoc}
      */
-    @Override  
+    @Override
     public boolean isColorSelected() {
         return this.getSelectedColor() != null;
     }
