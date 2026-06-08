@@ -1,5 +1,7 @@
 package giocoscudetto.model.api;
 
+import giocoscudetto.model.api.match.Scoreboard;
+
 /**
  * Interface that represents a match between two clubs, it keeps track of the score and of the clubs that are playing.
  */
@@ -139,5 +141,12 @@ public interface Match {
      * @return the last position of the ball that was shot.
      */
     int getLastShootPosition();
+
+    /**
+     * This method returns the name of the player that is not the current player.
+     * 
+     * @return the name of the player that is not the current player.
+     */
+    String getNotCurrentPlayer();
 
 }

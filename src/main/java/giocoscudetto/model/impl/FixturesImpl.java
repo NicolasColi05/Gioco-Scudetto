@@ -10,9 +10,9 @@ import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.match.Scoreboard;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
-import giocoscudetto.model.api.Scoreboard;
 
 /**
  * This class implements the Fixtures interface, it is responsible for generating the matches of the championship 

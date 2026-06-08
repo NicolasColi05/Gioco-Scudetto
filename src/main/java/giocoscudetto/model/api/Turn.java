@@ -21,4 +21,9 @@ public interface Turn {
      * Switches the turn to the other player.
      */
     void switchTurn();
+
+    /**
+     * @return the name of the player that is not the current player.
+     */
+    Club getNotCurrentPlayer();
 }

@@ -4,14 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import giocoscudetto.model.impl.ScoreboardImpl;
+
+import giocoscudetto.model.impl.match.ScoreboardImpl;
 
 /*
  * CHECKSTYLE: MagicNumber OFF
  * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
  */
 /**
- * Test for {@link giocoscudetto.model.impl.ScoreboardImpl}.
+ * Test for {@link giocoscudetto.model.impl.match.ScoreboardImpl}.
  */
 class TestScoreBoard {
 

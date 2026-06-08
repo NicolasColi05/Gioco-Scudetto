@@ -204,4 +204,9 @@ public interface MatchController {
      */
     int getLastShootPosition();
 
+    /**
+     * @return the name of the player that is not the current player.
+     */
+    String getNotCurrentPlayer();
+
 }

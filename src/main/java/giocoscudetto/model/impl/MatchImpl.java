@@ -6,12 +6,14 @@ import java.util.Random;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Dice;
-import giocoscudetto.model.api.GoalNet;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.Scoreboard;
+import giocoscudetto.model.api.dices.Dice;
+import giocoscudetto.model.api.match.GoalNet;
+import giocoscudetto.model.api.match.Scoreboard;
 import giocoscudetto.model.impl.dices.MainDice;
 import giocoscudetto.model.impl.dices.ResultDice;
+import giocoscudetto.model.impl.match.GoalNetImpl;
+import giocoscudetto.model.impl.match.ScoreboardImpl;
 
 /**
  * This class implements the Match interface, it represents a match between two clubs,
@@ -299,5 +301,13 @@ public class MatchImpl implements Match {
     @Override
     public String toString() {
         return this.clubHome.getName() + " - " + this.clubAway.getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getNotCurrentPlayer() {
+        return turn.getNotCurrentPlayer().getName();
     }
 }

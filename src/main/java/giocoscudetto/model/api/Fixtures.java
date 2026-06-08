@@ -3,6 +3,8 @@ package giocoscudetto.model.api;
 import java.util.List;
 import java.util.Set;
 
+import giocoscudetto.model.api.match.Scoreboard;
+
 /**
  * Interface that represents the fixture of the championship, it is responsible for generating the matches
  * and for providing the next match to be played.

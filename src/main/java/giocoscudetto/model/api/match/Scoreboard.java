@@ -1,4 +1,4 @@
-package giocoscudetto.model.api;
+package giocoscudetto.model.api.match;
 
 /**
  * This Class rappresent the scoreboard of the Match.
