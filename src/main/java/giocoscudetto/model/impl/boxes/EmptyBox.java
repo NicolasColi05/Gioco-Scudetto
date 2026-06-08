@@ -13,14 +13,13 @@ public class EmptyBox implements Boxes {
     private final int position;
     private final String image;
 
-    @SuppressWarnings("checkstyle:magicnumber")
     /**
      * @param position the position of the box in the board.
      */
     public EmptyBox(final int position) {
         this.position = position;
 
-        // CHECKSTYLE: [MagicNumber] OFF
+        //CHECKSTYLE: MagicNumber OFF
         // It is inapropriate to create a fields for each position, so i use numbers.
         switch (position) {
             case 1: 
@@ -63,7 +62,7 @@ public class EmptyBox implements Boxes {
                 this.image = "casella_12.png";
                 break;
         }
-        // CHECKSTYLE: [MagicNumber] ON
+        //CHECKSTYLE: MagicNumber ON
     }
 
     /**

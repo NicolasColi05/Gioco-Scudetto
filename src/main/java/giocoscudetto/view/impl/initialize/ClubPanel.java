@@ -67,7 +67,6 @@ public final class ClubPanel extends DefaultPanelImpl {
                                                         new Color(224, 201, 166), 
                                                         new Color(62, 91, 66));
 
-    @SuppressWarnings("checkstyle:magicnumber")
     /**
      * @param viewChanger is the controller to change panel.
      * @param controller is the controller to create the clubs with the info choosen.
@@ -198,7 +197,7 @@ public final class ClubPanel extends DefaultPanelImpl {
         final JPanel centerWrapper = new JPanel(new GridBagLayout());
         final GridBagConstraints gbc = new GridBagConstraints();
 
-        // CHECKSTYLE: [MagicNumber] OFF
+        //CHECKSTYLE: MagicNumber OFF
         //It is useless to create dedicated variables for each magic number here
         //Top Spacer to push everything to the bottom
         gbc.gridx = 0;
@@ -226,7 +225,7 @@ public final class ClubPanel extends DefaultPanelImpl {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.VERTICAL;
         centerWrapper.add(Box.createVerticalGlue(), gbc);
-        // CHECKSTYLE: [MagicNumber] ON
+        //CHECKSTYLE: MagicNumber ON
 
         //Setting the main panels opacity on false to show the background color
         clubInfoPanel.setOpaque(false);

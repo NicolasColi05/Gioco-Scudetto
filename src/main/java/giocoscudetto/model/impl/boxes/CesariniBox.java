@@ -16,7 +16,7 @@ public class CesariniBox implements Boxes {
     private final int position;
 
     /**
-     * @param position it's the position in the board of thi box.
+     * @param position it's the position in the board of this box.
      */
     public CesariniBox(final int position) {
         this.position = position;
