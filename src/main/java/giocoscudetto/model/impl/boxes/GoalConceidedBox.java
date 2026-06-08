@@ -3,14 +3,21 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
+/**
+ * Implementing GoalConceidedBox.
+ * Opponent score a goal if u land on this box.
+ */
 public class GoalConceidedBox implements Boxes {
 
     private static final String BOX_NAME = "Goal Conceded";
-
-    private final int position;
     private static final String IMAGE = "casella_9.png";
     private static final String DESCRIPTION = "Box Event: Goal Conceded. If you land on this box, you concede a goal.";
 
+    private final int position;
+
+    /** 
+     * @param position is the position of this box.
+     */
     public GoalConceidedBox(final int position) {
         this.position = position;
     }
@@ -28,7 +35,7 @@ public class GoalConceidedBox implements Boxes {
      */
     @Override
     public void event(final Match match) {
-        if(match.getCurrentPlayer().equals(match.getClubHome())) {
+        if (match.getCurrentPlayer().equals(match.getClubHome())) {
             match.goalAway();
         } else {
             match.goalHome();

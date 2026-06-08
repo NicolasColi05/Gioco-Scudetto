@@ -12,8 +12,8 @@ public class CesariniBox implements Boxes {
     private static final String BOX_NAME = "Cesarini Zone";
 
     private final int position;
-    private final static String IMAGE = "casella_30.png";
-    private final static String DESCRIPTION = "Box Event: If you land on this box, you score a goal.";
+    private static final String IMAGE = "casella_30.png";
+    private static final String DESCRIPTION = "Box Event: If you land on this box, you score a goal.";
 
     /**
      * @param position it's the position in the board of thi box.

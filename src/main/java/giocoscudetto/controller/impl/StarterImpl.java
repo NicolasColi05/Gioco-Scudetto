@@ -31,7 +31,7 @@ public final class StarterImpl implements Starter {
     @Override
     public void changeView(final String panelName) {
         SwingUtilities.invokeLater(() -> viewManager.showView(panelName));
-        System.out.println("controller");
+        //System.out.println("controller");
     }
 
     @Override

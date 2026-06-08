@@ -42,7 +42,7 @@ public interface CreateUpdateController {
     void updateClubScores(int pawnId, int points, int goalScored, int goalConceded);
 
     /**
-     * Method to update each club position in the table
+     * Method to update each club position in the table.
      */
     void updateClubActualRank();
 

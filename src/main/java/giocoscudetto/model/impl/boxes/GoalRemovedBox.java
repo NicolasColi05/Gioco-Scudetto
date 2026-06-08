@@ -3,14 +3,21 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
+/**
+ * Implementing GoalRemovedBox.
+ * One of your goal get removed if you land on this box.
+ */
 public class GoalRemovedBox implements Boxes {
 
     private static final String BOX_NAME = "Goal Removed";
 
     private static final String IMAGE = "casella_33.png";
+    private static final String DESCRIPTION = "If you land on this box, a goal is removed from your score.";
     private final int position;
-    private static final String DESCRIPTION = "Box Event: Remove Goal. If you land on this box, the ref removes a goal from your score.";
 
+    /**
+     * @param position is the position of this box.
+     */
     public GoalRemovedBox(final int position) {
         this.position = position;
     }
@@ -28,7 +35,7 @@ public class GoalRemovedBox implements Boxes {
      */
     @Override
     public void event(final Match match) {
-        if(match.getCurrentPlayer().equals(match.getClubHome())) {
+        if (match.getCurrentPlayer().equals(match.getClubHome())) {
             match.removeGoalHome();
         } else {
             match.removeGoalAway();

@@ -16,7 +16,7 @@ public class ClubImpl implements Club {
     /**
      * @param name the name selected for the club.
      * @param pawnSelected the pawn assigned to the club.
-    */
+     */
     public ClubImpl(final String name, final Pawn pawnSelected) {
         //Setting a standard name and pawn selected
         this.pawn = pawnSelected;
