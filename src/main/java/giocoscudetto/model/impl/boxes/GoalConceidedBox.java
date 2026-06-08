@@ -16,6 +16,7 @@ public class GoalConceidedBox implements Boxes {
     private final int position;
 
     /** 
+     * 
      * @param position is the position of this box.
      */
     public GoalConceidedBox(final int position) {

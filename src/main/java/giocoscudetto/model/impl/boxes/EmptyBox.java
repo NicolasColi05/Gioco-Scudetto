@@ -9,10 +9,11 @@ import giocoscudetto.model.api.Match;
  */
 public class EmptyBox implements Boxes {
 
+    private static final String DESCRIPTION = "Box Event: Empty. If you land on this box, you do nothing.";
     private final int position;
     private final String image;
-    private static final String DESCRIPTION = "Box Event: Empty. If you land on this box, you do nothing.";
 
+    @SuppressWarnings("checkstyle:magicnumber")
     /**
      * @param position the position of the box in the board.
      */

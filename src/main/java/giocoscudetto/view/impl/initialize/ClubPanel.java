@@ -67,6 +67,7 @@ public final class ClubPanel extends DefaultPanelImpl {
                                                         new Color(224, 201, 166), 
                                                         new Color(62, 91, 66));
 
+    @SuppressWarnings("checkstyle:magicnumber")
     /**
      * @param viewChanger is the controller to change panel.
      * @param controller is the controller to create the clubs with the info choosen.

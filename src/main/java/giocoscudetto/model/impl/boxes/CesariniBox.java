@@ -10,10 +10,10 @@ import giocoscudetto.model.api.Match;
 public class CesariniBox implements Boxes {
 
     private static final String BOX_NAME = "Cesarini Zone";
-
-    private final int position;
     private static final String IMAGE = "casella_30.png";
     private static final String DESCRIPTION = "Box Event: If you land on this box, you score a goal.";
+
+    private final int position;
 
     /**
      * @param position it's the position in the board of thi box.

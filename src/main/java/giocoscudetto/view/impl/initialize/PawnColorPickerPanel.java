@@ -37,6 +37,7 @@ public final class PawnColorPickerPanel extends JPanel implements PawnColorPicke
     private final List<JButton> buttons = new ArrayList<>();
     private transient Consumer<Color> onColorChanged;
 
+    @SuppressWarnings("checkstyle:magicnumber")
     /**
      * Implementing the logic to make work great the club's pawn color selection.
      */
