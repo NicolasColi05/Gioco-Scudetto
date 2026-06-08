@@ -6,8 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Table;
+import giocoscudetto.controller.api.CreateUpdateController;
 
 /**
  * A model for displaying the table information in a JTable.
@@ -17,21 +16,27 @@ public class LeagueTableModel extends AbstractTableModel {
 
     private static final long serialVersionUID = 1L;
 
-    private final List<Club> table;
+    private final CreateUpdateController updateController;
+    private final List<String> tableNames;
+    private final List<Integer> tablePoints;
+    private final List<Integer> tableNetDiff;
     private final String[] columns = {"Club", "Points", "Net Difference"};
 
     /**
      * Constructor for the table model.
      * 
-     * @param table the table to be displayed
+     * @param updateController to get the table informations
      */
-    public LeagueTableModel(final Table table) {
-        this.table = new ArrayList<>(table.showPosition());
+    public LeagueTableModel(final CreateUpdateController updateController) {
+        this.updateController = updateController;
+        this.tableNames = new ArrayList<>(this.updateController.getTableNames());
+        this.tablePoints = new ArrayList<>(this.updateController.getTablePoints());
+        this.tableNetDiff = new ArrayList<>(this.updateController.getTableNetDiff());
     }
 
     @Override 
     public final int getRowCount() {
-        return table.size();
+        return tableNames.size();
     }
 
     @Override 
@@ -47,9 +52,9 @@ public class LeagueTableModel extends AbstractTableModel {
     @Override
     public final Object getValueAt(final int row, final int col) {
         return switch (col) {
-            case 0 -> table.get(row).getName();
-            case 1 -> table.get(row).getPoints();
-            case 2 -> table.get(row).getNetDiff();
+            case 0 -> this.tableNames.get(row);
+            case 1 -> this.tablePoints.get(row);
+            case 2 -> this.tableNetDiff.get(row);
             default -> null;
         };
     }

@@ -8,11 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Table;
-import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.PawnImpl;
-import giocoscudetto.model.impl.TableImpl;
+import giocoscudetto.controller.api.CreateUpdateController;
+import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.view.impl.result.LeagueTableModel;
 
 /*
@@ -29,27 +26,29 @@ class TestLeagueTableModel {
     private static final String NAPOLI = "napoli";
     private static final String JUVENTUS = "juventus";
 
-    private Table table;
     private LeagueTableModel leagueTableModel;
+    private CreateUpdateController updateController;
 
     @BeforeEach
     void setUp() {
 
-        final List<Club> listOfClubs = new ArrayList<>();
-        listOfClubs.add(new ClubImpl(ROMA, new PawnImpl(1)));
-        listOfClubs.add(new ClubImpl(INTER, new PawnImpl(1)));
-        listOfClubs.add(new ClubImpl(NAPOLI, new PawnImpl(1)));
-        listOfClubs.add(new ClubImpl(JUVENTUS, new PawnImpl(1)));
+        final List<String> listOfClubs = new ArrayList<>();
+        final List<Integer> listOfPawns = new ArrayList<>();
 
-        listOfClubs.get(0).incrementPoints(4);
-        listOfClubs.get(1).incrementPoints(1);
-        listOfClubs.get(2).incrementPoints(3);
-        listOfClubs.get(3).incrementPoints(6);
+        listOfClubs.add(ROMA);
+        listOfClubs.add(INTER);
+        listOfClubs.add(NAPOLI);
+        listOfClubs.add(JUVENTUS);
 
-        table = new TableImpl();
-        table.addAllClubs(listOfClubs);
-        table.updateClubRank();
-        leagueTableModel = new LeagueTableModel(table);
+        listOfPawns.add(1);
+        listOfPawns.add(1);
+        listOfPawns.add(1);
+        listOfPawns.add(1);
+
+        updateController = new CreateUpdateControllerImpl();
+        updateController.createClubs(listOfClubs, listOfPawns);
+        updateController.getClubs().getLast().incrementPoints(5);
+        leagueTableModel = new LeagueTableModel(updateController);
     }
 
     /**
@@ -78,9 +77,9 @@ class TestLeagueTableModel {
     @Test
     void testGetValueAt() {
         for (int i = 0; i < 4; i++) {
-            assertEquals(table.showPosition().get(i).getName(), leagueTableModel.getValueAt(i, 0).toString());
-            assertEquals(table.showPosition().get(i).getPoints(), leagueTableModel.getValueAt(i, 1));
-            assertEquals(table.showPosition().get(i).getNetDiff(), leagueTableModel.getValueAt(i, 2));
+            assertEquals(updateController.getTable().showPosition().get(i).getName(), leagueTableModel.getValueAt(i, 0));
+            assertEquals(updateController.getTable().showPosition().get(i).getPoints(), leagueTableModel.getValueAt(i, 1));
+            assertEquals(updateController.getTable().showPosition().get(i).getNetDiff(), leagueTableModel.getValueAt(i, 2));
         }
     }
 }

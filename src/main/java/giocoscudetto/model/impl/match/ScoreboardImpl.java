@@ -9,6 +9,7 @@ public class ScoreboardImpl implements Scoreboard {
 
     private int homeScore;
     private int guestScore;
+    private boolean played;
 
     /**
      * Constructor of the ScoreboardImpl class,
@@ -17,6 +18,7 @@ public class ScoreboardImpl implements Scoreboard {
     public ScoreboardImpl() {
         this.homeScore = 0;
         this.guestScore = 0;
+        this.played = false;
     }
 
 
@@ -25,7 +27,7 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public int getGuestScore() {
-
+        played = true;
         return guestScore;
     }
 
@@ -35,6 +37,7 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public int getHomeScore() {
+        played = true;
         return homeScore;
     }
 
@@ -44,6 +47,7 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public void setHomeScore(final int newScore) {
+        played = true;
         this.homeScore = newScore;
     }
 
@@ -53,6 +57,7 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public void setGuestScore(final int newScore) {
+        played = true;
         this.guestScore = newScore;
     }
 
@@ -62,6 +67,7 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public void increaseHomeScore() {
+        played = true;
         this.homeScore = homeScore + 1;
     }
 
@@ -71,6 +77,7 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public void increaseGuestScore() {
+        played = true;
         this.guestScore = guestScore + 1;
     }
 
@@ -79,6 +86,7 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public void decreaseHomeScore() {
+        played = true;
         this.homeScore = this.homeScore - 1;
         if (this.homeScore < 0) {
             this.homeScore = 0;
@@ -90,6 +98,7 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public void decreaseGuestScore() {
+        played = true;
         this.guestScore = this.guestScore - 1;
         if (this.guestScore < 0) {
             this.guestScore = 0;
@@ -101,6 +110,6 @@ public class ScoreboardImpl implements Scoreboard {
      */
     @Override
     public String toString() {
-        return homeScore + " - " + guestScore;
+        return played ? homeScore + " - " + guestScore : " vs";
     }
 }

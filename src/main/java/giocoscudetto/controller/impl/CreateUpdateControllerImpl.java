@@ -8,6 +8,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
+import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.FixturesImpl;
@@ -127,7 +128,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public FixtureModel getFixtureTableModel() {
-        return new FixtureModel(this.getFixture());
+        return new FixtureModel(this);
     }
 
     /**
@@ -136,7 +137,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
     @Override
     public LeagueTableModel getLeagueTableModel() {
         this.table.updateClubRank();
-        return new LeagueTableModel(this.getTable());
+        return new LeagueTableModel(this);
     }
 
     /**
@@ -152,5 +153,65 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
         }
         this.reset();
         this.createClubs(clubsname, pawns);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<String> getTableNames() {
+        final List<String> clubsNames = new ArrayList<>();
+        for (final Club club : this.getTable().showPosition()) {
+            clubsNames.add(club.getName());
+        }
+        return clubsNames;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Integer> getTablePoints() {
+        final List<Integer> clubsPoints = new ArrayList<>();
+        for (final Club club : this.getTable().showPosition()) {
+            clubsPoints.add(club.getPoints());
+        }
+        return clubsPoints;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Integer> getTableNetDiff() {
+        final List<Integer> clubsNetDiff = new ArrayList<>();
+        for (final Club club : this.getTable().showPosition()) {
+            clubsNetDiff.add(club.getNetDiff());
+        }
+        return clubsNetDiff;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<String> getFixtureMatchesString() {
+        final List<String> fixtureMatches = new ArrayList<>();
+        for (final Match match : this.getFixture().getListOfMatches()) {
+            fixtureMatches.add(match.toString());
+        }
+       return fixtureMatches;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<String> getFixtureScoresString() {
+        final List<String> fixtureScore = new ArrayList<>();
+        for (final Match match : this.getFixture().getListOfMatches()) {
+            fixtureScore.add(match.getScore().toString());
+        }
+       return fixtureScore;
     }
 }

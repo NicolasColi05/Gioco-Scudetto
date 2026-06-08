@@ -105,9 +105,12 @@ class TestCreateUpdateController {
         controller.restartLeague();
         assertNotEquals(firstFixture, controller.getFixture().getListOfMatches().toString());
         assertNotEquals(firstTable, controller.getTable().showPosition().toString());
-        assertTrue(controller.getFixture().toString().contains(INTER));
-        assertTrue(controller.getFixture().toString().contains(ROMA));
-        assertTrue(controller.getFixture().toString().contains(JUVENTUS));
+        assertTrue(controller.getFixtureMatchesString().contains("Inter - Juventus"));
+        assertTrue(controller.getFixtureMatchesString().contains("Inter - Roma"));
+        assertTrue(controller.getFixtureMatchesString().contains("Juventus - Roma"));
+        assertTrue(controller.getFixtureMatchesString().contains("Juventus - Inter"));
+        assertTrue(controller.getFixtureMatchesString().contains("Roma - Inter"));
+        assertTrue(controller.getFixtureMatchesString().contains("Roma - Juventus"));
         final List<String> clubsName = new ArrayList<>();
         controller.getTable().showPosition().forEach(club -> clubsName.add(club.getName()));
         assertTrue(clubsName.contains(INTER));

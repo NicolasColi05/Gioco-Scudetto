@@ -8,13 +8,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Fixtures;
+import giocoscudetto.controller.api.CreateUpdateController;
+import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.match.Scoreboard;
-import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.FixturesImpl;
-import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.view.impl.result.FixtureModel;
 
 /**
@@ -27,20 +23,27 @@ class TestFixtureModel {
     private static final String NAPOLI = "napoli";
     private static final String JUVENTUS = "juventus";
 
-    private List<Club> listOfClubs;
-    private Fixtures fixture;
+    private CreateUpdateController updateController;
+    private List<String> listOfClubs;
     private FixtureModel fixtureModel;
 
     @BeforeEach
     void setUp() {
         listOfClubs = new ArrayList<>();
-        listOfClubs.add(new ClubImpl(ROMA, new PawnImpl(1)));
-        listOfClubs.add(new ClubImpl(INTER, new PawnImpl(1)));
-        listOfClubs.add(new ClubImpl(NAPOLI, new PawnImpl(1)));
-        listOfClubs.add(new ClubImpl(JUVENTUS, new PawnImpl(1)));
-        fixture = new FixturesImpl();
-        fixture.fixtureGeneration(listOfClubs);
-        fixtureModel = new FixtureModel(fixture);
+        final List<Integer> listOfPawns = new ArrayList<>();
+        listOfClubs.add(ROMA);
+        listOfClubs.add(INTER);
+        listOfClubs.add(NAPOLI);
+        listOfClubs.add(JUVENTUS);
+
+        listOfPawns.add(1);
+        listOfPawns.add(1);
+        listOfPawns.add(1);
+        listOfPawns.add(1);
+
+        updateController = new CreateUpdateControllerImpl();
+        updateController.createClubs(listOfClubs, listOfPawns);
+        fixtureModel = new FixtureModel(updateController);
     }
 
     /**
@@ -67,23 +70,14 @@ class TestFixtureModel {
     @Test
     void testGetValueAt() {
         int count = 0;
-        fixture.nextMatch();
-        Match match = fixture.getCurrentMatch();
-        while (fixture.seeNextMatch(match) != null) {
-            assertEquals(match.toString(), fixtureModel.getValueAt(count, 0).toString());
-            fixture.nextMatch();
-            match = fixture.getCurrentMatch();
+        updateController.getFixture().nextMatch();
+        Match match = updateController.getFixture().getCurrentMatch();
+        while (updateController.getFixture().seeNextMatch(match) != null) {
+            assertEquals(match.toString(), fixtureModel.getValueAt(count, 0));
+            updateController.getFixture().nextMatch();
+            match = updateController.getFixture().getCurrentMatch();
             count++;
         }
-    }
-
-    /**
-     * Tests the getColumnClass method.
-     */
-    @Test
-    void testGetColumnClass() {
-        assertEquals(Match.class, fixtureModel.getColumnClass(0));
-        assertEquals(Scoreboard.class, fixtureModel.getColumnClass(1));
     }
 
 }
