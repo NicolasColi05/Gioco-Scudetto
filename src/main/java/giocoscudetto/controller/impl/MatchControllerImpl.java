@@ -328,4 +328,12 @@ public class MatchControllerImpl implements MatchController {
         return this.match.getLastShootPosition();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getNotCurrentPlayer() {
+        return this.match.getNotCurrentPlayer();
+    }
+
 }
