@@ -58,8 +58,4 @@ public class FixtureModel extends AbstractTableModel {
         };
     }
 
-    @Override
-    public final Class<?> getColumnClass(final int col) {
-        return col == 0 ? Match.class : Scoreboard.class;
-    }
 }
