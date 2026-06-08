@@ -56,10 +56,10 @@ public final class EndGameView extends DefaultPanelImpl {
     private static final int ROW_MARGIN = 3;
 
     private static final long serialVersionUID = 1L;
-    private final Starter controller;
-    private final MatchController matchController;
-    private final CreateUpdateController createUpdateController;
-    private final Image image;
+    private final transient Starter controller;
+    private final transient MatchController matchController;
+    private final transient CreateUpdateController createUpdateController;
+    private final transient Image image;
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final int minimumWidht = screenSize.width / 2;
 
@@ -199,7 +199,9 @@ public final class EndGameView extends DefaultPanelImpl {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        final Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        if (g instanceof Graphics2D g2d) {
+            g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        }
+        //final Graphics2D g2d = (Graphics2D) g;
     }
 }

@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  */
 public final class PawnColorPickerPanel extends JPanel implements PawnColorPicker {
 
-    public static final Color[] AVAILABLE_COLORS = {
+    static final Color[] AVAILABLE_COLORS = {
         new Color(231, 76, 60),   //Red Color
         new Color(52, 152, 219),  //Blue Color
         new Color(46, 204, 113),  //Green Color
@@ -35,7 +35,7 @@ public final class PawnColorPickerPanel extends JPanel implements PawnColorPicke
 
     private Color selectedColor;
     private final List<JButton> buttons = new ArrayList<>();
-    private Consumer<Color> onColorChanged;
+    private transient Consumer<Color> onColorChanged;
 
     /**
      * Implementing the logic to make work great the club's pawn color selection.

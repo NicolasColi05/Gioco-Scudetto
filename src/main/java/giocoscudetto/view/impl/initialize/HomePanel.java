@@ -34,8 +34,8 @@ public final class HomePanel extends DefaultPanelImpl {
     private static final Color EXIT_BACKGROUND_COLOR = new Color(62, 91, 66);
 
     private static final long serialVersionUID = 1L;
-    private final Starter controller;
-    private final BufferedImage image;
+    private final transient Starter controller;
+    private final transient BufferedImage image;
 
     /**
      * @param controller the controller responsible for changing views
@@ -133,8 +133,10 @@ public final class HomePanel extends DefaultPanelImpl {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        final Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        if (g instanceof Graphics2D g2d) {
+            g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        }
+        //final Graphics2D g2d = (Graphics2D) g;
     }
 
 }

@@ -56,9 +56,9 @@ public final class ClubPanel extends DefaultPanelImpl {
     private static final int TEXT_VERTICAL_SPACE = 10;
 
     private static final long serialVersionUID = 1L;
-    private final Starter viewChanger;
-    private final CreateUpdateController controller;
-    private final Image image;
+    private final transient Starter viewChanger;
+    private final transient CreateUpdateController controller;
+    private final transient Image image;
 
     private final List<JTextField> clubsName = new ArrayList<>();
     private final List<PawnColorPickerPanel> clubsPawn = new ArrayList<>();
@@ -252,8 +252,10 @@ public final class ClubPanel extends DefaultPanelImpl {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        final Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        if (g instanceof Graphics2D g2d) {
+            g2d.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        }
+        //final Graphics2D g2d = (Graphics2D) g;
     }
 
     /**
