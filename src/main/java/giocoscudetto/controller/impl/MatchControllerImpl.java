@@ -6,7 +6,7 @@ import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
-import giocoscudetto.model.impl.BoardImpl;
+import giocoscudetto.model.impl.match.BoardImpl;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.view.api.GameObserver;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.match;
 
-import giocoscudetto.model.api.Scoreboard;
+import giocoscudetto.model.api.match.Scoreboard;
 
 /**
  * This class represents the scoreboard of the match.

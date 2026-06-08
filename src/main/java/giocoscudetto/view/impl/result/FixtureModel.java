@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.Scoreboard;
+import giocoscudetto.model.api.match.Scoreboard;
 
 /**
  * A model for displaying the fixture in a JTable.

@@ -1,7 +1,8 @@
 package giocoscudetto.model.impl.dices;
 
 import java.util.Random;
-import giocoscudetto.model.api.Dice;
+
+import giocoscudetto.model.api.dices.Dice;
 
 /**
  * This class represents the main dice of the game, 

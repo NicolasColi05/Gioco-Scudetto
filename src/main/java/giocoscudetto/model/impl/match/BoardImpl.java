@@ -1,4 +1,4 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.match;
 
 import java.util.ArrayList;
 import java.util.List;

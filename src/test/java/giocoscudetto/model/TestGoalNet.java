@@ -5,14 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import giocoscudetto.model.impl.GoalNetImpl;
+
+import giocoscudetto.model.impl.match.GoalNetImpl;
 
 /*
  * CHECKSTYLE: MagicNumber OFF
  * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
  */
 /**
- * Test for {@link giocoscudetto.model.impl.GoalNetImpl}.
+ * Test for {@link giocoscudetto.model.impl.match.GoalNetImpl}.
  */
 class TestGoalNet {
 

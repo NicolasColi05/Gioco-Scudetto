@@ -1,4 +1,4 @@
-package giocoscudetto.model.api;
+package giocoscudetto.model.api.match;
 
 /**
  * This interface represents the goal net of the game.

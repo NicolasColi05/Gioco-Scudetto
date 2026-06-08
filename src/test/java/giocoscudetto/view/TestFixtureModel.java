@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.Scoreboard;
+import giocoscudetto.model.api.match.Scoreboard;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.PawnImpl;

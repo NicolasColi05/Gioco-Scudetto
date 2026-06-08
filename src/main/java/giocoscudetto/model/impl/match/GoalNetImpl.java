@@ -1,9 +1,9 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.model.impl.match;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import giocoscudetto.model.api.GoalNet;
+import giocoscudetto.model.api.match.GoalNet;
 
 /**
  * This class represents the goal net of the game, it has a list of integers that represent the position of the goalkeeper.

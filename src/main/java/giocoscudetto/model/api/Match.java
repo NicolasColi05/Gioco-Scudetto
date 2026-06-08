@@ -1,5 +1,7 @@
 package giocoscudetto.model.api;
 
+import giocoscudetto.model.api.match.Scoreboard;
+
 /**
  * Interface that represents a match between two clubs, it keeps track of the score and of the clubs that are playing.
  */
