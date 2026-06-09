@@ -12,7 +12,7 @@ import giocoscudetto.model.impl.TurnImpl;
 /**
  * Test for TestTurn.
  */
-public class TestTurn {
+class TestTurn {
 
     private static final String ROMA = "Roma";
     private static final String INTER = "Inter";
@@ -29,8 +29,8 @@ public class TestTurn {
         final TurnImpl turn = new TurnImpl(club1, club2);
 
         assertTrue(
-            turn.getCurrentPlayer() == club1
-            || turn.getCurrentPlayer() == club2
+            club1.equals(turn.getCurrentPlayer())
+                || club2.equals(turn.getCurrentPlayer())
         );
     }
 
@@ -48,7 +48,7 @@ public class TestTurn {
 
         final Club second = turn.getCurrentPlayer();
 
-        assertTrue(first != second);
+        assertTrue(!first.equals(second));
     }
 
     @Test
