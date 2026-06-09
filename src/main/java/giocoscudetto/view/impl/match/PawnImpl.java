@@ -1,4 +1,4 @@
-package giocoscudetto.model.impl;
+package giocoscudetto.view.impl.match;
 
 import giocoscudetto.model.api.Pawn;
 
