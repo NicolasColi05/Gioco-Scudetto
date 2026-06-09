@@ -10,7 +10,7 @@ import giocoscudetto.model.impl.match.MatchImpl;
 /**
  * Test for SkipTurnBox.
  */
-public class TestSkipTurnBox {
+class TestSkipTurnBox {
 
     @Test
     void testSkipTurnBox() {

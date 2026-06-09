@@ -1,6 +1,7 @@
 package giocoscudetto.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -48,7 +49,7 @@ class TestTurn {
 
         final Club second = turn.getCurrentPlayer();
 
-        assertTrue(!first.equals(second));
+        assertNotEquals(first, second);
     }
 
     @Test
