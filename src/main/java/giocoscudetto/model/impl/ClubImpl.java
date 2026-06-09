@@ -52,8 +52,8 @@ public class ClubImpl implements Club {
      * 
      * {@inheritDoc}
      */
-    @SuppressFBWarnings("EI_EXPOSE_REP")
     @Override
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public Pawn getPawn() {
         return this.pawn;
         //return new PawnImpl(pawn.getPawnRGB(), pawn.getPosition());

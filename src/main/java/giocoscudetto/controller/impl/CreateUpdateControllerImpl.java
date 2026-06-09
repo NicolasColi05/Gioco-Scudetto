@@ -1,6 +1,7 @@
 package giocoscudetto.controller.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -91,14 +92,16 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public List<Club> getClubs() {
-        return this.clubs;
+        return Collections.unmodifiableList(clubs);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public Table getTable() {
+        //I suppress the warning because i want to return the table assigned to the match, not a copy.
         return this.table;
     }
 
