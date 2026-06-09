@@ -27,11 +27,10 @@ class TestMatchControllerImpl {
 
     private final CreateUpdateController updateController = new CreateUpdateControllerImpl();
     private MatchController matchController;
-    private List<String> listOfClubs;
 
     @BeforeEach
     void setUp() {
-        listOfClubs = new ArrayList<>();
+        final List<String> listOfClubs = new ArrayList<>();
         listOfClubs.add(ROMA);
         listOfClubs.add(INTER);
         listOfClubs.add(NAPOLI);
