@@ -11,7 +11,7 @@ import giocoscudetto.model.impl.boxes.BackToStartBox;
 /**
  * Tests for BackToStartBox.
  */
-public class TestBackToStartBox {
+class TestBackToStartBox {
 
     private static final int START_POSITION = 0;
     private static final int PLAYER_POSITION = 12;
