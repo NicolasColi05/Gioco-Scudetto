@@ -13,7 +13,7 @@ import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
 import giocoscudetto.controller.impl.MatchControllerImpl;
-import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.match.Match;
 
 /**
  * Test for {@link giocoscudetto.controller.impl.MatchControllerImpl}.

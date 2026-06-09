@@ -1,7 +1,7 @@
 package giocoscudetto.model.impl.boxes;
 
 import giocoscudetto.model.api.Boxes;
-import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.match.Match;
 
 /**
  * Implementing EmptyBox.

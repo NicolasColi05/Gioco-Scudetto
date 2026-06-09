@@ -9,8 +9,9 @@ import java.util.Map;
 import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.api.match.Scoreboard;
+import giocoscudetto.model.impl.match.MatchImpl;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 

@@ -1,9 +1,9 @@
 package giocoscudetto.model;
 
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.MatchImpl;
+import giocoscudetto.model.impl.match.MatchImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

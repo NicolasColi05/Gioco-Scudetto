@@ -1,5 +1,7 @@
 package giocoscudetto.model.api;
 
+import giocoscudetto.model.api.match.Match;
+
 /**
  * This interface represents the boxes of the game, each box has a position, an event, a name, an image and a description.
  */

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.MatchImpl;
 import giocoscudetto.model.impl.boxes.JoinBox;
+import giocoscudetto.model.impl.match.MatchImpl;
 
 /**
  * Tests for JoinBox.

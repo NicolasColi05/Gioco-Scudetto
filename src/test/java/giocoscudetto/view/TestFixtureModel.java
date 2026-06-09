@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
-import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.match.Match;
 import giocoscudetto.view.impl.result.FixtureModel;
 
 /**

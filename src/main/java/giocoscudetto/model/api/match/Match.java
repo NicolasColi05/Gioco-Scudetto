@@ -1,6 +1,6 @@
-package giocoscudetto.model.api;
+package giocoscudetto.model.api.match;
 
-import giocoscudetto.model.api.match.Scoreboard;
+import giocoscudetto.model.api.Club;
 
 /**
  * Interface that represents a match between two clubs, it keeps track of the score and of the clubs that are playing.

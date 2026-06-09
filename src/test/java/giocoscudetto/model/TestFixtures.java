@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.FixturesImpl;
 

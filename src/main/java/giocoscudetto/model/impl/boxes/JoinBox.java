@@ -2,7 +2,7 @@ package giocoscudetto.model.impl.boxes;
 
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Club;
-import giocoscudetto.model.api.Match;
+import giocoscudetto.model.api.match.Match;
 
 /**
  * Box that moves the opponent to the current player's position.
