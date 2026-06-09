@@ -31,12 +31,10 @@ class TestFinishBox {
 
     @BeforeEach
     void setUp() {
-        final Pawn pawnHome = new PawnImpl(0);
-        final Pawn pawnAway = new PawnImpl(0);
-        pawnAway.setPosition(26);
-        pawnHome.setPosition(32);
-        clubHome = new ClubImpl("home", pawnHome);
-        clubAway = new ClubImpl("away", pawnAway);
+        clubHome = new ClubImpl("home", 1);
+        clubAway = new ClubImpl("away", 2);
+        this.clubHome.getPawn().setPosition(32);
+        this.clubAway.getPawn().setPosition(16);
         match = new MatchImpl(clubHome, clubAway);
         finishBox = new FinishBox(BOX_POSITION);
         match.setGoalHome(3);

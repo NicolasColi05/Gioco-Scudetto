@@ -32,13 +32,11 @@ class TestSuspendMatchBox {
 
     @BeforeEach
     void setUp() {
-        final Pawn pawnHome = new PawnImpl(0);
-        final Pawn pawnAway = new PawnImpl(0);
-        pawnAway.setPosition(22);
-        pawnHome.setPosition(16);
 
-        this.clubHome = new ClubImpl("home", pawnHome);
-        this.clubAway = new ClubImpl("away", pawnAway);
+        this.clubHome = new ClubImpl("home", 1);
+        this.clubAway = new ClubImpl("away", 2);
+        this.clubHome.getPawn().setPosition(16);
+        this.clubAway.getPawn().setPosition(22);
 
         this.match = new MatchImpl(clubHome, clubAway);
         this.suspendMatchBox = new SuspendMatchBox(BOX_POSITION);

@@ -39,14 +39,14 @@ class TestFixtures {
 
     @BeforeEach
     void setUp() {
-        roma = new ClubImpl(ROMA, new PawnImpl(1));
-        inter = new ClubImpl(INTER, new PawnImpl(1));
-        napoli = new ClubImpl(NAPOLI, new PawnImpl(1));
+        roma = new ClubImpl(ROMA, 1);
+        inter = new ClubImpl(INTER, 2);
+        napoli = new ClubImpl(NAPOLI, 3);
         listOfClubs = new ArrayList<>();
         listOfClubs.add(roma);
         listOfClubs.add(inter);
         listOfClubs.add(napoli);
-        listOfClubs.add(new ClubImpl(JUVENTUS, new PawnImpl(1)));
+        listOfClubs.add(new ClubImpl(JUVENTUS, 4));
         fixture = new FixturesImpl();
     }
 
