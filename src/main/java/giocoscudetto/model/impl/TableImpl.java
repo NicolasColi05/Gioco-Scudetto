@@ -5,8 +5,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Table;
+import giocoscudetto.model.api.match.Club;
 
 /**
  * Implementation of Table interface.

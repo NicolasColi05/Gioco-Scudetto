@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
-import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.boxes.ResultBox;
+import giocoscudetto.model.impl.match.ClubImpl;
 import giocoscudetto.model.impl.match.MatchImpl;
 
 /*

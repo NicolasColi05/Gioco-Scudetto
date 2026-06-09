@@ -3,11 +3,11 @@ package giocoscudetto.model.boxestest;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Boxes;
-import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.api.match.Scoreboard;
-import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.boxes.EmptyBox;
+import giocoscudetto.model.impl.match.ClubImpl;
 import giocoscudetto.model.impl.match.MatchImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

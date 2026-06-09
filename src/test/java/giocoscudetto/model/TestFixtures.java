@@ -3,10 +3,10 @@ package giocoscudetto.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
-import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.FixturesImpl;
+import giocoscudetto.model.impl.match.ClubImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

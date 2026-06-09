@@ -2,9 +2,9 @@ package giocoscudetto.controller.impl;
 
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.model.api.Board;
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.impl.match.BoardImpl;
 import giocoscudetto.controller.api.CreateUpdateController;

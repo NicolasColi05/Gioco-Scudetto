@@ -1,7 +1,7 @@
 package giocoscudetto.model.impl.boxes;
 
 import giocoscudetto.model.api.Boxes;
-import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 
 /**

@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Club;
-import giocoscudetto.model.impl.ClubImpl;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.impl.TurnImpl;
+import giocoscudetto.model.impl.match.ClubImpl;
 
 /**
  * Test for TestTurn.

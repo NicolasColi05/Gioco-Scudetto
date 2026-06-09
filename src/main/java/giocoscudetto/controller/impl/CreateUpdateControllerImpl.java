@@ -7,13 +7,13 @@ import java.util.List;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.CreateUpdateController;
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
-import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.FixturesImpl;
 import giocoscudetto.model.impl.TableImpl;
+import giocoscudetto.model.impl.match.ClubImpl;
 import giocoscudetto.view.impl.result.FixtureModel;
 import giocoscudetto.view.impl.result.LeagueTableModel;
 
