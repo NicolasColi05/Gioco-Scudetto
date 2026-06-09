@@ -18,7 +18,7 @@ import giocoscudetto.model.api.match.Match;
 /**
  * Test for {@link giocoscudetto.controller.impl.MatchControllerImpl}.
  */
-class TestMatchControllerImpl {
+class TestMatchController {
 
     private static final String ROMA = "roma";
     private static final String INTER = "inter";
