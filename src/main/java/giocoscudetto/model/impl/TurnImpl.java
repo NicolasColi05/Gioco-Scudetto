@@ -114,6 +114,7 @@ public final class TurnImpl implements Turn {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Club getNotCurrentPlayer() {
         if (currentPlayer.equals(club1)) {
             return club2;
