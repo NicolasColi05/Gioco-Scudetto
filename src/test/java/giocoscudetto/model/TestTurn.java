@@ -65,7 +65,7 @@ public class TestTurn {
 
         turn.switchTurn();
         final Club other = turn.getCurrentPlayer();
-        
+
         turn.switchTurn();
 
         assertEquals(other, turn.getCurrentPlayer());
