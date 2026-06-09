@@ -25,10 +25,9 @@ class TestMatchControllerImpl {
     private static final String NAPOLI = "napoli";
     private static final String JUVENTUS = "juventus";
 
-    private CreateUpdateController updateController = new CreateUpdateControllerImpl();
+    private final CreateUpdateController updateController = new CreateUpdateControllerImpl();
     private MatchController matchController;
     private List<String> listOfClubs;
-    private String currentClub;
 
     @BeforeEach
     void setUp() {
@@ -58,11 +57,6 @@ class TestMatchControllerImpl {
         this.matchController.setHelpFlag(true);
         assertTrue(this.matchController.isHelpFlag());
         assertEquals(Match.GameMode.NONE.name(), this.matchController.getGameMode());
-        for (final String club : listOfClubs) {
-            if (club.equals(this.matchController.getCurrentPlayer())) {
-                this.currentClub = club;
-            }
-        }
         final int dice = this.matchController.move();
         assertEquals(this.updateController.getFixture().getCurrentMatch().getCurrentPlayer().getPawn().getPosition(), dice);
 
