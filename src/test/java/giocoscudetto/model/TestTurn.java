@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TurnImpl;
 
 /**
@@ -24,8 +23,8 @@ public class TestTurn {
     @Test
     void testChooseStartingPlayer() {
 
-        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
-        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
+        final Club club1 = new ClubImpl(ROMA, PAWN_ROMA);
+        final Club club2 = new ClubImpl(INTER, PAWN_INTER);
 
         final TurnImpl turn = new TurnImpl(club1, club2);
 
@@ -38,8 +37,8 @@ public class TestTurn {
     @Test
     void testSwitchTurn() {
 
-        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
-        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
+        final Club club1 = new ClubImpl(ROMA, PAWN_ROMA);
+        final Club club2 = new ClubImpl(INTER, PAWN_INTER);
 
         final TurnImpl turn = new TurnImpl(club1, club2);
 
@@ -55,8 +54,8 @@ public class TestTurn {
     @Test
     void testSkipTurn() {
 
-        final Club club1 = new ClubImpl(ROMA, new PawnImpl(PAWN_ROMA));
-        final Club club2 = new ClubImpl(INTER, new PawnImpl(PAWN_INTER));
+        final Club club1 = new ClubImpl(ROMA, PAWN_ROMA);
+        final Club club2 = new ClubImpl(INTER, PAWN_INTER);
 
         final TurnImpl turn = new TurnImpl(club1, club2);
 

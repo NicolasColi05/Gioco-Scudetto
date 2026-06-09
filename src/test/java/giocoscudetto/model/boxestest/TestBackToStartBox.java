@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
-import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.boxes.BackToStartBox;
 
 /**
@@ -20,8 +19,8 @@ class TestBackToStartBox {
     @Test
     void testBackToStartBox() {
 
-        final Club home = new ClubImpl("Roma", new PawnImpl(1));
-        final Club away = new ClubImpl("Inter", new PawnImpl(2));
+        final Club home = new ClubImpl("Roma", 1);
+        final Club away = new ClubImpl("Inter", 2);
 
         final MatchImpl match = new MatchImpl(home, away);
 
