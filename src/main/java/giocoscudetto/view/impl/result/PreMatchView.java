@@ -197,8 +197,7 @@ public final class PreMatchView extends DefaultPanelImpl {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        if (g instanceof Graphics2D) {
-            final Graphics2D g2d = (Graphics2D) g;
+        if (g instanceof Graphics2D g2d) {
             g2d.drawImage(this.image, ZERO, ZERO, getWidth(), getHeight(), null);
         }
     }

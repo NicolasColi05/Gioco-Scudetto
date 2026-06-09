@@ -162,11 +162,10 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public List<String> getTableNames() {
-        final List<String> clubsNames = new ArrayList<>();
-        for (final Club club : this.getTable().showPosition()) {
-            clubsNames.add(club.getName());
-        }
-        return clubsNames;
+        return this.getTable().showPosition()
+                .stream()
+                .map(Club::getName)
+                .toList();
     }
 
     /**
@@ -174,11 +173,10 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public List<Integer> getTablePoints() {
-        final List<Integer> clubsPoints = new ArrayList<>();
-        for (final Club club : this.getTable().showPosition()) {
-            clubsPoints.add(club.getPoints());
-        }
-        return clubsPoints;
+        return this.getTable().showPosition()
+                .stream()
+                .map(Club::getPoints)
+                .toList();
     }
 
     /**
@@ -186,11 +184,10 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public List<Integer> getTableNetDiff() {
-        final List<Integer> clubsNetDiff = new ArrayList<>();
-        for (final Club club : this.getTable().showPosition()) {
-            clubsNetDiff.add(club.getNetDiff());
-        }
-        return clubsNetDiff;
+        return this.getTable().showPosition()
+                .stream()
+                .map(Club::getNetDiff)
+                .toList();
     }
 
     /**
@@ -198,11 +195,10 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public List<String> getFixtureMatchesString() {
-        final List<String> fixtureMatches = new ArrayList<>();
-        for (final Match match : this.getFixture().getListOfMatches()) {
-            fixtureMatches.add(match.toString());
-        }
-       return fixtureMatches;
+        return this.getFixture().getListOfMatches()
+                .stream()
+                .map(Match::toString)
+                .toList();
     }
 
     /**
@@ -210,10 +206,10 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      */
     @Override
     public List<String> getFixtureScoresString() {
-        final List<String> fixtureScore = new ArrayList<>();
-        for (final Match match : this.getFixture().getListOfMatches()) {
-            fixtureScore.add(match.getScore().toString());
-        }
-       return fixtureScore;
+        return this.getFixture().getListOfMatches()
+                .stream()
+                .map(Match::getScore)
+                .map(Object::toString)
+                .toList();
     }
 }
