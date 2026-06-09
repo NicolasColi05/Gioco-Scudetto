@@ -12,7 +12,6 @@ import giocoscudetto.model.api.Match;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.FixturesImpl;
-import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
 import giocoscudetto.view.impl.result.FixtureModel;
 import giocoscudetto.view.impl.result.LeagueTableModel;

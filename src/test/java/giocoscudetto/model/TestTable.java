@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Table;
 import giocoscudetto.model.impl.ClubImpl;
-import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.TableImpl;
 
 /*
