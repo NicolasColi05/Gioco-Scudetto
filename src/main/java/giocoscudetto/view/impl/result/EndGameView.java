@@ -1,5 +1,7 @@
 package giocoscudetto.view.impl.result;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -70,6 +72,7 @@ public final class EndGameView extends DefaultPanelImpl {
      * @param createUpdateController League controller
      * @param matchController match controller
      */
+    @SuppressFBWarnings
     public EndGameView(final Starter controller,
         final CreateUpdateController createUpdateController,
          final MatchController matchController) {
