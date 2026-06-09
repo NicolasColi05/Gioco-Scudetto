@@ -3,12 +3,20 @@ package giocoscudetto.model.impl.boxes;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Match;
 
-public class StartBox implements Boxes{
+/**
+ * This class represents the first box.
+ */
+public class StartBox implements Boxes {
 
     private static final String IMAGE = "casella_31.png";
-    private final int position;
     private static final String DESCRIPTION = "Box Event: Start. Start of the match, throw the dice[0-6]";
+    private final int position;
 
+    /**
+     * Constructor of the StartBox.
+     * 
+     * @param position the position of the box on the board.
+     */
     public StartBox(final int position) {
         this.position = position;
     }
@@ -25,7 +33,7 @@ public class StartBox implements Boxes{
      * {@inheritDoc}
      */
     @Override
-    public void event(Match match) {
+    public void event(final Match match) {
         //System.out.println("Il gioco è iniziato");
     }
 
