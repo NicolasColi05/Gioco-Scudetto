@@ -2,10 +2,8 @@ package giocoscudetto.model;
 
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.Pawn;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
-import giocoscudetto.model.impl.PawnImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -29,10 +27,8 @@ class TestMatch {
 
     @BeforeEach
     void setUp() {
-        final Pawn pawnHome = new PawnImpl(0);
-        final Pawn pawnAway = new PawnImpl(0);
-        clubHome = new ClubImpl("clubHome", pawnHome);
-        clubAway = new ClubImpl("clubAway", pawnAway);
+        clubHome = new ClubImpl("clubHome", 1);
+        clubAway = new ClubImpl("clubAway", 2);
         match = new MatchImpl(clubHome, clubAway);
     }
 
