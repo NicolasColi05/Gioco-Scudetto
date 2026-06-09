@@ -21,8 +21,8 @@ import giocoscudetto.model.impl.boxes.FreeKickBox;
  * Test for {@link giocoscudetto.model.impl.boxes.FreeKickBox}.
  */
 class TestFreekickBox {
-    private final Club clubHome = new ClubImpl("home", null);
-    private final Club clubAway = new ClubImpl("away", null);
+    private final Club clubHome = new ClubImpl("home", 1);
+    private final Club clubAway = new ClubImpl("away", 2);
     private Match match;
     private Boxes cornerBox;
 
