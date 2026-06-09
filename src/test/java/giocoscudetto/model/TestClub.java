@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 class TestClub {
 
-    private final Club club1 = new ClubImpl("inter", new PawnImpl(1));
+    private final Club club1 = new ClubImpl("inter", 1);
 
     /**
      * Testing the initial values of the new club's object.

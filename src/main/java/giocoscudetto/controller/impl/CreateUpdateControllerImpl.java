@@ -51,7 +51,7 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
 
         int i = 0;
         for (; i < clubsName.size(); i++) {
-            clubs.add(new ClubImpl(clubsName.get(i), new PawnImpl(pawnRGB.get(i))));
+            clubs.add(new ClubImpl(clubsName.get(i), pawnRGB.get(i)));
         }
 
         this.table.addAllClubs(this.clubs);

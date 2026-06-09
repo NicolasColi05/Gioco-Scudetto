@@ -23,8 +23,8 @@ import org.junit.jupiter.api.BeforeEach;
  */
 class TestGoalConceided {
 
-    private final Club clubHome = new ClubImpl("home", null);
-    private final Club clubAway = new ClubImpl("away", null);
+    private final Club clubHome = new ClubImpl("home", 1);
+    private final Club clubAway = new ClubImpl("away", 2);
     private final Match match = new MatchImpl(clubHome, clubAway);
     private final Scoreboard scoreboard = match.getScore();
     private final Boxes goalConceidedBox = new GoalConceidedBox(24);

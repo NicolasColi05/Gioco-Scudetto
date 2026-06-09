@@ -21,9 +21,9 @@ import giocoscudetto.model.impl.TableImpl;
  */
 class TestTable {
 
-    private final Club inter = new ClubImpl("Inter", new PawnImpl(1));
-    private final Club juve = new ClubImpl("Juve", new PawnImpl(1));
-    private final Club bologna = new ClubImpl("Bologna", new PawnImpl(1));
+    private final Club inter = new ClubImpl("Inter", 1);
+    private final Club juve = new ClubImpl("Juve", 2);
+    private final Club bologna = new ClubImpl("Bologna", 3);
     private final Table rank = new TableImpl();
 
     private void setUp(final int juveP, final int interP, final int bolognaP,
