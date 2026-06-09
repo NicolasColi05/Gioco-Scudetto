@@ -8,10 +8,8 @@ import org.junit.jupiter.api.Test;
 import giocoscudetto.model.api.Boxes;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Match;
-import giocoscudetto.model.api.Pawn;
 import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.MatchImpl;
-import giocoscudetto.model.impl.PawnImpl;
 import giocoscudetto.model.impl.boxes.FinishBox;
 
 /*
