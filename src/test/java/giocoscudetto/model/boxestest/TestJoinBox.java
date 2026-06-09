@@ -10,7 +10,7 @@ import giocoscudetto.model.impl.match.MatchImpl;
 /**
  * Tests for JoinBox.
  */
-public class TestJoinBox {
+class TestJoinBox {
 
     private static final int HOME_POSITION = 5;
     private static final int AWAY_POSITION = 12;
