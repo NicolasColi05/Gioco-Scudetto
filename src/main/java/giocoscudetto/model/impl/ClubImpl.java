@@ -1,5 +1,6 @@
 package giocoscudetto.model.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Pawn;
 
@@ -48,11 +49,15 @@ public class ClubImpl implements Club {
     }
 
     /**
+     * Here i suppres the warning of expousure because, i want to return the exact club's pawn, not a copy.
+     * 
      * {@inheritDoc}
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     @Override
     public Pawn getPawn() {
         return this.pawn;
+        //return new PawnImpl(pawn.getPawnRGB(), pawn.getPosition());
     }
 
     /**

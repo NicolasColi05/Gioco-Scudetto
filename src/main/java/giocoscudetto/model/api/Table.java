@@ -33,13 +33,4 @@ public interface Table {
      */
     void reset();
 
-    /**
-     * @return if the table list is empty.
-     */
-    boolean isEmpty();
-
-    /**
-     * @return the list of clubs in the table
-     */
-    List<Club> getClubs();
 }

@@ -1,5 +1,6 @@
 package giocoscudetto.model.impl;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class TableImpl implements Table {
      */
     @Override
     public List<Club> showPosition() {
-        return this.clubRank;
+        return Collections.unmodifiableList(this.clubRank);
     }
 
     /**
@@ -50,19 +51,4 @@ public class TableImpl implements Table {
         this.clubRank.clear();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isEmpty() {
-        return this.clubRank.isEmpty();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<Club> getClubs() {
-        return this.clubRank;
-    }
 }

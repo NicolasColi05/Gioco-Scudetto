@@ -317,7 +317,7 @@ public class MatchControllerImpl implements MatchController {
      */
     @Override
     public String getLeagueWinner() {
-        return this.table.getClubs().get(0).getName();
+        return this.table.showPosition().get(0).getName();
     }
 
     /**
