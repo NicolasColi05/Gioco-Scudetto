@@ -97,14 +97,6 @@ public class FixturesImpl implements Fixtures {
      * {@inheritDoc}
      */
     @Override
-    public Scoreboard getScoreboard(final Match match) {
-        return this.fixture.get(match);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Set<Match> getListOfMatches() {
         return this.fixture.keySet();
     }
