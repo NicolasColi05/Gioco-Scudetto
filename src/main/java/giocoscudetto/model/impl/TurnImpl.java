@@ -36,7 +36,7 @@ public final class TurnImpl implements Turn {
      * @param club club that must skip
      */
     public void setSkipTurn(final Club club) {
-        if (club == club1) {
+        if (club1.equals(club)) {
             skipClub1 = true;
         } else {
             skipClub2 = true;
@@ -62,22 +62,22 @@ public final class TurnImpl implements Turn {
 
     @Override
     public void switchTurn() {
-        if (currentPlayer == club1) {
+        if (club1.equals(currentPlayer)) {
             currentPlayer = club2;
         } else {
             currentPlayer = club1;
         }
 
-        if (currentPlayer == club1 && skipClub1) {
+        if (club1.equals(currentPlayer) && skipClub1) {
             skipClub1 = false;
 
-            System.out.println(club1.getName() + "--skip the turn");
+            //System.out.println(club1.getName() + "--skip the turn");
             currentPlayer = club2;
 
-        } else if (currentPlayer == club2 && skipClub2) {
+        } else if (club2.equals(currentPlayer) && skipClub2) {
             skipClub2 = false;
 
-            System.out.println(club2.getName() + "--skip the turn");
+            //System.out.println(club2.getName() + "--skip the turn");
             currentPlayer = club1;
         }
     }
@@ -90,7 +90,7 @@ public final class TurnImpl implements Turn {
      */
     public boolean hasToSkip(final Club club) {
 
-        if (club == club1) {
+        if (club1.equals(club)) {
             return skipClub1;
         }
 
@@ -104,7 +104,7 @@ public final class TurnImpl implements Turn {
      */
     public void consumeSkip(final Club club) {
 
-        if (club == club1) {
+        if (club1.equals(club)) {
             skipClub1 = false;
         } else {
             skipClub2 = false;
