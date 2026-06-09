@@ -6,10 +6,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import giocoscudetto.model.api.Boxes;
-import giocoscudetto.model.api.Club;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
-import giocoscudetto.model.impl.ClubImpl;
 import giocoscudetto.model.impl.boxes.SuspendMatchBox;
+import giocoscudetto.model.impl.match.ClubImpl;
 import giocoscudetto.model.impl.match.MatchImpl;
 
 /*

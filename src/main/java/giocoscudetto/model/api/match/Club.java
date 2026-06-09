@@ -1,4 +1,6 @@
-package giocoscudetto.model.api;
+package giocoscudetto.model.api.match;
+
+import giocoscudetto.model.api.Pawn;
 
 /**
  * Inteface to create and manage clubs information.

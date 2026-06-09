@@ -6,10 +6,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Table;
-import giocoscudetto.model.impl.ClubImpl;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.impl.TableImpl;
+import giocoscudetto.model.impl.match.ClubImpl;
 
 /*
  * CHECKSTYLE: MagicNumber OFF

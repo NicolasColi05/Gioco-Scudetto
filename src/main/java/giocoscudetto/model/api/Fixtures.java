@@ -3,6 +3,7 @@ package giocoscudetto.model.api;
 import java.util.List;
 import java.util.Set;
 
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.api.match.Scoreboard;
 

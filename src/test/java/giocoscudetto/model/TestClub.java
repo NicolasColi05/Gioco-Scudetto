@@ -2,8 +2,8 @@ package giocoscudetto.model;
 
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Club;
-import giocoscudetto.model.impl.ClubImpl;
+import giocoscudetto.model.api.match.Club;
+import giocoscudetto.model.impl.match.ClubImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
  */
 /**
- * Test for {@link giocoscudetto.model.impl.ClubImpl}.
+ * Test for {@link giocoscudetto.model.impl.match.ClubImpl}.
  */
 class TestClub {
 

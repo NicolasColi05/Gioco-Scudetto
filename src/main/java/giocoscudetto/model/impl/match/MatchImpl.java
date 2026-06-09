@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.dices.Dice;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.GoalNet;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.api.match.Scoreboard;

@@ -1,7 +1,7 @@
 package giocoscudetto.view.impl.match;
 
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Turn;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.impl.dices.MainDice;
 
 /**

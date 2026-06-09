@@ -1,5 +1,7 @@
 package giocoscudetto.model.api;
 
+import giocoscudetto.model.api.match.Club;
+
 /**
  * Interface that manages player turns during a match.
  */

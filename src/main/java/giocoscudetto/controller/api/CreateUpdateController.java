@@ -2,9 +2,9 @@ package giocoscudetto.controller.api;
 
 import java.util.List;
 
-import giocoscudetto.model.api.Club;
 import giocoscudetto.model.api.Fixtures;
 import giocoscudetto.model.api.Table;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.view.impl.result.FixtureModel;
 import giocoscudetto.view.impl.result.LeagueTableModel;
 

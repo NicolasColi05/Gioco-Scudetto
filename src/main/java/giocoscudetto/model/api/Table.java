@@ -2,6 +2,8 @@ package giocoscudetto.model.api;
 
 import java.util.List;
 
+import giocoscudetto.model.api.match.Club;
+
 /**
  * Interface that defines the correct position of each club in the table.
  */
