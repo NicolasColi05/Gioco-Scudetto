@@ -2,7 +2,7 @@ package giocoscudetto.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import giocoscudetto.model.impl.PawnImpl;
+import giocoscudetto.model.impl.match.PawnImpl;
 
 /**
  * Tests for PawnImpl.

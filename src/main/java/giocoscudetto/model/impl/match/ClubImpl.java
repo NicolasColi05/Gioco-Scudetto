@@ -3,7 +3,6 @@ package giocoscudetto.model.impl.match;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.model.api.Pawn;
 import giocoscudetto.model.api.match.Club;
-import giocoscudetto.model.impl.PawnImpl;
 
 /**
  * Implementing Club interface.

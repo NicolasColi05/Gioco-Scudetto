@@ -10,7 +10,6 @@ import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.GoalNet;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.api.match.Scoreboard;
-import giocoscudetto.model.impl.TurnImpl;
 import giocoscudetto.model.impl.dices.MainDice;
 import giocoscudetto.model.impl.dices.ResultDice;
 
