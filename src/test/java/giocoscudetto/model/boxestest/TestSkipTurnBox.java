@@ -24,7 +24,11 @@ public class TestSkipTurnBox {
         final Club current = match.getCurrentPlayer();
         final SkipTurnBox box = new SkipTurnBox(21);
         box.event(match);
+        final Club opponent = match.getCurrentPlayer();
+        match.turn();
+        assertEquals(opponent, match.getCurrentPlayer());
         match.turn();
         assertEquals(current, match.getCurrentPlayer());
+
     }
 }
