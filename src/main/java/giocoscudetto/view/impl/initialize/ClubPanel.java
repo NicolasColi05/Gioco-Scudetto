@@ -10,6 +10,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +56,7 @@ public final class ClubPanel extends DefaultPanelImpl {
     private static final int TEXTFIELD_MIN_HEIGHT = 20;
     private static final int PAWN_VERTICAL_SPACE = 5;
     private static final int TEXT_VERTICAL_SPACE = 10;
+    private static final int NAME_MAXIMUM_CHARACTER = 9;
 
     private static final long serialVersionUID = 1L;
     private final transient Starter viewChanger;
@@ -304,9 +307,32 @@ public final class ClubPanel extends DefaultPanelImpl {
                 public void changedUpdate(final DocumentEvent e) {
                     updateButtonVisibility();
                 }
-
             });
 
+            nameTextField.addKeyListener(new KeyListener() {
+
+                /**
+                 * Through the consume of the KeyEvent i can avoid the insertion of more
+                 * character than the maximum one.
+                 * 
+                 * @param e is the event i catch after typing a new key.
+                 */
+                @Override
+                public void keyTyped(final KeyEvent e) {
+                    if (nameTextField.getText().length() >= NAME_MAXIMUM_CHARACTER) {
+                        e.consume();
+                    }
+                }
+
+                @Override
+                public void keyPressed(final KeyEvent e) {
+                }
+
+                @Override
+                public void keyReleased(final KeyEvent e) {
+                }
+
+            });
             final PawnColorPickerPanel colorPicker = new PawnColorPickerPanel();
             colorPicker.setPreferredSize(new Dimension(0, COLOR_HEIGHT));
             colorPicker.setMaximumSize(new Dimension(Integer.MAX_VALUE, COLOR_HEIGHT));
