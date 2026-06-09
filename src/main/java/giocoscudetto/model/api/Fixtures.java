@@ -49,13 +49,6 @@ public interface Fixtures {
     void setScore(Match match, Scoreboard score);
 
     /**
-     * @param match the match for which you want to see the scoreboard
-     * 
-     * @return the scoreboard of the match, or null if the match has not been played yet
-     */
-    Scoreboard getScoreboard(Match match);
-
-    /**
      * @return the list of matches of the fixture
      */
     Set<Match> getListOfMatches();
