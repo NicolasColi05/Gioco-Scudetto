@@ -63,12 +63,12 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public void updateClubScores(final int pawnId,
+    public void updateClubScores(final Club club,
         final int points,
         final int goalScored,
         final int goalConceded) {
-            this.clubs.get(pawnId).changeNetDiffs(goalScored, goalConceded);
-            this.clubs.get(pawnId).incrementPoints(points);
+            club.changeNetDiffs(goalScored, goalConceded);
+            club.incrementPoints(points);
     }
 
     /**
