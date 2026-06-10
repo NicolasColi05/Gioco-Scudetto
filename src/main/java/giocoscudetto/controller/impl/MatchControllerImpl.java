@@ -116,7 +116,6 @@ public class MatchControllerImpl implements MatchController {
         return resultDice;
     }
 
-
     /**
      * {@inheritDoc}
      */
