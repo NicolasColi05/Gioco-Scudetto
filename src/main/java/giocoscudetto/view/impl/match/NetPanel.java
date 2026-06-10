@@ -141,7 +141,7 @@ public class NetPanel extends DefaultPanelImpl {
         buttons.forEach(x -> x.setEnabled(b));
         if (b) {
             label.setText(this.controller.getNotCurrentPlayer() + " choose the position of the keeper");
-            this.kickButton.setEnabled(true);
+            this.kickButton.setEnabled(false);
         }
     }
 
