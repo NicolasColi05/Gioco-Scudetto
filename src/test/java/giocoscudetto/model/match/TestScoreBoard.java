@@ -1,4 +1,4 @@
-package giocoscudetto.model;
+package giocoscudetto.model.match;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
