@@ -1,4 +1,4 @@
-package giocoscudetto.model;
+package giocoscudetto.model.match;
 
 import org.junit.jupiter.api.Test;
 
