@@ -1,4 +1,4 @@
-package giocoscudetto.view;
+package giocoscudetto.TableModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,31 +10,27 @@ import org.junit.jupiter.api.Test;
 
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.impl.CreateUpdateControllerImpl;
-import giocoscudetto.view.impl.result.LeagueTableModel;
+import giocoscudetto.model.api.match.Match;
+import giocoscudetto.view.impl.result.FixtureModel;
 
-/*
- * CHECKSTYLE: MagicNumber OFF
- * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
- */
 /**
- * Simple test for {@link LeagueTableModel}.
+ * Simple test for {@link FixtureModel}.
  */
-class TestLeagueTableModel {
+class TestFixtureModel {
 
     private static final String ROMA = "roma";
     private static final String INTER = "inter";
     private static final String NAPOLI = "napoli";
     private static final String JUVENTUS = "juventus";
 
-    private LeagueTableModel leagueTableModel;
     private CreateUpdateController updateController;
+    private List<String> listOfClubs;
+    private FixtureModel fixtureModel;
 
     @BeforeEach
     void setUp() {
-
-        final List<String> listOfClubs = new ArrayList<>();
+        listOfClubs = new ArrayList<>();
         final List<Integer> listOfPawns = new ArrayList<>();
-
         listOfClubs.add(ROMA);
         listOfClubs.add(INTER);
         listOfClubs.add(NAPOLI);
@@ -47,8 +43,7 @@ class TestLeagueTableModel {
 
         updateController = new CreateUpdateControllerImpl();
         updateController.createClubs(listOfClubs, listOfPawns);
-        updateController.getClubs().getLast().incrementPoints(5);
-        leagueTableModel = new LeagueTableModel(updateController);
+        fixtureModel = new FixtureModel(updateController);
     }
 
     /**
@@ -56,9 +51,8 @@ class TestLeagueTableModel {
      */
     @Test
     void testGetCount() {
-        assertEquals(4, leagueTableModel.getRowCount());
-        assertEquals(3, leagueTableModel.getColumnCount());
-
+        assertEquals(2, fixtureModel.getColumnCount());
+        assertEquals(listOfClubs.size() * (listOfClubs.size() - 1), fixtureModel.getRowCount());
     }
 
     /**
@@ -66,20 +60,24 @@ class TestLeagueTableModel {
      */
     @Test
     void testGetColumnName() {
-        assertEquals("Club", leagueTableModel.getColumnName(0));
-        assertEquals("Points", leagueTableModel.getColumnName(1));
-        assertEquals("Net Difference", leagueTableModel.getColumnName(2));
+        assertEquals("Match", fixtureModel.getColumnName(0));
+        assertEquals("Score", fixtureModel.getColumnName(1));
     }
 
     /**
-     * 
+     * Tests the getValueAt method.
      */
     @Test
     void testGetValueAt() {
-        for (int i = 0; i < 4; i++) {
-            assertEquals(updateController.getTable().showPosition().get(i).getName(), leagueTableModel.getValueAt(i, 0));
-            assertEquals(updateController.getTable().showPosition().get(i).getPoints(), leagueTableModel.getValueAt(i, 1));
-            assertEquals(updateController.getTable().showPosition().get(i).getNetDiff(), leagueTableModel.getValueAt(i, 2));
+        int count = 0;
+        updateController.getFixture().nextMatch();
+        Match match = updateController.getFixture().getCurrentMatch();
+        while (updateController.getFixture().seeNextMatch(match) != null) {
+            assertEquals(match.toString(), fixtureModel.getValueAt(count, 0));
+            updateController.getFixture().nextMatch();
+            match = updateController.getFixture().getCurrentMatch();
+            count++;
         }
     }
+
 }
