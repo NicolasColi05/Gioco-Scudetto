@@ -86,6 +86,7 @@ class TestMatch {
      */
     @Test
     void testWinnerAndLoser() {
+        //Fixed implementation by adding the Optional
         assertEquals(Optional.empty(), match.getWinnerClub());
         assertEquals(Optional.empty(), match.getLoserClub());
 
