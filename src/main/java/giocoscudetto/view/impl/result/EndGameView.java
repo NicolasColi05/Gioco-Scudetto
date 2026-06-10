@@ -43,6 +43,8 @@ public final class EndGameView extends DefaultPanelImpl {
 
     private static final int TABLE_WIDTH = 1000;
     private static final int TABLE_HEIGHT = 600;
+    private static final int WIDTH_RESIZING = 2;
+    private static final int HEIGHT_RESIZING = 3;
 
     private static final int TITLE_RED = 195;
     private static final int TITLE_GREEN = 45;
@@ -55,6 +57,7 @@ public final class EndGameView extends DefaultPanelImpl {
     private static final int RESIZE_TABLE_FONT_DIVISOR = 100;
     private static final int RESIZE_ROW_HEIGHT_DIVISOR = 20;
     private static final int ROW_MARGIN = 3;
+    private static final int TITLE_FONT_REDUCTION = 70;
 
     private static final long serialVersionUID = 1L;
     private final transient Starter controller;
@@ -100,11 +103,8 @@ public final class EndGameView extends DefaultPanelImpl {
             new Font(FONT_SELECTED, Font.BOLD, minimumWidht / TABLE_FONT_DIVISOR)
         );
 
-        //se necessario
         final JScrollPane tableScroll = new JScrollPane(standingsTable);
-        tableScroll.setPreferredSize(
-            new Dimension(TABLE_WIDTH, TABLE_HEIGHT)
-        );
+
         tableScroll.setMaximumSize(
             new Dimension(TABLE_WIDTH, TABLE_HEIGHT)
         );
@@ -125,9 +125,6 @@ public final class EndGameView extends DefaultPanelImpl {
         //pulsanti
         final JButton menuButton = new JButton("MENU");
         final JButton restartButton = new JButton("RESTART");
-
-        menuButton.setFont(getExitFont());
-        restartButton.setFont(getExitFont());
 
         //aggiunte al panel inferiore
         lowerPanel.add(menuButton, BorderLayout.WEST);
@@ -185,9 +182,13 @@ public final class EndGameView extends DefaultPanelImpl {
                           width / RESIZE_TABLE_FONT_DIVISOR
                         )
                     );
+                standingsTable.setPreferredScrollableViewportSize(new Dimension(width / WIDTH_RESIZING, 
+                                                                                    height / HEIGHT_RESIZING));
+                titleS.setTitleFont(new Font(FONT_SELECTED, Font.BOLD, width / TITLE_FONT_REDUCTION));
                 standingsTable.setRowHeight(height / RESIZE_ROW_HEIGHT_DIVISOR);
                 standingsTable.setRowMargin(ROW_MARGIN);
-
+                menuButton.setFont(new Font(FONT_SELECTED, Font.BOLD, width / SWITCHER_BUTTON_FONT_RESIZING));
+                restartButton.setFont(new Font(FONT_SELECTED, Font.BOLD, width / SWITCHER_BUTTON_FONT_RESIZING));
                 revalidate();
             }
         });
