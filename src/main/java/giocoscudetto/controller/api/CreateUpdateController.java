@@ -102,11 +102,6 @@ public interface CreateUpdateController {
     List<String> getFixtureScoresString();
 
     /**
-     * @return the name of the league winner.
-     */
-    String getLeagueWinner();
-
-    /**
      * This method sets the positions of all pawns to zero.
      */
     void setPositionsZero();

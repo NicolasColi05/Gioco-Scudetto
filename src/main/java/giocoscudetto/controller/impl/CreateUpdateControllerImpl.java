@@ -204,14 +204,6 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public String getLeagueWinner() {
-        return this.table.showPosition().get(0).getName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     @Override 
     public void setPositionsZero() {
         clubs.forEach(club -> club.getPawn().setPosition(0));

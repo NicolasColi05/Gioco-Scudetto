@@ -88,7 +88,8 @@ public final class EndGameView extends DefaultPanelImpl {
         }
 
         //vincitore
-        final JLabel winnerLabel = new JLabel("WINNER:" + this.createUpdateController.getLeagueWinner(), SwingConstants.RIGHT);
+        final JLabel winnerLabel = new JLabel("WINNER:" + this.createUpdateController.getLeagueTableModel().
+                                                getValueAt(0, 0), SwingConstants.RIGHT);
         winnerLabel.setFont(
             new Font(FONT_SELECTED, Font.BOLD, WINNER_FONT_SIZE)
         );
