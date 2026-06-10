@@ -1,6 +1,8 @@
 package giocoscudetto.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -47,19 +49,44 @@ class TestMatchController {
     }
 
     @Test
-    void test() {
+    void testInfo() {
         matchController.setMatch();
         assertEquals(updateController.getFixture().getCurrentMatch().getClubHome().getName(),
                     this.matchController.getHomeName());
         assertEquals(updateController.getFixture().getCurrentMatch().getClubAway().getName(), 
                     this.matchController.getGuestName());
-        this.matchController.setHelpFlag(true);
-        assertTrue(this.matchController.isHelpFlag());
-        assertEquals(Match.GameMode.NONE.name(), this.matchController.getGameMode());
         final int dice = this.matchController.move();
         assertEquals(this.updateController.getFixture().getCurrentMatch().getCurrentPlayer().getPawn().getPosition(), dice);
+    }
 
-        this.matchController.checkBox();
+    @Test
+    void testGameModeFinished() {
+        matchController.setMatch();
+        matchController.gameModeFinished();
+        assertEquals(Match.GameMode.NONE.name(), matchController.getGameMode());
+    }
 
+    @Test
+    void testPawnColors() {
+        matchController.setMatch();
+        assertTrue(this.matchController.getHomePawnRGB() >= 0);
+        assertTrue(this.matchController.getGuestPawnRGB() >= 0);
+    }
+
+    @Test
+    void testGetScore() {
+        matchController.setMatch();
+        final String score = this.matchController.getScore();
+        assertNotNull(score);
+    }
+
+     @Test
+    void testHelpFlag() {
+        matchController.setMatch();
+        assertFalse(this.matchController.isHelpFlag());
+        this.matchController.setHelpFlag(true);
+        assertTrue(this.matchController.isHelpFlag());
+        this.matchController.setHelpFlag(false);
+        assertFalse(this.matchController.isHelpFlag());
     }
 }
