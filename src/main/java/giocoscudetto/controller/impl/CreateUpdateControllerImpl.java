@@ -212,4 +212,12 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
                 .map(Object::toString)
                 .toList();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getLeagueWinner() {
+        return this.table.showPosition().get(0).getName();
+    }
 }

@@ -28,7 +28,6 @@ import javax.imageio.ImageIO;
 import javax.swing.border.TitledBorder;
 
 import giocoscudetto.controller.api.CreateUpdateController;
-import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.impl.initialize.DefaultPanelImpl;
 
@@ -59,7 +58,6 @@ public final class EndGameView extends DefaultPanelImpl {
 
     private static final long serialVersionUID = 1L;
     private final transient Starter controller;
-    private final transient MatchController matchController;
     private final transient CreateUpdateController createUpdateController;
     private final transient Image image;
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -70,15 +68,12 @@ public final class EndGameView extends DefaultPanelImpl {
      *
      * @param controller application controller
      * @param createUpdateController League controller
-     * @param matchController match controller
      */
     @SuppressFBWarnings
     public EndGameView(final Starter controller,
-        final CreateUpdateController createUpdateController,
-         final MatchController matchController) {
+        final CreateUpdateController createUpdateController) {
         this.controller = controller;
         this.createUpdateController = createUpdateController;
-        this.matchController = matchController;
         this.setLayout(new BorderLayout());
 
         try {
@@ -90,7 +85,7 @@ public final class EndGameView extends DefaultPanelImpl {
         }
 
         //vincitore
-        final JLabel winnerLabel = new JLabel("WINNER:" + this.matchController.getLeagueWinner(), SwingConstants.RIGHT);
+        final JLabel winnerLabel = new JLabel("WINNER:" + this.createUpdateController.getLeagueWinner(), SwingConstants.RIGHT);
         winnerLabel.setFont(
             new Font(FONT_SELECTED, Font.BOLD, WINNER_FONT_SIZE)
         );

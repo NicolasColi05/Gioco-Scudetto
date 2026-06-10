@@ -1,6 +1,5 @@
 package giocoscudetto.controller.api;
 
-import giocoscudetto.model.api.Table;
 import giocoscudetto.view.api.GameObserver;
 
 /**
@@ -69,11 +68,6 @@ public interface MatchController {
      * @return the number of the box where the pawn has to move.
      */
     int move();
-
-    /**
-     * @return the table.
-     */
-    Table getTable();
 
     /**
      * This method is for get the description of the current box.
@@ -193,11 +187,6 @@ public interface MatchController {
      * @return the description of the current box.
      */
     String getBoxDescript();
-
-    /**
-     * @return the name of the league winner.
-     */
-    String getLeagueWinner();
 
     /**
      * @return the last position of the ball that was shot.

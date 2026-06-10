@@ -110,4 +110,9 @@ public interface CreateUpdateController {
      * @return a list with the scores of the matchsa in the order of the fixture.
      */
     List<String> getFixtureScoresString();
+
+    /**
+     * @return the name of the league winner.
+     */
+    String getLeagueWinner();
 }

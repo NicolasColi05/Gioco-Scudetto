@@ -12,8 +12,6 @@ import giocoscudetto.view.api.GameObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 /**
  * Implementation of the MatchController interface.
  */
@@ -118,14 +116,6 @@ public class MatchControllerImpl implements MatchController {
         return resultDice;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @SuppressFBWarnings
-    public Table getTable() {
-        return this.table;
-    }
 
     /**
      * {@inheritDoc}
@@ -310,14 +300,6 @@ public class MatchControllerImpl implements MatchController {
     @Override
     public String getBoxDescript() {
         return this.board.getBox(this.match.getCurrentPlayer().getPawn().getPosition()).getDescription();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getLeagueWinner() {
-        return this.table.showPosition().get(0).getName();
     }
 
     /**
