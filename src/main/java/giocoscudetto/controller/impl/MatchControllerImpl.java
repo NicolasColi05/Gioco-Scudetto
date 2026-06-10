@@ -3,9 +3,10 @@ package giocoscudetto.controller.impl;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.model.api.Board;
 import giocoscudetto.model.api.Fixtures;
+import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
+import giocoscudetto.model.api.match.Scoreboard;
 import giocoscudetto.model.impl.match.BoardImpl;
-import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.view.api.GameObserver;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,6 @@ public class MatchControllerImpl implements MatchController {
     private static final int DRAWN_POINT = 1;
     private static final int LOSER_POINT = 0;
 
-    private final CreateUpdateController controller;
     private final Board board = new BoardImpl();
     private final List<GameObserver> observers = new ArrayList<>();
     private final Fixtures fixture;
@@ -30,12 +30,10 @@ public class MatchControllerImpl implements MatchController {
     /**
      * Constructor for MatchControllerImpl.
      * 
-     * @param controller the create/update controller to use for the match controller.
      * @param fixture the fixture of the league.
      */
     @SuppressFBWarnings //not expose internal representation.
-    public MatchControllerImpl(final CreateUpdateController controller, final Fixtures fixture) {
-        this.controller = controller;
+    public MatchControllerImpl(final Fixtures fixture) {
         this.fixture = fixture;
     }
 
@@ -226,32 +224,33 @@ public class MatchControllerImpl implements MatchController {
      */
     @Override
     public void addPoints() {
+        final Scoreboard matchResult = match.getScore();
         if (match.getWinnerClub().isEmpty()) {
-
-            updatePoint(DRAWN_POINT, DRAWN_POINT);
-
+            updateClubScores(match.getClubHome(), DRAWN_POINT, matchResult.getHomeScore(), matchResult.getGuestScore());
+            updateClubScores(match.getClubAway(), DRAWN_POINT, matchResult.getGuestScore(), matchResult.getHomeScore());
         } else if (match.getWinnerClub().get().equals(match.getClubHome())) {
-            updatePoint(WINNER_POINT, LOSER_POINT);
+            updateClubScores(match.getClubHome(), WINNER_POINT, matchResult.getHomeScore(), matchResult.getGuestScore());
+            updateClubScores(match.getClubAway(), LOSER_POINT, matchResult.getGuestScore(), matchResult.getHomeScore());
         } else {
-            updatePoint(LOSER_POINT, WINNER_POINT);
+            updateClubScores(match.getClubHome(), LOSER_POINT, matchResult.getHomeScore(), matchResult.getGuestScore());
+            updateClubScores(match.getClubAway(), WINNER_POINT, matchResult.getGuestScore(), matchResult.getHomeScore());
         }
     }
 
     /**
-     * This method is used to update clubs point and net diff efficiently.
+     * Method to update a specific team point and net diff.
      * 
-     * @param pointHome are the point that the home club gained during the match.
-     * @param pointGuest are the point that the guest club gained during the match.
+     * @param club is the club i want to update points and net diff.
+     * @param points contains the point of that club.
+     * @param goalScored contains the goal scored  of that club.
+     * @param goalConceded contains the goal conceided of that club.
      */
-    private void updatePoint(final int pointHome, final int pointGuest) {
-            controller.updateClubScores(match.getClubHome(), 
-                                        pointHome, 
-                                        match.getScore().getHomeScore(), 
-                                        match.getScore().getGuestScore());
-            controller.updateClubScores(match.getClubAway(), 
-                                        pointGuest, 
-                                        match.getScore().getGuestScore(), 
-                                        match.getScore().getHomeScore());
+    private void updateClubScores(final Club club,
+        final int points,
+        final int goalScored,
+        final int goalConceded) {
+            club.changeNetDiffs(goalScored, goalConceded);
+            club.incrementPoints(points);
     }
 
     /**

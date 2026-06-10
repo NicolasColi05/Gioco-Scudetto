@@ -45,7 +45,7 @@ class TestMatchController {
         listOfColors.add(4);
 
         this.updateController.createClubs(listOfClubs, listOfColors);
-        this.matchController = new MatchControllerImpl(updateController, updateController.getFixture());
+        this.matchController = new MatchControllerImpl(updateController.getFixture());
     }
 
     @Test
