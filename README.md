@@ -1,5 +1,5 @@
 # Gioco dello scudetto
-This is rappresentation of the board Game "Gioco dello scudetto"
+This is the rappresentation of the board Game "Gioco dello scudetto"
 
 ## Authors
 Nicolas Colinucci
