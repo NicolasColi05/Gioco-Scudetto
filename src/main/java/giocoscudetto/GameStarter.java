@@ -37,7 +37,7 @@ public final class GameStarter {
         final CreateUpdateController controller = new CreateUpdateControllerImpl();
 
         //Creating the controller to operate during the match
-        final MatchController matchController = new MatchControllerImpl(controller, controller.getFixture());
+        final MatchController matchController = new MatchControllerImpl(controller.getFixture());
 
         //Creating the controller to change the panel
         final Starter viewChangerController = new StarterImpl(viewManager);
