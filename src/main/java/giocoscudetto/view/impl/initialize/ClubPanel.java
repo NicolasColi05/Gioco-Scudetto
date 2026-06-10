@@ -32,6 +32,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import giocoscudetto.controller.api.CreateUpdateController;
 import giocoscudetto.controller.api.Starter;
 import giocoscudetto.view.api.initialize.PawnColorPicker;
@@ -74,10 +75,10 @@ public final class ClubPanel extends DefaultPanelImpl {
      * @param viewChanger is the controller to change panel.
      * @param controller is the controller to create the clubs with the info choosen.
      */
+    @SuppressFBWarnings //not expose internal representation.
     public ClubPanel(final Starter viewChanger, final CreateUpdateController controller) {
         this.viewChanger = viewChanger;
         this.controller = controller;
-
         this.setLayout(new BorderLayout());
 
         //Creating the panel to choose the number of teams

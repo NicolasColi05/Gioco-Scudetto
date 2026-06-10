@@ -11,6 +11,8 @@ import giocoscudetto.view.api.GameObserver;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Implementation of the MatchController interface.
  */
@@ -32,6 +34,7 @@ public class MatchControllerImpl implements MatchController {
      * @param controller the create/update controller to use for the match controller.
      * @param fixture the fixture of the league.
      */
+    @SuppressFBWarnings //not expose internal representation.
     public MatchControllerImpl(final CreateUpdateController controller, final Fixtures fixture) {
         this.controller = controller;
         this.fixture = fixture;

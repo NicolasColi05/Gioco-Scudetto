@@ -75,7 +75,7 @@ public class BoardPanel extends DefaultPanelImpl implements GameObserver {
      * @param matchController the match controller.
      * @throws IOException if loading an image fails.
      */
-    @SuppressFBWarnings
+    @SuppressFBWarnings //not expose internal representation.
     public BoardPanel(final MatchController matchController) throws IOException {
         this.matchController = matchController;
         this.matchController.addObserver(this);
