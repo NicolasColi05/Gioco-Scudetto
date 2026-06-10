@@ -46,47 +46,47 @@ class TestMatchController {
 
         this.updateController.createClubs(listOfClubs, listOfColors);
         this.matchController = new MatchControllerImpl(updateController.getFixture());
+        matchController.setMatch();
     }
 
     @Test
     void testInfo() {
-        matchController.setMatch();
         assertEquals(updateController.getFixture().getCurrentMatch().getClubHome().getName(),
                     this.matchController.getHomeName());
         assertEquals(updateController.getFixture().getCurrentMatch().getClubAway().getName(), 
                     this.matchController.getGuestName());
-        final int dice = this.matchController.move();
-        assertEquals(this.updateController.getFixture().getCurrentMatch().getCurrentPlayer().getPawn().getPosition(), dice);
     }
 
     @Test
     void testGameModeFinished() {
-        matchController.setMatch();
         matchController.gameModeFinished();
         assertEquals(Match.GameMode.NONE.name(), matchController.getGameMode());
     }
 
     @Test
     void testPawnColors() {
-        matchController.setMatch();
         assertTrue(this.matchController.getHomePawnRGB() >= 0);
         assertTrue(this.matchController.getGuestPawnRGB() >= 0);
     }
 
     @Test
     void testGetScore() {
-        matchController.setMatch();
         final String score = this.matchController.getScore();
         assertNotNull(score);
     }
 
-     @Test
+    @Test
     void testHelpFlag() {
-        matchController.setMatch();
         assertFalse(this.matchController.isHelpFlag());
         this.matchController.setHelpFlag(true);
         assertTrue(this.matchController.isHelpFlag());
         this.matchController.setHelpFlag(false);
         assertFalse(this.matchController.isHelpFlag());
+    }
+
+    @Test
+    void testMove() {
+        final int dice = this.matchController.move();
+        assertEquals(this.updateController.getFixture().getCurrentMatch().getCurrentPlayer().getPawn().getPosition(), dice);
     }
 }
