@@ -3,7 +3,6 @@ package giocoscudetto.controller.impl;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.model.api.Board;
 import giocoscudetto.model.api.Fixtures;
-import giocoscudetto.model.api.Table;
 import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.impl.match.BoardImpl;
@@ -16,12 +15,15 @@ import java.util.List;
  * Implementation of the MatchController interface.
  */
 public class MatchControllerImpl implements MatchController {
+    private static final int WINNER_POINT = 3;
+    private static final int DRAWN_POINT = 1;
+    private static final int LOSER_POINT = 0;
+
     private final CreateUpdateController controller;
     private final Board board = new BoardImpl();
     private final List<GameObserver> observers = new ArrayList<>();
     private Fixtures fixture;
     private Match match;
-    private Table table;
     private boolean helpFlag;
 
     /**
@@ -131,7 +133,6 @@ public class MatchControllerImpl implements MatchController {
     public void setMatch() {
         this.fixture = this.controller.getFixture();
         this.match = this.fixture.nextMatch();
-        this.table = this.controller.getTable();
         notifyViews();
     }
 
@@ -233,16 +234,41 @@ public class MatchControllerImpl implements MatchController {
      */
     @Override
     public void addPoints() {
-        if (this.match.getScore().getHomeScore() == this.match.getScore().getGuestScore()) {
-            this.match.getClubHome().incrementPoints(1);
-            this.match.getClubAway().incrementPoints(1);
-        } else {
-            this.match.getWinnerClub().incrementPoints(3);
-        }
-        this.match.getClubHome().changeNetDiffs(this.match.getScore().getHomeScore(), this.match.getScore().getGuestScore());
-        this.match.getClubAway().changeNetDiffs(this.match.getScore().getGuestScore(), this.match.getScore().getHomeScore());
+        final Club winner = match.getWinnerClub();
+        if (winner == null) {
 
-        this.table.updateClubRank();
+            controller.updateClubScores(match.getClubHome(), 
+                                        DRAWN_POINT, 
+                                        match.getScore().getHomeScore(), 
+                                        match.getScore().getGuestScore());
+            controller.updateClubScores(match.getClubAway(), 
+                                        DRAWN_POINT, 
+                                        match.getScore().getGuestScore(), 
+                                        match.getScore().getHomeScore());
+
+        } else if (winner.equals(match.getClubHome())) {
+
+            controller.updateClubScores(match.getClubHome(), 
+                                        WINNER_POINT, 
+                                        match.getScore().getHomeScore(), 
+                                        match.getScore().getGuestScore());
+            controller.updateClubScores(match.getClubAway(), 
+                                        LOSER_POINT, 
+                                        match.getScore().getGuestScore(), 
+                                        match.getScore().getHomeScore());
+
+        } else {
+
+            controller.updateClubScores(match.getClubHome(), 
+                                        LOSER_POINT, 
+                                        match.getScore().getHomeScore(), 
+                                        match.getScore().getGuestScore());
+            controller.updateClubScores(match.getClubAway(), 
+                                        WINNER_POINT, 
+                                        match.getScore().getGuestScore(), 
+                                        match.getScore().getHomeScore());
+
+        }
     }
 
     /**
