@@ -205,14 +205,14 @@ public final class PreMatchView extends DefaultPanelImpl {
     /**
      * Updates the fixture table with the latest data from the controller.
      */
-    public void updateFixtureTable() {
+    private void updateFixtureTable() {
         fixtureTable.setModel(controller.getFixtureTableModel());
     }
 
     /**
      * Updates the league table with the latest data from the controller.
      */
-    public void updateLeagueTable() {
+    private void updateLeagueTable() {
         leagueTable.setModel(controller.getLeagueTableModel());
     }
 }
