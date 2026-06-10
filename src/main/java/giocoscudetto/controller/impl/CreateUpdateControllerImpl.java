@@ -63,18 +63,6 @@ public class CreateUpdateControllerImpl implements CreateUpdateController {
      * {@inheritDoc}
      */
     @Override
-    public void updateClubScores(final Club club,
-        final int points,
-        final int goalScored,
-        final int goalConceded) {
-            club.changeNetDiffs(goalScored, goalConceded);
-            club.incrementPoints(points);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void updateClubActualRank() {
         this.table.updateClubRank();
     }

@@ -32,16 +32,6 @@ public interface CreateUpdateController {
     void createClubs(List<String> clubsName, List<Integer> pawnName);
 
     /**
-     * Method to update a specific team point and net diff.
-     * 
-     * @param club is the club i want to update points and net diff.
-     * @param points contains the point of that club.
-     * @param goalScored contains the goal scored  of that club.
-     * @param goalConceded contains the goal conceided of that club.
-     */
-    void updateClubScores(Club club, int points, int goalScored, int goalConceded);
-
-    /**
      * Method to update each club position in the table.
      */
     void updateClubActualRank();
