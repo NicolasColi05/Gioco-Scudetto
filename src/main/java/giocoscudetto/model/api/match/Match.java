@@ -1,5 +1,7 @@
 package giocoscudetto.model.api.match;
 
+import java.util.Optional;
+
 /**
  * Interface that represents a match between two clubs, it keeps track of the score and of the clubs that are playing.
  */
@@ -73,12 +75,12 @@ public interface Match {
     /**
      * @return the club that has won the match, if there is a draw it returns null.
      */
-    Club getWinnerClub();
+    Optional<Club> getWinnerClub();
 
     /**
      * @return the club that has lost the match, if there is a draw it returns null.
      */
-    Club getLoserClub();
+    Optional<Club> getLoserClub();
 
     /**
      * @return the club that is currently playing.

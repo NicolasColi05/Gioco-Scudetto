@@ -2,6 +2,7 @@ package giocoscudetto.model.impl.match;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -136,13 +137,13 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public Club getWinnerClub() {
+    public Optional<Club> getWinnerClub() {
         if (this.score.getHomeScore() > this.score.getGuestScore()) {
-            return this.clubHome;
+            return Optional.of(this.clubHome);
         } else if (this.score.getHomeScore() < this.score.getGuestScore()) {
-            return this.clubAway;
+            return Optional.of(this.clubAway);
         } else {
-            return null;
+            return Optional.empty();
         }
     }
 
@@ -150,13 +151,13 @@ public class MatchImpl implements Match {
      * {@inheritDoc}
      */
     @Override
-    public Club getLoserClub() {
+    public Optional<Club> getLoserClub() {
         if (this.score.getHomeScore() < this.score.getGuestScore()) {
-            return this.clubHome;
+            return Optional.of(this.clubHome);
         } else if (this.score.getHomeScore() > this.score.getGuestScore()) {
-            return this.clubAway;
+            return Optional.of(this.clubAway);
         } else {
-            return null;
+            return Optional.empty();
         }
     }
 
