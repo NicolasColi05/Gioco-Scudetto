@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * Box that sends the player back to the starting position.
  */
-public final class BackToStartBox implements Boxes {
+public final class BackToStartBox implements Box {
 
     private static final String DESCRIPTION = 
         "Box Event: Back to Start. "

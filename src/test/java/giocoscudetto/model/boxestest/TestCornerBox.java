@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.impl.boxes.CornerBox;
@@ -24,7 +24,7 @@ class TestCornerBox {
     private final Club clubHome = new ClubImpl("home", 1);
     private final Club clubAway = new ClubImpl("away", 2);
     private Match match;
-    private Boxes cornerBox;
+    private Box cornerBox;
 
     /**
      * Sets up the test environment before each test method is executed.

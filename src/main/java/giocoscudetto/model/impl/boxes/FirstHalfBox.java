@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * Class that represents the first half box on the board.
  */
-public class FirstHalfBox implements Boxes {
+public class FirstHalfBox implements Box {
 
     private static final String IMAGE = "casella_1.png";
     private static final String DESCRIPTION = "Box Event: First Half. If you land on this box,"

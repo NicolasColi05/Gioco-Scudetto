@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * This class represents the Finish Box.
  */
-public class FinishBox implements Boxes {
+public class FinishBox implements Box {
 
     private static final String IMAGE = "casella_32.png";
     private static final String DESCRIPTION = "Box event: Last Box. If you land on this box the game will end";

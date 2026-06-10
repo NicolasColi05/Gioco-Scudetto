@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.impl.boxes.SuspendMatchBox;
@@ -26,7 +26,7 @@ class TestSuspendMatchBox {
     private Club clubHome;
     private Club clubAway;
     private Match match;
-    private Boxes suspendMatchBox;
+    private Box suspendMatchBox;
 
     @BeforeEach
     void setUp() {

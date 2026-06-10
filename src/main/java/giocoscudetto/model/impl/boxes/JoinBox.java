@@ -1,13 +1,13 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * Box that moves the opponent to the current player's position.
  */
-public final class JoinBox implements Boxes {
+public final class JoinBox implements Box {
 
     private static final String IMAGE = "casella_2.png";
     private static final String DESCRIPTION = 

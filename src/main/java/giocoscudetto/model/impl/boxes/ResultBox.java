@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * This class represents the Result Box.
  */
-public class ResultBox implements Boxes {
+public class ResultBox implements Box {
 
     private static final String DESCRIPTION = "Box Event: Result. If you land on this box"
                                      + ", you have to throw 2 dice and the numbers you get makes the new score";

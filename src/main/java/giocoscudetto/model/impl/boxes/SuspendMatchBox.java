@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  *  This class represents the Suspend Match Box.
  */
-public class SuspendMatchBox implements Boxes {
+public class SuspendMatchBox implements Box {
 
     private static final String IMAGE = "casella_10.png";
     private static final String DESCRIPTION = "Box Event: Suspend Match. If you land on this box, "

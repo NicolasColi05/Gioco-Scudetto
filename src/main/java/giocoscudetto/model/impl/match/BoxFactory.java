@@ -1,6 +1,6 @@
 package giocoscudetto.model.impl.match;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.impl.boxes.BackToStartBox;
 import giocoscudetto.model.impl.boxes.CesariniBox;
 import giocoscudetto.model.impl.boxes.CornerBox;
@@ -35,7 +35,7 @@ public final class BoxFactory {
      * @param position the position of the box to create.
      * @return the box.
      */
-    public static Boxes createBox(final int position) {
+    public static Box createBox(final int position) {
         return switch (position) {
             case 0 -> new StartBox(position);
             case 1, 3, 5, 7, 9, 11, 13, 18, 20, 22, 25, 27 -> new EmptyBox(position);

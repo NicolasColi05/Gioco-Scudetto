@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import giocoscudetto.model.api.Board;
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 
 /**
  * This class represents the board of the game,
@@ -14,7 +14,7 @@ import giocoscudetto.model.api.Boxes;
 public class BoardImpl implements Board {
 
     private static final int BOARD_SIZE = 32;
-    private final List<Boxes> board;
+    private final List<Box> board;
 
     /**
      * Constructor of the BoardImpl class.
@@ -30,7 +30,7 @@ public class BoardImpl implements Board {
      * {@inheritDoc}
      */
     @Override
-    public Boxes getBox(final int index) {
+    public Box getBox(final int index) {
        return board.get(index);
     }
 

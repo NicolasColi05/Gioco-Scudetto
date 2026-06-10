@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * This class represents the Free Kick Box.
  */
-public class FreeKickBox implements Boxes {
+public class FreeKickBox implements Box {
 
     private static final String DESCRIPTION = "Box Event: Free Kick. If you land on this box,"
                                        + "you throw two dice(0-6) and if the sum is exactly 7 you score a goal";

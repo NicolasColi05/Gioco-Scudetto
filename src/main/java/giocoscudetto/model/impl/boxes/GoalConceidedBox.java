@@ -1,13 +1,13 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * Implementing GoalConceidedBox.
  * Opponent score a goal if u land on this box.
  */
-public class GoalConceidedBox implements Boxes {
+public class GoalConceidedBox implements Box {
 
     private static final String BOX_NAME = "Goal Conceded";
     private static final String IMAGE = "casella_9.png";

@@ -1,13 +1,13 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * Implementing EmptyBox.
  * Nothing happen if u land on this box.
  */
-public class EmptyBox implements Boxes {
+public class EmptyBox implements Box {
 
     private static final String DESCRIPTION = "Box Event: Empty. If you land on this box, you do nothing.";
     private final int position;

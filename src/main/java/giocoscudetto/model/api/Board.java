@@ -11,7 +11,7 @@ public interface Board {
      * @param index the positon in the board.
      * @return the associated Box.
      */
-    Boxes getBox(int index);
+    Box getBox(int index);
 
     /**
      * This method is for obtain the image of the box in a certain index.

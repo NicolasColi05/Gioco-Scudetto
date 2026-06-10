@@ -1,13 +1,13 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * Implementing GoalRemovedBox.
  * One of your goal get removed if you land on this box.
  */
-public class GoalRemovedBox implements Boxes {
+public class GoalRemovedBox implements Box {
 
     private static final String BOX_NAME = "Goal Removed";
 

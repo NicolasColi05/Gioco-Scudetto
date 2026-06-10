@@ -1,13 +1,13 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * Implementig Cesarini Box.
  * If you land on this box during a match, you score a goal.
  */
-public class CesariniBox implements Boxes {
+public class CesariniBox implements Box {
 
     private static final String BOX_NAME = "Cesarini Zone";
     private static final String IMAGE = "casella_30.png";

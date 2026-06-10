@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * This class represents the first box.
  */
-public class StartBox implements Boxes {
+public class StartBox implements Box {
 
     private static final String IMAGE = "casella_31.png";
     private static final String DESCRIPTION = "Box Event: Start. Start of the match, throw the dice[0-6]";

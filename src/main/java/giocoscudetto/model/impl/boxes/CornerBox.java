@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * This class represents the Corner Box.
  */
-public class CornerBox implements Boxes {
+public class CornerBox implements Box {
 
     private static final String IMAGE = "casella_19.png";
     private static final String DESCRIPTION = "Box Event: Corner. If you land on this box,"

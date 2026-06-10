@@ -2,7 +2,7 @@ package giocoscudetto.model.boxestest;
 
 import org.junit.jupiter.api.Test;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.api.match.Scoreboard;
@@ -26,7 +26,7 @@ class TestGoalRemoved {
     private final Club clubAway = new ClubImpl("away", 2);
     private final Match match = new MatchImpl(clubHome, clubAway);
     private final Scoreboard scoreboard = match.getScore();
-    private final Boxes goalRemovedBox = new GoalRemovedBox(30);
+    private final Box goalRemovedBox = new GoalRemovedBox(30);
 
     @BeforeEach
     void setUpCurrentPlayer() {

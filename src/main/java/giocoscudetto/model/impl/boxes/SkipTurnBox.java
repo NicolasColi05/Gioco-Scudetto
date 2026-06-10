@@ -1,13 +1,13 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * Box that makes the current player skip the next turn.
  */
-public final class SkipTurnBox implements Boxes {
+public final class SkipTurnBox implements Box {
 
     private static final String IMAGE = "casella_7.png";
     private static final String DESCRIPTION = "Box Event: Skip Turn. If you land on this box,"

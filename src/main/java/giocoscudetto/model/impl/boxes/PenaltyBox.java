@@ -1,12 +1,12 @@
 package giocoscudetto.model.impl.boxes;
 
-import giocoscudetto.model.api.Boxes;
+import giocoscudetto.model.api.Box;
 import giocoscudetto.model.api.match.Match;
 
 /**
  * This class represents the Penalty Box.
  */
-public final class PenaltyBox implements Boxes {
+public final class PenaltyBox implements Box {
 
     private static final String DESCRIPTION = "Box Event: Penalty. If you land on this box" 
                                         + " The opponent must decide the position of the goalkeeper, \n" 
