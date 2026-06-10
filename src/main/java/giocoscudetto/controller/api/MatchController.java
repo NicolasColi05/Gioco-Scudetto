@@ -137,11 +137,6 @@ public interface MatchController {
     boolean isLastMatch();
 
     /**
-     * This method sets the positions of all pawns to zero.
-     */
-    void setPositionsZero();
-
-    /**
      * This method adds the points to the clubs at the end of the match.
      */
     void addPoints();

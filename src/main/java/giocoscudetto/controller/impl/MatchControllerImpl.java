@@ -22,7 +22,7 @@ public class MatchControllerImpl implements MatchController {
     private final CreateUpdateController controller;
     private final Board board = new BoardImpl();
     private final List<GameObserver> observers = new ArrayList<>();
-    private Fixtures fixture;
+    private final Fixtures fixture;
     private Match match;
     private boolean helpFlag;
 
@@ -30,9 +30,11 @@ public class MatchControllerImpl implements MatchController {
      * Constructor for MatchControllerImpl.
      * 
      * @param controller the create/update controller to use for the match controller.
+     * @param fixture the fixture of the league.
      */
-    public MatchControllerImpl(final CreateUpdateController controller) {
+    public MatchControllerImpl(final CreateUpdateController controller, final Fixtures fixture) {
         this.controller = controller;
+        this.fixture = fixture;
     }
 
     /**
@@ -131,7 +133,6 @@ public class MatchControllerImpl implements MatchController {
      */
     @Override
     public void setMatch() {
-        this.fixture = this.controller.getFixture();
         this.match = this.fixture.nextMatch();
         notifyViews();
     }
@@ -216,17 +217,6 @@ public class MatchControllerImpl implements MatchController {
     @Override
     public boolean isLastMatch() {
         return this.fixture.seeNextMatch(this.match) == null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override 
-    public void setPositionsZero() {
-        for (final Club club : this.controller.getClubs()) {
-            club.getPawn().setPosition(0);
-        }
-        notifyViews();
     }
 
     /**
