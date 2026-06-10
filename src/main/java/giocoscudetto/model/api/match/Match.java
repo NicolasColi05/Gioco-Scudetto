@@ -73,12 +73,12 @@ public interface Match {
     Scoreboard getScore();
 
     /**
-     * @return the club that has won the match, if there is a draw it returns null.
+     * @return the club that has won the match, if there is a draw it returns Optional.empty().
      */
     Optional<Club> getWinnerClub();
 
     /**
-     * @return the club that has lost the match, if there is a draw it returns null.
+     * @return the club that has lost the match, if there is a draw it returns Optional.empty().
      */
     Optional<Club> getLoserClub();
 
