@@ -129,7 +129,8 @@ public final class PreMatchView extends DefaultPanelImpl {
             this.viewManager.addView(matchPanel, "match");
             count++;
             }
-            this.matchController.setPositionsZero();
+            this.controller.setPositionsZero();
+            this.matchController.notifyViews();
             this.starter.changeView("match");
         });
 
