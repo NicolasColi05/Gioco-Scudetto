@@ -7,8 +7,9 @@ import giocoscudetto.model.impl.match.MatchImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -85,18 +86,18 @@ class TestMatch {
      */
     @Test
     void testWinnerAndLoser() {
-        assertNull(match.getWinnerClub());
-        assertNull(match.getLoserClub());
+        assertEquals(Optional.empty(), match.getWinnerClub());
+        assertEquals(Optional.empty(), match.getLoserClub());
 
         match.setGoalHome(1);
         match.setGoalAway(0);
-        assertEquals(clubHome, match.getWinnerClub());
-        assertEquals(clubAway, match.getLoserClub());
+        assertEquals(clubHome, match.getWinnerClub().get());
+        assertEquals(clubAway, match.getLoserClub().get());
 
         match.setGoalHome(0);
         match.setGoalAway(1);
-        assertEquals(clubAway, match.getWinnerClub());
-        assertEquals(clubHome, match.getLoserClub());
+        assertEquals(clubAway, match.getWinnerClub().get());
+        assertEquals(clubHome, match.getLoserClub().get());
     }
 
     /**

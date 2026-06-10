@@ -3,7 +3,6 @@ package giocoscudetto.controller.impl;
 import giocoscudetto.controller.api.MatchController;
 import giocoscudetto.model.api.Board;
 import giocoscudetto.model.api.Fixtures;
-import giocoscudetto.model.api.match.Club;
 import giocoscudetto.model.api.match.Match;
 import giocoscudetto.model.impl.match.BoardImpl;
 import giocoscudetto.controller.api.CreateUpdateController;
@@ -227,41 +226,32 @@ public class MatchControllerImpl implements MatchController {
      */
     @Override
     public void addPoints() {
-        final Club winner = match.getWinnerClub();
-        if (winner == null) {
+        if (match.getWinnerClub().isEmpty()) {
 
-            controller.updateClubScores(match.getClubHome(), 
-                                        DRAWN_POINT, 
-                                        match.getScore().getHomeScore(), 
-                                        match.getScore().getGuestScore());
-            controller.updateClubScores(match.getClubAway(), 
-                                        DRAWN_POINT, 
-                                        match.getScore().getGuestScore(), 
-                                        match.getScore().getHomeScore());
+            updatePoint(DRAWN_POINT, DRAWN_POINT);
 
-        } else if (winner.equals(match.getClubHome())) {
-
-            controller.updateClubScores(match.getClubHome(), 
-                                        WINNER_POINT, 
-                                        match.getScore().getHomeScore(), 
-                                        match.getScore().getGuestScore());
-            controller.updateClubScores(match.getClubAway(), 
-                                        LOSER_POINT, 
-                                        match.getScore().getGuestScore(), 
-                                        match.getScore().getHomeScore());
-
+        } else if (match.getWinnerClub().get().equals(match.getClubHome())) {
+            updatePoint(WINNER_POINT, LOSER_POINT);
         } else {
+            updatePoint(LOSER_POINT, WINNER_POINT);
+        }
+    }
 
+    /**
+     * This method is used to update clubs point and net diff efficiently.
+     * 
+     * @param pointHome are the point that the home club gained during the match.
+     * @param pointGuest are the point that the guest club gained during the match.
+     */
+    private void updatePoint(final int pointHome, final int pointGuest) {
             controller.updateClubScores(match.getClubHome(), 
-                                        LOSER_POINT, 
+                                        pointHome, 
                                         match.getScore().getHomeScore(), 
                                         match.getScore().getGuestScore());
             controller.updateClubScores(match.getClubAway(), 
-                                        WINNER_POINT, 
+                                        pointGuest, 
                                         match.getScore().getGuestScore(), 
                                         match.getScore().getHomeScore());
-
-        }
     }
 
     /**
